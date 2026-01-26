@@ -24,7 +24,7 @@ import time
 import traceback
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
-
+from io import BytesIO 
 import streamlit as st
 from pathlib import Path
 import os
@@ -412,11 +412,7 @@ def add_doc_block(cell_or_doc, title: str, content: str):
         cell_or_doc.add_paragraph(line)
 
 
-def export_docx_2col(selected: List[ProblemItem], out_dir: str,
-                    include_explanations: bool = True,
-                    include_full_table: bool = False) -> str:
-    ensure_export_dir(out_dir)
-
+def export_docx(selected: List[ProblemItem], include_explanations: bool, include_full_table: bool) -> bytes:
     doc = Document()
     style = doc.styles["Normal"]
     style.font.name = "바탕"
@@ -483,8 +479,9 @@ def export_docx_2col(selected: List[ProblemItem], out_dir: str,
         doc.add_paragraph("-" * 40)
 
     out_path = os.path.join(out_dir, f"export_{int(time.time())}.docx")
-    doc.save(out_path)
-    return out_path
+    buf = BytesIO()
+    doc.save(buf)
+    return buf.getvalue()
 
 # =========================
 # App
@@ -700,22 +697,25 @@ def main():
 
     selected_items = [it for it in items if it.id in st.session_state["selected_ids"]]
 
-    if ex4.button("📄 DOCX 내보내기(문제 2단 + 뒤에 정답/해설)"):
-        try:
-            if not selected_items:
-                st.warning("선택된 문항이 없습니다.")
-            else:
-                path = export_docx_2col(
-                    selected_items,
-                    out_dir=out_dir,
-                    include_explanations=include_expl,
-                    include_full_table=include_full,
-                )
-                st.success("DOCX 생성 완료")
-                st.write(path)
-        except Exception as e:
-            st.error(f"DOCX 내보내기 실패: {type(e).__name__}: {e}")
-            st.code(traceback.format_exc())
+    docx_bytes = None
+    if ex4.button("📄 DOCX 생성(다운로드 준비)"):
+        if not selected_items:
+            st.warning("선택된 문항이 없습니다.")
+    else:
+        docx_bytes = export_docx(
+            selected_items,
+            include_explanations=include_expl,
+            include_full_table=include_full,
+        )
+        st.success("DOCX 준비 완료! 아래 버튼으로 다운로드하세요.")
+
+    if docx_bytes:
+        st.download_button(
+            label="⬇️ DOCX 다운로드",
+            data=docx_bytes,
+            file_name="selected_export.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    )
 
 
 if __name__ == "__main__":
