@@ -488,28 +488,6 @@ def export_docx_2col(selected: List[ProblemItem], out_dir: str,
     out_path = os.path.join(out_dir, f"export_{int(time.time())}.docx")
     doc.save(out_path)
     return out_path
-def build_docx_bytes(selected_items):
-    doc = Document()
-    doc.add_paragraph("선택 문항 출력")
-    doc.add_paragraph(f"총 {len(selected_items)}문항")
-
-    for i, it in enumerate(selected_items, start=1):
-        doc.add_paragraph(f"[{i}] ID: {it['id']}  (모듈: {it['module']})")
-        # 문제 본문/표/해설 등 원하는 만큼 추가
-
-    buf = io.BytesIO()
-    doc.save(buf)
-    buf.seek(0)
-    return buf.getvalue()
-
-# 사용 예:
-docx_bytes = build_docx_bytes(selected_items)
-st.download_button(
-    label="DOCX 다운로드",
-    data=docx_bytes,
-    file_name="selected_problems.docx",
-    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-)
 
 # =========================
 # App
