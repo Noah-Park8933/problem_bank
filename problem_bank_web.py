@@ -70,7 +70,7 @@ from docx.shared import Pt
 # CONFIG
 # =========================
 APP_TITLE = "문제은행 (PACK JSON)"
-DEFAULT_PACK_DIR = os.path.join(os.path.dirname(__file__), "output")  # 네 폴더에 맞게 수정
+DEFAULT_PACK_DIR = os.path.join(os.path.dirname(__file__), "packs")  # 네 폴더에 맞게 수정
 EXPORT_DIR_DEFAULT = os.path.join(os.path.dirname(__file__), "exports")
 
 PAGE_SIZES = [50, 100, 150, 200, 300]
