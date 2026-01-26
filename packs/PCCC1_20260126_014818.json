@@ -1,0 +1,765 @@
+{
+  "module_code": "PCCC1",
+  "id_prefix": "PCCC1_",
+  "generated_at": "2026-01-26 01:48:18",
+  "count": 30,
+  "items": [
+    {
+      "id": "PCCC1_62b60bd821",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABBDD이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (4)일 확률은 1/1이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (4) | 1/1 |\n",
+      "answer_md": "P2 = AAbbdd",
+      "explanation_md": "- P1 = AABBDD → A의 수 = 2, d의 수 = 0 이므로 (d/A)_P1 = 0/1.\n- 정답 P2 = AAbbdd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (4) 확률은 1/1이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (4) : 1/1",
+      "payload": {
+        "P1": "AABBDD",
+        "P2": "AAbbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 4,
+        "target_prob": "1/1",
+        "offspring_dist": {
+          "4": "1/1"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_c113a77765",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 Aabbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 1/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (0) | 1/8 |\n| (1) | 3/8 |\n| (2) | 3/8 |\n| (3) | 1/8 |\n",
+      "answer_md": "P2 = AabbDd",
+      "explanation_md": "- P1 = Aabbdd → A의 수 = 1, d의 수 = 2 이므로 (d/A)_P1 = 2/1.\n- 정답 P2 = AabbDd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 1/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (0) : 1/8\n  • (1) : 3/8\n  • (2) : 3/8\n  • (3) : 1/8",
+      "payload": {
+        "P1": "Aabbdd",
+        "P2": "AabbDd",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 3,
+        "target_prob": "1/8",
+        "offspring_dist": {
+          "3": "1/8",
+          "2": "3/8",
+          "1": "3/8",
+          "0": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_7f12ac32b0",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 1/2이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/4 |\n| (2) | 1/2 |\n| (3) | 1/4 |\n",
+      "answer_md": "P2 = Aabbdd",
+      "explanation_md": "- P1 = AABbdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = Aabbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 1/2이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/4\n  • (2) : 1/2\n  • (3) : 1/4",
+      "payload": {
+        "P1": "AABbdd",
+        "P2": "Aabbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 2,
+        "target_prob": "1/2",
+        "offspring_dist": {
+          "3": "1/4",
+          "2": "1/2",
+          "1": "1/4"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_42b5c9d2f4",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 Aabbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (1)일 확률은 1/2이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/2 |\n| (2) | 1/2 |\n",
+      "answer_md": "P2 = AAbbdd",
+      "explanation_md": "- P1 = Aabbdd → A의 수 = 1, d의 수 = 2 이므로 (d/A)_P1 = 2/1.\n- 정답 P2 = AAbbdd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (1) 확률은 1/2이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/2\n  • (2) : 1/2",
+      "payload": {
+        "P1": "Aabbdd",
+        "P2": "AAbbdd",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 1,
+        "target_prob": "1/2",
+        "offspring_dist": {
+          "2": "1/2",
+          "1": "1/2"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_6e4038976c",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (1)일 확률은 1/4이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/4 |\n| (2) | 1/2 |\n| (3) | 1/4 |\n",
+      "answer_md": "P2 = Aabbdd",
+      "explanation_md": "- P1 = AAbbDd → A의 수 = 2, d의 수 = 1 이므로 (d/A)_P1 = 1/2.\n- 정답 P2 = Aabbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (1) 확률은 1/4이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/4\n  • (2) : 1/2\n  • (3) : 1/4",
+      "payload": {
+        "P1": "AAbbDd",
+        "P2": "Aabbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 1,
+        "target_prob": "1/4",
+        "offspring_dist": {
+          "3": "1/4",
+          "2": "1/2",
+          "1": "1/4"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_7742d93b88",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (6)일 확률은 1/4이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (4) | 1/4 |\n| (5) | 1/2 |\n| (6) | 1/4 |\n",
+      "answer_md": "P2 = AABBDD",
+      "explanation_md": "- P1 = AABbDd → A의 수 = 2, d의 수 = 1 이므로 (d/A)_P1 = 1/2.\n- 정답 P2 = AABBDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (6) 확률은 1/4이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (4) : 1/4\n  • (5) : 1/2\n  • (6) : 1/4",
+      "payload": {
+        "P1": "AABbDd",
+        "P2": "AABBDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 6,
+        "target_prob": "1/4",
+        "offspring_dist": {
+          "6": "1/4",
+          "5": "1/2",
+          "4": "1/4"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_7e71327c2f",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (1)일 확률은 1/16이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/16 |\n| (2) | 1/4 |\n| (3) | 3/8 |\n| (4) | 1/4 |\n| (5) | 1/16 |\n",
+      "answer_md": "P2 = AaBbDd",
+      "explanation_md": "- P1 = AAbbDd → A의 수 = 2, d의 수 = 1 이므로 (d/A)_P1 = 1/2.\n- 정답 P2 = AaBbDd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (1) 확률은 1/16이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/16\n  • (2) : 1/4\n  • (3) : 3/8\n  • (4) : 1/4\n  • (5) : 1/16",
+      "payload": {
+        "P1": "AAbbDd",
+        "P2": "AaBbDd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 1,
+        "target_prob": "1/16",
+        "offspring_dist": {
+          "5": "1/16",
+          "4": "1/4",
+          "3": "3/8",
+          "2": "1/4",
+          "1": "1/16"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_06286d7f81",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 1/4이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (2) | 1/4 |\n| (3) | 1/2 |\n| (4) | 1/4 |\n",
+      "answer_md": "P2 = AaBBdd",
+      "explanation_md": "- P1 = AABbdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBBdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 1/4이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (2) : 1/4\n  • (3) : 1/2\n  • (4) : 1/4",
+      "payload": {
+        "P1": "AABbdd",
+        "P2": "AaBBdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 2,
+        "target_prob": "1/4",
+        "offspring_dist": {
+          "4": "1/4",
+          "3": "1/2",
+          "2": "1/4"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_7ce5b5f5a0",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AaBbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 1/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (3) | 1/8 |\n| (4) | 3/8 |\n| (5) | 3/8 |\n| (6) | 1/8 |\n",
+      "answer_md": "P2 = AABBDD",
+      "explanation_md": "- P1 = AaBbDd → A의 수 = 1, d의 수 = 1 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AABBDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 1/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (3) : 1/8\n  • (4) : 3/8\n  • (5) : 3/8\n  • (6) : 1/8",
+      "payload": {
+        "P1": "AaBbDd",
+        "P2": "AABBDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 3,
+        "target_prob": "1/8",
+        "offspring_dist": {
+          "6": "1/8",
+          "5": "3/8",
+          "4": "3/8",
+          "3": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_3a3d9d7c07",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABBdd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (5)일 확률은 1/1이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (5) | 1/1 |\n",
+      "answer_md": "P2 = AABBDD",
+      "explanation_md": "- P1 = AABBdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AABBDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (5) 확률은 1/1이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (5) : 1/1",
+      "payload": {
+        "P1": "AABBdd",
+        "P2": "AABBDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 5,
+        "target_prob": "1/1",
+        "offspring_dist": {
+          "5": "1/1"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_63ac3cd766",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 3/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/8 |\n| (2) | 3/8 |\n| (3) | 3/8 |\n| (4) | 1/8 |\n",
+      "answer_md": "P2 = AaBbdd",
+      "explanation_md": "- P1 = AABbdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 3/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/8\n  • (2) : 3/8\n  • (3) : 3/8\n  • (4) : 1/8",
+      "payload": {
+        "P1": "AABbdd",
+        "P2": "AaBbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 3,
+        "target_prob": "3/8",
+        "offspring_dist": {
+          "4": "1/8",
+          "3": "3/8",
+          "2": "3/8",
+          "1": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_0d644becd8",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 Aabbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (4)일 확률은 1/2이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (3) | 1/2 |\n| (4) | 1/2 |\n",
+      "answer_md": "P2 = AABBDD",
+      "explanation_md": "- P1 = Aabbdd → A의 수 = 1, d의 수 = 2 이므로 (d/A)_P1 = 2/1.\n- 정답 P2 = AABBDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (4) 확률은 1/2이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (3) : 1/2\n  • (4) : 1/2",
+      "payload": {
+        "P1": "Aabbdd",
+        "P2": "AABBDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 4,
+        "target_prob": "1/2",
+        "offspring_dist": {
+          "4": "1/2",
+          "3": "1/2"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_483a1b1359",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 1/1이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (3) | 1/1 |\n",
+      "answer_md": "P2 = AAbbDD",
+      "explanation_md": "- P1 = AAbbdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AAbbDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 1/1이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (3) : 1/1",
+      "payload": {
+        "P1": "AAbbdd",
+        "P2": "AAbbDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 3,
+        "target_prob": "1/1",
+        "offspring_dist": {
+          "3": "1/1"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_8bb4cf5ce8",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AaBbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 1/2이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/4 |\n| (2) | 1/2 |\n| (3) | 1/4 |\n",
+      "answer_md": "P2 = AAbbdd",
+      "explanation_md": "- P1 = AaBbdd → A의 수 = 1, d의 수 = 2 이므로 (d/A)_P1 = 2/1.\n- 정답 P2 = AAbbdd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 1/2이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/4\n  • (2) : 1/2\n  • (3) : 1/4",
+      "payload": {
+        "P1": "AaBbdd",
+        "P2": "AAbbdd",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 2,
+        "target_prob": "1/2",
+        "offspring_dist": {
+          "3": "1/4",
+          "2": "1/2",
+          "1": "1/4"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_ec1b51f653",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 3/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/8 |\n| (2) | 3/8 |\n| (3) | 3/8 |\n| (4) | 1/8 |\n",
+      "answer_md": "P2 = AaBbdd",
+      "explanation_md": "- P1 = AABbdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 3/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/8\n  • (2) : 3/8\n  • (3) : 3/8\n  • (4) : 1/8",
+      "payload": {
+        "P1": "AABbdd",
+        "P2": "AaBbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 2,
+        "target_prob": "3/8",
+        "offspring_dist": {
+          "4": "1/8",
+          "3": "3/8",
+          "2": "3/8",
+          "1": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_3ba07d9e6b",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (1)일 확률은 1/4이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/4 |\n| (2) | 1/2 |\n| (3) | 1/4 |\n",
+      "answer_md": "P2 = AaBbdd",
+      "explanation_md": "- P1 = AAbbdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (1) 확률은 1/4이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/4\n  • (2) : 1/2\n  • (3) : 1/4",
+      "payload": {
+        "P1": "AAbbdd",
+        "P2": "AaBbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 1,
+        "target_prob": "1/4",
+        "offspring_dist": {
+          "3": "1/4",
+          "2": "1/2",
+          "1": "1/4"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_256ea128a8",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABBDd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (6)일 확률은 1/2이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (5) | 1/2 |\n| (6) | 1/2 |\n",
+      "answer_md": "P2 = AABBDD",
+      "explanation_md": "- P1 = AABBDd → A의 수 = 2, d의 수 = 1 이므로 (d/A)_P1 = 1/2.\n- 정답 P2 = AABBDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (6) 확률은 1/2이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (5) : 1/2\n  • (6) : 1/2",
+      "payload": {
+        "P1": "AABBDd",
+        "P2": "AABBDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 6,
+        "target_prob": "1/2",
+        "offspring_dist": {
+          "6": "1/2",
+          "5": "1/2"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_eb38e7b62b",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 Aabbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (0)일 확률은 1/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (0) | 1/8 |\n| (1) | 3/8 |\n| (2) | 3/8 |\n| (3) | 1/8 |\n",
+      "answer_md": "P2 = AabbDd",
+      "explanation_md": "- P1 = Aabbdd → A의 수 = 1, d의 수 = 2 이므로 (d/A)_P1 = 2/1.\n- 정답 P2 = AabbDd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (0) 확률은 1/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (0) : 1/8\n  • (1) : 3/8\n  • (2) : 3/8\n  • (3) : 1/8",
+      "payload": {
+        "P1": "Aabbdd",
+        "P2": "AabbDd",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 0,
+        "target_prob": "1/8",
+        "offspring_dist": {
+          "3": "1/8",
+          "2": "3/8",
+          "1": "3/8",
+          "0": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_1c1e8ae510",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbdd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 1/2이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (2) | 1/2 |\n| (3) | 1/2 |\n",
+      "answer_md": "P2 = AaBBdd",
+      "explanation_md": "- P1 = AAbbdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBBdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 1/2이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (2) : 1/2\n  • (3) : 1/2",
+      "payload": {
+        "P1": "AAbbdd",
+        "P2": "AaBBdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 3,
+        "target_prob": "1/2",
+        "offspring_dist": {
+          "3": "1/2",
+          "2": "1/2"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_ab196f3287",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 3/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (2) | 1/8 |\n| (3) | 3/8 |\n| (4) | 3/8 |\n| (5) | 1/8 |\n",
+      "answer_md": "P2 = AaBbDD",
+      "explanation_md": "- P1 = AAbbDd → A의 수 = 2, d의 수 = 1 이므로 (d/A)_P1 = 1/2.\n- 정답 P2 = AaBbDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 3/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (2) : 1/8\n  • (3) : 3/8\n  • (4) : 3/8\n  • (5) : 1/8",
+      "payload": {
+        "P1": "AAbbDd",
+        "P2": "AaBbDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 3,
+        "target_prob": "3/8",
+        "offspring_dist": {
+          "5": "1/8",
+          "4": "3/8",
+          "3": "3/8",
+          "2": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_919332225d",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbDD이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 1/1이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (3) | 1/1 |\n",
+      "answer_md": "P2 = AAbbdd",
+      "explanation_md": "- P1 = AAbbDD → A의 수 = 2, d의 수 = 0 이므로 (d/A)_P1 = 0/1.\n- 정답 P2 = AAbbdd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 1/1이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (3) : 1/1",
+      "payload": {
+        "P1": "AAbbDD",
+        "P2": "AAbbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 3,
+        "target_prob": "1/1",
+        "offspring_dist": {
+          "3": "1/1"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_b9e5229a68",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABBDd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (3)일 확률은 1/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (3) | 1/8 |\n| (4) | 3/8 |\n| (5) | 3/8 |\n| (6) | 1/8 |\n",
+      "answer_md": "P2 = AaBbDD",
+      "explanation_md": "- P1 = AABBDd → A의 수 = 2, d의 수 = 1 이므로 (d/A)_P1 = 1/2.\n- 정답 P2 = AaBbDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (3) 확률은 1/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (3) : 1/8\n  • (4) : 3/8\n  • (5) : 3/8\n  • (6) : 1/8",
+      "payload": {
+        "P1": "AABBDd",
+        "P2": "AaBbDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 3,
+        "target_prob": "1/8",
+        "offspring_dist": {
+          "6": "1/8",
+          "5": "3/8",
+          "4": "3/8",
+          "3": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_dfcf93caad",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AAbbDD이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (5)일 확률은 1/2이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (4) | 1/2 |\n| (5) | 1/2 |\n",
+      "answer_md": "P2 = AABBDd",
+      "explanation_md": "- P1 = AAbbDD → A의 수 = 2, d의 수 = 0 이므로 (d/A)_P1 = 0/1.\n- 정답 P2 = AABBDd → (d/A)_P2 = 1/2 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (5) 확률은 1/2이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (4) : 1/2\n  • (5) : 1/2",
+      "payload": {
+        "P1": "AAbbDD",
+        "P2": "AABBDd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 5,
+        "target_prob": "1/2",
+        "offspring_dist": {
+          "5": "1/2",
+          "4": "1/2"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_8924969c8a",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AaBbDD이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (4)일 확률은 5/16이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/32 |\n| (2) | 5/32 |\n| (3) | 5/16 |\n| (4) | 5/16 |\n| (5) | 5/32 |\n| (6) | 1/32 |\n",
+      "answer_md": "P2 = AaBbDd",
+      "explanation_md": "- P1 = AaBbDD → A의 수 = 1, d의 수 = 0 이므로 (d/A)_P1 = 0/1.\n- 정답 P2 = AaBbDd → (d/A)_P2 = 1/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (4) 확률은 5/16이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/32\n  • (2) : 5/32\n  • (3) : 5/16\n  • (4) : 5/16\n  • (5) : 5/32\n  • (6) : 1/32",
+      "payload": {
+        "P1": "AaBbDD",
+        "P2": "AaBbDd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 4,
+        "target_prob": "5/16",
+        "offspring_dist": {
+          "6": "1/32",
+          "5": "5/32",
+          "4": "5/16",
+          "3": "5/16",
+          "2": "5/32",
+          "1": "1/32"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_a497c58b07",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AaBBDd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 3/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/8 |\n| (2) | 3/8 |\n| (3) | 3/8 |\n| (4) | 1/8 |\n",
+      "answer_md": "P2 = Aabbdd",
+      "explanation_md": "- P1 = AaBBDd → A의 수 = 1, d의 수 = 1 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = Aabbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 3/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/8\n  • (2) : 3/8\n  • (3) : 3/8\n  • (4) : 1/8",
+      "payload": {
+        "P1": "AaBBDd",
+        "P2": "Aabbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 2,
+        "target_prob": "3/8",
+        "offspring_dist": {
+          "4": "1/8",
+          "3": "3/8",
+          "2": "3/8",
+          "1": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_7d1ebb2f35",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AaBbDD이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 3/8이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/8 |\n| (2) | 3/8 |\n| (3) | 3/8 |\n| (4) | 1/8 |\n",
+      "answer_md": "P2 = Aabbdd",
+      "explanation_md": "- P1 = AaBbDD → A의 수 = 1, d의 수 = 0 이므로 (d/A)_P1 = 0/1.\n- 정답 P2 = Aabbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 3/8이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/8\n  • (2) : 3/8\n  • (3) : 3/8\n  • (4) : 1/8",
+      "payload": {
+        "P1": "AaBbDD",
+        "P2": "Aabbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 2,
+        "target_prob": "3/8",
+        "offspring_dist": {
+          "4": "1/8",
+          "3": "3/8",
+          "2": "3/8",
+          "1": "1/8"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_4cc7000f6f",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AabbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (1)일 확률은 1/4이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (0) | 1/16 |\n| (1) | 1/4 |\n| (2) | 3/8 |\n| (3) | 1/4 |\n| (4) | 1/16 |\n",
+      "answer_md": "P2 = AaBbdd",
+      "explanation_md": "- P1 = AabbDd → A의 수 = 1, d의 수 = 1 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (1) 확률은 1/4이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (0) : 1/16\n  • (1) : 1/4\n  • (2) : 3/8\n  • (3) : 1/4\n  • (4) : 1/16",
+      "payload": {
+        "P1": "AabbDd",
+        "P2": "AaBbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 1,
+        "target_prob": "1/4",
+        "offspring_dist": {
+          "4": "1/16",
+          "3": "1/4",
+          "2": "3/8",
+          "1": "1/4",
+          "0": "1/16"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_97d72f96fc",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABBdd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 1/4이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (2) | 1/4 |\n| (3) | 1/2 |\n| (4) | 1/4 |\n",
+      "answer_md": "P2 = AaBbdd",
+      "explanation_md": "- P1 = AABBdd → A의 수 = 2, d의 수 = 2 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBbdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 1/4이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (2) : 1/4\n  • (3) : 1/2\n  • (4) : 1/4",
+      "payload": {
+        "P1": "AABBdd",
+        "P2": "AaBbdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 2,
+        "target_prob": "1/4",
+        "offspring_dist": {
+          "4": "1/4",
+          "3": "1/2",
+          "2": "1/4"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_5e905fcd79",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AABbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 작다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (2)일 확률은 1/16이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (2) | 1/16 |\n| (3) | 1/4 |\n| (4) | 3/8 |\n| (5) | 1/4 |\n| (6) | 1/16 |\n",
+      "answer_md": "P2 = AaBbDD",
+      "explanation_md": "- P1 = AABbDd → A의 수 = 2, d의 수 = 1 이므로 (d/A)_P1 = 1/2.\n- 정답 P2 = AaBbDD → (d/A)_P2 = 0/1 이고, 따라서 P2의 d/A는 P1보다 작다.\n- 또한 이 교배에서 자손 표현형 (2) 확률은 1/16이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (2) : 1/16\n  • (3) : 1/4\n  • (4) : 3/8\n  • (5) : 1/4\n  • (6) : 1/16",
+      "payload": {
+        "P1": "AABbDd",
+        "P2": "AaBbDD",
+        "ratio": "d/A",
+        "ratio_dir": "<",
+        "target_pheno": 2,
+        "target_prob": "1/16",
+        "offspring_dist": {
+          "6": "1/16",
+          "5": "1/4",
+          "4": "3/8",
+          "3": "1/4",
+          "2": "1/16"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    },
+    {
+      "id": "PCCC1_2efa906fe7",
+      "module_code": "PCCC1",
+      "id_prefix": "PCCC1_",
+      "problem_text_md": "문제 제목 : Polygenic Cheatkey+Capital Counting 1(PCCC1)\n(A/a), (B/b), (D/d) 3set 유전자에 의해 결정되는 다인자유전을 가정하자. 단, (A/a), (B/b), (D/d)는 모두 독립이다.\nP1의 유전자형은 AaBbDd이다.\nP2가 P1보다 d의 수 / A의 수 가 크다.\n부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형이 (4)일 확률은 1/4이다.\n\n※ 표현형 (n)은 자손의 대문자 대립유전자 총 개수가 n인 경우를 의미한다.",
+      "ask_line_md": "P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.",
+      "table_md": "| 표현형 | 확률 |\n|---|---|\n| (1) | 1/16 |\n| (2) | 1/4 |\n| (3) | 3/8 |\n| (4) | 1/4 |\n| (5) | 1/16 |\n",
+      "answer_md": "P2 = AaBBdd",
+      "explanation_md": "- P1 = AaBbDd → A의 수 = 1, d의 수 = 1 이므로 (d/A)_P1 = 1/1.\n- 정답 P2 = AaBBdd → (d/A)_P2 = 2/1 이고, 따라서 P2의 d/A는 P1보다 크다.\n- 또한 이 교배에서 자손 표현형 (4) 확률은 1/4이다.\n- 위 조건(비율 + 목표확률)을 만족하는 P2를 전수검사하면 정답이 유일(후보 1개 중 1개)이다.\n\n[자손 표현형 분포(=대문자 총개수)]\n  • (1) : 1/16\n  • (2) : 1/4\n  • (3) : 3/8\n  • (4) : 1/4\n  • (5) : 1/16",
+      "payload": {
+        "P1": "AaBbDd",
+        "P2": "AaBBdd",
+        "ratio": "d/A",
+        "ratio_dir": ">",
+        "target_pheno": 4,
+        "target_prob": "1/4",
+        "offspring_dist": {
+          "5": "1/16",
+          "4": "1/4",
+          "3": "3/8",
+          "2": "1/4",
+          "1": "1/16"
+        },
+        "p2_candidate_count": 1,
+        "level": "unknown"
+      }
+    }
+  ]
+}
