@@ -31,6 +31,8 @@ from docx import Document
 from docx.shared import Pt
 import os
 import glob
+from docx.shared import Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 # ✅ PACK 경로 우선순위:
 #  1) GitHub 배포용: ./packs
@@ -412,7 +414,39 @@ def add_doc_block(cell_or_doc, title: str, content: str):
     add_doc_paragraph(cell_or_doc, title, bold=True)
     for line in content.splitlines():
         cell_or_doc.add_paragraph(line)
+def add_docx_table(doc, table_obj, title=None, font_pt=9):
+    if title:
+        p = doc.add_paragraph(title)
+        p.runs[0].bold = True
 
+    # table_obj: dict-of-dict(열/행)이라고 가정 (너희 프로젝트 표가 대부분 이 형식)
+    # df로 통일
+    import pandas as pd
+    df = pd.DataFrame(table_obj)
+
+    t = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1] + 1)
+    t.style = "Table Grid"
+
+    # 좌상단
+    t.cell(0, 0).text = ""
+
+    # 헤더(열)
+    for j, col in enumerate(df.columns, start=1):
+        t.cell(0, j).text = str(col)
+
+    # 행 라벨 + 값
+    for i, idx in enumerate(df.index, start=1):
+        t.cell(i, 0).text = str(idx)
+        for j, col in enumerate(df.columns, start=1):
+            t.cell(i, j).text = str(df.loc[idx, col])
+
+    # 글꼴 크기 통일
+    for row in t.rows:
+        for cell in row.cells:
+            for para in cell.paragraphs:
+                para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                for run in para.runs:
+                    run.font.size = Pt(font_pt)
 
 def export_docx(selected: List[ProblemItem], include_explanations: bool, include_full_table: bool) -> bytes:
     doc = Document()
