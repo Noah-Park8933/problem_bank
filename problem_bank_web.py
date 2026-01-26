@@ -414,33 +414,46 @@ def add_doc_block(cell_or_doc, title: str, content: str):
     add_doc_paragraph(cell_or_doc, title, bold=True)
     for line in content.splitlines():
         cell_or_doc.add_paragraph(line)
-def add_docx_table(doc, table_obj, title=None, font_pt=9):
-    if title:
-        p = doc.add_paragraph(title)
-        p.runs[0].bold = True
-
-    # table_obj: dict-of-dict(열/행)이라고 가정 (너희 프로젝트 표가 대부분 이 형식)
-    # df로 통일
+def add_docx_table(doc_or_cell, table_obj, title=None, font_pt=9):
     import pandas as pd
-    df = pd.DataFrame(table_obj)
 
-    t = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1] + 1)
+    if title:
+        p = doc_or_cell.add_paragraph(title)
+        if p.runs:
+            p.runs[0].bold = True
+
+    if table_obj is None:
+        doc_or_cell.add_paragraph("(표 없음)")
+        return
+
+    # dict-of-dict → df
+    if isinstance(table_obj, dict):
+        df = pd.DataFrame(table_obj)
+    elif isinstance(table_obj, list) and table_obj and isinstance(table_obj[0], list):
+        df = pd.DataFrame(table_obj)
+    elif hasattr(table_obj, "columns"):
+        df = table_obj
+    else:
+        doc_or_cell.add_paragraph(str(table_obj))
+        return
+
+    t = doc_or_cell.add_table(rows=df.shape[0] + 1, cols=df.shape[1] + 1)
     t.style = "Table Grid"
 
-    # 좌상단
+    # corner
     t.cell(0, 0).text = ""
 
-    # 헤더(열)
+    # col headers
     for j, col in enumerate(df.columns, start=1):
         t.cell(0, j).text = str(col)
 
-    # 행 라벨 + 값
+    # rows
     for i, idx in enumerate(df.index, start=1):
         t.cell(i, 0).text = str(idx)
         for j, col in enumerate(df.columns, start=1):
             t.cell(i, j).text = str(df.loc[idx, col])
 
-    # 글꼴 크기 통일
+    # format
     for row in t.rows:
         for cell in row.cells:
             for para in cell.paragraphs:
