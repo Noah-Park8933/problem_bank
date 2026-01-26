@@ -26,6 +26,36 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
 import streamlit as st
+from pathlib import Path
+import os
+import glob
+
+# ✅ PACK 경로 우선순위:
+#  1) GitHub 배포용: ./packs
+#  2) 로컬 생성용:  ./output (또는 ./output/packs, ./output/pack 등도 자동 탐색)
+APP_DIR = Path(__file__).resolve().parent
+
+DEFAULT_PACK_DIRS = [
+    APP_DIR / "packs",
+    APP_DIR / "output",
+    APP_DIR / "output" / "packs",
+    APP_DIR / "output" / "pack",
+]
+
+def find_pack_json_files(base_dirs=None):
+    """여러 후보 폴더에서 *.pack.json / *.json을 폭넓게 탐색."""
+    base_dirs = base_dirs or DEFAULT_PACK_DIRS
+    files = []
+    for d in base_dirs:
+        if not d.exists():
+            continue
+        # pack 확장 우선
+        files += list(d.glob("*.pack.json"))
+        # 혹시 pack.json이 아닌 이름으로 저장된 경우도 대비(원하면 주석 처리 가능)
+        files += [p for p in d.glob("*.json") if p.name.endswith(".pack.json") or "pack" in p.name.lower()]
+    # 중복 제거 + 정렬
+    uniq = sorted({str(p) for p in files})
+    return uniq
 
 try:
     import pandas as pd
