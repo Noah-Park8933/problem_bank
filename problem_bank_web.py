@@ -503,7 +503,7 @@ def build_docx_bytes(selected_items):
     return buf.getvalue()
 
 # 사용 예:
-docx_bytes = build_docx_bytes(selected)
+docx_bytes = build_docx_bytes(selected_items)
 st.download_button(
     label="DOCX 다운로드",
     data=docx_bytes,
