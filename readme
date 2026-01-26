@@ -1,8 +1,10 @@
 # 생명 문제 딸깍기
 
 ## 설치
-pip install python-docx streamlit pandas openpyxl
+pip install -r requirements.txt
 
-## 실행
-python <generator>.py
+## 실행(웹 문제은행)
 python -m streamlit run problem_bank_web.py
+
+## 실행(생성기 예시)
+python gene_detecting_ox_v4_randomX_randomLinkage_NO_SHUFFLE_PACK_PATCHED_v6_1.py
