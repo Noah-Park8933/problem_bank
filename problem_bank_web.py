@@ -27,6 +27,8 @@ from typing import Any, Dict, List, Optional, Tuple
 from io import BytesIO 
 import streamlit as st
 from pathlib import Path
+import docx import Document
+import docx.shared import Pt
 import os
 import glob
 
