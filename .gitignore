@@ -1,0 +1,20 @@
+# 결과물 폴더(자동 생성)
+output/
+exports/
+*.docx
+*.pdf
+*.xlsx
+*.csv
+
+# PACK/JSON이 너무 커지면 여기서 제외(원하면 주석 해제)
+# *.json
+
+# 파이썬 캐시/가상환경
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS 찌꺼기
+.DS_Store
+Thumbs.db
