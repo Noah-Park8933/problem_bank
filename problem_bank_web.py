@@ -65,6 +65,23 @@ except Exception:
 from docx import Document
 from docx.shared import Pt
 
+from io import BytesIO
+from docx import Document
+
+def build_docx_bytes(selected_items) -> bytes:
+    doc = Document()
+    # ... doc 구성 ...
+    bio = BytesIO()
+    doc.save(bio)
+    return bio.getvalue()
+
+docx_bytes = build_docx_bytes(selected)
+st.download_button(
+    "DOCX 다운로드",
+    data=docx_bytes,
+    file_name="selected.docx",
+    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+)
 
 # =========================
 # CONFIG
