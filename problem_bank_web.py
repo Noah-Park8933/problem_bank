@@ -480,7 +480,6 @@ def export_docx(selected: List[ProblemItem], include_explanations: bool, include
 
         doc.add_paragraph("-" * 40)
 
-    out_path = os.path.join(out_dir, f"export_{int(time.time())}.docx")
     buf = BytesIO()
     doc.save(buf)
     return buf.getvalue()
