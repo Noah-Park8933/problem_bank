@@ -1,1 +1,8 @@
+# 생명 문제 딸깍기
 
+## 설치
+pip install python-docx streamlit pandas openpyxl
+
+## 실행
+python <generator>.py
+python -m streamlit run problem_bank_web.py
