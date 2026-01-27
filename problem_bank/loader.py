@@ -85,7 +85,7 @@ def parse_pack(doc: Dict[str, Any], fallback_module: str, fallback_prefix: str) 
     module = str(doc.get("module_code") or doc.get("module") or fallback_module or "UNKNOWN")
     prefix = str(doc.get("id_prefix") or doc.get("prefix") or fallback_prefix or f"{module}_")
 
-    probs = doc.get("problems") or doc.get("items") or doc.get("data") or []
+    probs = doc.get("problems") or doc.get("items") or doc.get("data") or doc.get("list") or doc.get("entries") or []
     out: List[ProblemItem] = []
 
     if isinstance(probs, dict):
@@ -101,8 +101,18 @@ def parse_pack(doc: Dict[str, Any], fallback_module: str, fallback_prefix: str) 
     for it in probs:
         if not isinstance(it, dict):
             continue
-        pid = it.get("pid") or it.get("id") or it.get("problem_id")
-        inner = it.get("payload") if isinstance(it.get("payload"), dict) else {}
+        pid = it.get("pid") or it.get("id") or it.get("problem_id") or it.get("problem__code") or None
+        raw
+        raw = it.get("payload") 
+            if isinstance(raw, dict) : 
+                inner raw 
+            elif isinstance(raw, list) : 
+                inner = {"table" : raw}
+            elif isinstance(raw, str) : 
+                inner = {"text" : raw}
+            else : 
+                inner = {}
+            payload normalize_table(inner)
         payload = dict(inner)  # inner가 우선
         payload = normalize_tables(payload)
         # item-level 메타도 같이 싣기(빈 값은 덮어쓰지 않게)
@@ -151,7 +161,7 @@ def load_all(cfg: AppConfig) -> List[ProblemItem]:
             doc = normalize_tables(doc)
             items.append(ProblemItem(pid=str(pid), module=module, prefix=prefix, path=p, payload=doc))
 
-        if len(items) >= cfg.max_load:
-            break
+      #  if len(items) >= cfg.max_load:
+       #     break
 
     return items
