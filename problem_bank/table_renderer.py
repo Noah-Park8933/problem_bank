@@ -251,7 +251,7 @@ def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[Any]]]
     if isinstance(table_obj, list):
         if all(isinstance(x, str) for x in table_obj):
             headers = ["항목"]
-            rows = [[x] for x in table obj]
+            rows = [[x] for x in table_obj]
             return _pad_grid(headers, rows)
             
     # 3) 1D list: 한 줄짜리로 처리
