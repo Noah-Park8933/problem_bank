@@ -48,7 +48,15 @@ def render_table_pretty(table_obj):
     df = pd.DataFrame(fixed_rows, columns=headers)
     st.dataframe(df, use_container_width=True)
 
+def try_find_image(payload):
+    # generator에서 넣어준 key 후보들
+    keys = ["image", "img", "figure", "image_path", "img_path"]
 
+    for k in keys:
+        v = payload.get(k)
+        if isinstance(v, str) and os.path.exists(v):
+            return v
+    return None
 def render_list(cfg: AppConfig, state: AppState, items: List[ProblemItem], page: int):
     start = page * cfg.page_size
     end = min(len(items), start + cfg.page_size)
@@ -281,6 +289,10 @@ def main():
     # 리스트 렌더
     st.subheader("문항 목록")
     render_list(cfg, state, filtered, int(state.page or 0))
+    img_path = try_find_image(it.payload)
+    if img_path:
+        st.image(img_path, use_container_width=True)
+    
 
 
 if __name__ == "__main__":
