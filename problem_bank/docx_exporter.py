@@ -39,7 +39,20 @@ def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 3.2):
 
     t = doc_or_cell.add_table(rows=n_rows, cols=n_cols)
     t.style = "Table Grid"
+    # 열 너비 고정
+    for col in range(n_cols):
+        for row in range(n_rows):
+            t.rows[row].cells[col].width = Cm(1.2)   # 🔥 너비 줄이고 싶으면 숫자 더 줄이면 됨
 
+    # 헤더
+    for j, h in enumerate(headers):
+        t.rows[0].cells[j].text = str(h)
+
+    # 데이터
+    for i, r in enumerate(rows):
+        for j in range(n_cols):
+            val = r[j] if j < len(r) else ""
+            t.rows[i+1].cells[j].text = str(val)
     # ✅ 자동폭 끄기 (핵심)
     t.autofit = False
 
