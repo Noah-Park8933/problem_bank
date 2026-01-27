@@ -631,7 +631,7 @@ def main():
                 bc1, bc2, bc3 = st.columns([1, 1, 2])
                 with bc1:
                     if st.button("그룹 선택", key=f"sel_{group_mode}_{gkey}"):
-                        for it in gitems:
+                        for row_i, it in enumerate(gitems):
                             st.session_state.selected_ids.add(it.pid)
                 with bc2:
                     if st.button("그룹 해제", key=f"clr_{group_mode}_{gkey}"):
@@ -645,7 +645,7 @@ def main():
                     row = st.container()
                     cc1, cc2, cc3 = row.columns([0.15, 0.55, 0.3])
                     with cc1:
-                        new_checked = st.checkbox("", value=checked, key=f"chk_{it.pid}")
+                        new_checked = st.checkbox("", value=checked, key=f"chk_{it.pid}_{row_i}")
                         if new_checked:
                             st.session_state.selected_ids.add(it.pid)
                         else:
@@ -655,7 +655,7 @@ def main():
                         st.caption(os.path.basename(it.source_file))
                     with cc3:
                         cur = it.norm.get("difficulty") or "미분류"
-                        new = st.selectbox("난이도", DIFFICULTY_LEVELS, index=DIFFICULTY_LEVELS.index(cur) if cur in DIFFICULTY_LEVELS else 0, key=f"diff_{it.pid}")
+                        new = st.selectbox("난이도", DIFFICULTY_LEVELS, index=DIFFICULTY_LEVELS.index(cur) if cur in DIFFICULTY_LEVELS else 0, key=f"diff_{it.pid}_{row_i}")
                         if new != cur:
                             it.norm["difficulty"] = new
                             diff_over[it.pid] = new
