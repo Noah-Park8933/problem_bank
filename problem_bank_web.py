@@ -566,7 +566,7 @@ def export_docx_bytes(selected: List[ProblemItem], include_expl: bool, include_f
                 try:
                     cell.add_paragraph("")
                     run = cell.add_paragraph().add_run()
-                    run.add_picture(io.BytesIO(img_bytes), width=Inches(2.2))
+                    run.add_picture(io.BytesIO(img_bytes), width=Inches(1.2))
                 except Exception:
                     pass
 
