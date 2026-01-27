@@ -90,6 +90,16 @@ def normalize_tables(payload: Dict[str, Any]) -> Dict[str, Any]:
         payload["_full_table"] = full
 
     return payload
+def normalize_images(payload):
+    if not isinstance(payload, dict):
+        return payload
+
+    for k in ["image", "img", "image_path", "tree_img", "figure", "fig"]:
+        if k in payload and isinstance(payload[k], str) and payload[k].strip():
+            payload["_image_path"] = payload[k].strip()
+            break
+
+    return payload
 
 
 # ---------------------------------------------------
@@ -154,7 +164,7 @@ def parse_pack(doc: Dict[str, Any], fallback_module: str, fallback_prefix: str) 
 
         payload = dict(inner)
         payload = normalize_tables(payload)
-
+        payload = normalize_images(payload)
         # item-level 메타 병합
         for k, v in it.items():
             if k == "payload":
