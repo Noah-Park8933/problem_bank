@@ -107,7 +107,7 @@ def _try_add_image(container, payload: Dict[str, Any]):
         try:
             container.add_paragraph("")  # spacing
             # 2단 셀에 들어가므로 폭은 적당히
-            container.add_picture(ip, width=Inches(3.0))
+            container.add_picture(ip, width=Inches(1.2))
             container.add_paragraph("")  # spacing
         except Exception:
             _add_par(container, f"(이미지 삽입 실패: {ip})")
