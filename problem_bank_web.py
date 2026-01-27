@@ -31,6 +31,7 @@ from docx import Document
 from docx.shared import Pt
 import os
 import glob
+import pandas as pd
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
@@ -485,13 +486,8 @@ def export_docx(selected: List[ProblemItem], include_explanations: bool, include
                 add_doc_block(cell, "요구사항", atxt)
 
             # 제시표
-            add_doc_paragraph(cell, "제시표", bold=True)
-            # 표를 markdown/text로 넣기 위해 streamlit 렌더링 대신 문자열화
             tbl_obj = find_first(it.payload, GIVEN_TABLE_KEYS)
-            if tbl_obj is None:
-                cell.add_paragraph("(표 없음)")
-            else:
-                cell.add_paragraph(safe_str(tbl_obj))
+            add_docx_table(cell, tbl_obj, title="제시표", font_pt=9)
 
             cell.add_paragraph("")  # spacing
 
@@ -519,8 +515,7 @@ def export_docx(selected: List[ProblemItem], include_explanations: bool, include
 
         if include_full_table:
             full_obj = find_first(it.payload, FULL_TABLE_KEYS)
-            if full_obj is not None:
-                add_doc_block(doc, "완성표", safe_str(full_obj))
+            add_docx_table(doc, full_obj, title="완성표", font_pt=9)
 
         if include_explanations:
             add_doc_block(doc, "해설", expl if expl else "(없음)")
