@@ -34,6 +34,9 @@ import glob
 import pandas as pd
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+ASSET_DIR = Path(__file__).resolve().parent
+TREE_A = ASSET_DIR / "tree_base_A.png"
+TREE_B = ASSET_DIR / "tree_base_B.png"
 
 # ✅ PACK 경로 우선순위:
 #  1) GitHub 배포용: ./packs
