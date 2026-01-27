@@ -667,6 +667,7 @@ def main():
                         st.caption(os.path.basename(it.source_file))
                     with cc3:
                         cur = it.norm.get("difficulty") or "미분류"
+                        new = st.selectbox("난이도", DIFFICULTY_LEVELS, index=DIFFICULTY_LEVELS.index(cur) if cur in DIFFICULTY_LEVELS else 0, key=f"diff_{it.pid}_{row_i}")
                         if new != cur:
                             it.norm["difficulty"] = new
                             diff_over[it.pid] = new
