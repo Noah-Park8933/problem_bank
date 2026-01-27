@@ -111,7 +111,7 @@ from docx.oxml.ns import qn
 # CONFIG
 # =========================
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "output")  # 재귀 탐색
+DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "packs")  # 재귀 탐색
 DIFF_OVERRIDES_PATH = os.path.join(APP_DIR, "difficulty_overrides.json")
 
 # 표준 키 후보(모듈별 차이를 흡수)
@@ -134,7 +134,7 @@ FULL_TABLE_KEYS = [
     "filled_table"
 ]
 # 이미지 키(있으면 첨부)
-IMAGE_KEYS = ["image_path", "figure_path", "fig_path", "png_path", "tree_png_path", "img_path", "image_b64", "img_b64"]
+IMAGE_KEYS = ["image_path", "figure_path", "fig_path", "png_path", "tree_png_path", "img_path", "image_b64", "img_b64", "templete"]
 
 DIFFICULTY_LEVELS = ["미분류", "하", "중", "상", "극상"]
 
