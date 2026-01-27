@@ -241,6 +241,51 @@ def normalize_payload(payload: Dict[str, Any], pid: str, module: str) -> Dict[st
     # 요약용
     norm["payload_keys"] = list(payload.keys())
     return norm
+def normalize_table_obj(tbl_obj):
+    """
+    다양한 table 형태를 "표로 렌더 가능한 2D list"로 통일.
+    - dict-of-dict (cell->gene->val) 형태(Gene Detecting 등) 지원
+    - 이미 2D list면 그대로 반환
+    return: (header_row, body_rows) 형태의 2D list
+    """
+    if tbl_obj is None:
+        return None
+
+    # 이미 2D list인 경우
+    if isinstance(tbl_obj, list) and tbl_obj and isinstance(tbl_obj[0], list):
+        return tbl_obj
+
+    # ✅ dict-of-dict 형태 (예: table[cell][gene])
+    if isinstance(tbl_obj, dict):
+        # tbl_obj: {col: {row: val}}
+        cols = list(tbl_obj.keys())
+
+        # 안쪽 dict 키(행 라벨) 모으기
+        row_set = set()
+        for c in cols:
+            v = tbl_obj.get(c)
+            if isinstance(v, dict):
+                row_set.update(v.keys())
+
+        # 행 라벨 정렬: Gene Detecting이면 보통 가나다라마바
+        # (정렬 기준이 필요하면 여기 커스터마이즈)
+        rows = sorted(row_set)
+
+        out = []
+        out.append([""] + cols)  # 헤더
+        for r in rows:
+            line = [r]
+            for c in cols:
+                val = "?"
+                inner = tbl_obj.get(c)
+                if isinstance(inner, dict):
+                    val = inner.get(r, "?")
+                line.append(val)
+            out.append(line)
+        return out
+
+    # 그 외는 표로 못 봄
+    return None
 
 
 def make_uid(source_path: str, pid: str) -> str:
