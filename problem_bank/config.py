@@ -28,7 +28,7 @@ class AppConfig:
     # 본문/요구사항 텍스트 후보 키
     problem_text_keys: List[str] = ("problem_text_md", "problem_md", "problem_text", "stem", "question")
     ask_line_keys: List[str] = ("ask_line_md", "ask_md", "ask", "tasks", "request")
-    answer_keys: List[str] = ("answer_md", "answer", "ans", "answer_num", "correct")
+    answer_keys: List[str] = ("answer_md", "answer", "ans", "answer_num", "correct", "answer_text_md")
     explanation_keys: List[str] = ("explanation_md", "explain_md", "explanation", "solution", "reasons", "commentary")
 
     # 이미지 키 후보 (Division tree 같은 거)
