@@ -250,6 +250,18 @@ def make_uid(source_path: str, pid: str) -> str:
 # =========================
 # PACK LOADING
 # =========================
+
+def dedupe_items_by_uid(items: List[ProblemItem]) -> List[ProblemItem]:
+    """Streamlit 위젯 key 충돌 방지: 같은 uid(=같은 문제)가 여러 번 로드되면 1개만 남김."""
+    seen = set()
+    out: List[ProblemItem] = []
+    for it in items:
+        if it.uid in seen:
+            continue
+        seen.add(it.uid)
+        out.append(it)
+    return out
+
 def iter_json_files(root: str) -> List[str]:
     out = []
     if not root or not os.path.exists(root):
@@ -560,6 +572,7 @@ def main():
         st.cache_data.clear()
 
     items, meta = load_all_packs(pack_root, max_files=int(max_files))
+    items = dedupe_items_by_uid(items)
     diff_over = load_diff_overrides()
 
     # inject difficulty overrides
