@@ -1,5 +1,5 @@
 # docx_exporter.py
-
+print("DOCX_EXPORTER VERSION = NEW_PATCH_20260128")
 import os
 from io import BytesIO
 from typing import Any, Dict, List, Optional, Tuple
