@@ -29,6 +29,7 @@ import streamlit as st
 from pathlib import Path
 from docx import Document
 from docx.shared import Pt
+from docx.table import _Cell
 import os
 import glob
 import pandas as pd
@@ -418,52 +419,62 @@ def add_doc_block(cell_or_doc, title: str, content: str):
     add_doc_paragraph(cell_or_doc, title, bold=True)
     for line in content.splitlines():
         cell_or_doc.add_paragraph(line)
-def add_docx_table(doc_or_cell, table_obj, title=None, font_pt=9):
-    import pandas as pd
-
+def add_docx_table(doc, container, table_obj, title=None, font_pt=9):
+    """
+    doc: Document
+    container: Document 또는 _Cell
+    table_obj: dict-of-dict / list-of-lists / DataFrame
+    핵심: 표는 doc.add_table()로 만든 뒤, container가 cell이면 그 안으로 '이동'시킨다.
+    """
+    # 제목
     if title:
-        p = doc_or_cell.add_paragraph(title)
+        p = container.add_paragraph(title)
         if p.runs:
             p.runs[0].bold = True
 
     if table_obj is None:
-        doc_or_cell.add_paragraph("(표 없음)")
+        container.add_paragraph("(표 없음)")
         return
 
-    # dict-of-dict → df
+    # DataFrame 변환
     if isinstance(table_obj, dict):
-        df = pd.DataFrame(table_obj)
+        try:
+            df = pd.DataFrame(table_obj)
+        except Exception:
+            container.add_paragraph(str(table_obj))
+            return
     elif isinstance(table_obj, list) and table_obj and isinstance(table_obj[0], list):
         df = pd.DataFrame(table_obj)
     elif hasattr(table_obj, "columns"):
         df = table_obj
     else:
-        doc_or_cell.add_paragraph(str(table_obj))
+        container.add_paragraph(str(table_obj))
         return
 
-    t = doc_or_cell.add_table(rows=df.shape[0] + 1, cols=df.shape[1] + 1)
+    # 1) 일단 문서에 표를 만든다
+    t = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1] + 1)
     t.style = "Table Grid"
 
-    # corner
     t.cell(0, 0).text = ""
-
-    # col headers
     for j, col in enumerate(df.columns, start=1):
         t.cell(0, j).text = str(col)
 
-    # rows
     for i, idx in enumerate(df.index, start=1):
         t.cell(i, 0).text = str(idx)
         for j, col in enumerate(df.columns, start=1):
             t.cell(i, j).text = str(df.loc[idx, col])
 
-    # format
+    # 글자/정렬
     for row in t.rows:
         for cell in row.cells:
             for para in cell.paragraphs:
                 para.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 for run in para.runs:
                     run.font.size = Pt(font_pt)
+
+    # 2) container가 셀이면, 표 XML을 셀 안으로 이동
+    if isinstance(container, _Cell):
+        container._tc.append(t._tbl)  # 이 한 줄이 핵심 (표가 셀 안으로 들어감)
 
 def export_docx(selected: List[ProblemItem], include_explanations: bool, include_full_table: bool) -> bytes:
     doc = Document()
@@ -490,8 +501,7 @@ def export_docx(selected: List[ProblemItem], include_explanations: bool, include
 
             # 제시표
             tbl_obj = find_first(it.payload, GIVEN_TABLE_KEYS)
-            add_docx_table(cell, tbl_obj, title="제시표", font_pt=9)
-
+            add_docx_table(doc, cell, tbl_obj, title="제시표", font_pt=9)
             cell.add_paragraph("")  # spacing
 
         fill(left, selected[idx], pnum)
