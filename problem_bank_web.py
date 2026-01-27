@@ -36,6 +36,71 @@ from typing import Any, Dict, List, Optional, Tuple
 import streamlit as st
 import pandas as pd
 
+
+# ============================================================
+# Fallback text extractors (문제 본문/요구사항이 PACK에 없을 때 표시용)
+# ============================================================
+
+FALLBACK_PROBLEM_TEXT_KEYS = [
+    "problem_text_md", "problem_text", "problem_md", "qtext", "stem", "prompt", "question", "desc", "description",
+    "problem", "text"
+]
+FALLBACK_ASK_TEXT_KEYS = [
+    "ask_line_md", "ask_line", "ask_md", "ask", "task", "requirement", "requirements", "what_to_do", "query"
+]
+
+def _deep_find_first(obj, keys):
+    """Recursively find first value for any key in keys within dict/list structures."""
+    if isinstance(obj, dict):
+        # direct hit
+        for k in keys:
+            if k in obj and obj[k] not in (None, "", [], {}):
+                return obj[k]
+        # recurse
+        for v in obj.values():
+            got = _deep_find_first(v, keys)
+            if got not in (None, "", [], {}):
+                return got
+    elif isinstance(obj, list):
+        for it in obj:
+            got = _deep_find_first(it, keys)
+            if got not in (None, "", [], {}):
+                return got
+    return None
+
+def _as_md_text(v):
+    """Convert arbitrary payload value to displayable markdown-ish text (safe, compact)."""
+    if v is None:
+        return ""
+    if isinstance(v, (str, int, float, bool)):
+        return str(v)
+    # pretty JSON for dict/list
+    try:
+        return json.dumps(v, ensure_ascii=False, indent=2)
+    except Exception:
+        return str(v)
+
+def get_display_texts(payload: dict):
+    """
+    Returns (problem_text_md, ask_line_md).
+    If pack doesn't contain them, fallback searches payload recursively for reasonable keys.
+    """
+    # First, try existing canonical fields from get_fields (if present)
+    try:
+        ptxt, atxt, ans, expl = get_fields(payload)  # type: ignore
+        if ptxt or atxt:
+            return (ptxt or "", atxt or "")
+    except Exception:
+        pass
+
+    p = _deep_find_first(payload, FALLBACK_PROBLEM_TEXT_KEYS)
+    a = _deep_find_first(payload, FALLBACK_ASK_TEXT_KEYS)
+
+    ptxt = _as_md_text(p) if p is not None else ""
+    atxt = _as_md_text(a) if a is not None else ""
+
+    return (ptxt, atxt)
+
 from docx import Document
 from docx.shared import Pt, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -46,7 +111,7 @@ from docx.oxml.ns import qn
 # CONFIG
 # =========================
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "packs")  # 재귀 탐색
+DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "output")  # 재귀 탐색
 DIFF_OVERRIDES_PATH = os.path.join(APP_DIR, "difficulty_overrides.json")
 
 # 표준 키 후보(모듈별 차이를 흡수)
@@ -69,7 +134,7 @@ FULL_TABLE_KEYS = [
     "filled_table"
 ]
 # 이미지 키(있으면 첨부)
-IMAGE_KEYS = ["image_path", "figure_path", "fig_path", "png_path", "tree_png_path", "img_path", "image_b64", "img_b64", "templete"]
+IMAGE_KEYS = ["image_path", "figure_path", "fig_path", "png_path", "tree_png_path", "img_path", "image_b64", "img_b64"]
 
 DIFFICULTY_LEVELS = ["미분류", "하", "중", "상", "극상"]
 
@@ -241,51 +306,6 @@ def normalize_payload(payload: Dict[str, Any], pid: str, module: str) -> Dict[st
     # 요약용
     norm["payload_keys"] = list(payload.keys())
     return norm
-def normalize_table_obj(tbl_obj):
-    """
-    다양한 table 형태를 "표로 렌더 가능한 2D list"로 통일.
-    - dict-of-dict (cell->gene->val) 형태(Gene Detecting 등) 지원
-    - 이미 2D list면 그대로 반환
-    return: (header_row, body_rows) 형태의 2D list
-    """
-    if tbl_obj is None:
-        return None
-
-    # 이미 2D list인 경우
-    if isinstance(tbl_obj, list) and tbl_obj and isinstance(tbl_obj[0], list):
-        return tbl_obj
-
-    # ✅ dict-of-dict 형태 (예: table[cell][gene])
-    if isinstance(tbl_obj, dict):
-        # tbl_obj: {col: {row: val}}
-        cols = list(tbl_obj.keys())
-
-        # 안쪽 dict 키(행 라벨) 모으기
-        row_set = set()
-        for c in cols:
-            v = tbl_obj.get(c)
-            if isinstance(v, dict):
-                row_set.update(v.keys())
-
-        # 행 라벨 정렬: Gene Detecting이면 보통 가나다라마바
-        # (정렬 기준이 필요하면 여기 커스터마이즈)
-        rows = sorted(row_set)
-
-        out = []
-        out.append([""] + cols)  # 헤더
-        for r in rows:
-            line = [r]
-            for c in cols:
-                val = "?"
-                inner = tbl_obj.get(c)
-                if isinstance(inner, dict):
-                    val = inner.get(r, "?")
-                line.append(val)
-            out.append(line)
-        return out
-
-    # 그 외는 표로 못 봄
-    return None
 
 
 def make_uid(source_path: str, pid: str) -> str:
