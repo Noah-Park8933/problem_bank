@@ -1,662 +1,842 @@
-# problem_bank_web.py
+
+# problem_bank_web_REWRITE_v1.py
 # ------------------------------------------------------------
-# ✅ Streamlit 문제은행 뷰어 (PACK JSON 기반) - Arrow/pyarrow 안전버전
-#
-# 해결된 문제:
-# - pyarrow.lib.ArrowInvalid: cannot mix list and non-list ...  (DataFrame 혼합 타입)
-#   -> 모든 dataframe 출력은 safe_df()를 거쳐 문자열화 후 출력
-#
-# 기능:
-# 1) PACK JSON 자동 탐색/통합(packs 폴더)
-# 2) 문제 미리보기: 표/해설 자동 렌더링(모듈별 payload 자동 감지)
-# 3) 선택 표시(✅) + 선택만 보기
-# 4) ID prefix(모듈)별 필터 + ID 검색
-# 5) 그룹 전체 선택/해제
-# 6) 선택 문항 DOCX 내보내기
+# Streamlit 문제은행 웹 (표준화(normalize) 기반, UI 안정화)
 #
 # 실행:
-#   pip install streamlit pandas python-docx
-#   streamlit run problem_bank_web.py --server.address 0.0.0.0 --server.port 8501
+#   pip install streamlit python-docx pandas openpyxl
+#   streamlit run problem_bank_web.py
+#
+# 폴더 구조(권장):
+#   프로젝트/
+#     problem_bank_web.py
+#     output/               <- 각 생성기가 만든 PACK JSON들이 모이는 폴더(재귀 탐색)
+#     tree_base_A.png (선택)
+#     tree_base_B.png (선택)
+#
+# 기능:
+# - PACK JSON 자동 탐색/로드(깨진 JSON 스킵)
+# - payload 자동 표준화: problem_text_md, ask_line_md, given_table, full_table, answer_md, explain_md
+# - ID prefix/모듈 그룹 접기/펼치기, 현재 필터 기준 전체선택/해제
+# - 선택한 것만 보기, 선택 표시 유지
+# - 난이도 드롭다운(로컬 저장: difficulty_overrides.json)
+# - DOCX 다운로드(2단/표는 "진짜 표"로 삽입, 정답/해설은 뒤에 모아서)
 # ------------------------------------------------------------
 
+from __future__ import annotations
 import os
 import re
+import io
 import json
-import time
-import glob
+import base64
 import hashlib
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import streamlit as st
 import pandas as pd
 
-from docx import Document
-from docx.shared import Pt
 
+# ============================================================
+# Fallback text extractors (문제 본문/요구사항이 PACK에 없을 때 표시용)
+# ============================================================
+
+FALLBACK_PROBLEM_TEXT_KEYS = [
+    "problem_text_md", "problem_text", "problem_md", "qtext", "stem", "prompt", "question", "desc", "description",
+    "problem", "text"
+]
+FALLBACK_ASK_TEXT_KEYS = [
+    "ask_line_md", "ask_line", "ask_md", "ask", "task", "requirement", "requirements", "what_to_do", "query"
+]
+
+def _deep_find_first(obj, keys):
+    """Recursively find first value for any key in keys within dict/list structures."""
+    if isinstance(obj, dict):
+        # direct hit
+        for k in keys:
+            if k in obj and obj[k] not in (None, "", [], {}):
+                return obj[k]
+        # recurse
+        for v in obj.values():
+            got = _deep_find_first(v, keys)
+            if got not in (None, "", [], {}):
+                return got
+    elif isinstance(obj, list):
+        for it in obj:
+            got = _deep_find_first(it, keys)
+            if got not in (None, "", [], {}):
+                return got
+    return None
+
+def _as_md_text(v):
+    """Convert arbitrary payload value to displayable markdown-ish text (safe, compact)."""
+    if v is None:
+        return ""
+    if isinstance(v, (str, int, float, bool)):
+        return str(v)
+    # pretty JSON for dict/list
+    try:
+        return json.dumps(v, ensure_ascii=False, indent=2)
+    except Exception:
+        return str(v)
+
+def get_display_texts(payload: dict):
+    """
+    Returns (problem_text_md, ask_line_md).
+    If pack doesn't contain them, fallback searches payload recursively for reasonable keys.
+    """
+    # First, try existing canonical fields from get_fields (if present)
+    try:
+        ptxt, atxt, ans, expl = get_fields(payload)  # type: ignore
+        if ptxt or atxt:
+            return (ptxt or "", atxt or "")
+    except Exception:
+        pass
+
+    p = _deep_find_first(payload, FALLBACK_PROBLEM_TEXT_KEYS)
+    a = _deep_find_first(payload, FALLBACK_ASK_TEXT_KEYS)
+
+    ptxt = _as_md_text(p) if p is not None else ""
+    atxt = _as_md_text(a) if a is not None else ""
+
+    return (ptxt, atxt)
+
+from docx import Document
+from docx.shared import Pt, Inches
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
+from docx.oxml.ns import qn
 
 # =========================
 # CONFIG
 # =========================
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "output")  # 재귀 탐색
+DIFF_OVERRIDES_PATH = os.path.join(APP_DIR, "difficulty_overrides.json")
 
-
-# ------------------------------
-# Table detection helpers (robust across modules)
-# ------------------------------
-PREFERRED_TABLE_KEYS = [
-    "masked_table", "given_table", "table", "grid", "matrix",
-    "full_table", "answer_table", "sums_mask", "sums", "data_table",
-    "table_md", "masked_table_md",
+# 표준 키 후보(모듈별 차이를 흡수)
+PROBLEM_TEXT_KEYS = [
+    "problem_text_md", "problem_md", "problem_text", "question_md", "question",
+    "stem", "prompt", "text_md", "text", "problem"
 ]
-
-def _looks_like_cell_labels(keys) -> bool:
-    s = [str(k) for k in keys]
-    if not s:
-        return False
-    if all(len(x) == 1 and x.isalpha() for x in s):  # A,B,C...
-        return True
-    if all(x in {"I","II","III","IV","V","VI","VII","VIII"} for x in s):
-        return True
-    if all(x in {"가","나","다","라","마","바","사","아","자","차"} for x in s):
-        return True
-    return False
-
-def _looks_like_gene_labels(keys) -> bool:
-    s = [str(k) for k in keys]
-    if not s:
-        return False
-    # allele/gene symbols like A,a,B,b,D,d etc.
-    if all(len(x) <= 2 and x.replace("/", "").isalpha() for x in s):
-        return True
-    if any(x in {"A","a","B","b","D","d","E","e","F","f","G","g","H","h"} for x in s):
-        return True
-    if any(x in {"응집원A","응집원B","ALPHA","BETA","α","β"} for x in s):
-        return True
-    return False
-
-def is_table_like(obj) -> bool:
-    if obj is None:
-        return False
-    if isinstance(obj, dict):
-        # schema dict
-        if {"rows","cols","data"}.issubset(obj.keys()) and isinstance(obj.get("data"), list):
-            return True
-        if {"index","columns","values"}.issubset(obj.keys()) and isinstance(obj.get("values"), list):
-            return True
-        vals = list(obj.values())
-        if len(vals) >= 2 and all(isinstance(v, dict) for v in vals):
-            return True
-        if len(vals) >= 2 and all(isinstance(v, list) for v in vals):
-            lens = [len(v) for v in vals]
-            return min(lens) >= 2 and max(lens) == min(lens)
-    if isinstance(obj, list) and len(obj) >= 2:
-        if all(isinstance(r, dict) for r in obj):
-            return True
-        if all(isinstance(r, list) for r in obj):
-            lens = [len(r) for r in obj]
-            return min(lens) >= 2 and max(lens) == min(lens)
-    return False
-
-def deep_find_tables(payload, max_nodes: int = 6000):
-    stack = [("", payload)]
-    seen = 0
-    while stack and seen < max_nodes:
-        path, obj = stack.pop()
-        seen += 1
-        if is_table_like(obj):
-            yield path, obj
-        if isinstance(obj, dict):
-            for k,v in obj.items():
-                stack.append((f"{path}.{k}" if path else str(k), v))
-        elif isinstance(obj, list):
-            # cap deep lists
-            for i,v in enumerate(obj[:200]):
-                stack.append((f"{path}[{i}]", v))
-
-def pick_tables(payload: dict):
-    """
-    Return list of (label, table_obj) candidates in preference order.
-    """
-    if not isinstance(payload, dict):
-        return []
-    out = []
-    # 1) preferred keys first (direct)
-    for k in PREFERRED_TABLE_KEYS:
-        if k in payload and is_table_like(payload[k]):
-            out.append((k, payload[k]))
-    if out:
-        return out
-
-    # 2) nested preferred keys
-    pref = set(PREFERRED_TABLE_KEYS)
-    for path,obj in deep_find_tables(payload):
-        tail = path.split(".")[-1] if path else ""
-        if tail in pref:
-            out.append((path, obj))
-    if out:
-        return out
-
-    # 3) any table-like fallback
-    for path,obj in deep_find_tables(payload):
-        out.append((path or "table", obj))
-        break
-    return out
-DEFAULT_PACK_DIR = "packs"
-EXPORT_DIR = "exports"
-APP_TITLE = "문제은행 (PACK JSON)"
-
-DIFF_KEYS = ["difficulty", "diff", "level", "score", "difficulty_score"]
-
-PACK_GLOBS = [
-    "*_PACK_*.json",
-    "*PACK*.json",
-    "*.json",  # ✅ 최후 방어: packs 안의 json은 전부 후보로 본다(원하면 지워도 됨)
+ASK_LINE_KEYS = [
+    "ask_line_md", "ask_md", "ask", "task", "requirement", "requirements",
+    "what_to_do", "query"
 ]
+ANSWER_KEYS = ["answer_md", "answer", "ans", "correct_answer", "solution_answer"]
+EXPLAIN_KEYS = ["explain_md", "explanation_md", "explanation", "explain", "reasoning", "reasons"]
+GIVEN_TABLE_KEYS = [
+    "given_table", "masked_table", "table_given", "table", "grid", "masked", "given",
+    "presented_table", "question_table"
+]
+FULL_TABLE_KEYS = [
+    "full_table", "complete_table", "solution_table", "answer_table", "table_full",
+    "filled_table"
+]
+# 이미지 키(있으면 첨부)
+IMAGE_KEYS = ["image_path", "figure_path", "fig_path", "png_path", "tree_png_path", "img_path", "image_b64", "img_b64"]
 
+DIFFICULTY_LEVELS = ["미분류", "하", "중", "상", "극상"]
 
 # =========================
-# Data model
+# DATA MODEL
 # =========================
 @dataclass
-class PackItem:
-    id: str
+class ProblemItem:
+    pid: str
     module: str
-    qnum: Optional[int]
-    id_prefix: str
+    prefix: str
     payload: Dict[str, Any]
-    src_path: str
+    norm: Dict[str, Any]
+    source_file: str
+    uid: str = ""
 
+    def __post_init__(self):
+        # uid: 화면 렌더링/체크박스 key 충돌 방지용 내부 고유키
+        if not self.uid:
+            base = f"{self.source_file}::{self.pid}"
+            self.uid = hashlib.sha1(base.encode("utf-8")).hexdigest()[:16]
 
 # =========================
-# Arrow-safe helpers
+# UTILS
 # =========================
-def to_cell(v: Any) -> str:
-    """Streamlit/pyarrow 안전하게 표시하기 위해 무조건 문자열로 변환."""
-    if v is None:
-        return ""
-    if isinstance(v, (dict, list, tuple, set)):
+def safe_str(x: Any) -> str:
+    try:
+        return json.dumps(x, ensure_ascii=False, indent=2)
+    except Exception:
         try:
-            return json.dumps(v, ensure_ascii=False)
+            return str(x)
         except Exception:
-            return str(v)
-    try:
-        return str(v)
-    except Exception:
-        return repr(v)
+            return "<unprintable>"
 
+def find_first(d: Dict[str, Any], keys: List[str]) -> Any:
+    for k in keys:
+        if k in d and d[k] is not None and d[k] != "":
+            return d[k]
+    return None
 
-def safe_df(df: pd.DataFrame) -> pd.DataFrame:
-    """DataFrame 전체를 문자열로 변환하여 pyarrow 혼합 타입 에러 방지."""
-    try:
-        out = df.copy()
-        for c in out.columns:
-            out[c] = out[c].map(to_cell)
-        # index도 문자열
-        out.index = [to_cell(x) for x in out.index]
-        return out
-    except Exception:
-        # 최악의 경우 통째로 문자열화
-        return df.astype(str)
+def parse_obj_maybe(x: Any) -> Any:
+    """문자열로 들어온 dict/list를 실제 객체로 변환."""
+    if isinstance(x, str):
+        s = x.strip()
+        # 너무 긴 문자열 eval 방지용(그래도 필요하면 늘려)
+        if len(s) > 200000:
+            return x
+        # json 먼저
+        if (s.startswith("{") and s.endswith("}")) or (s.startswith("[") and s.endswith("]")):
+            try:
+                return json.loads(s)
+            except Exception:
+                pass
+            # python dict repr
+            try:
+                return eval(s, {"__builtins__": {}})
+            except Exception:
+                return x
+        return x
+    return x
 
+def infer_prefix(pid: str) -> str:
+    # 1) ABCD_xxx
+    if "_" in pid:
+        return pid.split("_", 1)[0]
+    # 2) ABCD-2026...
+    if "-" in pid:
+        return pid.split("-", 1)[0]
+    # 3) fallback
+    m = re.match(r"([A-Za-z0-9]+)", pid)
+    return m.group(1) if m else "UNKNOWN"
 
-def safe_dataframe(df: pd.DataFrame, **kwargs):
-    """st.dataframe 래퍼."""
-    st.dataframe(safe_df(df), **kwargs)
-
-
-# =========================
-# IO / pack loading
-# =========================
-def safe_load_json(path: str) -> Optional[Dict[str, Any]]:
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except UnicodeDecodeError:
-        try:
-            with open(path, "r", encoding="utf-8-sig") as f:
-                return json.load(f)
-        except Exception:
-            return None
-    except Exception:
+def dict_table_to_df(obj: Any) -> Optional[pd.DataFrame]:
+    obj = parse_obj_maybe(obj)
+    if obj is None:
         return None
+    if isinstance(obj, pd.DataFrame):
+        return obj
+    # list-of-list
+    if isinstance(obj, list):
+        if len(obj) == 0:
+            return pd.DataFrame()
+        if all(isinstance(r, list) for r in obj):
+            return pd.DataFrame(obj)
+        # list of dict
+        if all(isinstance(r, dict) for r in obj):
+            return pd.DataFrame(obj)
+        return None
+    # dict-of-dict
+    if isinstance(obj, dict):
+        # if values are dict -> columns keyed by outer keys
+        if all(isinstance(v, dict) for v in obj.values()):
+            # try stable order
+            outer_keys = list(obj.keys())
+            inner_keys = set()
+            for v in obj.values():
+                inner_keys |= set(v.keys())
+            inner_keys = list(sorted(inner_keys, key=lambda x: (str(x))))
+            data = []
+            for ik in inner_keys:
+                row = []
+                for ok in outer_keys:
+                    row.append(obj.get(ok, {}).get(ik, ""))
+                data.append(row)
+            df = pd.DataFrame(data, columns=[str(k) for k in outer_keys])
+            df.insert(0, "row", [str(k) for k in inner_keys])
+            return df
+        # plain dict
+        return pd.DataFrame([obj])
+    return None
+
+def safe_dataframe(df: pd.DataFrame):
+    """pyarrow 오류(리스트/스칼라 혼합) 방지: 전부 문자열화"""
+    def norm_cell(v):
+        if isinstance(v, (list, tuple, dict)):
+            return safe_str(v)
+        return v
+    df2 = df.copy()
+    for c in df2.columns:
+        df2[c] = df2[c].map(norm_cell)
+    st.dataframe(df2, use_container_width=True)
+
+def load_diff_overrides() -> Dict[str, str]:
+    if os.path.exists(DIFF_OVERRIDES_PATH):
+        try:
+            with open(DIFF_OVERRIDES_PATH, "r", encoding="utf-8") as f:
+                d = json.load(f)
+            if isinstance(d, dict):
+                return {str(k): str(v) for k, v in d.items()}
+        except Exception:
+            pass
+    return {}
+
+def save_diff_overrides(d: Dict[str, str]) -> None:
+    try:
+        with open(DIFF_OVERRIDES_PATH, "w", encoding="utf-8") as f:
+            json.dump(d, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        st.warning(f"난이도 저장 실패: {e}")
+
+def normalize_payload(payload: Dict[str, Any], pid: str, module: str) -> Dict[str, Any]:
+    norm: Dict[str, Any] = {}
+    norm["id"] = pid
+    norm["module"] = module
+    norm["prefix"] = infer_prefix(pid)
+
+    # 본문/요구
+    norm["problem_text_md"] = find_first(payload, PROBLEM_TEXT_KEYS) or ""
+    norm["ask_line_md"] = find_first(payload, ASK_LINE_KEYS) or ""
+
+    # 표
+    norm["given_table"] = parse_obj_maybe(find_first(payload, GIVEN_TABLE_KEYS))
+    norm["full_table"] = parse_obj_maybe(find_first(payload, FULL_TABLE_KEYS))
+
+    # 정답/해설
+    norm["answer_md"] = find_first(payload, ANSWER_KEYS) or ""
+    norm["explain_md"] = find_first(payload, EXPLAIN_KEYS) or ""
+
+    # 난이도
+    norm["difficulty"] = payload.get("difficulty", "") or ""
+    # 태그
+    tags = payload.get("tags", [])
+    norm["tags"] = tags if isinstance(tags, list) else []
+
+    # 이미지
+    img = find_first(payload, IMAGE_KEYS)
+    norm["image"] = img
+
+    # 요약용
+    norm["payload_keys"] = list(payload.keys())
+    return norm
 
 
-def discover_pack_files(pack_dir: str) -> List[str]:
-    paths = []
-    for pat in PACK_GLOBS:
-        paths.extend(glob.glob(os.path.join(pack_dir, pat)))
-    paths = sorted(list(dict.fromkeys(paths)))
-    return paths
+def make_uid(source_path: str, pid: str) -> str:
+    """Stable unique key for Streamlit widgets (avoids duplicate element keys)."""
+    h = hashlib.sha1(f"{source_path}|{pid}".encode("utf-8")).hexdigest()
+    return h[:12]
+# =========================
+# PACK LOADING
+# =========================
 
-
-def extract_id_prefix(pid: str, module: str) -> str:
-    m = re.match(r"^([A-Za-z0-9]+)_", pid)
-    if m:
-        return m.group(1)
-    return module
-
-
-def normalize_items_from_pack_json(data: Any, src_path: str) -> List[PackItem]:
-    """
-    PACK JSON을 최대한 방어적으로 파싱.
-    표준: {"module": "...", "items":[{"id":..., "payload":...}, ...]}
-    """
-    out: List[PackItem] = []
-
-    # case1) 표준 dict + items
-    if isinstance(data, dict) and isinstance(data.get("items", None), list):
-        module_default = str(data.get("module", "UNKNOWN"))
-        for idx, it in enumerate(data["items"], start=1):
-            if not isinstance(it, dict):
-                continue
-            pid = str(it.get("id") or it.get("problem_id") or "")
-            if not pid:
-                raw = json.dumps(it, ensure_ascii=False)
-                pid = "NOID_" + hashlib.sha1(raw.encode("utf-8")).hexdigest()[:10]
-            mod = str(it.get("module", module_default) or module_default)
-            qnum = it.get("qnum", idx)
-            payload = it.get("payload", {})
-            if payload is None or not isinstance(payload, dict):
-                payload = {"_raw": payload}
-            id_prefix = extract_id_prefix(pid, mod)
-            out.append(PackItem(pid, mod, qnum, id_prefix, payload, src_path))
-        return out
-
-    # case2) 리스트 자체가 문제 리스트
-    if isinstance(data, list):
-        for idx, it in enumerate(data, start=1):
-            if not isinstance(it, dict):
-                continue
-            pid = str(it.get("id") or it.get("problem_id") or "")
-            if not pid:
-                raw = json.dumps(it, ensure_ascii=False)
-                pid = "NOID_" + hashlib.sha1(raw.encode("utf-8")).hexdigest()[:10]
-            mod = str(it.get("module", "UNKNOWN"))
-            payload = it.get("payload", None)
-            if payload is None:
-                payload = {k: v for k, v in it.items() if k not in ["id", "module", "qnum", "seed"]}
-            if not isinstance(payload, dict):
-                payload = {"_raw": payload}
-            id_prefix = extract_id_prefix(pid, mod)
-            out.append(PackItem(pid, mod, it.get("qnum", idx), id_prefix, payload, src_path))
-        return out
-
-    # case3) 단일 문제 dict (가끔 그럴 수 있음)
-    if isinstance(data, dict) and ("id" in data or "payload" in data):
-        pid = str(data.get("id") or data.get("problem_id") or "")
-        if not pid:
-            raw = json.dumps(data, ensure_ascii=False)
-            pid = "NOID_" + hashlib.sha1(raw.encode("utf-8")).hexdigest()[:10]
-        mod = str(data.get("module", "UNKNOWN"))
-        payload = data.get("payload", None)
-        if payload is None:
-            payload = {k: v for k, v in data.items() if k not in ["id", "module", "qnum", "seed"]}
-        if not isinstance(payload, dict):
-            payload = {"_raw": payload}
-        id_prefix = extract_id_prefix(pid, mod)
-        return [PackItem(pid, mod, data.get("qnum", 1), id_prefix, payload, src_path)]
-
+def dedupe_items_by_uid(items: List[ProblemItem]) -> List[ProblemItem]:
+    """Streamlit 위젯 key 충돌 방지: 같은 uid(=같은 문제)가 여러 번 로드되면 1개만 남김."""
+    seen = set()
+    out: List[ProblemItem] = []
+    for it in items:
+        if it.uid in seen:
+            continue
+        seen.add(it.uid)
+        out.append(it)
     return out
 
+def iter_json_files(root: str) -> List[str]:
+    out = []
+    if not root or not os.path.exists(root):
+        return out
+    for dirpath, _, filenames in os.walk(root):
+        for fn in filenames:
+            if fn.lower().endswith(".json"):
+                out.append(os.path.join(dirpath, fn))
+    out.sort()
+    return out
 
-def get_difficulty(payload: Dict[str, Any]) -> str:
-    for k in DIFF_KEYS:
-        if k in payload:
-            return to_cell(payload.get(k))
-    return "미지정"
+def load_one_pack_file(path: str) -> List[ProblemItem]:
+    items: List[ProblemItem] = []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return items  # 깨진 json은 스킵
 
+    module = "UNKNOWN"
+    raw_items = None
 
-def ensure_dirs():
-    os.makedirs(DEFAULT_PACK_DIR, exist_ok=True)
-    os.makedirs(EXPORT_DIR, exist_ok=True)
+    if isinstance(data, dict):
+        module = str(data.get("module_code") or data.get("module") or data.get("moduleCode") or "UNKNOWN")
+        raw_items = data.get("items") or data.get("problems") or data.get("data")
+        # 어떤 생성기는 {"items":[{"pid":..,"payload":..}]} 형태
+    elif isinstance(data, list):
+        raw_items = data
+    else:
+        return items
 
+    if raw_items is None:
+        return items
+    if not isinstance(raw_items, list):
+        return items
+
+    for it in raw_items:
+        if not isinstance(it, dict):
+            continue
+        pid = str(it.get("id") or it.get("pid") or it.get("problem_id") or it.get("problemId") or "")
+        payload = it.get("payload") if isinstance(it.get("payload"), dict) else None
+        if not payload:
+            # 어떤 파일은 it 자체가 payload일 수 있음
+            payload = {k: v for k, v in it.items() if k not in ("id", "pid", "problem_id", "problemId")}
+        if not pid:
+            # 해시 기반 임시 id
+            h = hashlib.sha1(safe_str(payload).encode("utf-8")).hexdigest()[:10]
+            pid = f"{module}_{h}"
+        prefix = infer_prefix(pid)
+        norm = normalize_payload(payload, pid, module)
+        items.append(ProblemItem(pid=pid, module=module, prefix=prefix, payload=payload, norm=norm, source_file=path))
+
+    return items
 
 @st.cache_data(show_spinner=False)
-def load_all_items(pack_dir: str) -> List[PackItem]:
-    paths = discover_pack_files(pack_dir)
-    items: List[PackItem] = []
-    for path in paths:
-        data = safe_load_json(path)
-        if data is None:
-            continue
-        items.extend(normalize_items_from_pack_json(data, path))
-
-    # id 중복 제거(마지막 로드 우선)
-    dedup: Dict[str, PackItem] = {}
-    for it in items:
-        dedup[it.id] = it
-    return list(dedup.values())
-
+def load_all_packs(pack_root: str, max_files: int = 5000) -> Tuple[List[ProblemItem], Dict[str, Any]]:
+    files = iter_json_files(pack_root)[:max_files]
+    all_items: List[ProblemItem] = []
+    bad = 0
+    for fp in files:
+        got = load_one_pack_file(fp)
+        if not got:
+            bad += 1
+        all_items.extend(got)
+    meta = {"files": len(files), "bad_or_empty": bad, "items": len(all_items)}
+    return all_items, meta
 
 # =========================
-# Render helpers (Streamlit)
+# RENDER (Streamlit)
 # =========================
-def render_kv(payload: Dict[str, Any], keys: List[str], title: str):
-    cols = []
-    vals = []
-    for k in keys:
-        if k in payload:
-            cols.append(k)
-            vals.append(to_cell(payload.get(k)))
-    if cols:
-        st.markdown(f"**{title}**")
-        df = pd.DataFrame({"key": cols, "value": vals})
-        safe_dataframe(df, use_container_width=True)
+def render_markdown_block(title: str, md: str):
+    if not md:
+        return
+    st.markdown(f"**{title}**")
+    st.markdown(md)
 
+def render_table_block(title: str, tbl_obj: Any):
+    st.markdown(f"**{title}**")
+    if tbl_obj is None or tbl_obj == "":
+        st.info("표 없음")
+        return
+    df = dict_table_to_df(tbl_obj)
+    if df is not None:
+        safe_dataframe(df)
+    else:
+        st.code(safe_str(tbl_obj))
 
-def grid_to_df(grid: Dict[str, Dict[str, Any]]) -> pd.DataFrame:
-    rows = list(grid.keys())
-    cols: List[str] = []
-    for r in rows:
-        if isinstance(grid.get(r), dict):
-            cols = list(dict.fromkeys(cols + list(grid[r].keys())))
-    data = []
-    for r in rows:
-        row_dict = grid.get(r, {}) if isinstance(grid.get(r), dict) else {}
-        data.append([row_dict.get(c, "") for c in cols])
-    return pd.DataFrame(data, index=rows, columns=cols)
+def try_resolve_image(norm: Dict[str, Any], source_file: str) -> Optional[bytes]:
+    img = norm.get("image")
+    if not img:
+        return None
 
+    # base64
+    if isinstance(img, str) and (img.startswith("data:image") or len(img) > 2000):
+        # data url
+        if img.startswith("data:image"):
+            try:
+                b64 = img.split(",", 1)[1]
+                return base64.b64decode(b64)
+            except Exception:
+                return None
+        # raw b64
+        try:
+            return base64.b64decode(img)
+        except Exception:
+            return None
 
-def rows_list_to_df(row_labels: List[str], col_labels: List[str], rows: Dict[str, List[Any]]) -> pd.DataFrame:
-    data = []
-    for r in row_labels:
-        arr = rows.get(r, [])
-        arr2 = []
-        for j in range(len(col_labels)):
-            v = arr[j] if j < len(arr) else ""
-            if v is None:
-                v = "?"
-            arr2.append(v)
-        data.append(arr2)
-    return pd.DataFrame(data, index=row_labels, columns=col_labels)
-
-
-def try_render_tables(payload: Dict[str, Any]):
-    """
-    payload에서 표로 보일 수 있는 것들을 자동 렌더링.
-    """
-    def render_table_dict(key: str, title: str):
-        if key in payload and isinstance(payload[key], dict) and payload[key]:
-            st.markdown(f"**{title}**")
-            val = payload[key]
-            # {row: [..]} 형태
-            if isinstance(next(iter(val.values())), list):
-                rows = list(val.keys())
-                ncol = len(next(iter(val.values())))
-                cols = [f"C{i+1}" for i in range(ncol)]
-                df = rows_list_to_df(rows, cols, val)
-                safe_dataframe(df, use_container_width=True)
-            else:
-                df = grid_to_df(val)
-                safe_dataframe(df, use_container_width=True)
-
-    # DNAI / gene_detecting류
-    render_table_dict("masked_table", "제시표(가림 포함)")
-    render_table_dict("full_table", "완성표(정답표)")
-
-    # DNA integration no-figure류
-    render_table_dict("sums_mask", "제시표(가림 포함)")
-    render_table_dict("sums_full", "완성표(정답표)")
-
-    # agglutination/blood_grouping류 (있으면)
-    render_table_dict("masked", "제시표(가림 포함)")
-    render_table_dict("full", "완성표(정답표)")
-
-
-def try_render_explanations(payload: Dict[str, Any]):
-    if "chromosome_info" in payload:
-        st.markdown("**염색체 정보**")
-        st.write(to_cell(payload["chromosome_info"]))
-
-    if "clues" in payload and isinstance(payload["clues"], list):
-        st.markdown("**결정적 단서(Clues)**")
-        for x in payload["clues"]:
-            st.write("- " + to_cell(x))
-
-    if "explanation" in payload:
-        st.markdown("**해설**")
-        exp = payload["explanation"]
-        if isinstance(exp, list):
-            for line in exp:
-                st.write("- " + to_cell(line))
-        else:
-            st.write(to_cell(exp))
-
-    if "reasons" in payload and isinstance(payload["reasons"], dict):
-        st.markdown("**근거(Reasons)**")
-        st.json(payload["reasons"], expanded=False)
-
-
-def payload_debug(payload: Dict[str, Any]):
-    st.caption("payload 키 목록(디버그)")
-    st.code(", ".join(sorted(list(payload.keys()))))
-
+    # path
+    if isinstance(img, str):
+        cand = []
+        # 1) absolute or relative to app dir
+        cand.append(img)
+        cand.append(os.path.join(APP_DIR, img))
+        # 2) relative to source pack dir
+        cand.append(os.path.join(os.path.dirname(source_file), img))
+        for p in cand:
+            if os.path.exists(p) and os.path.isfile(p):
+                try:
+                    with open(p, "rb") as f:
+                        return f.read()
+                except Exception:
+                    pass
+    return None
 
 # =========================
-# DOCX export
+# DOCX EXPORT
 # =========================
-def set_doc_style(doc: Document, font_name="바탕", font_size_pt=9):
+def set_doc_font(doc: Document, font_name: str = "바탕", font_pt: int = 9):
     style = doc.styles["Normal"]
     style.font.name = font_name
-    style.font.size = Pt(font_size_pt)
+    style._element.rPr.rFonts.set(qn("w:eastAsia"), font_name)
+    style.font.size = Pt(font_pt)
+
+def add_par(container, text: str, bold: bool = False):
+    p = container.add_paragraph(text)
+    if p.runs:
+        p.runs[0].bold = bold
+    return p
+
+def _set_cell_text(cell, text: str, bold: bool = False, center: bool = True):
+    # Clear existing paragraphs
+    cell.text = ""
+    p = cell.paragraphs[0]
+    run = p.add_run(text)
+    run.bold = bold
+    run.font.size = Pt(9)
+    run.font.name = "바탕"
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(0)
+    p.paragraph_format.line_spacing = 1.0
+    if center:
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    else:
+        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    try:
+        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+    except Exception:
+        pass
 
 
-def add_docx_table_from_df(doc: Document, df: pd.DataFrame, title: Optional[str] = None):
-    if title:
-        p = doc.add_paragraph(title)
-        if p.runs:
-            p.runs[0].bold = True
+def add_docx_table(container, table_obj: Any):
+    """
+    table_obj가 dict/list 형태(=표)면 '진짜 표'로 예쁘게 출력.
+    - 2단 레이아웃에서도 깨지지 않게 폭을 균등 분배
+    - 글자 9pt, 가운데 정렬(기본), 줄간격/여백 최소화
+    """
+    df = dict_table_to_df(table_obj)
+    if df is None:
+        # fallback: text
+        add_par(container, safe_str(table_obj))
+        return
 
-    df2 = safe_df(df)
-    nrows, ncols = df2.shape
-    table = doc.add_table(rows=nrows + 1, cols=ncols + 1)
-    table.style = "Table Grid"
+    rows = df.shape[0] + 1
+    cols = df.shape[1]
+    t = container.add_table(rows=rows, cols=cols)
+    t.style = "Table Grid"
+    try:
+        t.autofit = False
+    except Exception:
+        pass
 
-    table.cell(0, 0).text = ""
-    for j, c in enumerate(df2.columns):
-        table.cell(0, j + 1).text = str(c)
+    # 2단 셀 안에서 너무 넓게 잡히지 않도록, '셀 기준'으로 적당한 총 폭을 가정해 균등 분배
+    # (한 단 폭은 대략 3.1~3.3 inch 정도라서 3.2로 고정)
+    total_w = 3.2
+    col_w = max(0.35, total_w / max(1, cols))  # 너무 얇아지는 것 방지
 
-    for i, r in enumerate(df2.index):
-        table.cell(i + 1, 0).text = str(r)
-        for j, c in enumerate(df2.columns):
-            table.cell(i + 1, j + 1).text = str(df2.loc[r, c])
+    # header
+    for j, col in enumerate(df.columns):
+        c = t.cell(0, j)
+        _set_cell_text(c, str(col), bold=True, center=True)
+        try:
+            c.width = Inches(col_w)
+        except Exception:
+            pass
+
+    # body
+    for i in range(df.shape[0]):
+        for j in range(cols):
+            val = df.iat[i, j]
+            if isinstance(val, (list, dict, tuple)):
+                val = safe_str(val)
+            text = "" if val is None else str(val)
+            c = t.cell(i + 1, j)
+            _set_cell_text(c, text, bold=False, center=True)
+            try:
+                c.width = Inches(col_w)
+            except Exception:
+                pass
 
 
-def export_docx(selected: List[PackItem]) -> str:
-    ensure_dirs()
-    out_name = os.path.join(EXPORT_DIR, f"Selected_{int(time.time())}.docx")
+def export_docx_bytes(selected: List[ProblemItem], include_expl: bool, include_full: bool) -> bytes:
     doc = Document()
-    set_doc_style(doc, font_name="바탕", font_size_pt=9)
+    set_doc_font(doc, "바탕", 9)
 
-    doc.add_paragraph("[선택 문항 출력]").runs[0].bold = True
-    doc.add_paragraph(f"총 {len(selected)}문항")
-    doc.add_paragraph("")
+    # 문제 파트: 2단(페이지당 2문항)
+    idx = 0
+    pnum = 1
+    while idx < len(selected):
+        outer = doc.add_table(rows=1, cols=2)
+        left = outer.cell(0, 0)
+        right = outer.cell(0, 1)
 
-    for idx, p in enumerate(selected, start=1):
-        head = doc.add_paragraph(f"[{idx}] ID: {p.id}   (모듈: {p.module})")
-        if head.runs:
-            head.runs[0].bold = True
+        def fill(cell, it: ProblemItem, num: int):
+            n = it.norm
+            add_par(cell, f"[문제 {num}]  ID: {it.pid}  ({it.prefix})", bold=True)
 
-        payload = p.payload
+            if n.get("problem_text_md"):
+                add_par(cell, "문제", bold=True)
+                add_par(cell, n["problem_text_md"])
+            if n.get("ask_line_md"):
+                add_par(cell, "요구사항", bold=True)
+                add_par(cell, n["ask_line_md"])
 
-        # 테이블 후보 출력
-        def add_any_table(key: str, title: str):
-            if key in payload and isinstance(payload[key], dict) and payload[key]:
-                val = payload[key]
-                if isinstance(next(iter(val.values())), list):
-                    rows = list(val.keys())
-                    ncol = len(next(iter(val.values())))
-                    cols = [f"C{i+1}" for i in range(ncol)]
-                    df = rows_list_to_df(rows, cols, val)
-                else:
-                    df = grid_to_df(val)
-                add_docx_table_from_df(doc, df, title=title)
-                doc.add_paragraph("")
+            # 이미지(있으면)
+            img_bytes = try_resolve_image(n, it.source_file)
+            if img_bytes:
+                try:
+                    cell.add_paragraph("")
+                    run = cell.add_paragraph().add_run()
+                    run.add_picture(io.BytesIO(img_bytes), width=Inches(2.2))
+                except Exception:
+                    pass
 
-        add_any_table("masked_table", "제시표(가림 포함)")
-        add_any_table("full_table", "완성표(정답표)")
-        add_any_table("sums_mask", "제시표(가림 포함)")
-        add_any_table("sums_full", "완성표(정답표)")
-        add_any_table("masked", "제시표(가림 포함)")
-        add_any_table("full", "완성표(정답표)")
-
-        # 해설 후보
-        if "chromosome_info" in payload:
-            doc.add_paragraph("[염색체 정보]").runs[0].bold = True
-            doc.add_paragraph(to_cell(payload["chromosome_info"]))
-            doc.add_paragraph("")
-
-        if "clues" in payload and isinstance(payload["clues"], list):
-            doc.add_paragraph("[결정적 단서]").runs[0].bold = True
-            for x in payload["clues"]:
-                doc.add_paragraph("- " + to_cell(x))
-            doc.add_paragraph("")
-
-        if "explanation" in payload:
-            doc.add_paragraph("[해설]").runs[0].bold = True
-            exp = payload["explanation"]
-            if isinstance(exp, list):
-                for line in exp:
-                    doc.add_paragraph("- " + to_cell(line))
+            # 제시표
+            add_par(cell, "제시표", bold=True)
+            given = n.get("given_table")
+            if given is None or given == "":
+                add_par(cell, "(표 없음)")
             else:
-                doc.add_paragraph(to_cell(exp))
-            doc.add_paragraph("")
+                add_docx_table(cell, given)
+            cell.add_paragraph("")
 
-        # 디버그용 payload 키
-        doc.add_paragraph("[payload 키]").runs[0].bold = True
-        doc.add_paragraph(", ".join(sorted(list(payload.keys()))))
-        doc.add_paragraph("")
-        doc.add_paragraph("-" * 40)
+        fill(left, selected[idx], pnum)
+        idx += 1
+        pnum += 1
 
-    doc.save(out_name)
-    return out_name
+        if idx < len(selected):
+            fill(right, selected[idx], pnum)
+            idx += 1
+            pnum += 1
 
+        if idx < len(selected):
+            doc.add_page_break()
+
+    # 정답/해설 파트
+    doc.add_page_break()
+    add_par(doc, "[정답/해설]", bold=True)
+
+    for i, it in enumerate(selected, start=1):
+        n = it.norm
+        add_par(doc, f"{i}. ID: {it.pid}  ({it.prefix})", bold=True)
+
+        ans = n.get("answer_md") or "(없음)"
+        add_par(doc, "정답", bold=True)
+        add_par(doc, ans)
+
+        if include_full:
+            ft = n.get("full_table")
+            if ft not in (None, ""):
+                add_par(doc, "완성표", bold=True)
+                add_docx_table(doc, ft)
+
+        if include_expl:
+            expl = n.get("explain_md") or "(없음)"
+            add_par(doc, "해설", bold=True)
+            add_par(doc, expl)
+
+        add_par(doc, "-" * 40)
+
+    buf = io.BytesIO()
+    doc.save(buf)
+    return buf.getvalue()
 
 # =========================
-# App
+# MAIN UI
 # =========================
 def main():
-    st.set_page_config(page_title=APP_TITLE, layout="wide")
-    st.title(APP_TITLE)
+    st.set_page_config(page_title="문제은행", layout="wide")
 
-    ensure_dirs()
+    st.title("문제은행 웹 (안정화 리라이트)")
 
-    st.sidebar.header("설정")
-    pack_dir = st.sidebar.text_input("PACK 폴더", value=DEFAULT_PACK_DIR).strip()
-    if not os.path.isdir(pack_dir):
-        st.sidebar.warning("PACK 폴더가 없어서 새로 만들었음")
-        os.makedirs(pack_dir, exist_ok=True)
+    # Sidebar: load
+    st.sidebar.header("로드")
+    pack_root = st.sidebar.text_input("PACK 폴더", DEFAULT_PACK_ROOT)
+    max_files = st.sidebar.number_input("최대 JSON 파일 수", min_value=10, max_value=20000, value=5000, step=10)
 
-    # DEBUG (원하면 지워도 됨)
-    with st.sidebar.expander("DEBUG", expanded=False):
-        st.write("cwd =", os.getcwd())
-        st.write("pack_dir =", pack_dir)
-        st.write("exists =", os.path.isdir(pack_dir))
-        st.write("json count =", len(glob.glob(os.path.join(pack_dir, "*.json"))))
+    if st.sidebar.button("새로고침(재로드)", use_container_width=True):
+        st.cache_data.clear()
 
-    items = load_all_items(pack_dir)
-    st.sidebar.caption(f"로드된 문항: {len(items)}개")
+    items, meta = load_all_packs(pack_root, max_files=int(max_files))
+    items = dedupe_items_by_uid(items)
+    diff_over = load_diff_overrides()
 
-    # Session state
-    if "selected_ids" not in st.session_state:
-        st.session_state["selected_ids"] = set()
-    if "show_selected_only" not in st.session_state:
-        st.session_state["show_selected_only"] = False
-
-    # Filters
-    modules = sorted(list(set([it.id_prefix for it in items])))
-    module_sel = st.sidebar.multiselect("모듈(ID prefix) 필터", options=modules, default=modules)
-
-    search_id = st.sidebar.text_input("ID 검색(부분일치)", value="").strip()
-
-    st.sidebar.divider()
-    colA, colB = st.sidebar.columns(2)
-    with colA:
-        if st.button("✅ 선택만 보기"):
-            st.session_state["show_selected_only"] = True
-    with colB:
-        if st.button("📌 전체 보기"):
-            st.session_state["show_selected_only"] = False
-
-    # Group select / deselect
-    st.sidebar.divider()
-    st.sidebar.subheader("그룹 선택/해제")
-
-    if st.sidebar.button("현재 필터 그룹 전체 선택"):
-        for it in items:
-            if it.id_prefix in module_sel and (search_id.lower() in it.id.lower() if search_id else True):
-                st.session_state["selected_ids"].add(it.id)
-
-    if st.sidebar.button("현재 필터 그룹 전체 해제"):
-        remove_ids = []
-        for pid in list(st.session_state["selected_ids"]):
-            it = next((x for x in items if x.id == pid), None)
-            if it and it.id_prefix in module_sel and (search_id.lower() in it.id.lower() if search_id else True):
-                remove_ids.append(pid)
-        for pid in remove_ids:
-            st.session_state["selected_ids"].discard(pid)
-
-    if st.sidebar.button("선택 전체 해제(전부)"):
-        st.session_state["selected_ids"] = set()
-
-    # Export
-    st.sidebar.divider()
-    st.sidebar.subheader("내보내기")
-    if st.sidebar.button("선택 문항 DOCX 내보내기"):
-        selected = [it for it in items if it.id in st.session_state["selected_ids"]]
-        if not selected:
-            st.sidebar.warning("선택된 문항이 없음")
-        else:
-            path = export_docx(selected)
-            st.sidebar.success("DOCX 생성 완료")
-            st.sidebar.write(path)
-
-    # Apply filters
-    filtered = []
+    # inject difficulty overrides
     for it in items:
-        if it.id_prefix not in module_sel:
-            continue
-        if search_id and search_id.lower() not in it.id.lower():
-            continue
-        if st.session_state["show_selected_only"] and it.id not in st.session_state["selected_ids"]:
-            continue
-        filtered.append(it)
+        if it.pid in diff_over:
+            it.norm["difficulty"] = diff_over[it.pid]
 
-    filtered.sort(key=lambda x: (x.id_prefix, x.qnum if x.qnum is not None else 10**9, x.id))
-    st.caption(f"표시 중: {len(filtered)}개 / 전체 {len(items)}개")
+    st.sidebar.caption(f"파일 {meta['files']}개 / 빈·깨짐 {meta['bad_or_empty']}개 / 문항 {meta['items']}개")
 
-    for it in filtered:
-        selected = (it.id in st.session_state["selected_ids"])
-        badge = "✅" if selected else "⬜"
-        with st.expander(f"{badge} {it.id}   ({it.id_prefix})   | src={os.path.basename(it.src_path)}", expanded=False):
-            c1, c2, c3 = st.columns([1, 1, 2])
-            with c1:
-                if st.button("선택/해제", key=f"tog_{it.id}"):
-                    if it.id in st.session_state["selected_ids"]:
-                        st.session_state["selected_ids"].discard(it.id)
-                    else:
-                        st.session_state["selected_ids"].add(it.id)
-                    st.rerun()
+    if not items:
+        st.warning("문항을 찾지 못했습니다. PACK 폴더 경로를 확인하세요.")
+        st.stop()
 
-            with c2:
-                st.write(f"- module: `{it.module}`")
-                st.write(f"- qnum: `{it.qnum}`")
-                st.write(f"- 난이도: `{get_difficulty(it.payload)}`")
+    # Sidebar: filters
+    st.sidebar.header("필터")
+    all_modules = sorted(set(i.module for i in items))
+    all_prefix = sorted(set(i.prefix for i in items))
+    all_diff = DIFFICULTY_LEVELS
 
-            with c3:
-                render_kv(it.payload, ["x_loci", "sum_col", "ineq", "map_row_to_fig", "mask_used"], "요약")
+    f_module = st.sidebar.multiselect("모듈", options=all_modules, default=all_modules)
+    f_prefix = st.sidebar.multiselect("ID prefix", options=all_prefix, default=all_prefix)
+    f_diff = st.sidebar.multiselect("난이도", options=all_diff, default=all_diff)
+    query = st.sidebar.text_input("검색(본문/요구/ID)", "")
+    selected_only = st.sidebar.checkbox("선택한 것만 보기", value=False)
 
-            st.divider()
-            try_render_tables(it.payload)
+    # selection state
+    if "selected_uids" not in st.session_state:
+        st.session_state.selected_uids = set()
 
-            st.divider()
-            try_render_explanations(it.payload)
+    # filter items
+    def match(it: ProblemItem) -> bool:
+        if it.module not in f_module:
+            return False
+        if it.prefix not in f_prefix:
+            return False
+        d = it.norm.get("difficulty") or "미분류"
+        if d not in f_diff:
+            return False
+        if query:
+            q = query.lower()
+            blob = (it.pid + " " + (it.norm.get("problem_text_md") or "") + " " + (it.norm.get("ask_line_md") or "")).lower()
+            if q not in blob:
+                return False
+        if selected_only and (it.uid not in st.session_state.selected_uids):
+            return False
+        return True
 
-            st.divider()
-            payload_debug(it.payload)
+    view_items = [it for it in items if match(it)]
 
-    st.sidebar.caption(f"선택됨: {len(st.session_state['selected_ids'])}개")
+    # top controls
+    c1, c2, c3, c4 = st.columns([1, 1, 1, 2])
+    with c1:
+        if st.button("현재 화면 전체 선택"):
+            for it in view_items:
+                st.session_state.selected_uids.add(it.uid)
+    with c2:
+        if st.button("현재 화면 전체 해제"):
+            for it in view_items:
+                st.session_state.selected_uids.discard(it.uid)
+    with c3:
+        st.write(f"표시 {len(view_items)}개 / 전체 {len(items)}개")
+    with c4:
+        st.write(f"선택 {len(st.session_state.selected_uids)}개")
 
+    # layout: list + preview
+    left, right = st.columns([1.1, 1.4], gap="large")
+
+    # LEFT: grouped list
+    with left:
+        st.subheader("목록")
+        group_mode = st.radio("그룹 기준", ["prefix", "module"], horizontal=True)
+        groups: Dict[str, List[ProblemItem]] = {}
+        for it in view_items:
+            key = it.prefix if group_mode == "prefix" else it.module
+            groups.setdefault(key, []).append(it)
+
+        for gkey in sorted(groups.keys()):
+            gitems = groups[gkey]
+            with st.expander(f"{gkey}  ({len(gitems)}개)", expanded=False):
+                # group buttons (current group only)
+                bc1, bc2, bc3 = st.columns([1, 1, 2])
+                with bc1:
+                    if st.button("그룹 선택", key=f"sel_{group_mode}_{gkey}"):
+                        for row_i, it in enumerate(gitems):
+                            st.session_state.selected_uids.add(it.uid)
+                with bc2:
+                    if st.button("그룹 해제", key=f"clr_{group_mode}_{gkey}"):
+                        for row_i, it in enumerate(gitems):
+                            st.session_state.selected_uids.discard(it.uid)
+                with bc3:
+                    st.caption("체크박스/난이도는 즉시 반영")
+
+                for row_i, it in enumerate(gitems):
+                    checked = it.uid in st.session_state.selected_uids
+                    row = st.container()
+                    cc1, cc2, cc3 = row.columns([0.15, 0.55, 0.3])
+                    with cc1:
+                        new_checked = st.checkbox("", value=checked, key=f"chk_{it.uid}")
+                        if new_checked:
+                            st.session_state.selected_uids.add(it.uid)
+                        else:
+                            st.session_state.selected_uids.discard(it.uid)
+                    with cc2:
+                        st.write(f"**{it.pid}**")
+                        st.caption(os.path.basename(it.source_file))
+                    with cc3:
+                        cur = it.norm.get("difficulty") or "미분류"
+                        new = st.selectbox("난이도", DIFFICULTY_LEVELS, index=DIFFICULTY_LEVELS.index(cur) if cur in DIFFICULTY_LEVELS else 0, key=f"diff_{it.uid}")
+                        if new != cur:
+                            it.norm["difficulty"] = new
+                            diff_over[it.pid] = new
+                            save_diff_overrides(diff_over)
+
+        st.divider()
+        st.caption("※ JSON이 일부 깨져 있어도 로딩은 계속됩니다(스킵 처리).")
+
+    # RIGHT: preview + export
+    with right:
+        st.subheader("미리보기 / 내보내기")
+
+        # pick preview item
+        if "preview_id" not in st.session_state:
+            st.session_state.preview_id = view_items[0].pid if view_items else items[0].pid
+
+        pid_to_item = {it.pid: it for it in view_items} | {it.pid: it for it in items}
+        preview_options = [it.pid for it in view_items] if view_items else [it.pid for it in items]
+        if st.session_state.preview_id not in preview_options and preview_options:
+            st.session_state.preview_id = preview_options[0]
+
+        st.session_state.preview_id = st.selectbox("미리볼 ID", options=preview_options, index=preview_options.index(st.session_state.preview_id))
+
+        it = pid_to_item.get(st.session_state.preview_id)
+        if it:
+            n = it.norm
+            st.markdown(f"### {it.pid}  ({it.prefix} / {it.module})")
+            st.caption(f"source: {it.source_file}")
+
+            render_markdown_block("문제", n.get("problem_text_md", ""))
+            render_markdown_block("요구사항", n.get("ask_line_md", ""))
+
+            img_bytes = try_resolve_image(n, it.source_file)
+            if img_bytes:
+                st.image(img_bytes, caption="그림", use_column_width=True)
+
+            render_table_block("제시표", n.get("given_table"))
+            if n.get("full_table") not in (None, ""):
+                with st.expander("완성표(있을 때만)", expanded=False):
+                    render_table_block("완성표", n.get("full_table"))
+
+            if n.get("answer_md"):
+                with st.expander("정답", expanded=False):
+                    st.markdown(n["answer_md"])
+            if n.get("explain_md"):
+                with st.expander("해설", expanded=False):
+                    st.markdown(n["explain_md"])
+
+            with st.expander("payload 키", expanded=False):
+                st.code(", ".join(n.get("payload_keys", [])))
+
+        st.divider()
+
+        # export selection
+        selected_items = [x for x in items if x.uid in st.session_state.selected_uids]
+        st.write(f"선택 문항: **{len(selected_items)}개**")
+
+        ec1, ec2, ec3 = st.columns([1, 1, 1])
+        with ec1:
+            include_full = st.checkbox("완성표 포함", value=True)
+        with ec2:
+            include_expl = st.checkbox("해설 포함", value=True)
+        with ec3:
+            st.caption("DOCX는 2단 + 정답/해설 뒤에 모음")
+
+        if selected_items:
+            docx_bytes = export_docx_bytes(selected_items, include_expl=include_expl, include_full=include_full)
+            st.download_button(
+                "DOCX 다운로드",
+                data=docx_bytes,
+                file_name="export_selected.docx",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                use_container_width=True,
+            )
+
+            # json export(선택)
+            pack = {
+                "module_code": "MERGED",
+                "created_at": "",
+                "items": [{"id": it.pid, "payload": it.payload} for it in selected_items],
+            }
+            j = json.dumps(pack, ensure_ascii=False, indent=2).encode("utf-8")
+            st.download_button(
+                "선택 PACK(JSON) 다운로드",
+                data=j,
+                file_name="export_selected_pack.json",
+                mime="application/json",
+                use_container_width=True,
+            )
+        else:
+            st.info("왼쪽에서 문항을 체크해 선택하세요.")
 
 if __name__ == "__main__":
     main()
