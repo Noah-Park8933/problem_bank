@@ -182,97 +182,116 @@ def try_find_table(payload: Dict[str, Any], keys: List[str]) -> Optional[Any]:
 # ----------------------------
 # "표 정규화" API
 # ----------------------------
-def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[Any]]]:
-    """
-    table_obj를 (headers, rows) 형태로 변환.
-    가능한 입력 형태:
-    - 2D list: [ [h1,h2,...], [r1c1,r1c2,...], ... ]  (첫 행을 headers로 가정)
-    - dict: {"headers":[...], "rows":[[...]...]} / {"cols":[...], "data":[[...]...]} / {"grid":[[...]...]} 등
-    - dict(row_map): {"가":[...], "나":[...]} 형태도 지원(행 이름을 첫 열로 붙임)
-    """
-    # 0) None
-    if table_obj is None:
-        return ([""], [])
+from typing import Any, List, Tuple
 
-    # 1) 이미 {"headers":..., "rows":...} 형태
-    if isinstance(table_obj, dict):
-        # a) headers/rows 형태
-        if "headers" in table_obj and "rows" in table_obj and isinstance(table_obj["headers"], list) and isinstance(table_obj["rows"], list):
-            headers = [str(x) for x in table_obj["headers"]]
-            rows_raw = table_obj["rows"]
-            rows = [list(r) if isinstance(r, list) else [r] for r in rows_raw]
-            return _pad_grid(headers, rows)
-
-        # b) cols/data 형태
-        if "cols" in table_obj and "data" in table_obj and isinstance(table_obj["cols"], list) and isinstance(table_obj["data"], list):
-            headers = [str(x) for x in table_obj["cols"]]
-            rows_raw = table_obj["data"]
-            rows = [list(r) if isinstance(r, list) else [r] for r in rows_raw]
-            return _pad_grid(headers, rows)
-
-        if "columns" in table_obj and "data" in table_obj and isinstance(table_obj["columns"], list) and isinstance(table_obj["data"], list):
-            headers = [str(x) for x in table_obj["columns"]]
-            rows_raw = table_obj["data"]
-            rows = [list(r) if isinstance(r, list) else [r] for r in rows_raw]
-            return _pad_grid(headers, rows)
-
-        # c) grid/matrix/cells/table
-        for k in ("grid", "matrix", "cells", "table"):
-            v = table_obj.get(k)
-            if _is_2d_list(v):
-                return normalize_table_to_grid(v)
-
-        # d) row_map: {"가":[...], "나":[...]} 같은 형태
-        #    -> 첫 열에 row key 붙이고, 가장 긴 row 기준으로 col headers 생성
-        if table_obj and all(isinstance(v, (list, tuple)) for v in table_obj.values()):
-            row_names = [str(k) for k in table_obj.keys()]
-            row_vals = [list(v) for v in table_obj.values()]
-
-            max_len = max((len(r) for r in row_vals), default=0)
-            headers = [""] + [str(i + 1) for i in range(max_len)]
-            rows: List[List[Any]] = []
-            for name, vals in zip(row_names, row_vals):
-                rows.append([name] + vals)
-            return _pad_grid(headers, rows)
-
-        # e) 마지막 fallback: dict 자체를 텍스트로
-        return (["value"], [[str(table_obj)]])
-
-    # 2) 2D list
-    if _is_2d_list(table_obj):
-        grid: List[List[Any]] = table_obj
-        # 첫 행을 headers로 간주
-        headers = [str(x) for x in grid[0]]
-        rows = [list(r) for r in grid[1:]]
-        # headers가 비어있으면 최소 1열 보장
-        if not headers:
-            headers = [""]
-        return _pad_grid(headers, rows)
-    if isinstance(table_obj, list):
-        if all(isinstance(x, str) for x in table_obj):
-            headers = ["항목"]
-            rows = [[x] for x in table_obj]
-            return _pad_grid(headers, rows)
-            
-    # 3) 1D list: 한 줄짜리로 처리
-    if isinstance(table_obj, list):
-        headers = [str(i + 1) for i in range(len(table_obj))]
-        rows = [list(table_obj)]
-        return _pad_grid(headers, rows)
-
-    # 4) str/number 등
-    return (["value"], [[str(table_obj)]])
-
-
-def _pad_grid(headers: List[str], rows: List[List[Any]]) -> Tuple[List[str], List[List[Any]]]:
-    """행 길이를 headers에 맞춰 padding(빈칸)"""
+def _pad_grid(headers: List[str], rows: List[List[str]]) -> Tuple[List[str], List[List[str]]]:
+    """행 길이/열 길이 불일치 방어"""
+    if not headers:
+        headers = [""]
     w = len(headers)
-    out_rows: List[List[Any]] = []
+    out_rows: List[List[str]] = []
     for r in rows:
-        rr = list(r)
-        if len(rr) < w:
-            rr += [""] * (w - len(rr))
-        elif len(rr) > w:
-            rr = rr[:w]
-        out_rows.append(rr)
+        r2 = list(r)
+        if len(r2) < w:
+            r2 += [""] * (w - len(r2))
+        elif len(r2) > w:
+            r2 = r2[:w]
+        out_rows.append(r2)
     return headers, out_rows
+
+
+def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]:
+    """
+    다양한 표 형태를 (headers, rows) 2D grid로 통일.
+    - headers: 1행(열 이름)
+    - rows: 본문 행들(각 행은 headers 길이에 맞춤)
+    지원:
+      1) nested dict: {row: {col: value}}
+      2) list of dict: [{"row":..., "E":..., ...}, ...]
+      3) 2D list/tuple: [["", "E", ...], ["가", "?", ...], ...]
+      4) fallback: 문자열 1셀 표
+    """
+
+    # 1) nested dict: {row: {col: value}}
+    if isinstance(table_obj, dict):
+        if table_obj and all(isinstance(v, dict) for v in table_obj.values()):
+            row_labels = list(table_obj.keys())
+
+            col_set = set()
+            for inner in table_obj.values():
+                col_set.update(inner.keys())
+
+            # 보기 좋게 정렬(문자열 기준)
+            col_labels = sorted(col_set, key=lambda x: str(x))
+
+            headers = ["세포"] + [str(c) for c in col_labels]
+            rows: List[List[str]] = []
+            for r in row_labels:
+                inner = table_obj.get(r, {})
+                row = [str(r)]
+                for c in col_labels:
+                    v = inner.get(c, "")
+                    row.append("" if v is None else str(v))
+                rows.append(row)
+
+            return _pad_grid(headers, rows)
+
+        # dict지만 nested가 아니면 key-value 나열 표로
+        headers = ["key", "value"]
+        rows = [[str(k), "" if v is None else str(v)] for k, v in table_obj.items()]
+        return _pad_grid(headers, rows)
+
+    # 2) list of dict
+    if isinstance(table_obj, list) and table_obj and all(isinstance(x, dict) for x in table_obj):
+        # row name 후보 키
+        row_key_candidates = ["row", "행", "label", "name", "세포"]
+        row_key = None
+        for k in row_key_candidates:
+            if k in table_obj[0]:
+                row_key = k
+                break
+
+        # 모든 컬럼 합치기
+        col_set = set()
+        for d in table_obj:
+            col_set.update(d.keys())
+        if row_key and row_key in col_set:
+            col_set.remove(row_key)
+
+        col_labels = sorted(col_set, key=lambda x: str(x))
+        headers = (["세포"] if row_key else ["idx"]) + [str(c) for c in col_labels]
+
+        rows: List[List[str]] = []
+        for i, d in enumerate(table_obj):
+            rowname = str(d.get(row_key, i)) if row_key else str(i)
+            row = [rowname]
+            for c in col_labels:
+                v = d.get(c, "")
+                row.append("" if v is None else str(v))
+            rows.append(row)
+
+        return _pad_grid(headers, rows)
+
+    # 3) 2D list/tuple
+    if isinstance(table_obj, (list, tuple)):
+        # 빈 리스트
+        if len(table_obj) == 0:
+            return ["(empty)"], [[""]]
+
+        # 2D로 보이면 그대로
+        if all(isinstance(r, (list, tuple)) for r in table_obj):
+            grid = [list(r) for r in table_obj]
+            # 첫 행을 headers로 가정
+            headers = ["" if x is None else str(x) for x in grid[0]]
+            rows = [[("" if x is None else str(x)) for x in r] for r in grid[1:]]
+            return _pad_grid(headers, rows)
+
+        # 1D list면 한 열로
+        headers = ["value"]
+        rows = [[("" if x is None else str(x))] for x in table_obj]
+        return _pad_grid(headers, rows)
+
+    # 4) fallback: 그냥 문자열 1셀 표
+    headers = ["value"]
+    rows = [[("" if table_obj is None else str(table_obj))]]
+    return _pad_grid(headers, rows)
