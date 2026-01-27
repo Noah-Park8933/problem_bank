@@ -66,7 +66,20 @@ def parse_pack(doc: Dict[str, Any], fallback_module: str, fallback_prefix: str) 
         if not isinstance(it, dict):
             continue
         pid = it.get("pid") or it.get("id") or it.get("problem_id")
-        payload = it.get("payload") if isinstance(it.get("payload"), dict) else it
+        inner = it.get("payload") if isinstance(it.get("payload"), dict) else {}
+        payload = dict(inner)  # inner가 우선
+
+        # item-level 메타도 같이 싣기(빈 값은 덮어쓰지 않게)
+        for k, v in it.items():
+            if k == "payload":
+                continue
+            if k not in payload or payload.get(k) in (None, "", [], {}):
+                payload[k] = v
+
+# (선택) 모듈/프리픽스도 payload에 확실히 넣어두면 웹에서 분류가 편함
+        payload.setdefault("module", module)
+        payload.setdefault("id_prefix", prefix)
+
         if pid is None:
             # pid 없으면 payload에서 id 찾기
             pid = payload.get("id") if isinstance(payload, dict) else None
