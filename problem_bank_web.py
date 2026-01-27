@@ -46,7 +46,7 @@ from docx.oxml.ns import qn
 # CONFIG
 # =========================
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "output")  # 재귀 탐색
+DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "packs")  # 재귀 탐색
 DIFF_OVERRIDES_PATH = os.path.join(APP_DIR, "difficulty_overrides.json")
 
 # 표준 키 후보(모듈별 차이를 흡수)
