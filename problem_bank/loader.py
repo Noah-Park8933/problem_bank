@@ -39,6 +39,42 @@ def discover_pack_jsons(cfg: AppConfig) -> List[str]:
     # 너무 많으면 중복 제거
     uniq = sorted(set(paths))
     return uniq
+def _pick_first(d: Dict[str, Any], keys: List[str]) -> Any:
+    for k in keys:
+        if k in d and d[k] not in (None, "", [], {}):
+            return d[k]
+    return None
+
+def normalize_tables(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    각 생성기마다 제시표/완성표 키가 달라도
+    웹에서는 _given_table / _full_table만 보면 되도록 통일.
+    """
+    if not isinstance(payload, dict):
+        return payload
+
+    # 1) 제시표(문제에 보여주는 표) 후보 키들
+    given = _pick_first(payload, [
+        "_given_table",
+        "given_table", "masked_table", "presented_table",
+        "table", "problem_table", "masked",
+        "table_obj", "table_data",
+    ])
+
+    # 2) 완성표(정답/해설에 넣을 표) 후보 키들
+    full = _pick_first(payload, [
+        "_full_table",
+        "full_table", "complete_table", "answer_table",
+        "solution_table", "filled_table",
+        "full", "complete",
+    ])
+
+    if given is not None:
+        payload["_given_table"] = given
+    if full is not None:
+        payload["_full_table"] = full
+
+    return payload
 
 def parse_pack(doc: Dict[str, Any], fallback_module: str, fallback_prefix: str) -> List[ProblemItem]:
     """
@@ -68,7 +104,7 @@ def parse_pack(doc: Dict[str, Any], fallback_module: str, fallback_prefix: str) 
         pid = it.get("pid") or it.get("id") or it.get("problem_id")
         inner = it.get("payload") if isinstance(it.get("payload"), dict) else {}
         payload = dict(inner)  # inner가 우선
-
+        payload = normalize_tables(payload)
         # item-level 메타도 같이 싣기(빈 값은 덮어쓰지 않게)
         for k, v in it.items():
             if k == "payload":
@@ -112,6 +148,7 @@ def load_all(cfg: AppConfig) -> List[ProblemItem]:
                 continue
             module = str(doc.get("module_code") or doc.get("module") or "SINGLE")
             prefix = str(doc.get("id_prefix") or f"{module}_")
+            doc = normalize_tables(doc)
             items.append(ProblemItem(pid=str(pid), module=module, prefix=prefix, path=p, payload=doc))
 
         if len(items) >= cfg.max_load:
