@@ -46,7 +46,7 @@ from docx.oxml.ns import qn
 # CONFIG
 # =========================
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "packs")  # 재귀 탐색
+DEFAULT_PACK_ROOT = os.path.join(APP_DIR, "output")  # 재귀 탐색
 DIFF_OVERRIDES_PATH = os.path.join(APP_DIR, "difficulty_overrides.json")
 
 # 표준 키 후보(모듈별 차이를 흡수)
@@ -647,12 +647,12 @@ def main():
                             st.session_state.selected_uids.add(it.uid)
                 with bc2:
                     if st.button("그룹 해제", key=f"clr_{group_mode}_{gkey}"):
-                        for it in gitems:
+                        for row_i, it in enumerate(gitems):
                             st.session_state.selected_uids.discard(it.uid)
                 with bc3:
                     st.caption("체크박스/난이도는 즉시 반영")
 
-                for it in gitems:
+                for row_i, it in enumerate(gitems):
                     checked = it.uid in st.session_state.selected_uids
                     row = st.container()
                     cc1, cc2, cc3 = row.columns([0.15, 0.55, 0.3])
@@ -667,7 +667,7 @@ def main():
                         st.caption(os.path.basename(it.source_file))
                     with cc3:
                         cur = it.norm.get("difficulty") or "미분류"
-                        new = st.selectbox("난이도", DIFFICULTY_LEVELS, index=DIFFICULTY_LEVELS.index(cur) if cur in DIFFICULTY_LEVELS else 0, key=f"diff_{it.pid}_{row_i}")
+                        new = st.selectbox("난이도", DIFFICULTY_LEVELS, index=DIFFICULTY_LEVELS.index(cur) if cur in DIFFICULTY_LEVELS else 0, key=f"diff_{it.uid}")
                         if new != cur:
                             it.norm["difficulty"] = new
                             diff_over[it.pid] = new
