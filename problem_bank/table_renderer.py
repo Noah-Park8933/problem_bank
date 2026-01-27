@@ -21,67 +21,46 @@ def try_find_table(payload: Dict[str, Any], keys: List[str]) -> Optional[Any]:
                     return v[kk]
     return None
 
-def normalize_table_to_grid(obj: Any) -> Tuple[List[str], List[List[str]]]:
+def normalize_table_to_grid(table_obj):
     """
-    다양한 table 형태를 "열 헤더 + 행 리스트"로 정규화.
-    반환: (col_headers, rows) where rows[i] = [row_header, ...cells...]
+    table_obj가 어떤 형태든
+    (headers, rows) 형태로 표준화.
+
+    headers = ["", c1, c2, c3, ...]
+    rows = [
+        [r1, v11, v12, v13, ...],
+        [r2, v21, v22, v23, ...],
+        ...
+    ]
+
+    ※ XY 축 반전 문제를 방지하기 위해
+      - row_map은 rows로
+      - col_map은 columns로 확정
+      순서를 절대 바꾸지 않는다.
     """
-    # 1) dict-of-dict: {col:{row:val}} or {row:{col:val}}
-    if isinstance(obj, dict):
-        # dict-of-dict인지 확인
-        if all(isinstance(v, dict) for v in obj.values()):
-            outer_keys = list(obj.keys())
-            inner_keys_set = set()
-            for v in obj.values():
-                inner_keys_set.update(list(v.keys()))
-            inner_keys = list(inner_keys_set)
+    # 1) row_map + col_map 형태
+    if isinstance(table_obj, dict):
+        rmap = table_obj.get("row_map")
+        cmap = table_obj.get("col_map")
+        grid  = table_obj.get("grid") or table_obj.get("table") or table_obj.get("values")
 
-            # 두 방향 다 시도해보고 더 “균형 있는” 쪽 선택
-            # A) outer=cols, inner=rows
-            gridA = []
-            for r in inner_keys:
-                row = [str(r)]
-                for c in outer_keys:
-                    row.append(str(obj.get(c, {}).get(r, "")))
-                gridA.append(row)
+        if rmap and cmap and grid:
+            headers = [""] + list(cmap)
+            rows = []
 
-            # B) outer=rows, inner=cols
-            gridB = []
-            for r in outer_keys:
-                row = [str(r)]
-                for c in inner_keys:
-                    row.append(str(obj.get(r, {}).get(c, "")))
-                gridB.append(row)
+            for r_idx, rname in enumerate(rmap):
+                row = [rname] + list(grid[r_idx])
+                rows.append(row)
 
-            # 더 직사각형에 가까운 쪽을 선택(빈칸 적은 쪽)
-            def empties(g):
-                return sum(1 for row in g for x in row[1:] if x == "")
+            return headers, rows
 
-            if empties(gridA) <= empties(gridB):
-                return [""] + [str(c) for c in outer_keys], gridA
-            else:
-                return [""] + [str(c) for c in inner_keys], gridB
-
-        # 그냥 dict이면 key-value를 2열 표로
-        headers = ["key", "value"]
-        rows = [[str(k), str(v)] for k, v in obj.items()]
+    # 2) 2D 배열 형태 (fallback)
+    if isinstance(table_obj, list) and table_obj and isinstance(table_obj[0], list):
+        headers = [""] + [f"C{i}" for i in range(1, len(table_obj[0])+1)]
+        rows = []
+        for idx, line in enumerate(table_obj):
+            rows.append([f"R{idx+1}"] + list(line))
         return headers, rows
 
-    # 2) list-of-lists
-    if isinstance(obj, list):
-        if len(obj) == 0:
-            return ["(empty)"], []
-        if all(isinstance(x, list) for x in obj):
-            # 첫 줄을 헤더로 볼지 판단: 길이가 일정하면 그냥 그대로
-            maxlen = max(len(r) for r in obj)
-            rows = []
-            for r in obj:
-                rr = [str(x) for x in r] + [""] * (maxlen - len(r))
-                rows.append(rr)
-            headers = [f"c{i+1}" for i in range(maxlen)]
-            return headers, rows
-        # list of scalars
-        return ["value"], [[str(x)] for x in obj]
-
-    # 3) scalar
-    return ["value"], [[str(obj)]]
+    # 3) 문자열 fallback
+    return ["표"], [["인식 불가", str(table_obj)]]
