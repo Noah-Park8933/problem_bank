@@ -5,13 +5,12 @@ from io import BytesIO
 from typing import Any, Dict, List, Optional, Tuple
 
 from docx import Document
-from docx.shared import Pt, Inches
+from docx.shared import Pt, Inches, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 from .loader import ProblemItem
 from .table_renderer import normalize_table_to_grid, try_find_table
 from .config import AppConfig
-import Cm
 
 def _add_par(doc_or_cell, text: str, bold: bool = False):
     """문단 간격/줄간격을 타이트하게 고정해서 DOCX가 덜 지저분해지게."""
