@@ -69,7 +69,7 @@ FULL_TABLE_KEYS = [
     "filled_table"
 ]
 # 이미지 키(있으면 첨부)
-IMAGE_KEYS = ["image_path", "figure_path", "fig_path", "png_path", "tree_png_path", "img_path", "image_b64", "img_b64"]
+IMAGE_KEYS = ["image_path", "figure_path", "fig_path", "png_path", "tree_png_path", "img_path", "image_b64", "img_b64", "templete"]
 
 DIFFICULTY_LEVELS = ["미분류", "하", "중", "상", "극상"]
 
