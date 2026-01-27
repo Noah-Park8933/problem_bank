@@ -79,6 +79,7 @@ DIFFICULTY_LEVELS = ["미분류", "하", "중", "상", "극상"]
 @dataclass
 class ProblemItem:
     pid: str
+    uid: str
     module: str
     prefix: str
     payload: Dict[str, Any]
@@ -235,6 +236,11 @@ def normalize_payload(payload: Dict[str, Any], pid: str, module: str) -> Dict[st
     norm["payload_keys"] = list(payload.keys())
     return norm
 
+
+def make_uid(source_path: str, pid: str) -> str:
+    """Stable unique key for Streamlit widgets (avoids duplicate element keys)."""
+    h = hashlib.sha1(f"{source_path}|{pid}".encode("utf-8")).hexdigest()
+    return h[:12]
 # =========================
 # PACK LOADING
 # =========================
@@ -602,11 +608,11 @@ def main():
     with c1:
         if st.button("현재 화면 전체 선택"):
             for it in view_items:
-                st.session_state.selected_ids.add(it.pid)
+                st.session_state.selected_ids.add(it.uid)
     with c2:
         if st.button("현재 화면 전체 해제"):
             for it in view_items:
-                st.session_state.selected_ids.discard(it.pid)
+                st.session_state.selected_ids.discard(it.uid)
     with c3:
         st.write(f"표시 {len(view_items)}개 / 전체 {len(items)}개")
     with c4:
@@ -632,24 +638,24 @@ def main():
                 with bc1:
                     if st.button("그룹 선택", key=f"sel_{group_mode}_{gkey}"):
                         for row_i, it in enumerate(gitems):
-                            st.session_state.selected_ids.add(it.pid)
+                            st.session_state.selected_ids.add(it.uid)
                 with bc2:
                     if st.button("그룹 해제", key=f"clr_{group_mode}_{gkey}"):
                         for it in gitems:
-                            st.session_state.selected_ids.discard(it.pid)
+                            st.session_state.selected_ids.discard(it.uid)
                 with bc3:
                     st.caption("체크박스/난이도는 즉시 반영")
 
                 for it in gitems:
-                    checked = it.pid in st.session_state.selected_ids
+                    checked = it.uid in st.session_state.selected_ids
                     row = st.container()
                     cc1, cc2, cc3 = row.columns([0.15, 0.55, 0.3])
                     with cc1:
-                        new_checked = st.checkbox("", value=checked, key=f"chk_{it.pid}_{row_i}")
+                        new_checked = st.checkbox("", value=checked, key=f"chk_{it.uid}")
                         if new_checked:
-                            st.session_state.selected_ids.add(it.pid)
+                            st.session_state.selected_ids.add(it.uid)
                         else:
-                            st.session_state.selected_ids.discard(it.pid)
+                            st.session_state.selected_ids.discard(it.uid)
                     with cc2:
                         st.write(f"**{it.pid}**")
                         st.caption(os.path.basename(it.source_file))
@@ -710,7 +716,7 @@ def main():
         st.divider()
 
         # export selection
-        selected_items = [x for x in items if x.pid in st.session_state.selected_ids]
+        selected_items = [x for x in items if x.uid in st.session_state.selected_ids]
         st.write(f"선택 문항: **{len(selected_items)}개**")
 
         ec1, ec2, ec3 = st.columns([1, 1, 1])
