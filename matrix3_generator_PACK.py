@@ -1,7 +1,7 @@
 # matrix3_generator_PACK.py
-# Matrix3 (일반유전) – 복수 정답 허용 버전
-# (A/a), (B/b), (D/d) / 완전연관 기반 / 2연관+1독립 또는 3연관
-# 표현형: "대문자 개수"가 아니라 세 유전자의 "우성 발현 여부 조합"
+# Matrix3 (일반유전) – 2연관+1독립(L2I1) 전용 / 복수 정답(≤3) 허용 / 빠른 생성 버전
+# (A/a), (B/b), (D/d) / 완전연관(교차 없음)
+# 표현형: A/B/D 각각의 우성 발현 여부 조합 (A+/A-, B+/B-, D+/D-)
 
 import os, json, time, random, hashlib
 from dataclasses import dataclass
@@ -33,11 +33,13 @@ def ph_label(gt: str) -> str:
     return f"({ 'A+' if is_dom(A2,'A') else 'A-' },{ 'B+' if is_dom(B2,'B') else 'B-' },{ 'D+' if is_dom(D2,'D') else 'D-' })"
 
 G1 = ["AA", "Aa", "aa"]
+
 ALL_GT = []
 for A2 in ["AA","Aa","aa"]:
     for B2 in ["BB","Bb","bb"]:
         for D2 in ["DD","Dd","dd"]:
             ALL_GT.append(A2 + B2 + D2)
+
 def combine(a, b):
     return "".join(sorted([a,b], key=lambda c:(c.islower(),c)))
 
@@ -56,20 +58,6 @@ def phases2(gX, gY):
 
     return list(out)
 
-def phases3(gA, gB, gD):
-    A=[gA[0],gA[1]]; B=[gB[0],gB[1]]; D=[gD[0],gD[1]]
-    out=set()
-    for i in [0,1]:
-        for j in [0,1]:
-            for k in [0,1]:
-                h1 = A[i]+B[j]+D[k]
-                h2 = A[1-i]+B[1-j]+D[1-k]
-                if sorted([h1[0],h2[0]])!=sorted(A):continue
-                if sorted([h1[1],h2[1]])!=sorted(B):continue
-                if sorted([h1[2],h2[2]])!=sorted(D):continue
-                out.add(tuple(sorted([h1,h2])))
-    return list(out)
-
 def gam_phase(h1,h2):
     if h1==h2: return {h1:Fraction(1)}
     return {h1:Fraction(1,2), h2:Fraction(1,2)}
@@ -80,42 +68,44 @@ def gam_single(g):
     return {a1:Fraction(1,2), a2:Fraction(1,2)}
 
 # ----------------------------
-# 자손 분포 계산
+# 자손 분포 계산 (L2I1 전용)
 # ----------------------------
 
-def offspring(pattern, linked, P1, P2):
+def offspring_L2I1(linked, P1, P2):
     def gams(P):
         gA,gB,gD=P["gA"],P["gB"],P["gD"]
-        if pattern=="L2I1":
-            if set(linked)=={"A","B"}:
-                h1,h2 = P["phase2"]
-                gp=gam_phase(h1,h2)
-                gd=gam_single(gD)
-                out={}
-                for h,ph in gp.items():
-                    for d,pd in gd.items():
-                        out[(h[0],h[1],d)] = out.get((h[0],h[1],d),Fraction(0))+ph*pd
-                return out
-            if set(linked)=={"A","D"}:
-                h1,h2=P["phase2"]
-                gp=gam_phase(h1,h2)
-                gb=gam_single(gB)
-                out={}
-                for h,ph in gp.items():
-                    for b,pb in gb.items():
-                        out[(h[0],b,h[1])] = out.get((h[0],b,h[1]),Fraction(0))+ph*pb
-                return out
-            if set(linked)=={"B","D"}:
-                h1,h2=P["phase2"]
-                gp=gam_phase(h1,h2)
-                ga=gam_single(gA)
-                out={}
-                for h,ph in gp.items():
-                    for a,pa in ga.items():
-                        out[(a,h[0],h[1])] = out.get((a,h[0],h[1]),Fraction(0))+ph*pa
-                return out
-            raise RuntimeError("invalid linked")
-        
+
+        if set(linked)=={"A","B"}:
+            h1,h2 = P["phase2"]
+            gp=gam_phase(h1,h2)
+            gd=gam_single(gD)
+            out={}
+            for h,ph in gp.items():
+                for d,pd in gd.items():
+                    out[(h[0],h[1],d)] = out.get((h[0],h[1],d),Fraction(0))+ph*pd
+            return out
+
+        if set(linked)=={"A","D"}:
+            h1,h2=P["phase2"]
+            gp=gam_phase(h1,h2)
+            gb=gam_single(gB)
+            out={}
+            for h,ph in gp.items():
+                for b,pb in gb.items():
+                    out[(h[0],b,h[1])] = out.get((h[0],b,h[1]),Fraction(0))+ph*pb
+            return out
+
+        if set(linked)=={"B","D"}:
+            h1,h2=P["phase2"]
+            gp=gam_phase(h1,h2)
+            ga=gam_single(gA)
+            out={}
+            for h,ph in gp.items():
+                for a,pa in ga.items():
+                    out[(a,h[0],h[1])] = out.get((a,h[0],h[1]),Fraction(0))+ph*pa
+            return out
+
+        raise RuntimeError("invalid linked")
 
     g1=gams(P1); g2=gams(P2)
     dist={}
@@ -142,37 +132,62 @@ def ph_dist(dist):
     return out
 
 # ----------------------------
-# 모든 P1,P2 후보 생성
+# 부모 후보 생성 (L2I1 전용)
 # ----------------------------
 
-def enum_parents(pattern, linked):
+def enum_parents_L2I1(linked):
     out=[]
     for gA in G1:
         for gB in G1:
             for gD in G1:
-                if pattern=="L2I1":
-                    if set(linked)=={"A","B"}:
-                        phs=phases2(gA,gB)
-                    elif set(linked)=={"A","D"}:
-                        phs=phases2(gA,gD)
-                    else:
-                        phs=phases2(gB,gD)
+                if set(linked)=={"A","B"}:
+                    phs=phases2(gA,gB)
+                    for ph in phs:
+                        out.append({"gA":gA,"gB":gB,"gD":gD,"phase2":ph})
+                elif set(linked)=={"A","D"}:
+                    phs=phases2(gA,gD)
+                    for ph in phs:
+                        out.append({"gA":gA,"gB":gB,"gD":gD,"phase2":ph})
+                elif set(linked)=={"B","D"}:
+                    phs=phases2(gB,gD)
                     for ph in phs:
                         out.append({"gA":gA,"gB":gB,"gD":gD,"phase2":ph})
                 else:
-                    phs=phases3(gA,gB,gD)
-                    for ph in phs:
-                        out.append({"gA":gA,"gB":gB,"gD":gD,"phase3":ph})
+                    raise RuntimeError("invalid linked")
     return out
 
-def pstr(P,pattern,linked):
+def pstr_L2I1(P,linked):
     g=P["gA"]+P["gB"]+P["gD"]
-    if pattern=="L2I1":
-        return f"{g} (연관상:{P['phase2'][0]}/{P['phase2'][1]})"
-    return f"{g} (연관상:{P['phase3'][0]}/{P['phase3'][1]})"
+    return f"{g} (연관상:{P['phase2'][0]}/{P['phase2'][1]})"
 
 # ----------------------------
-# 문제 생성 (복수정답)
+# 빠른 솔루션 카운트 (≤3 초과면 즉시 중단)
+# ----------------------------
+
+def ph_count_of_dist(d):
+    pd = ph_dist(d)
+    return sum(1 for v in pd.values() if v > 0)
+
+def count_solutions_upto3(cands, linked, ph_count, conds):
+    sols=[]
+    for c1 in cands:
+        for c2 in cands:
+            d2 = offspring_L2I1(linked, c1, c2)
+            if ph_count_of_dist(d2) != ph_count:
+                continue
+            ok=True
+            for gt, pr in conds:
+                if d2.get(gt, Fraction(0)) != pr:
+                    ok=False
+                    break
+            if ok:
+                sols.append((c1,c2))
+                if len(sols) > 3:   # ✅ 3개 초과면 컷
+                    return sols
+    return sols
+
+# ----------------------------
+# 문제 생성 (≤3개 답 허용 / 필요시 조건 3개로 자동 강화)
 # ----------------------------
 
 @dataclass
@@ -180,107 +195,88 @@ class Problem:
     pid:str
     payload:Dict[str,Any]
 
-def prepare_case_cache(pattern, linked, allowed):
-    cands = enum_parents(pattern, linked)
-
-    pairs = []
-    for c1 in cands:
-        for c2 in cands:
-            d = offspring(pattern, linked, c1, c2)
-            ph = ph_dist(d)
-            ph_count = sum(1 for v in ph.values() if v > 0)
-            pairs.append({
-                "P1": c1,
-                "P2": c2,
-                "dist": d,
-                "ph_count": ph_count,
-            })
-
-    index = {}
-    for x in pairs:
-        ph_count = x["ph_count"]
-        if not (3 <= ph_count <= 6):
-            continue
-
-        d = x["dist"]
-
-        # target1 후보(allowed 확률)
-        t1s = [(gt, pr) for gt, pr in d.items() if pr in allowed]
-        if not t1s:
-            continue
-
-        # target2 후보(0 확률)
-        zeros = [gt for gt in ALL_GT if d.get(gt, Fraction(0)) == 0]
-        if not zeros:
-            continue
-
-        # 폭발 방지: 0확률 후보는 일부만 샘플링
-        zsample = zeros if len(zeros) <= 20 else random.sample(zeros, 40)
-
-        for (tgt1_gt, tgt1_pr) in t1s:
-            for tgt2_gt in zsample:
-                key = (ph_count, tgt1_gt, tgt1_pr, tgt2_gt)
-                index.setdefault(key, []).append((x["P1"], x["P2"]))
-
-    # 해 개수 제한(너 조건 유지). 필요하면 10으로 늘려도 됨.
-    valid_keys = [k for k, sols in index.items() if 1 <= len(sols) <= 10]
-
-    # ✅ 안전장치: 유효 조건이 하나도 없는 케이스면 empty=True로 마킹
-    empty = (len(valid_keys) == 0)
-
-    return {
-        "cands": cands,
-        "pairs": pairs,
-        "index": index,
-        "valid_keys": valid_keys,
-        "empty": empty
-    }
-
 def build_one(max_tries=30000):
-    pattern = "L2I1"
-    lopts = [("A","B"), ("A","D"), ("B","D")]
+    lopts=[("A","B"),("A","D"),("B","D")]
 
+    # 네가 원하면 이 allowed 리스트를 없애도 됨(성공률 더 올라감)
     allowed = [
         Fraction(1,16), Fraction(3,16),
         Fraction(1,8), Fraction(3,8),
         Fraction(1,4), Fraction(3,4),
-        Fraction(1,2), Fraction(9,16)
+        Fraction(1,2), Fraction(9, 16)
     ]
 
-    case_cache = {}
-
-    # ✅ linked별로 몇 번이나 비었는지 추적(디버그 도움)
-    empty_count = {("A","B"):0, ("A","D"):0, ("B","D"):0}
+    # linked별 후보 캐시
+    cand_cache = {}
 
     for _ in range(max_tries):
-        # 3개 linked 중 랜덤 선택
         linked = random.choice(lopts)
-        key_case = (pattern, linked)
+        if linked not in cand_cache:
+            cand_cache[linked] = enum_parents_L2I1(linked)
+        cands = cand_cache[linked]
 
-        if key_case not in case_cache:
-            case_cache[key_case] = prepare_case_cache(pattern, linked, allowed)
+        # 1) (P1,P2) 먼저 뽑기
+        P1 = random.choice(cands)
+        P2 = random.choice(cands)
 
-        cc = case_cache[key_case]
-
-        # ✅ 안전장치: 이 linked 케이스가 비면 스킵 (다른 linked로 넘어가게 함)
-        if cc.get("empty", False) or (not cc["valid_keys"]):
-            empty_count[linked] += 1
+        dist = offspring_L2I1(linked, P1, P2)
+        ph_count = ph_count_of_dist(dist)
+        if not (3 <= ph_count <= 6):
             continue
 
-        # 여기부터는 "해가 존재하는 조건"만 고르는 구조라 거의 실패 안 함
-        ph_count, tgt1_gt, tgt1_pr, tgt2_gt = random.choice(cc["valid_keys"])
-        sols = cc["index"][(ph_count, tgt1_gt, tgt1_pr, tgt2_gt)]
+        # 2) 되는 조건 1개: allowed 확률 중 dist에 있는 것
+        possibles = [(gt,pr) for gt,pr in dist.items() if pr in allowed]
+        if not possibles:
+            continue
+        tgt1_gt, tgt1_pr = random.choice(possibles)
 
-        repP1, repP2 = sols[0]
-        dist = offspring(pattern, linked, repP1, repP2)
+        # 3) 안되는 조건 1개: 0 확률 유전자형
+        zeros = [gt for gt in ALL_GT if dist.get(gt, Fraction(0)) == 0]
+        if not zeros:
+            continue
+        tgt2_gt = random.choice(zeros)
+        tgt2_pr = Fraction(0)
 
-        problem_code = f"M3-{random.randint(1,999):03d}"
+        conds = [(tgt1_gt, tgt1_pr), (tgt2_gt, tgt2_pr)]
+
+        # 4) 검증: 해 개수(≤3)인지 확인
+        sols = count_solutions_upto3(cands, linked, ph_count, conds)
+
+        # 해 0이면 버림(거의 없음)
+        if len(sols) == 0:
+            continue
+
+        # 해가 1~3이면 채택
+        if 1 <= len(sols) <= 3:
+            final_conds = conds
+            final_sols = sols
+
+        else:
+            # 5) 해가 4개 이상이면: 조건을 1개 더 추가해서 해를 줄임(자동 강화)
+            # dist에서 또 다른 유전자형 조건 하나(allowed 확률)를 추가
+            possibles2 = [(gt,pr) for gt,pr in dist.items() if (gt,pr) != (tgt1_gt,tgt1_pr) and pr in allowed]
+            if not possibles2:
+                continue
+            tgt3_gt, tgt3_pr = random.choice(possibles2)
+            conds3 = [(tgt1_gt, tgt1_pr), (tgt2_gt, tgt2_pr), (tgt3_gt, tgt3_pr)]
+
+            sols3 = count_solutions_upto3(cands, linked, ph_count, conds3)
+            if len(sols3) == 0:
+                continue
+            if len(sols3) > 3:
+                continue  # 여전히 많으면 버림(다시 뽑기)
+
+            final_conds = conds3
+            final_sols = sols3
+
+        # ----------- 문제 텍스트 생성 -------------
+        problem_code=f"M3-{random.randint(1,999):03d}"
         pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
 
-        lg = list(linked)
-        link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
+        lg=list(linked)
+        link_desc=f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
 
-        ph_desc = (
+        ph_desc=(
             "※ 표현형은 **대문자 개수(k)**가 아니라, 각 유전자의 **우성 표현 여부(A+/B+/D+)**로 구분한다.\n"
             "- A형질: A-이면 발현, aa이면 비발현\n"
             "- B형질: B-이면 발현, bb이면 비발현\n"
@@ -288,69 +284,74 @@ def build_one(max_tries=30000):
             "따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n"
         )
 
+        cond_lines=[]
+        for (gt,pr) in final_conds:
+            if pr == 0:
+                cond_lines.append(f"- 자손 유전자형 **{gt}** 의 확률 = **0**")
+            else:
+                cond_lines.append(f"- 자손 유전자형 **{gt}** 의 확률 = **{frac_to_str(pr)}**")
+
         problem_text_md = (
             f"문제 제목 : Matrix3 일반유전 추론 ({problem_code})\n\n"
             f"(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n"
             f"{link_desc}\n\n"
             f"- 부모 P1, P2는 미지수이다.\n"
             f"- 자손의 **표현형 종류는 {ph_count}가지**이다.\n"
-            f"- 자손 유전자형 **{tgt1_gt}** 의 확률 = **{frac_to_str(tgt1_pr)}**\n"
-            f"- 자손 유전자형 **{tgt2_gt}** 의 확률 = **0**\n\n"
+            + "\n".join(cond_lines) + "\n\n"
             f"{ph_desc}"
             f"조건을 만족하는 모든 (P1,P2) 조합을 구하시오."
         )
 
         ask_line_md = "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오."
 
-        answer_lines = []
-        answer_lines.append(f"총 정답 후보: {len(sols)}개\n")
+        # 정답(최대 3개)
+        answer_lines=[]
+        answer_lines.append(f"총 정답 후보: {len(final_sols)}개\n")
 
-        for idx_s, (c1, c2) in enumerate(sols, 1):
+        for idx_s,(c1,c2) in enumerate(final_sols,1):
             answer_lines.append(f"[후보 {idx_s}]")
-            answer_lines.append(f"- P1 = {pstr(c1, pattern, linked)}")
-            answer_lines.append(f"- P2 = {pstr(c2, pattern, linked)}")
+            answer_lines.append(f"- P1 = {pstr_L2I1(c1,linked)}")
+            answer_lines.append(f"- P2 = {pstr_L2I1(c2,linked)}")
 
-            sol_dist = offspring(pattern, linked, c1, c2)
+            sol_dist = offspring_L2I1(linked,c1,c2)
             sol_ph = ph_dist(sol_dist)
             for k in sorted(sol_ph.keys()):
                 if sol_ph[k] > 0:
                     answer_lines.append(f"  - {k} : {frac_to_str(sol_ph[k])}")
             answer_lines.append("")
 
-        answer_text_md = "\n".join(answer_lines)
+        answer_text_md="\n".join(answer_lines)
 
         solution_md = (
             "### 해설(자동)\n"
-            "- (표현형 수, 특정 유전자형의 확률, 특정 유전자형의 불가능 조건)을 만족하는 모든 (P1,P2)를 전수검사로 탐색했다.\n"
-            "- 일반유전이므로 표현형은 대문자 개수가 아니라 A/B/D 각각의 우성 발현 여부 조합이다.\n"
+            "- 먼저 (P1,P2)를 하나 잡고, 그 분포에서 ‘가능/불가능(0)’ 조건을 뽑아낸 뒤,\n"
+            "  그 조건을 만족하는 (P1,P2) 후보 수가 1~3개가 되도록 검증했다.\n"
+            "- 후보가 4개 이상이면 유전자형 확률 조건을 1개 추가하여 해를 줄였다.\n"
         )
 
-        payload = {
-            "module": MODULE,
-            "id_prefix": ID_PREFIX,
-            "problem_code": problem_code,
-            "pattern": pattern,
-            "linked_genes": list(linked),
-            "constraints": {
-                "phenotype_count": ph_count,
-                "target1": {"genotype": tgt1_gt, "prob": frac_to_str(tgt1_pr)},
-                "target2": {"genotype": tgt2_gt, "prob": "0"},
+        payload={
+            "module":MODULE,
+            "id_prefix":ID_PREFIX,
+            "problem_code":problem_code,
+            "pattern":"L2I1",
+            "linked_genes":list(linked),
+            "constraints":{
+                "phenotype_count":ph_count,
+                "conditions":[{"genotype":gt,"prob":("0" if pr==0 else frac_to_str(pr))} for gt,pr in final_conds]
             },
-            "solutions": [
-                {"P1": pstr(c1, pattern, linked), "P2": pstr(c2, pattern, linked)}
-                for (c1, c2) in sols
+            "solutions":[
+                {"P1":pstr_L2I1(c1,linked), "P2":pstr_L2I1(c2,linked)}
+                for (c1,c2) in final_sols
             ],
-            "problem_text_md": problem_text_md,
-            "ask_line_md": ask_line_md,
-            "answer_text_md": answer_text_md,
-            "solution_md": solution_md,
+            "problem_text_md":problem_text_md,
+            "ask_line_md":ask_line_md,
+            "answer_text_md":answer_text_md,
+            "solution_md":solution_md,
         }
 
-        return Problem(pid, payload)
+        return Problem(pid,payload)
 
-    # ✅ 여기까지 왔으면 3개 linked가 전부 empty거나 조건이 너무 빡센 것
-    raise RuntimeError(f"문제 생성 실패: 조건 완화 필요 (empty_hits={empty_count})")
-
+    raise RuntimeError("문제 생성 실패: 조건 완화 필요")
 
 # ----------------------------
 # PACK 저장
