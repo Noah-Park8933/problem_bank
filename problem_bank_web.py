@@ -39,7 +39,7 @@ def main():
     include_expl = st.sidebar.checkbox("해설 포함", value=True)
     include_full = st.sidebar.checkbox("완성표 포함", value=True)
     two_col = st.sidebar.checkbox("2단(페이지당 2문항)", value=True)
-
+   
     selected_items = [it for it in filtered if it.uid in state.selected_uids]
     if st.sidebar.button("선택 문항 DOCX 다운로드"):
         if not selected_items:
@@ -56,6 +56,6 @@ def main():
     # 메인 리스트
     st.subheader(f"표시 중: {len(filtered)}개 / 전체: {len(items)}개")
     render_list(cfg, state, filtered, page)
-
+    render_generator_panel()
 if __name__ == "__main__":
     main()
