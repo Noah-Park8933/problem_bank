@@ -11,6 +11,12 @@ from problem_bank.generator_ui import render_generator_panel
 def main():
     st.set_page_config(page_title="Problem Bank", layout="wide")
 
+    tabA, tabB = st.tabs(["문제은행", "생성기"])
+    with tabA:
+        st.write("여기 기존 UI")
+        # 기존 UI 함수 호출
+    with tabB:
+        render_generator_panel()
     cfg = AppConfig()
     state = ensure_state(st)
 
