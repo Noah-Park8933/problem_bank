@@ -13,7 +13,7 @@ def main():
 
     tabA, tabB = st.tabs(["문제은행", "생성기"])
     with tabA:
-        st.write("여기 기존 UI")
+        st.write("뭐라도 쓰라고 이 칸이 있는것 같으ㅏ서")
         # 기존 UI 함수 호출
     with tabB:
         render_generator_panel()
