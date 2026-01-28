@@ -227,7 +227,7 @@ def prepare_case_cache(pattern, linked, allowed):
 
         # 폭발 방지: zeros 전부 쓰지 말고 일부만 샘플링 (충분히 안정적)
         # 필요하면 8~15로 늘려도 됨
-        zsample = zeros if len(zeros) <= 10 else random.sample(zeros, 10)
+        zsample = zeros if len(zeros) <= 20 else random.sample(zeros, 20)
 
         for (tgt1_gt, tgt1_pr) in t1s:
             for tgt2_gt in zsample:
@@ -235,7 +235,7 @@ def prepare_case_cache(pattern, linked, allowed):
                 index.setdefault(key, []).append((x["P1"], x["P2"]))
 
     # 해 개수 1~6인 조건만 남김 (너의 요구사항 유지)
-    valid_keys = [k for k, sols in index.items() if 1 <= len(sols) <= 6]
+    valid_keys = [k for k, sols in index.items() if 1 <= len(sols) <= 10]
 
     return {"cands": cands, "pairs": pairs, "index": index, "valid_keys": valid_keys}
 
