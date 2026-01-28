@@ -20,7 +20,7 @@ def main():
     cfg = AppConfig()
     state = ensure_state(st)
 
-    st.title("박태양수학과학연구소 문제은행")
+    st.title("Life Science 1 문제 생성 DB")
 
     with st.spinner("PACK 로딩 중..."):
         items = load_all(cfg)
