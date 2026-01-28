@@ -11,6 +11,7 @@ import streamlit as st
 # ============================================================
 # TODO — 실제 파일명 & 함수명으로 교체해야 함
 from matrix3_generator_PACK import make_pack as make_pack_matrix3
+from gene_detecting_ox_v4_randomLinkage_NO_SHUFFLE_PACK_PATCHED_v6_1 import make_docx as make_pack_gd1
 # from division_generator_PACK_NOXINFO_randomX12_hiddenX_v4 import make_pack as make_pack_division
 # from DNA_integration_generator import make_pack as make_pack_dna
 # from PDED1_generator import make_pack as make_pack_pded1
@@ -28,6 +29,26 @@ GENERATORS = [
         "min_n": 1,
         "max_n": 200,
         "run": lambda n: make_pack_matrix3(n=n),
+    },
+
+    # 예시 — 필요하면 주석 해제 후 파일 연결
+     {
+    #     "key": "DIVISION",
+    #     "title": "🌳 Division 문제 자동 생성",
+    #     "default_n": 30,
+    #     "min_n": 1,
+    #     "max_n": 200,
+    #     "run": lambda n: make_pack_division(n=n),
+    # },
+]
+GENERATORS = [
+    {
+        "key": "Gene Detecting(Diagram X)",
+        "title": "🧬 Gene Detecting 문제 자동 생성",
+        "default_n": 30,
+        "min_n": 1,
+        "max_n": 200,
+        "run": lambda n: make_pack_gd1(n=n),
     },
 
     # 예시 — 필요하면 주석 해제 후 파일 연결
