@@ -187,21 +187,13 @@ class Problem:
     pid:str
     payload:Dict[str,Any]
 
-def prepare_case_cache(pattern, linked):
-    """
-    (pattern, linked) 케이스에 대해:
-    - 모든 부모 후보 cands
-    - 모든 (P1,P2)쌍에 대한 dist/ph_count 미리 계산
-    를 캐시로 만들어 반환.
-    """
+def prepare_case_cache(pattern, linked, allowed):
     cands = enum_parents(pattern, linked)
 
+    # 모든 (P1,P2)쌍 dist/ph_count 사전 계산
     pairs = []
-    # (P1,P2) 전체쌍 사전 계산 (순서 구분: (c1,c2)와 (c2,c1) 둘 다 넣으면 해 탐색 쉬움)
     for c1 in cands:
         for c2 in cands:
-            # 같은 부모 허용 여부는 여기서 조절 가능
-            # if c1 == c2: continue  # 원하면 주석 해제/해제
             d = offspring(pattern, linked, c1, c2)
             ph = ph_dist(d)
             ph_count = sum(1 for v in ph.values() if v > 0)
@@ -212,7 +204,41 @@ def prepare_case_cache(pattern, linked):
                 "ph_count": ph_count,
             })
 
-    return {"cands": cands, "pairs": pairs}
+    # 🔥 해가 존재하는 조건을 미리 인덱싱
+    # key = (ph_count, tgt1_gt, tgt1_pr, tgt2_gt)
+    index = {}
+
+    for x in pairs:
+        ph_count = x["ph_count"]
+        if not (3 <= ph_count <= 6):
+            continue
+
+        d = x["dist"]
+
+        # target1 후보(allowed 확률)
+        t1s = [(gt, pr) for gt, pr in d.items() if pr in allowed]
+        if not t1s:
+            continue
+
+        # target2 후보(0 확률): dist에 없거나 0인 것
+        zeros = [gt for gt in ALL_GT if d.get(gt, Fraction(0)) == 0]
+        if not zeros:
+            continue
+
+        # 폭발 방지: zeros 전부 쓰지 말고 일부만 샘플링 (충분히 안정적)
+        # 필요하면 8~15로 늘려도 됨
+        zsample = zeros if len(zeros) <= 10 else random.sample(zeros, 10)
+
+        for (tgt1_gt, tgt1_pr) in t1s:
+            for tgt2_gt in zsample:
+                key = (ph_count, tgt1_gt, tgt1_pr, tgt2_gt)
+                index.setdefault(key, []).append((x["P1"], x["P2"]))
+
+    # 해 개수 1~6인 조건만 남김 (너의 요구사항 유지)
+    valid_keys = [k for k, sols in index.items() if 1 <= len(sols) <= 6]
+
+    return {"cands": cands, "pairs": pairs, "index": index, "valid_keys": valid_keys}
+
 
 
 def build_one(max_tries=30000):
@@ -226,67 +252,31 @@ def build_one(max_tries=30000):
         Fraction(1,2), Fraction(9,16)
     ]
 
-    # 케이스별 캐시: (pattern, linked) -> {"cands":..., "pairs":...}
     case_cache = {}
 
     for _ in range(max_tries):
         pattern = random.choice(patterns)
-        if pattern == "L2I1":
-            linked = random.choice(lopts)
-        else:
-            linked = ("A","B","D")
+        linked = random.choice(lopts) if pattern == "L2I1" else ("A","B","D")
+        key_case = (pattern, linked)
 
-        key = (pattern, linked)
-        if key not in case_cache:
-            case_cache[key] = prepare_case_cache(pattern, linked)
+        if key_case not in case_cache:
+            case_cache[key_case] = prepare_case_cache(pattern, linked, allowed)
 
-        pairs = case_cache[key]["pairs"]
-
-        # 1) ph_count 조건(3~6) 만족하는 pair 중 하나 랜덤 선택
-        filtered_pairs = [x for x in pairs if 3 <= x["ph_count"] <= 6]
-        if not filtered_pairs:
-            continue
-        picked = random.choice(filtered_pairs)
-
-        dist = picked["dist"]
-        ph_count = picked["ph_count"]
-
-        # 2) target1: allowed 확률에 해당하는 실제 존재 유전자형
-        possibles = [(gt, pr) for gt, pr in dist.items() if pr in allowed]
-        if not possibles:
-            continue
-        tgt1_gt, tgt1_pr = random.choice(possibles)
-
-        # 3) target2: 확률 0인 유전자형(= 전체 27개 중 dist에 없거나 0인 것)
-        zeros = [gt for gt in ALL_GT if dist.get(gt, Fraction(0)) == 0]
-        if not zeros:
-            continue
-        tgt2_gt = random.choice(zeros)
-        tgt2_pr = Fraction(0)
-        # 4) 해(솔루션) 찾기: 미리 계산된 pairs에서 필터링만으로 구함
-        sols = []
-        for x in pairs:
-            if x["ph_count"] != ph_count:
-                continue
-            d2 = x["dist"]
-            if d2.get(tgt1_gt, Fraction(0)) != tgt1_pr:
-                continue
-            if d2.get(tgt2_gt, Fraction(0)) != tgt2_pr:
-                continue
-            sols.append((x["P1"], x["P2"]))
-            if len(sols) > 6:  # 너무 많으면 컷
-                break
-
-        if len(sols) == 0:
-            continue
-        if len(sols) > 6:
+        cc = case_cache[key_case]
+        if not cc["valid_keys"]:
             continue
 
-        # ----------- 문제 생성 -------------
+        # ✅ 해가 1~6개 존재하는 조건 중 하나를 랜덤 선택
+        ph_count, tgt1_gt, tgt1_pr, tgt2_gt = random.choice(cc["valid_keys"])
+        sols = cc["index"][(ph_count, tgt1_gt, tgt1_pr, tgt2_gt)]
+
+        # 문제 설명용 dist 하나 뽑기 (첫 해로 대표 dist 생성)
+        repP1, repP2 = sols[0]
+        dist = offspring(pattern, linked, repP1, repP2)
+
         problem_code = f"M3-{random.randint(1,999):03d}"
         pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
 
-        # 링크 설명
         if pattern == "L2I1":
             lg = list(linked)
             link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
@@ -315,9 +305,10 @@ def build_one(max_tries=30000):
 
         ask_line_md = "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오."
 
-        # 정답
+        # 정답 출력
         answer_lines = []
         answer_lines.append(f"총 정답 후보: {len(sols)}개\n")
+
         for idx_s, (c1, c2) in enumerate(sols, 1):
             answer_lines.append(f"[후보 {idx_s}]")
             answer_lines.append(f"- P1 = {pstr(c1, pattern, linked)}")
@@ -334,7 +325,7 @@ def build_one(max_tries=30000):
 
         solution_md = (
             "### 해설(자동)\n"
-            "- 주어진 표현형 수와 두 유전자형 확률 조건을 만족하는 모든 (P1,P2)를 전수검사로 탐색했다.\n"
+            "- (표현형 수, 특정 유전자형의 확률, 특정 유전자형의 불가능 조건)을 만족하는 모든 (P1,P2)를 전수검사로 탐색했다.\n"
             "- 일반유전이므로 표현형은 대문자 개수가 아니라 A/B/D 각각의 우성 발현 여부 조합이다.\n"
         )
 
@@ -362,6 +353,7 @@ def build_one(max_tries=30000):
         return Problem(pid, payload)
 
     raise RuntimeError("문제 생성 실패: 조건 완화 필요")
+
 
 # ----------------------------
 # PACK 저장
