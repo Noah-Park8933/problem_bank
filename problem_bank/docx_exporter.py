@@ -31,7 +31,7 @@ def _add_par(doc_or_cell, text: str, bold: bool = False):
 # ------------------------------------------------------------
 # 안정적인 표 생성 (오류 방지 패치 완전 적용)
 # ------------------------------------------------------------
-def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.6):
+def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
     """
     - normalize_table_to_grid 결과 기반 표 만든다.
     - headers/rows 비어 있으면 자동 문구 처리.
