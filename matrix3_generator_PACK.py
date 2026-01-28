@@ -35,7 +35,7 @@ PROB_POOL = [
     Fraction(1, 16), Fraction(3, 16),
     Fraction(1, 8),  Fraction(3, 8),
     Fraction(1, 4),  Fraction(3, 4),
-    Fraction(1, 2),
+    Fraction(1, 2),  Fraction(9, 16)
 ]
 
 # -----------------------------
