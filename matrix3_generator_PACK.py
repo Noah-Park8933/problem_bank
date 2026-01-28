@@ -254,11 +254,6 @@ def build_one(max_tries=30000):
         tgt1_gt, tgt1_pr = random.choice(possibles)
 
         # 3) target2: 확률 0인 유전자형(= 전체 27개 중 dist에 없거나 0인 것)
-        zeros = [gt for gt in ALL_GT if dist.get(gt, Fraction(0)) == 0]
-        if not zeros:
-            continue
-        tgt2_gt = random.choice(zeros)
-        tgt2_pr = Fraction(0)
 
         # 4) 해(솔루션) 찾기: 미리 계산된 pairs에서 필터링만으로 구함
         sols = []
