@@ -199,6 +199,10 @@ def _deep_find_table(obj: Any, max_depth: int = 6, _depth: int = 0) -> Optional[
 # 외부에서 쓰는 "표 찾기" API
 # ----------------------------
 def try_find_table(payload: Dict[str, Any], keys: List[str]) -> Optional[Any]:
+    # try_find_table() 안 keys 우선 탐색에서 쓰일 후보에 md 키도 포함
+    md_keys = ["_given_table_md", "_full_table_md", "table_md", "full_table_md", "given_table_md"]
+    for k in md_keys + keys:
+        ...
     found = _deep_find_table(payload, max_depth=6)
     if _is_2d_list(found):
         if len(found) < 3 or max(len(r) for r in found) < 3:
@@ -245,7 +249,64 @@ def _pad_grid(headers: List[str], rows: List[List[str]]) -> Tuple[List[str], Lis
         out_rows.append(r2)
     return headers, out_rows
 
+def _parse_md_table(md: str) -> Optional[List[List[str]]]:
+    """
+    GitHub style markdown table:
+    | h1 | h2 |
+    | --- | --- |
+    | a | b |
+    """
+    if not isinstance(md, str):
+        return None
+    s = md.strip()
+    if "|" not in s:
+        return None
 
+    lines = [ln.strip() for ln in s.splitlines() if ln.strip()]
+    if len(lines) < 2:
+        return None
+
+    def split_row(ln: str) -> List[str]:
+        ln = ln.strip()
+        # 양끝 | 제거
+        if ln.startswith("|"):
+            ln = ln[1:]
+        if ln.endswith("|"):
+            ln = ln[:-1]
+        return [c.strip() for c in ln.split("|")]
+
+    header = split_row(lines[0])
+
+    # 두 번째 줄이 --- 구분선인지 확인
+    sep = split_row(lines[1])
+    is_sep = True
+    for c in sep:
+        t = c.replace(":", "").replace("-", "").strip()
+        if t != "":
+            is_sep = False
+            break
+
+    if not is_sep:
+        return None
+
+    rows = []
+    for ln in lines[2:]:
+        rows.append(split_row(ln))
+
+    grid = [header] + rows
+    return grid
+
+
+def _grid_from_md_or_text(x: Any) -> Optional[Tuple[List[str], List[List[str]]]]:
+    if not isinstance(x, str):
+        return None
+    grid = _parse_md_table(x)
+    if grid is None:
+        return None
+    headers = ["" if v is None else str(v) for v in grid[0]]
+    rows = [[("" if v is None else str(v)) for v in r] for r in grid[1:]]
+    return _pad_grid(headers, rows)
+    
 def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]:
     """
     다양한 표 형태를 (headers, rows) 2D grid로 통일.
@@ -257,7 +318,10 @@ def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]
       3) 2D list/tuple: [["", "E", ...], ["가", "?", ...], ...]
       4) fallback: 문자열 1셀 표
     """
-
+    # 0) markdown table string
+    md_parsed = _grid_from_md_or_text(table_obj)
+    if md_parsed is not None:
+        return md_parsed
     # 1) nested dict: {row: {col: value}}
     if isinstance(table_obj, dict):
         if table_obj and all(isinstance(v, dict) for v in table_obj.values()):
