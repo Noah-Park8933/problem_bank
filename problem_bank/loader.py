@@ -227,4 +227,26 @@ def load_all(cfg: AppConfig) -> List[ProblemItem]:
             doc = normalize_tables(doc)
             items.append(ProblemItem(pid=str(pid), module=module, prefix=prefix, path=p, payload=doc))
 
-    return items
+    return dedupe_items(items)
+
+
+def load_one_pack(pack_path: str) -> List[ProblemItem]:
+    doc = _read_json(pack_path)
+    if not isinstance(doc, dict):
+        return []
+
+    parsed = parse_pack(doc, fallback_module=os.path.basename(pack_path), fallback_prefix="")
+    for it in parsed:
+        it.path = pack_path
+    return parsed
+def dedupe_items(items: List[ProblemItem]) -> List[ProblemItem]:
+    seen = set()
+    out = []
+    for it in items:
+        k = it.uid  # path::pid
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(it)
+    return out
+
