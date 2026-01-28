@@ -33,7 +33,11 @@ def ph_label(gt: str) -> str:
     return f"({ 'A+' if is_dom(A2,'A') else 'A-' },{ 'B+' if is_dom(B2,'B') else 'B-' },{ 'D+' if is_dom(D2,'D') else 'D-' })"
 
 G1 = ["AA", "Aa", "aa"]
-
+ALL_GT = []
+for A2 in ["AA","Aa","aa"]:
+    for B2 in ["BB","Bb","bb"]:
+        for D2 in ["DD","Dd","dd"]:
+            ALL_GT.append(A2 + B2 + D2)
 def combine(a, b):
     return "".join(sorted([a,b], key=lambda c:(c.islower(),c)))
 
@@ -254,7 +258,11 @@ def build_one(max_tries=30000):
         tgt1_gt, tgt1_pr = random.choice(possibles)
 
         # 3) target2: 확률 0인 유전자형(= 전체 27개 중 dist에 없거나 0인 것)
-
+        zeros = [gt for gt in ALL_GT if dist.get(gt, Fraction(0)) == 0]
+        if not zeros:
+            continue
+        tgt2_gt = random.choice(zeros)
+        tgt2_pr = Fraction(0)
         # 4) 해(솔루션) 찾기: 미리 계산된 pairs에서 필터링만으로 구함
         sols = []
         for x in pairs:
