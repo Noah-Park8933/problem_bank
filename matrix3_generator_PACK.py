@@ -197,33 +197,35 @@ class CaseCache:
     cands: List[Dict[str, Any]]
     pairs: List[PairInfo]
     seeds: List[int]
+    cls_map: Dict[Tuple[Fraction, ...], List[int]]
 
 def build_case_cache(linked: Tuple[str, str]) -> CaseCache:
     cands = enum_parents_L2I1(linked)
     pairs: List[PairInfo] = []
 
-    # ✅ unordered pair만 저장 (i <= j) : (P1,P2) vs (P2,P1) 중복으로 해가 2배되는 문제 제거
+    # unordered pair만 저장(i<=j)
     for i in range(len(cands)):
         for j in range(i, len(cands)):
             d = offspring_L2I1(linked, cands[i], cands[j])
             pc = ph_count_of_dist(d)
             pairs.append(PairInfo(i, j, pc, d))
 
-    # seed 기준: 너무 빡세게 잡으면 seed가 쓸모 없어짐 -> 느슨하게
+    # dist signature(27개 유전자형 확률 튜플)로 동치클래스 만들기
+    cls_map: Dict[Tuple[Fraction, ...], List[int]] = {}
+    for idx, p in enumerate(pairs):
+        sig = tuple(p.dist.get(gt, Fraction(0)) for gt in ALL_GT)
+        cls_map.setdefault(sig, []).append(idx)
+
+    # ✅ seed는 "ph_count 3~6" AND "동치클래스 크기 ≤3" 인 것만!
     seeds: List[int] = []
-    for k, p in enumerate(pairs):
+    for idx, p in enumerate(pairs):
         if not (3 <= p.ph_count <= 6):
             continue
-        zeros = sum(1 for gt in ALL_GT if p.dist.get(gt, Fraction(0)) == 0)
-        if zeros < 2:
-            continue
-        pos = sum(1 for v in p.dist.values() if v > 0)
-        if pos < 6:
-            continue
-        seeds.append(k)
+        sig = tuple(p.dist.get(gt, Fraction(0)) for gt in ALL_GT)
+        if len(cls_map[sig]) <= 3:
+            seeds.append(idx)
 
-    return CaseCache(linked=linked, cands=cands, pairs=pairs, seeds=seeds)
-
+    return CaseCache(linked=linked, cands=cands, pairs=pairs, seeds=seeds, cls_map=cls_map)
 # ----------------------------
 # 해 탐색(≤3 초과면 중단) - unordered라 sols도 unordered
 # ----------------------------
@@ -275,44 +277,42 @@ class Problem:
 def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
               max_seed_tries: int = 20000) -> Problem:
     lopts = [("A", "B"), ("A", "D"), ("B", "D")]
+    MAX_CONDS = 12  # 동치클래스<=3 seed만 쓰면 보통 3~8에서 끝남
 
-    # ✅ 조건 개수 상한: 실패 없애려면 넉넉히
-    # (대부분 4~8개에서 끝남. 최악 대비로 20 정도 추천)
-    MAX_CONDS = 20
+    def ph_of_dist(d: Dict[str, Fraction]) -> Dict[str, Fraction]:
+        return ph_dist(d)
 
-    # 조건 후보 풀을 만들 때, 정보량 낮은(0,1) 확률은 우선순위 낮춤
-    def is_low_info_prob(p: Fraction) -> bool:
-        return p == 0 or p == 1
-
-    # 한 condition을 적용해서 후보를 필터링
-    def filter_candidates(cands_idx: List[int], case: CaseCache, cond: Tuple[str, str, Fraction]) -> List[int]:
+    # 후보 인덱스 필터
+    def filter_idx(case: CaseCache, idxs: List[int], cond: Tuple[str, str, Fraction]) -> List[int]:
         typ, key, pr = cond
         out = []
-        for idx in cands_idx:
+        for idx in idxs:
             d = case.pairs[idx].dist
             if typ == "GT":
                 if d.get(key, Fraction(0)) == pr:
                     out.append(idx)
-            else:  # "PH"
-                ph = ph_dist(d)
+            else:  # PH
+                ph = ph_of_dist(d)
                 if ph.get(key, Fraction(0)) == pr:
                     out.append(idx)
         return out
 
-    # 그리디로 “가장 많이 줄이는” 조건 선택
-    def pick_best_cond(cands_idx: List[int], case: CaseCache, cond_pool: List[Tuple[str, str, Fraction]]) -> Optional[Tuple[str, str, Fraction]]:
+    # "타겟을 모두 포함하면서" 후보를 최소로 만드는 조건 선택
+    def pick_best(case: CaseCache, idxs: List[int], target_set: set, cond_pool: List[Tuple[str,str,Fraction]]):
         best = None
         best_size = None
         for cond in cond_pool:
-            filtered = filter_candidates(cands_idx, case, cond)
-            if not filtered:
+            f = filter_idx(case, idxs, cond)
+            if not f:
                 continue
-            # 후보를 더 많이 줄이는(=사이즈가 더 작은) 조건 선호
-            s = len(filtered)
+            fs = set(f)
+            if not target_set.issubset(fs):
+                continue
+            s = len(f)
             if best is None or s < best_size:
                 best = cond
                 best_size = s
-                if best_size == 1:  # 더 줄일 수 없음
+                if best_size == len(target_set):
                     return best
         return best
 
@@ -327,57 +327,41 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
         dist = seed.dist
         ph_count = seed.ph_count
 
-        # 시작 후보: 같은 ph_count를 가진 모든 pair 인덱스
-        cand_idx = [i for i, p in enumerate(case.pairs) if p.ph_count == ph_count]
-        if not cand_idx:
+        # ✅ 타겟 = seed의 dist 동치클래스(크기 ≤3 보장)
+        sig = tuple(dist.get(gt, Fraction(0)) for gt in ALL_GT)
+        target_idxs = case.cls_map[sig]
+        target_set = set(target_idxs)
+
+        # 시작 후보는 같은 ph_count를 가진 모든 pair
+        cand_idxs = [i for i,p in enumerate(case.pairs) if p.ph_count == ph_count]
+        if not target_set.issubset(set(cand_idxs)):
             continue
 
-        # seed 분포에서 “정답(=seed)”의 실제 값들로 조건 풀 구성
-        # GT 조건: 27개 전부 (0 포함) -> 결국 dist를 거의 특정할 수 있어서, 최악에도 줄일 수 있음
-        gt_pool: List[Tuple[str, str, Fraction]] = []
-        for gt in ALL_GT:
-            gt_pool.append(("GT", gt, dist.get(gt, Fraction(0))))
-
-        # PH 조건: 8개(최대) 전부
+        # 조건 풀: seed dist로부터 가능한 GT/PH 조건 전체
+        gt_conds = [("GT", gt, dist.get(gt, Fraction(0))) for gt in ALL_GT]
         ph = ph_dist(dist)
-        ph_pool: List[Tuple[str, str, Fraction]] = []
-        for lab, pr in ph.items():
-            ph_pool.append(("PH", lab, pr))
+        ph_conds = [("PH", lab, pr) for lab, pr in ph.items()]
 
-        # ✅ 조건 풀 우선순위:
-        # - PH 중 0/1 아닌 것 우선(정보량 큼)
-        # - GT 중 0/1 아닌 것 우선
-        # - 그 다음 나머지
-        ph_hi = [c for c in ph_pool if not is_low_info_prob(c[2])]
-        ph_lo = [c for c in ph_pool if is_low_info_prob(c[2])]
-        gt_hi = [c for c in gt_pool if not is_low_info_prob(c[2])]
-        gt_lo = [c for c in gt_pool if is_low_info_prob(c[2])]
+        # 정보량 높은 순으로(0/1 제외 먼저)
+        def info_key(c):
+            pr = c[2]
+            return (pr in (Fraction(0), Fraction(1)),)  # False(좋음) 먼저
+        cond_pool = sorted(ph_conds + gt_conds, key=info_key)
 
-        # 풀 합치기(우선순위 반영)
-        cond_pool = ph_hi + gt_hi + ph_lo + gt_lo
-
-        chosen: List[Tuple[str, str, Fraction]] = []
-
-        # 그리디 선택 루프
-        while len(cand_idx) > 3 and len(chosen) < MAX_CONDS:
-            # 이미 쓴 조건은 풀에서 제거
-            remaining = [c for c in cond_pool if c not in chosen]
-            best = pick_best_cond(cand_idx, case, remaining)
+        chosen = []
+        # 타겟만 남을 때까지 그리디
+        while set(cand_idxs) != target_set and len(chosen) < MAX_CONDS:
+            best = pick_best(case, cand_idxs, target_set, [c for c in cond_pool if c not in chosen])
             if best is None:
                 break
             chosen.append(best)
-            cand_idx = filter_candidates(cand_idx, case, best)
+            cand_idxs = filter_idx(case, cand_idxs, best)
 
-            # 더 이상 안 줄어들면 탈출(다른 seed로)
-            if len(cand_idx) > 3 and len(chosen) >= 6:
-                # 너무 오래 걸리면 다른 seed로 넘어가게 안전장치
-                pass
+        if set(cand_idxs) != target_set:
+            continue  # 다른 seed로
 
-        if not (1 <= len(cand_idx) <= 3):
-            continue
-
-        # 최종 솔루션(≤3개)
-        final_sols = [(case.pairs[i].idx1, case.pairs[i].idx2) for i in cand_idx]
+        # 최종 해(≤3)
+        final_sols = [(case.pairs[i].idx1, case.pairs[i].idx2) for i in target_idxs]
         final_conds = chosen
 
         # ---------- 문제 텍스트 ----------
@@ -388,11 +372,10 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
         link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
 
         ph_desc = (
-            "※ 표현형은 **대문자 개수(k)**가 아니라, 각 유전자의 **우성 표현 여부(A+/B+/D+)**로 구분한다.\n"
-            "- A형질: A가 하나라도 있으면(A+) 발현(A+), aa이면 비발현(A-)\n"
-            "- B형질: B가 하나라도 있으면(B+) 발현(B+), bb이면 비발현(B-)\n"
-            "- D형질: D가 하나라도 있으면(D+) 발현(D+), dd이면 비발현(D-)\n"
-            "따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n"
+            "※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n"
+            "- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n"
+            "- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n"
+            "- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n"
         )
 
         cond_lines = []
@@ -415,31 +398,27 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         ask_line_md = "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오."
 
-        # ---------- 정답 ----------
-        answer_lines: List[str] = []
+        answer_lines = []
         answer_lines.append(f"총 정답 후보: {len(final_sols)}개\n")
-
         for idx_s, (i1, i2) in enumerate(final_sols, 1):
             c1 = case.cands[i1]
             c2 = case.cands[i2]
             answer_lines.append(f"[후보 {idx_s}]")
             answer_lines.append(f"- P1 = {pstr_L2I1(c1, linked)}")
             answer_lines.append(f"- P2 = {pstr_L2I1(c2, linked)}")
-
             sol_dist = offspring_L2I1(linked, c1, c2)
             sol_ph = ph_dist(sol_dist)
             for k in sorted(sol_ph.keys()):
                 if sol_ph[k] > 0:
                     answer_lines.append(f"  - {k} : {frac_to_str(sol_ph[k])}")
             answer_lines.append("")
-
         answer_text_md = "\n".join(answer_lines)
 
         solution_md = (
             "### 해설(자동)\n"
-            "- 같은 표현형 종류 수(ph_count)를 만족하는 모든 (P1,P2) 후보에서 시작해,\n"
-            "- 후보를 가장 많이 줄이는 조건(유전자형/표현형 확률 조건)을 그리디로 순차 선택하여\n"
-            "  정답 후보가 1~3개가 되도록 구성했다.\n"
+            "- 완전연관(L2I1)에서는 서로 다른 부모쌍이 동일한 자손 분포(dist)를 만들 수 있다.\n"
+            "- 그래서 dist 동치클래스 크기가 1~3인 seed만 골라 문제를 만들고,\n"
+            "- 그 동치클래스만 남도록(정답 후보 1~3개) 조건을 그리디로 선택했다.\n"
         )
 
         payload = {
@@ -450,16 +429,10 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
             "linked_genes": list(linked),
             "constraints": {
                 "phenotype_count": ph_count,
-                "conditions": [
-                    {"type": typ, "key": key, "prob": frac_to_str(pr)}
-                    for (typ, key, pr) in final_conds
-                ],
+                "conditions": [{"type": typ, "key": key, "prob": frac_to_str(pr)} for (typ, key, pr) in final_conds],
             },
             "solutions": [
-                {
-                    "P1": pstr_L2I1(case.cands[i1], linked),
-                    "P2": pstr_L2I1(case.cands[i2], linked),
-                }
+                {"P1": pstr_L2I1(case.cands[i1], linked), "P2": pstr_L2I1(case.cands[i2], linked)}
                 for (i1, i2) in final_sols
             ],
             "problem_text_md": problem_text_md,
@@ -467,10 +440,9 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
             "answer_text_md": answer_text_md,
             "solution_md": solution_md,
         }
-
         return Problem(pid, payload)
 
-    raise RuntimeError("문제 생성 실패: 조건 완화 필요 (seed/tries 증가 또는 MAX_CONDS 증가)")
+    raise RuntimeError("문제 생성 실패: seed 자체가 부족함(동치클래스≤3이 거의 없음).")
 
 # ----------------------------
 # PACK 저장
