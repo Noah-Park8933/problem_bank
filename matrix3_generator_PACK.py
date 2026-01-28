@@ -1,13 +1,13 @@
 # matrix3_generator_PACK.py
 # Matrix3 (일반유전) – L2I1(2연관+1독립) 전용 / 완전연관(교차 없음)
-# ✅ 파일 전체 교체용 (생성 실패 거의 0에 수렴하는 "seed+사전계산" 방식)
+# ✅ 파일 전체 교체용 (사전계산 seed 방식 + unordered 솔루션 카운트 + 0조건 우선 강화)
 # ✅ 정답 후보는 최대 3개(>3이면 조건을 자동으로 추가해 줄임)
 # ✅ pack 30개 안정 생성 목표
 
 import os, json, time, random, hashlib
 from dataclasses import dataclass
 from fractions import Fraction
-from typing import Dict, List, Tuple, Any, Optional
+from typing import Dict, List, Tuple, Any
 
 MODULE = "MATRIX3"
 ID_PREFIX = "MAT3_"
@@ -45,27 +45,29 @@ for A2 in ["AA", "Aa", "aa"]:
         for D2 in ["DD", "Dd", "dd"]:
             ALL_GT.append(A2 + B2 + D2)
 
+PRETTY = {
+    Fraction(1, 16), Fraction(3, 16),
+    Fraction(1, 8),  Fraction(3, 8),
+    Fraction(1, 4),  Fraction(3, 4),
+    Fraction(1, 2),  Fraction(9, 16),
+}
+
 # ----------------------------
 # 위상(phase) 생성
 # ----------------------------
 
 def phases2(gX: str, gY: str) -> List[Tuple[str, str]]:
-    """
-    gX, gY는 각각 2글자(예: 'Aa', 'bb').
-    반환: 가능한 완전연관 haplotype pair (h1, h2)들의 리스트.
-          h1/h2는 2글자(각 유전자에서 1글자씩).
-    """
     x = [gX[0], gX[1]]
     y = [gY[0], gY[1]]
     out = set()
 
-    # coupling: x0-y0 / x1-y1
+    # coupling
     h1 = x[0] + y[0]
     h2 = x[1] + y[1]
     if sorted([h1[0], h2[0]]) == sorted(x) and sorted([h1[1], h2[1]]) == sorted(y):
         out.add(tuple(sorted([h1, h2])))
 
-    # repulsion: x0-y1 / x1-y0
+    # repulsion
     h1 = x[0] + y[1]
     h2 = x[1] + y[0]
     if sorted([h1[0], h2[0]]) == sorted(x) and sorted([h1[1], h2[1]]) == sorted(y):
@@ -74,7 +76,6 @@ def phases2(gX: str, gY: str) -> List[Tuple[str, str]]:
     return list(out)
 
 def gam_phase(h1: str, h2: str) -> Dict[str, Fraction]:
-    # 완전연관(교차 없음)에서 haplotype 두 개가 1:1
     if h1 == h2:
         return {h1: Fraction(1)}
     return {h1: Fraction(1, 2), h2: Fraction(1, 2)}
@@ -90,10 +91,6 @@ def gam_single(g: str) -> Dict[str, Fraction]:
 # ----------------------------
 
 def offspring_L2I1(linked: Tuple[str, str], P1: Dict[str, Any], P2: Dict[str, Any]) -> Dict[str, Fraction]:
-    """
-    linked: ('A','B') or ('A','D') or ('B','D')
-    P: {gA,gB,gD, phase2=(h1,h2)}  (phase2는 linked 두 유전자의 haplotype pair)
-    """
     def gams(P: Dict[str, Any]) -> Dict[Tuple[str, str, str], Fraction]:
         gA, gB, gD = P["gA"], P["gB"], P["gD"]
         h1, h2 = P["phase2"]
@@ -112,7 +109,6 @@ def offspring_L2I1(linked: Tuple[str, str], P1: Dict[str, Any], P2: Dict[str, An
             out: Dict[Tuple[str, str, str], Fraction] = {}
             for h, ph in gp.items():
                 for b, pb in gb.items():
-                    # h[0]=A, h[1]=D
                     out[(h[0], b, h[1])] = out.get((h[0], b, h[1]), Fraction(0)) + ph * pb
             return out
 
@@ -121,7 +117,6 @@ def offspring_L2I1(linked: Tuple[str, str], P1: Dict[str, Any], P2: Dict[str, An
             out: Dict[Tuple[str, str, str], Fraction] = {}
             for h, ph in gp.items():
                 for a, pa in ga.items():
-                    # h[0]=B, h[1]=D
                     out[(a, h[0], h[1])] = out.get((a, h[0], h[1]), Fraction(0)) + ph * pa
             return out
 
@@ -183,11 +178,10 @@ def enum_parents_L2I1(linked: Tuple[str, str]) -> List[Dict[str, Any]]:
 
 def pstr_L2I1(P: Dict[str, Any], linked: Tuple[str, str]) -> str:
     g = P["gA"] + P["gB"] + P["gD"]
-    # phase2는 linked된 두 유전자에 대한 haplotype pair(2글자/2글자)
     return f"{g} (연관상:{P['phase2'][0]}/{P['phase2'][1]})"
 
 # ----------------------------
-# 사전계산 + seed 만들기
+# 사전계산 + seed
 # ----------------------------
 
 @dataclass(frozen=True)
@@ -202,45 +196,36 @@ class CaseCache:
     linked: Tuple[str, str]
     cands: List[Dict[str, Any]]
     pairs: List[PairInfo]
-    seeds: List[int]  # pairs 인덱스 목록(좋은 seed들)
+    seeds: List[int]
 
 def build_case_cache(linked: Tuple[str, str]) -> CaseCache:
     cands = enum_parents_L2I1(linked)
     pairs: List[PairInfo] = []
 
-    # ordered pairs(순서 구분)로 저장: 해 후보가 대칭으로 늘어나는 문제를 줄이려면 여기서 (i<=j)로 줄여도 되는데,
-    # 우리는 "조건으로 해를 줄이는" 방식이므로 ordered를 유지해도 OK.
+    # ✅ unordered pair만 저장 (i <= j) : (P1,P2) vs (P2,P1) 중복으로 해가 2배되는 문제 제거
     for i in range(len(cands)):
-        for j in range(len(cands)):
+        for j in range(i, len(cands)):
             d = offspring_L2I1(linked, cands[i], cands[j])
             pc = ph_count_of_dist(d)
             pairs.append(PairInfo(i, j, pc, d))
 
-    # seed 기준: 생성이 쉬운 분포만 남긴다
+    # seed 기준: 너무 빡세게 잡으면 seed가 쓸모 없어짐 -> 느슨하게
     seeds: List[int] = []
     for k, p in enumerate(pairs):
         if not (3 <= p.ph_count <= 6):
             continue
-
-        # 0 확률 genotype이 충분히 존재해야(불가능 조건 만들기 쉬움)
-        zeros = 0
-        for gt in ALL_GT:
-            if p.dist.get(gt, Fraction(0)) == 0:
-                zeros += 1
-        if zeros < 4:
+        zeros = sum(1 for gt in ALL_GT if p.dist.get(gt, Fraction(0)) == 0)
+        if zeros < 2:
             continue
-
-        # 양의 확률 genotype이 너무 적으면 조건 뽑아도 정보량이 부족
         pos = sum(1 for v in p.dist.values() if v > 0)
-        if pos < 6:
+        if pos < 4:
             continue
-
         seeds.append(k)
 
     return CaseCache(linked=linked, cands=cands, pairs=pairs, seeds=seeds)
 
 # ----------------------------
-# 빠른 해 탐색(≤3 초과면 즉시 중단)
+# 해 탐색(≤3 초과면 중단) - unordered라 sols도 unordered
 # ----------------------------
 
 def count_solutions_upto3(case: CaseCache, ph_count: int, conds: List[Tuple[str, Fraction]]) -> List[Tuple[int, int]]:
@@ -248,8 +233,8 @@ def count_solutions_upto3(case: CaseCache, ph_count: int, conds: List[Tuple[str,
     for p in case.pairs:
         if p.ph_count != ph_count:
             continue
-        ok = True
         d = p.dist
+        ok = True
         for gt, pr in conds:
             if d.get(gt, Fraction(0)) != pr:
                 ok = False
@@ -261,7 +246,7 @@ def count_solutions_upto3(case: CaseCache, ph_count: int, conds: List[Tuple[str,
     return sols
 
 # ----------------------------
-# 문제 생성(Guaranteed-style)
+# 문제 생성
 # ----------------------------
 
 @dataclass
@@ -270,23 +255,13 @@ class Problem:
     payload: Dict[str, Any]
 
 def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
-              max_seed_tries: int = 2000) -> Problem:
+              max_seed_tries: int = 20000) -> Problem:
 
     lopts = [("A", "B"), ("A", "D"), ("B", "D")]
-
-    # 보기 좋은 분수(있으면 우선 사용). 없으면 자동 폴백.
-    pretty = {
-        Fraction(1, 16), Fraction(3, 16),
-        Fraction(1, 8),  Fraction(3, 8),
-        Fraction(1, 4),  Fraction(3, 4),
-        Fraction(1, 2),  Fraction(9, 16),
-    }
 
     for _ in range(max_seed_tries):
         linked = random.choice(lopts)
         case = case_caches[linked]
-
-        # seed가 비면(이론상 거의 없음) 다른 케이스로
         if not case.seeds:
             continue
 
@@ -295,65 +270,61 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
         dist = seed.dist
         ph_count = seed.ph_count
 
-        # 조건 후보 풀
         zeros = [gt for gt in ALL_GT if dist.get(gt, Fraction(0)) == 0]
         pos_all = [(gt, pr) for gt, pr in dist.items() if pr > 0]
+        pos_pretty = [(gt, pr) for gt, pr in pos_all if pr in PRETTY]
+        pos_pool = (pos_pretty + pos_all) if pos_pretty else pos_all
 
-        # pos 중 "예쁜 분수" 우선 (없으면 pos_all에서)
-        pos_pretty = [(gt, pr) for gt, pr in pos_all if pr in pretty]
-        if pos_pretty:
-            random.shuffle(pos_pretty)
-            pos_pool = pos_pretty + pos_all
-        else:
-            pos_pool = pos_all
-
-        if not zeros or not pos_pool:
+        if len(zeros) < 2 or len(pos_pool) < 2:
             continue
 
-        # 1) 조건 2개로 시작: (양의 확률 1개) + (0 확률 1개)
-        conds: List[Tuple[str, Fraction]] = []
-        used_gts = set()
+        used = set()
 
+        # -------------------------
+        # (1) 2조건: +1개, 0 1개
+        # -------------------------
         gt1, pr1 = random.choice(pos_pool)
-        conds.append((gt1, pr1)); used_gts.add(gt1)
+        used.add(gt1)
+        gt0a = random.choice(zeros)
+        used.add(gt0a)
 
-        gt0 = random.choice(zeros)
-        conds.append((gt0, Fraction(0))); used_gts.add(gt0)
+        conds2 = [(gt1, pr1), (gt0a, Fraction(0))]
+        sols2 = count_solutions_upto3(case, ph_count, conds2)
 
-        sols = count_solutions_upto3(case, ph_count, conds)
-
-        if len(sols) == 0:
+        if len(sols2) == 0:
             continue
-        if 1 <= len(sols) <= 3:
-            final_conds = conds
-            final_sols = sols
+        if 1 <= len(sols2) <= 3:
+            final_conds, final_sols = conds2, sols2
         else:
-            # 2) 조건 3개로 강화
-            extra_pos = [(gt, pr) for gt, pr in pos_pool if gt not in used_gts]
-            if not extra_pos:
+            # -------------------------
+            # (2) 3조건: 0조건을 하나 더 추가(해를 강하게 줄임)
+            # -------------------------
+            zeros2 = [z for z in zeros if z not in used]
+            if not zeros2:
                 continue
-            gt2, pr2 = random.choice(extra_pos)
-            conds3 = conds + [(gt2, pr2)]
+            gt0b = random.choice(zeros2)
+            used.add(gt0b)
+
+            conds3 = conds2 + [(gt0b, Fraction(0))]
             sols3 = count_solutions_upto3(case, ph_count, conds3)
 
             if len(sols3) == 0:
                 continue
             if 1 <= len(sols3) <= 3:
-                final_conds = conds3
-                final_sols = sols3
+                final_conds, final_sols = conds3, sols3
             else:
-                # 3) 조건 4개로 한 번 더 강화(거의 여기서 끝남)
-                used2 = used_gts | {gt2}
-                extra_pos2 = [(gt, pr) for gt, pr in pos_pool if gt not in used2]
-                if not extra_pos2:
+                # -------------------------
+                # (3) 4조건: 그때 +조건 1개 추가
+                # -------------------------
+                extra_pos = [(gt, pr) for gt, pr in pos_pool if gt not in used]
+                if not extra_pos:
                     continue
-                gt3, pr3 = random.choice(extra_pos2)
-                conds4 = conds3 + [(gt3, pr3)]
+                gt2, pr2 = random.choice(extra_pos)
+                conds4 = conds3 + [(gt2, pr2)]
                 sols4 = count_solutions_upto3(case, ph_count, conds4)
                 if not (1 <= len(sols4) <= 3):
                     continue
-                final_conds = conds4
-                final_sols = sols4
+                final_conds, final_sols = conds4, sols4
 
         # ---------- 문제 텍스트 ----------
         problem_code = f"M3-{random.randint(1,999):03d}"
@@ -412,9 +383,10 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         solution_md = (
             "### 해설(자동)\n"
-            "- 먼저 사전계산된 (P1,P2) 분포들 중 ‘조건으로 해를 잘 분리할 수 있는 seed’를 선택한다.\n"
-            "- seed 분포에서 (가능한 유전자형 1개 + 불가능(0) 유전자형 1개) 조건을 만들고,\n"
-            "  정답 후보가 3개를 초과하면 유전자형 확률 조건을 1~2개 추가하여 1~3개로 줄인다.\n"
+            "- 사전계산된 (P1,P2) 분포들 중 seed를 선택한다.\n"
+            "- seed 분포에서 조건을 만들고, 정답 후보가 3개를 초과하면 0조건을 먼저 추가하여 해를 강하게 줄인 뒤,\n"
+            "  필요하면 유전자형 확률 조건을 추가해 1~3개로 만든다.\n"
+            "- (P1,P2)와 (P2,P1) 중복을 제거하기 위해 unordered( i ≤ j ) 기준으로 정답을 카운트한다.\n"
         )
 
         payload = {
@@ -449,18 +421,17 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 # ----------------------------
 
 def make_pack(n: int = 30) -> str:
-    # ✅ 케이스 캐시는 프로그램 실행 중 1회만 생성
     case_caches: Dict[Tuple[str, str], CaseCache] = {}
     for linked in [("A", "B"), ("A", "D"), ("B", "D")]:
         case_caches[linked] = build_case_cache(linked)
-        # 디버그용(원하면 주석 해제)
+        # 디버그(필요시)
         # print("[cache]", linked, "cands=", len(case_caches[linked].cands),
         #       "pairs=", len(case_caches[linked].pairs),
         #       "seeds=", len(case_caches[linked].seeds))
 
     items: List[Dict[str, Any]] = []
     for i in range(1, n + 1):
-        pr = build_one(case_caches)
+        pr = build_one(case_caches, max_seed_tries=20000)
         items.append({
             "id": pr.pid,
             "pid": pr.pid,
