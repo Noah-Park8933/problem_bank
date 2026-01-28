@@ -32,7 +32,7 @@ GENERATORS = [
     },
 
     # 예시 — 필요하면 주석 해제 후 파일 연결
-     {
+    # {
     #     "key": "DIVISION",
     #     "title": "🌳 Division 문제 자동 생성",
     #     "default_n": 30,
