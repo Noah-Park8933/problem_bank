@@ -228,17 +228,35 @@ def build_case_cache(linked: Tuple[str, str]) -> CaseCache:
 # 해 탐색(≤3 초과면 중단) - unordered라 sols도 unordered
 # ----------------------------
 
-def count_solutions_upto3(case: CaseCache, ph_count: int, conds: List[Tuple[str, Fraction]]) -> List[Tuple[int, int]]:
+def count_solutions_upto3(case: CaseCache, ph_count: int, conds: List[Tuple[str, str, Fraction]]) -> List[Tuple[int, int]]:
+    """
+    conds: [("GT", genotype, prob), ("PH", phenotype_label, prob), ...]
+    """
     sols: List[Tuple[int, int]] = []
     for p in case.pairs:
         if p.ph_count != ph_count:
             continue
+
         d = p.dist
         ok = True
-        for gt, pr in conds:
-            if d.get(gt, Fraction(0)) != pr:
-                ok = False
-                break
+
+        # PH 분포는 필요할 때만 계산(속도)
+        ph_cache = None
+
+        for typ, key, pr in conds:
+            if typ == "GT":
+                if d.get(key, Fraction(0)) != pr:
+                    ok = False
+                    break
+            elif typ == "PH":
+                if ph_cache is None:
+                    ph_cache = ph_dist(d)
+                if ph_cache.get(key, Fraction(0)) != pr:
+                    ok = False
+                    break
+            else:
+                raise RuntimeError("invalid condition type")
+
         if ok:
             sols.append((p.idx1, p.idx2))
             if len(sols) > 3:
@@ -270,61 +288,72 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
         dist = seed.dist
         ph_count = seed.ph_count
 
+        # 후보 풀 만들기
         zeros = [gt for gt in ALL_GT if dist.get(gt, Fraction(0)) == 0]
         pos_all = [(gt, pr) for gt, pr in dist.items() if pr > 0]
+        if len(zeros) < 2 or len(pos_all) < 2:
+            continue
+
+        # “예쁜 분수” 우선 정렬 (없어도 됨)
         pos_pretty = [(gt, pr) for gt, pr in pos_all if pr in PRETTY]
-        pos_pool = (pos_pretty + pos_all) if pos_pretty else pos_all
+        pos_pool = pos_pretty + pos_all if pos_pretty else pos_all
 
-        if len(zeros) < 2 or len(pos_pool) < 2:
-            continue
+        # 표현형 후보(0/1 제외: 정보량 낮음)
+        ph = ph_dist(dist)
+        ph_pool = [(lab, pr) for lab, pr in ph.items() if pr not in (Fraction(0), Fraction(1))]
+        if not ph_pool:
+            # 그래도 PH 조건이 없으면 GT만으로 시도는 하되 성공률이 낮음
+            ph_pool = [(lab, pr) for lab, pr in ph.items() if pr > 0]
 
-        used = set()
+        # ---- 여기서부터 “조건 조합 탐색” ----
+        # 1) GT+ (1개) + GT0 (2개) + PH (1개) 를 먼저 탐색 (가장 잘 잘림)
+        found = None  # (final_conds, final_sols)
 
-        # -------------------------
-        # (1) 2조건: +1개, 0 1개
-        # -------------------------
-        gt1, pr1 = random.choice(pos_pool)
-        used.add(gt1)
-        gt0a = random.choice(zeros)
-        used.add(gt0a)
+        # 탐색 폭 제한(속도): 너무 많으면 일부만 샘플
+        ZS = zeros if len(zeros) <= 10 else random.sample(zeros, 10)
+        PS = pos_pool if len(pos_pool) <= 10 else random.sample(pos_pool, 10)
+        HS = ph_pool if len(ph_pool) <= 8 else random.sample(ph_pool, 8)
 
-        conds2 = [(gt1, pr1), (gt0a, Fraction(0))]
-        sols2 = count_solutions_upto3(case, ph_count, conds2)
+        for (gt1, pr1) in PS:
+            for i in range(len(ZS)):
+                for j in range(i + 1, len(ZS)):
+                    z1, z2 = ZS[i], ZS[j]
+                    for (hlab, hpr) in HS:
+                        conds = [("GT", gt1, pr1), ("GT", z1, Fraction(0)), ("GT", z2, Fraction(0)),
+                                 ("PH", hlab, hpr)]
+                        sols = count_solutions_upto3(case, ph_count, conds)
+                        if 1 <= len(sols) <= 3:
+                            found = (conds, sols)
+                            break
+                    if found: break
+                if found: break
+            if found: break
 
-        if len(sols2) == 0:
-            continue
-        if 1 <= len(sols2) <= 3:
-            final_conds, final_sols = conds2, sols2
-        else:
-            # -------------------------
-            # (2) 3조건: 0조건을 하나 더 추가(해를 강하게 줄임)
-            # -------------------------
-            zeros2 = [z for z in zeros if z not in used]
-            if not zeros2:
-                continue
-            gt0b = random.choice(zeros2)
-            used.add(gt0b)
+        # 2) 아직도 못 찾았으면 GT+ 하나 더 추가해서(=5조건) 강제
+        if found is None:
+            for (gt1, pr1) in PS:
+                for i in range(len(ZS)):
+                    for j in range(i + 1, len(ZS)):
+                        z1, z2 = ZS[i], ZS[j]
+                        for (hlab, hpr) in HS:
+                            for (gt2, pr2) in PS:
+                                if gt2 == gt1:
+                                    continue
+                                conds = [("GT", gt1, pr1), ("GT", z1, Fraction(0)), ("GT", z2, Fraction(0)),
+                                         ("PH", hlab, hpr), ("GT", gt2, pr2)]
+                                sols = count_solutions_upto3(case, ph_count, conds)
+                                if 1 <= len(sols) <= 3:
+                                    found = (conds, sols)
+                                    break
+                            if found: break
+                        if found: break
+                    if found: break
+                if found: break
 
-            conds3 = conds2 + [(gt0b, Fraction(0))]
-            sols3 = count_solutions_upto3(case, ph_count, conds3)
+        if found is None:
+            continue  # 다른 seed로
 
-            if len(sols3) == 0:
-                continue
-            if 1 <= len(sols3) <= 3:
-                final_conds, final_sols = conds3, sols3
-            else:
-                # -------------------------
-                # (3) 4조건: 그때 +조건 1개 추가
-                # -------------------------
-                extra_pos = [(gt, pr) for gt, pr in pos_pool if gt not in used]
-                if not extra_pos:
-                    continue
-                gt2, pr2 = random.choice(extra_pos)
-                conds4 = conds3 + [(gt2, pr2)]
-                sols4 = count_solutions_upto3(case, ph_count, conds4)
-                if not (1 <= len(sols4) <= 3):
-                    continue
-                final_conds, final_sols = conds4, sols4
+        final_conds, final_sols = found
 
         # ---------- 문제 텍스트 ----------
         problem_code = f"M3-{random.randint(1,999):03d}"
@@ -342,11 +371,14 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
         )
 
         cond_lines = []
-        for gt, pr in final_conds:
-            if pr == 0:
-                cond_lines.append(f"- 자손 유전자형 **{gt}** 의 확률 = **0**")
-            else:
-                cond_lines.append(f"- 자손 유전자형 **{gt}** 의 확률 = **{frac_to_str(pr)}**")
+        for typ, key, pr in final_conds:
+            if typ == "GT":
+                if pr == 0:
+                    cond_lines.append(f"- 자손 유전자형 **{key}** 의 확률 = **0**")
+                else:
+                    cond_lines.append(f"- 자손 유전자형 **{key}** 의 확률 = **{frac_to_str(pr)}**")
+            else:  # PH
+                cond_lines.append(f"- 자손 표현형 **{key}** 의 확률 = **{frac_to_str(pr)}**")
 
         problem_text_md = (
             f"문제 제목 : Matrix3 일반유전 추론 ({problem_code})\n\n"
@@ -361,7 +393,6 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         ask_line_md = "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오."
 
-        # ---------- 정답 ----------
         answer_lines: List[str] = []
         answer_lines.append(f"총 정답 후보: {len(final_sols)}개\n")
 
@@ -383,10 +414,9 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         solution_md = (
             "### 해설(자동)\n"
-            "- 사전계산된 (P1,P2) 분포들 중 seed를 선택한다.\n"
-            "- seed 분포에서 조건을 만들고, 정답 후보가 3개를 초과하면 0조건을 먼저 추가하여 해를 강하게 줄인 뒤,\n"
-            "  필요하면 유전자형 확률 조건을 추가해 1~3개로 만든다.\n"
-            "- (P1,P2)와 (P2,P1) 중복을 제거하기 위해 unordered( i ≤ j ) 기준으로 정답을 카운트한다.\n"
+            "- 완전연관(L2I1)에서는 유전자형 조건만으로는 동치해가 많이 남을 수 있다.\n"
+            "- 그래서 (유전자형 + 0조건 2개 + 표현형 확률 1개)를 기본으로 사용하고,\n"
+            "  필요하면 유전자형 확률 조건을 1개 더 추가해 정답 후보를 1~3개로 줄였다.\n"
         )
 
         payload = {
@@ -397,7 +427,10 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
             "linked_genes": list(linked),
             "constraints": {
                 "phenotype_count": ph_count,
-                "conditions": [{"genotype": gt, "prob": ("0" if pr == 0 else frac_to_str(pr))} for gt, pr in final_conds],
+                "conditions": [
+                    {"type": typ, "key": key, "prob": ("0" if pr == 0 else frac_to_str(pr))}
+                    for (typ, key, pr) in final_conds
+                ],
             },
             "solutions": [
                 {
@@ -414,7 +447,7 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         return Problem(pid, payload)
 
-    raise RuntimeError("문제 생성 실패: 조건 완화 필요 (seed에서 유효 조건을 못 찾음)")
+    raise RuntimeError("문제 생성 실패: 조건 완화 필요 (탐색 범위 내에서 유효 조건 조합을 못 찾음)")
 
 # ----------------------------
 # PACK 저장
