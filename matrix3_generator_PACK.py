@@ -7,7 +7,7 @@
 import os, json, time, random, hashlib
 from dataclasses import dataclass
 from fractions import Fraction
-from typing import Dict, List, Tuple, Any
+from typing import Dict, List, Tuple, Any, Optinal
 
 MODULE = "MATRIX3"
 ID_PREFIX = "MAT3_"
@@ -389,9 +389,9 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         ph_desc = (
             "※ 표현형은 **대문자 개수(k)**가 아니라, 각 유전자의 **우성 표현 여부(A+/B+/D+)**로 구분한다.\n"
-            "- A형질: A가 하나라도 있으면(A-) 발현(A+), aa이면 비발현(A-)\n"
-            "- B형질: B가 하나라도 있으면(B-) 발현(B+), bb이면 비발현(B-)\n"
-            "- D형질: D가 하나라도 있으면(D-) 발현(D+), dd이면 비발현(D-)\n"
+            "- A형질: A가 하나라도 있으면(A+) 발현(A+), aa이면 비발현(A-)\n"
+            "- B형질: B가 하나라도 있으면(B+) 발현(B+), bb이면 비발현(B-)\n"
+            "- D형질: D가 하나라도 있으면(D+) 발현(D+), dd이면 비발현(D-)\n"
             "따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n"
         )
 
