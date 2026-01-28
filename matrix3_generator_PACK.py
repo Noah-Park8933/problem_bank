@@ -252,23 +252,20 @@ def build_one(max_tries=30000):
             final_sols = sols
 
         else:
-            # 5) 해가 4개 이상이면: 조건을 1개 더 추가해서 해를 줄임(자동 강화)
-            # dist에서 또 다른 유전자형 조건 하나(allowed 확률)를 추가
-            possibles2 = [(gt,pr) for gt,pr in dist.items() if (gt,pr) != (tgt1_gt,tgt1_pr) and pr in allowed]
-            if not possibles2:
+            # ✅ 4번째 조건 추가(자동 강화)
+            possibles3 = [(gt,pr) for gt,pr in dist.items()
+                          if (gt,pr) not in [(tgt1_gt,tgt1_pr),(tgt3_gt,tgt3_pr)] and pr > 0]
+            if not possibles3:
                 continue
-            tgt3_gt, tgt3_pr = random.choice(possibles2)
-            conds3 = [(tgt1_gt, tgt1_pr), (tgt2_gt, tgt2_pr), (tgt3_gt, tgt3_pr)]
+            tgt4_gt, tgt4_pr = random.choice(possibles3)
+            conds4 = conds3 + [(tgt4_gt, tgt4_pr)]
 
-            sols3 = count_solutions_upto3(cands, linked, ph_count, conds3)
-            if len(sols3) == 0:
+            sols4 = count_solutions_upto3(cands, linked, ph_count, conds4)
+            if len(sols4) == 0 or len(sols4) > 3:
                 continue
-            if len(sols3) > 3:
-                continue  # 여전히 많으면 버림(다시 뽑기)
 
-            final_conds = conds3
-            final_sols = sols3
-
+            final_conds = conds4
+            final_sols = sols4
         # ----------- 문제 텍스트 생성 -------------
         problem_code=f"M3-{random.randint(1,999):03d}"
         pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
