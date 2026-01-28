@@ -129,6 +129,7 @@ def first_text(payload: Dict[str, Any], keys: Tuple[str, ...] | List[str]) -> Op
 def _try_add_image(container, payload: Dict[str, Any]):
     """
     Division 등에서 tree_base png 넣기
+    - cell(_Cell) / doc(Document) 모두에서 동작하도록 run.add_picture 사용
     """
     img_path = (
         payload.get("_image_path")
@@ -144,37 +145,35 @@ def _try_add_image(container, payload: Dict[str, Any]):
 
     ip = img_path.strip()
 
-    # 절대경로 존재 → 바로 시도
-    if os.path.exists(ip):
-        try:
-            container.add_paragraph("")
-            container.add_picture(ip, width=Inches(1.2))
-            container.add_paragraph("")
-        except Exception:
-            _add_par(container, f"(이미지 삽입 실패: {ip})")
-        return
+    def resolve_path(p: str) -> Optional[str]:
+        # 1) 절대/상대 그대로 존재하면 OK
+        if os.path.exists(p):
+            return p
 
-    # 상대경로 패턴 탐색 (repo 내부)
-    base = os.path.dirname(__file__)
-    candidates = [
-        os.path.join(base, ip),
-        os.path.join(base, "..", ip),
-        os.path.join(base, "..", "..", ip),
-    ]
+        # 2) repo 내부 상대경로 후보
+        base = os.path.dirname(__file__)
+        candidates = [
+            os.path.join(base, p),
+            os.path.join(base, "..", p),
+            os.path.join(base, "..", "..", p),
+        ]
+        found = next((x for x in candidates if os.path.exists(x)), None)
+        return found
 
-    found = next((p for p in candidates if os.path.exists(p)), None)
-
+    found = resolve_path(ip)
     if not found:
         _add_par(container, f"(이미지 경로 없음: {ip})")
         return
 
     try:
-        container.add_paragraph("")
-        container.add_picture(found, width=Inches(1.2))
-        container.add_paragraph("")
-    except Exception:
-        _add_par(container, f"(이미지 삽입 실패: {found})")
-
+        # ✅ 셀에서도 되는 방식: 문단 -> run -> run.add_picture
+        container.add_paragraph("")  # 위 여백
+        p = container.add_paragraph()
+        r = p.add_run()
+        r.add_picture(found, width=Inches(1.2))
+        container.add_paragraph("")  # 아래 여백
+    except Exception as e:
+        _add_par(container, f"(이미지 삽입 실패: {found} / {type(e).__name__})")
 
 # ------------------------------------------------------------
 # DOCX EXPORT 메인
