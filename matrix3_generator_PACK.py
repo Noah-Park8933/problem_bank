@@ -183,7 +183,6 @@ class Problem:
 def prepare_case_cache(pattern, linked, allowed):
     cands = enum_parents(pattern, linked)
 
-    # 모든 (P1,P2)쌍 dist/ph_count 사전 계산
     pairs = []
     for c1 in cands:
         for c2 in cands:
@@ -197,10 +196,7 @@ def prepare_case_cache(pattern, linked, allowed):
                 "ph_count": ph_count,
             })
 
-    # 🔥 해가 존재하는 조건을 미리 인덱싱
-    # key = (ph_count, tgt1_gt, tgt1_pr, tgt2_gt)
     index = {}
-
     for x in pairs:
         ph_count = x["ph_count"]
         if not (3 <= ph_count <= 6):
@@ -213,29 +209,34 @@ def prepare_case_cache(pattern, linked, allowed):
         if not t1s:
             continue
 
-        # target2 후보(0 확률): dist에 없거나 0인 것
+        # target2 후보(0 확률)
         zeros = [gt for gt in ALL_GT if d.get(gt, Fraction(0)) == 0]
         if not zeros:
             continue
 
-        # 폭발 방지: zeros 전부 쓰지 말고 일부만 샘플링 (충분히 안정적)
-        # 필요하면 8~15로 늘려도 됨
-        zsample = zeros if len(zeros) <= 20 else random.sample(zeros, 20)
+        # 폭발 방지: 0확률 후보는 일부만 샘플링
+        zsample = zeros if len(zeros) <= 20 else random.sample(zeros, 40)
 
         for (tgt1_gt, tgt1_pr) in t1s:
             for tgt2_gt in zsample:
                 key = (ph_count, tgt1_gt, tgt1_pr, tgt2_gt)
                 index.setdefault(key, []).append((x["P1"], x["P2"]))
 
-    # 해 개수 1~6인 조건만 남김 (너의 요구사항 유지)
+    # 해 개수 제한(너 조건 유지). 필요하면 10으로 늘려도 됨.
     valid_keys = [k for k, sols in index.items() if 1 <= len(sols) <= 10]
 
-    return {"cands": cands, "pairs": pairs, "index": index, "valid_keys": valid_keys}
+    # ✅ 안전장치: 유효 조건이 하나도 없는 케이스면 empty=True로 마킹
+    empty = (len(valid_keys) == 0)
 
-
+    return {
+        "cands": cands,
+        "pairs": pairs,
+        "index": index,
+        "valid_keys": valid_keys,
+        "empty": empty
+    }
 
 def build_one(max_tries=30000):
-    # L2I1만 사용
     pattern = "L2I1"
     lopts = [("A","B"), ("A","D"), ("B","D")]
 
@@ -248,7 +249,11 @@ def build_one(max_tries=30000):
 
     case_cache = {}
 
+    # ✅ linked별로 몇 번이나 비었는지 추적(디버그 도움)
+    empty_count = {("A","B"):0, ("A","D"):0, ("B","D"):0}
+
     for _ in range(max_tries):
+        # 3개 linked 중 랜덤 선택
         linked = random.choice(lopts)
         key_case = (pattern, linked)
 
@@ -256,21 +261,22 @@ def build_one(max_tries=30000):
             case_cache[key_case] = prepare_case_cache(pattern, linked, allowed)
 
         cc = case_cache[key_case]
-        if not cc["valid_keys"]:
+
+        # ✅ 안전장치: 이 linked 케이스가 비면 스킵 (다른 linked로 넘어가게 함)
+        if cc.get("empty", False) or (not cc["valid_keys"]):
+            empty_count[linked] += 1
             continue
 
-        # 해가 1~6개 존재하는 조건 중 하나 랜덤
+        # 여기부터는 "해가 존재하는 조건"만 고르는 구조라 거의 실패 안 함
         ph_count, tgt1_gt, tgt1_pr, tgt2_gt = random.choice(cc["valid_keys"])
         sols = cc["index"][(ph_count, tgt1_gt, tgt1_pr, tgt2_gt)]
 
-        # 대표 dist (첫 해로)
         repP1, repP2 = sols[0]
         dist = offspring(pattern, linked, repP1, repP2)
 
         problem_code = f"M3-{random.randint(1,999):03d}"
         pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
 
-        # L2I1 링크 설명
         lg = list(linked)
         link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
 
@@ -296,7 +302,6 @@ def build_one(max_tries=30000):
 
         ask_line_md = "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오."
 
-        # 정답 출력
         answer_lines = []
         answer_lines.append(f"총 정답 후보: {len(sols)}개\n")
 
@@ -343,7 +348,8 @@ def build_one(max_tries=30000):
 
         return Problem(pid, payload)
 
-    raise RuntimeError("문제 생성 실패: 조건 완화 필요")
+    # ✅ 여기까지 왔으면 3개 linked가 전부 empty거나 조건이 너무 빡센 것
+    raise RuntimeError(f"문제 생성 실패: 조건 완화 필요 (empty_hits={empty_count})")
 
 
 # ----------------------------
