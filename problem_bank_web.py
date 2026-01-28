@@ -56,6 +56,6 @@ def main():
     # 메인 리스트
     st.subheader(f"표시 중: {len(filtered)}개 / 전체: {len(items)}개")
     render_list(cfg, state, filtered, page)
-    render_generator_panel()
+
 if __name__ == "__main__":
     main()
