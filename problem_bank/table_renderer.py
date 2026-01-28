@@ -69,7 +69,10 @@ def _looks_like_table_dict(d: Dict[str, Any]) -> bool:
     """
     if not isinstance(d, dict):
         return False
-
+    if "rows" in d and _is_2d_list(d.get("rows")):
+        return True
+    if "data" in d and _is_2d_list(d.get("data")):
+        return True
     # 대표 키 조합들
     pairs = [
         ("headers", "rows"),
@@ -99,6 +102,12 @@ def _looks_like_table_dict(d: Dict[str, Any]) -> bool:
 
 
 def _extract_from_table_dict(d: Dict[str, Any]) -> Any:
+    if _is_2d_list(d.get("rows")):
+        return {"headers": d.get("headers") or d.get("cols") or d.get("columns") or [], "rows": d["rows"]}
+    if _is_2d_list(d.get("data")):
+        return {"headers": d.get("headers") or d.get("cols") or d.get("columns") or [], "rows": d["data"]}
+
+    
     """
     table-like dict에서 실제 grid를 뽑아냄.
     반환은 가능한 한 "2D 리스트" 또는 "headers/rows tuple" 형태로 이어질 수 있게 함.
@@ -146,7 +155,8 @@ def _deep_find_table(obj: Any, max_depth: int = 6, _depth: int = 0) -> Optional[
         skip_keys = {
             "solution", "solutions", "explanation", "commentary", "analysis",
             "answer", "answers", "full_table", "_full_table", "answer_table",
-            "meta", "metadata", "history", "log",
+            "meta", "metadata", "history", "log", "choices", "choice", "options", "option",
+            "보기", "선지", "선택지", "문항", "question_choices", "statements", "statement", "gnd", "ㄱ", "ㄴ", "ㄷ",
         }
 
         # 표 후보 우선 키 (given/문항표를 먼저 찾고, 그다음 일반 table)
