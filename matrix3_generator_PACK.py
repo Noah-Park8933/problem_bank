@@ -183,90 +183,114 @@ class Problem:
     pid:str
     payload:Dict[str,Any]
 
-def build_one(max_tries=30000):
-    patterns=["L2I1","L3"]
-    lopts=[("A","B"),("A","D"),("B","D")]
+def prepare_case_cache(pattern, linked):
+    """
+    (pattern, linked) 케이스에 대해:
+    - 모든 부모 후보 cands
+    - 모든 (P1,P2)쌍에 대한 dist/ph_count 미리 계산
+    를 캐시로 만들어 반환.
+    """
+    cands = enum_parents(pattern, linked)
 
-    # 허용 확률 from request
+    pairs = []
+    # (P1,P2) 전체쌍 사전 계산 (순서 구분: (c1,c2)와 (c2,c1) 둘 다 넣으면 해 탐색 쉬움)
+    for c1 in cands:
+        for c2 in cands:
+            # 같은 부모 허용 여부는 여기서 조절 가능
+            # if c1 == c2: continue  # 원하면 주석 해제/해제
+            d = offspring(pattern, linked, c1, c2)
+            ph = ph_dist(d)
+            ph_count = sum(1 for v in ph.values() if v > 0)
+            pairs.append({
+                "P1": c1,
+                "P2": c2,
+                "dist": d,
+                "ph_count": ph_count,
+            })
+
+    return {"cands": cands, "pairs": pairs}
+
+
+def build_one(max_tries=30000):
+    patterns = ["L2I1", "L3"]
+    lopts = [("A","B"), ("A","D"), ("B","D")]
+
     allowed = [
         Fraction(1,16), Fraction(3,16),
         Fraction(1,8), Fraction(3,8),
         Fraction(1,4), Fraction(3,4),
-        Fraction(1,2), Fraction(9, 16)
+        Fraction(1,2), Fraction(9,16)
     ]
 
-    cache={}
+    # 케이스별 캐시: (pattern, linked) -> {"cands":..., "pairs":...}
+    case_cache = {}
 
     for _ in range(max_tries):
-        pattern=random.choice(patterns)
-        if pattern=="L2I1":
-            linked=random.choice(lopts)
+        pattern = random.choice(patterns)
+        if pattern == "L2I1":
+            linked = random.choice(lopts)
         else:
-            linked=("A","B","D")
+            linked = ("A","B","D")
 
-        key=(pattern,linked)
-        if key not in cache:
-            cache[key]=enum_parents(pattern,linked)
-        cands=cache[key]
+        key = (pattern, linked)
+        if key not in case_cache:
+            case_cache[key] = prepare_case_cache(pattern, linked)
 
-        P1=random.choice(cands)
-        P2=random.choice(cands)
-        if P1==P2: continue
+        pairs = case_cache[key]["pairs"]
 
-        dist=offspring(pattern,linked,P1,P2)
-        ph=ph_dist(dist)
-        ph_count=len([x for x in ph.values() if x>0])
+        # 1) ph_count 조건(3~6) 만족하는 pair 중 하나 랜덤 선택
+        filtered_pairs = [x for x in pairs if 3 <= x["ph_count"] <= 6]
+        if not filtered_pairs:
+            continue
+        picked = random.choice(filtered_pairs)
 
-        if not (3<=ph_count<=6): continue
+        dist = picked["dist"]
+        ph_count = picked["ph_count"]
 
-        # target1: 확률 allowed 중 실제 dist에 있는 것
-        possibles=[(gt,pr) for gt,pr in dist.items() if pr in allowed]
-        if not possibles: continue
+        # 2) target1: allowed 확률에 해당하는 실제 존재 유전자형
+        possibles = [(gt, pr) for gt, pr in dist.items() if pr in allowed]
+        if not possibles:
+            continue
         tgt1_gt, tgt1_pr = random.choice(possibles)
 
-        # target2: pr=0인 것
-        zeros=[gt for gt,pr in dist.items() if pr==0]
-        if not zeros: continue
-        tgt2_gt=random.choice(zeros)
-        tgt2_pr=Fraction(0)
-
-        # ----- 복수 솔루션 찾기 -----
-        sols=[]
-        for c1 in cands:
-            for c2 in cands:
-                d2=offspring(pattern,linked,c1,c2)
-                ph2=ph_dist(d2)
-                if len([x for x in ph2.values() if x>0])!=ph_count:
-                    continue
-                if d2.get(tgt1_gt,Fraction(0))!=tgt1_pr:
-                    continue
-                if d2.get(tgt2_gt,Fraction(0))!=tgt2_pr:
-                    continue
-                sols.append((c1,c2))
-                if len(sols)>6:
-                    break
-            if len(sols)>6: break
-
-        # 해가 없는 경우 버림
-        if len(sols)==0:
+        # 3) target2: 확률 0인 유전자형(= 전체 27개 중 dist에 없거나 0인 것)
+        zeros = [gt for gt in ALL_GT if dist.get(gt, Fraction(0)) == 0]
+        if not zeros:
             continue
+        tgt2_gt = random.choice(zeros)
+        tgt2_pr = Fraction(0)
 
-        # 해가 너무 많으면 버림
-        if len(sols)>6:
+        # 4) 해(솔루션) 찾기: 미리 계산된 pairs에서 필터링만으로 구함
+        sols = []
+        for x in pairs:
+            if x["ph_count"] != ph_count:
+                continue
+            d2 = x["dist"]
+            if d2.get(tgt1_gt, Fraction(0)) != tgt1_pr:
+                continue
+            if d2.get(tgt2_gt, Fraction(0)) != tgt2_pr:
+                continue
+            sols.append((x["P1"], x["P2"]))
+            if len(sols) > 6:  # 너무 많으면 컷
+                break
+
+        if len(sols) == 0:
+            continue
+        if len(sols) > 6:
             continue
 
         # ----------- 문제 생성 -------------
-        problem_code=f"M3-{random.randint(1,999):03d}"
+        problem_code = f"M3-{random.randint(1,999):03d}"
         pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
 
         # 링크 설명
-        if pattern=="L2I1":
-            lg=list(linked)
-            link_desc=f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
+        if pattern == "L2I1":
+            lg = list(linked)
+            link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
         else:
-            link_desc="(A/a), (B/b), (D/d)는 모두 연관이며 교차 없음(완전연관)."
+            link_desc = "(A/a), (B/b), (D/d)는 모두 연관이며 교차 없음(완전연관)."
 
-        ph_desc=(
+        ph_desc = (
             "※ 표현형은 **대문자 개수(k)**가 아니라, 각 유전자의 **우성 표현 여부(A+/B+/D+)**로 구분한다.\n"
             "- A형질: A-이면 발현, aa이면 비발현\n"
             "- B형질: B-이면 발현, bb이면 비발현\n"
@@ -289,21 +313,18 @@ def build_one(max_tries=30000):
         ask_line_md = "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오."
 
         # 정답
-        answer_lines=[]
+        answer_lines = []
         answer_lines.append(f"총 정답 후보: {len(sols)}개\n")
-
-        for idx_s,(c1,c2) in enumerate(sols,1):
+        for idx_s, (c1, c2) in enumerate(sols, 1):
             answer_lines.append(f"[후보 {idx_s}]")
-            answer_lines.append(f"- P1 = {pstr(c1,pattern,linked)}")
-            answer_lines.append(f"- P2 = {pstr(c2,pattern,linked)}")
+            answer_lines.append(f"- P1 = {pstr(c1, pattern, linked)}")
+            answer_lines.append(f"- P2 = {pstr(c2, pattern, linked)}")
 
-            sol_dist = offspring(pattern,linked,c1,c2)
+            sol_dist = offspring(pattern, linked, c1, c2)
             sol_ph = ph_dist(sol_dist)
-            ph_lines=[]
             for k in sorted(sol_ph.keys()):
-                if sol_ph[k]>0:
-                    ph_lines.append(f"  - {k} : {frac_to_str(sol_ph[k])}")
-            answer_lines.extend(ph_lines)
+                if sol_ph[k] > 0:
+                    answer_lines.append(f"  - {k} : {frac_to_str(sol_ph[k])}")
             answer_lines.append("")
 
         answer_text_md = "\n".join(answer_lines)
@@ -314,30 +335,28 @@ def build_one(max_tries=30000):
             "- 일반유전이므로 표현형은 대문자 개수가 아니라 A/B/D 각각의 우성 발현 여부 조합이다.\n"
         )
 
-        payload={
-            "module":MODULE,
-            "id_prefix":ID_PREFIX,
-            "problem_code":problem_code,
-            "pattern":pattern,
-            "linked_genes":list(linked),
-            "constraints":{
-                "phenotype_count":ph_count,
-                "target1":{"genotype":tgt1_gt,"prob":frac_to_str(tgt1_pr)},
-                "target2":{"genotype":tgt2_gt,"prob":"0"},
+        payload = {
+            "module": MODULE,
+            "id_prefix": ID_PREFIX,
+            "problem_code": problem_code,
+            "pattern": pattern,
+            "linked_genes": list(linked),
+            "constraints": {
+                "phenotype_count": ph_count,
+                "target1": {"genotype": tgt1_gt, "prob": frac_to_str(tgt1_pr)},
+                "target2": {"genotype": tgt2_gt, "prob": "0"},
             },
-            "solutions":[
-                {
-                    "P1":pstr(c1,pattern,linked),
-                    "P2":pstr(c2,pattern,linked)
-                } for (c1,c2) in sols
+            "solutions": [
+                {"P1": pstr(c1, pattern, linked), "P2": pstr(c2, pattern, linked)}
+                for (c1, c2) in sols
             ],
-            "problem_text_md":problem_text_md,
-            "ask_line_md":ask_line_md,
-            "answer_text_md":answer_text_md,
-            "solution_md":solution_md,
+            "problem_text_md": problem_text_md,
+            "ask_line_md": ask_line_md,
+            "answer_text_md": answer_text_md,
+            "solution_md": solution_md,
         }
 
-        return Problem(pid,payload)
+        return Problem(pid, payload)
 
     raise RuntimeError("문제 생성 실패: 조건 완화 필요")
 
