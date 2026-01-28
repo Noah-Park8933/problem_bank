@@ -115,14 +115,7 @@ def offspring(pattern, linked, P1, P2):
                         out[(a,h[0],h[1])] = out.get((a,h[0],h[1]),Fraction(0))+ph*pa
                 return out
             raise RuntimeError("invalid linked")
-        else:
-            # L3
-            h1,h2=P["phase3"]
-            gp=gam_phase(h1,h2)
-            out={}
-            for h,ph in gp.items():
-                out[(h[0],h[1],h[2])] = out.get((h[0],h[1],h[2]),Fraction(0))+ph
-            return out
+        
 
     g1=gams(P1); g2=gams(P2)
     dist={}
@@ -242,7 +235,8 @@ def prepare_case_cache(pattern, linked, allowed):
 
 
 def build_one(max_tries=30000):
-    patterns = ["L2I1", "L3"]
+    # L2I1만 사용
+    pattern = "L2I1"
     lopts = [("A","B"), ("A","D"), ("B","D")]
 
     allowed = [
@@ -255,8 +249,7 @@ def build_one(max_tries=30000):
     case_cache = {}
 
     for _ in range(max_tries):
-        pattern = random.choice(patterns)
-        linked = random.choice(lopts) if pattern == "L2I1" else ("A","B","D")
+        linked = random.choice(lopts)
         key_case = (pattern, linked)
 
         if key_case not in case_cache:
@@ -266,22 +259,20 @@ def build_one(max_tries=30000):
         if not cc["valid_keys"]:
             continue
 
-        # ✅ 해가 1~6개 존재하는 조건 중 하나를 랜덤 선택
+        # 해가 1~6개 존재하는 조건 중 하나 랜덤
         ph_count, tgt1_gt, tgt1_pr, tgt2_gt = random.choice(cc["valid_keys"])
         sols = cc["index"][(ph_count, tgt1_gt, tgt1_pr, tgt2_gt)]
 
-        # 문제 설명용 dist 하나 뽑기 (첫 해로 대표 dist 생성)
+        # 대표 dist (첫 해로)
         repP1, repP2 = sols[0]
         dist = offspring(pattern, linked, repP1, repP2)
 
         problem_code = f"M3-{random.randint(1,999):03d}"
         pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
 
-        if pattern == "L2I1":
-            lg = list(linked)
-            link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
-        else:
-            link_desc = "(A/a), (B/b), (D/d)는 모두 연관이며 교차 없음(완전연관)."
+        # L2I1 링크 설명
+        lg = list(linked)
+        link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
 
         ph_desc = (
             "※ 표현형은 **대문자 개수(k)**가 아니라, 각 유전자의 **우성 표현 여부(A+/B+/D+)**로 구분한다.\n"
