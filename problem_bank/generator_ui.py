@@ -11,9 +11,6 @@ import streamlit as st
 # ============================================================
 # TODO — 실제 파일명 & 함수명으로 교체해야 함
 from matrix3_generator_PACK import make_pack as make_pack_matrix3
-from matrix3_generator_PACK import make_pack as make_pack_matrix3
-from division_generator_PACK_NOXINFO_randomX12_hiddenX_v4 import make_pack as make_pack_division
-from dna_integration_PACK_v6 import make_pack as make_pack_dna
 # from division_generator_PACK_NOXINFO_randomX12_hiddenX_v4 import make_pack as make_pack_division
 # from DNA_integration_generator import make_pack as make_pack_dna
 # from PDED1_generator import make_pack as make_pack_pded1
