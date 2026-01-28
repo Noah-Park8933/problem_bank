@@ -27,7 +27,37 @@ def _is_2d_list(x: Any) -> bool:
         return False
     # 너무 짧은 2D는 표로 보기 애매할 수 있지만, 일단 인정
     return True
+def _looks_like_header_row(row: List[Any], other_rows: List[List[Any]]) -> bool:
+    """첫 행이 헤더처럼 보이는지 대충 판별"""
+    if not row:
+        return False
 
+    # 1) 첫 칸이 비어있고(좌상단 공백), 나머지 행들의 첫 칸이 대체로 비어있지 않으면 헤더 확률↑
+    first_cell = "" if row[0] is None else str(row[0]).strip()
+    if first_cell == "" and other_rows:
+        nonempty_first_col = 0
+        for r in other_rows[:5]:
+            if len(r) == 0:
+                continue
+            c0 = "" if r[0] is None else str(r[0]).strip()
+            if c0 != "":
+                nonempty_first_col += 1
+        if nonempty_first_col >= 2:
+            return True
+
+    # 2) 첫 행이 "텍스트 비율"이 높고, 다른 행들은 숫자/기호(?, 0, 1 등) 비율이 높으면 헤더 확률↑
+    def is_texty(x: Any) -> bool:
+        s = "" if x is None else str(x).strip()
+        if s == "":
+            return False
+        # 숫자/기호 위주면 텍스트로 안 봄
+        return not all(ch.isdigit() or ch in ".-+?/×÷=" for ch in s)
+
+    texty = sum(is_texty(x) for x in row)
+    if texty >= max(2, len(row) // 2):
+        return True
+
+    return False
 
 def _looks_like_table_dict(d: Dict[str, Any]) -> bool:
     """
@@ -107,43 +137,44 @@ def _extract_from_table_dict(d: Dict[str, Any]) -> Any:
 
 
 def _deep_find_table(obj: Any, max_depth: int = 6, _depth: int = 0) -> Optional[Any]:
-    """
-    payload 안을 재귀적으로 뒤져서 table-like 오브젝트를 하나 찾아냄.
-    - 너무 깊게 들어가면 속도/무한재귀 위험 -> max_depth 제한
-    """
     if _depth > max_depth:
         return None
 
-    # 1) 바로 2D list
-    if _is_2d_list(obj):
-        return obj
-
-    # 2) dict면 table-like인지 확인
+    # ✅ 0) dict에서 "표가 있을 법한 키"를 먼저 강하게 탐색
     if isinstance(obj, dict):
-        if _looks_like_table_dict(obj):
-            return _extract_from_table_dict(obj)
+        # ✅ deep scan에서 자주 오탐 나는 키들(해설/정답/솔루션/metadata 등) 제외
+        skip_keys = {
+            "solution", "solutions", "explanation", "commentary", "analysis",
+            "answer", "answers", "full_table", "_full_table", "answer_table",
+            "meta", "metadata", "history", "log",
+        }
 
-        # 흔한 wrapper 키 우선 탐색
+        # 표 후보 우선 키 (given/문항표를 먼저 찾고, 그다음 일반 table)
         priority_keys = [
-            "_given_table", "_full_table",
-            "given_table", "masked_table", "full_table", "complete_table",
-            "presented_table", "answer_table",
-            "table", "grid", "matrix",
+            "_given_table", "given_table", "masked_table", "presented_table",
+            "problem_table", "table_data", "table_obj",
+            "table", "grid", "matrix", "cells",
         ]
+
         for k in priority_keys:
-            if k in obj:
+            if k in obj and k not in skip_keys:
                 found = _deep_find_table(obj.get(k), max_depth=max_depth, _depth=_depth + 1)
                 if found is not None:
                     return found
 
-        # 그 외 모든 키 순회
-        for v in obj.values():
+        # 그 외 키 순회 (skip 적용)
+        for k, v in obj.items():
+            if k in skip_keys:
+                continue
             found = _deep_find_table(v, max_depth=max_depth, _depth=_depth + 1)
             if found is not None:
                 return found
         return None
 
-    # 3) list면 내부 원소들 탐색
+    # ✅ 1) 2D list는 "진짜 마지막에"만 인정 (오탐 방지)
+    if _is_2d_list(obj):
+        return obj
+
     if isinstance(obj, list):
         for v in obj:
             found = _deep_find_table(v, max_depth=max_depth, _depth=_depth + 1)
@@ -282,9 +313,25 @@ def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]
         if all(isinstance(r, (list, tuple)) for r in table_obj):
             grid = [list(r) for r in table_obj]
             # 첫 행을 headers로 가정
-            headers = ["" if x is None else str(x) for x in grid[0]]
-            rows = [[("" if x is None else str(x)) for x in r] for r in grid[1:]]
+            first = grid[0]
+            rest = grid[1:]
+            if _looks_like_header_row(first, rest):
+                headers = ["" if x is None else str(x) for x in first]
+                rows = [[("" if x is None else str(x)) for x in r] for r in rest]
+                return _pad_grid(headers, rows)
+            # ✅ 헤더가 아닌 경우: 자동 헤더 생성 + 모든 행 유지
+            width = max(len(r) for r in grid) if grid else 1
+            headers = [f"c{i+1}" for i in range(width)]
+            rows =   []
+            for r in grid:
+                r2 = [("" if x is None else str(x)) for x in r]
+                if len(r2) < width:
+                    r2 += [""] * (width - len(r2))
+                else:
+                    r2 = r2[:width]
+                rows.append(r2)
             return _pad_grid(headers, rows)
+
 
         # 1D list면 한 열로
         headers = ["value"]
