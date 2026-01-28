@@ -227,7 +227,7 @@ def build_one(max_tries=30000):
         # 2) 되는 조건 1개: allowed 확률 중 dist에 있는 것
         possibles = [(gt,pr) for gt,pr in dist.items() if pr in allowed]
         if not possibles:
-            continue
+            possibles = [(gt,pr) for gt,pr in dist.items() if pr > 0]
         tgt1_gt, tgt1_pr = random.choice(possibles)
 
         # 3) 안되는 조건 1개: 0 확률 유전자형
