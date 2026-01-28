@@ -1,552 +1,459 @@
 # matrix3_generator_PACK.py
-# ------------------------------------------------------------
-# Matrix3 출제기 (2연관 1독립 ONLY, 연관쌍 AB/AD/BD 랜덤, 문제에서 연관쌍 숨김)
-# - 재조합률 r은 문제에 명시(필수로 줘야 유일정답이 잘 나옴)
-# - 주어진 정보:
-#   1) 자손의 "가능한 유전자형 가짓수" (distinct genotype count)
-#   2) 임의의 자손 유전자형 1개와 그 확률
-# - 요구: P1, P2 유전자형 추론 + 자손 유전자형 분포(확률) 계산
-# - unique solver: 위 단서로 가능한 (연관쌍, P1, P2, 상(phase)) 후보가 유일해야 통과
-# - 출력: DOCX(2단, 문제/정답분리), PACK JSON 저장
-#
-# 실행:
-#   pip install python-docx
-#   python matrix3_generator_PACK.py
-# ------------------------------------------------------------
+# Matrix3 (일반유전) 문제 자동생성 + 유일정답 솔버 + PACK JSON 저장
+# - (A/a),(B/b),(D/d) : 모두 상염색체
+# - 연관 패턴: (2연관+1독립) 또는 (3연관)만 사용 (3독립 제거)
+# - 완전연관(교차 없음) 고정
+# - 표현형: A/B/D 각각 "우성 발현 여부" 조합 (대문자 개수 아님)
+# - 제시조건: (표현형 종류 수) + (임의 유전자형 2개에 대한 확률 2개)
+#   (0이다 조건 제거)
 
-import os
-import json
-import time
-import uuid
-import random
+import os, json, time, random, hashlib
 from dataclasses import dataclass
-from typing import Dict, List, Tuple, Optional, Any
 from fractions import Fraction
-
-from docx import Document
-from docx.shared import Pt
-from docx.enum.section import WD_SECTION
-from docx.oxml.ns import qn
+from typing import Dict, List, Tuple, Optional, Any
 
 # -----------------------------
-# CONFIG
+# 기본 설정
 # -----------------------------
-N_PROBLEMS = 30
-FONT_NAME = "바탕"
-FONT_SIZE_PT = 9
-
-OUT_DIR = os.path.join(os.path.dirname(__file__), "output")
-
-MODULE_CODE = "MAT3"
+MODULE = "MATRIX3"
 ID_PREFIX = "MAT3_"
+OUT_DIR = os.path.join(os.path.dirname(__file__), "output_pack")
+os.makedirs(OUT_DIR, exist_ok=True)
 
-# 재조합률 후보(0.5는 연관 의미가 약해져 솔버가 흔들릴 수 있어 제외)
-R_CANDIDATES = [Fraction(0), Fraction(1, 10), Fraction(1, 5), Fraction(3, 10), Fraction(2, 5)]  # 0,0.1,0.2,0.3,0.4
-
-# 생성 시도
-MAX_WORLD_TRIES = 20000
-
-# 문제 단서 난이도 조절(확률 너무 작거나 너무 크면 제외)
-MIN_TARGET_PROB = Fraction(1, 32)
-MAX_TARGET_PROB = Fraction(31, 32)
+RANDOM_SEED = None  # 필요하면 정수 넣기
+if RANDOM_SEED is not None:
+    random.seed(RANDOM_SEED)
 
 # -----------------------------
-# Utility
+# 확률 후보군 (요청 반영)
+# 16계열: 1/16, 3/16
+#  8계열: 1/8,  3/8
+#  4계열: 1/4,  3/4
+#  2계열: 1/2
 # -----------------------------
-def ensure_dir(path: str):
-    os.makedirs(path, exist_ok=True)
-
-def frac_str(f: Fraction) -> str:
-    if f.denominator == 1:
-        return str(f.numerator)
-    return f"{f.numerator}/{f.denominator}"
-
-def geno_to_str3(g: Dict[str, str]) -> str:
-    # {"A":"Aa","B":"bb","D":"Dd"} -> "Aa bb Dd" -> 사용자 요구: 붙여쓰기 "AaBbdd" 형태
-    return f"{g['A']}{g['B']}{g['D']}"
-
-def childgeno_to_str3(cg: Dict[str, str]) -> str:
-    return f"{cg['A']}{cg['B']}{cg['D']}"
-
-def simplify_prob_map(prob_map: Dict[str, Fraction]) -> Dict[str, Fraction]:
-    # 이미 Fraction이라 OK. 0 제거만.
-    return {k: v for k, v in prob_map.items() if v != 0}
-
-def weighted_choice(items: List[Tuple[Any, Fraction]]) -> Any:
-    total = sum([w for _, w in items], Fraction(0))
-    r = Fraction(random.randint(0, 10**9), 10**9) * total
-    s = Fraction(0)
-    for val, w in items:
-        s += w
-        if r <= s:
-            return val
-    return items[-1][0]
+PROB_POOL = [
+    Fraction(1, 16), Fraction(3, 16),
+    Fraction(1, 8),  Fraction(3, 8),
+    Fraction(1, 4),  Fraction(3, 4),
+    Fraction(1, 2),
+]
 
 # -----------------------------
-# Genetics core
+# 유틸
 # -----------------------------
-ALLELES = {
-    "A": ("A", "a"),
-    "B": ("B", "b"),
-    "D": ("D", "d"),
-}
+def frac_to_str(x: Fraction) -> str:
+    if x.denominator == 1:
+        return str(x.numerator)
+    return f"{x.numerator}/{x.denominator}"
 
-GENO_STATES = {
-    "A": ["AA", "Aa", "aa"],
-    "B": ["BB", "Bb", "bb"],
-    "D": ["DD", "Dd", "dd"],
-}
+def sha10(s: str) -> str:
+    return hashlib.sha1(s.encode("utf-8")).hexdigest()[:10]
 
-PAIR_CHOICES = [("A", "B"), ("A", "D"), ("B", "D")]  # linked pair candidates
+def combine_alleles(a: str, b: str) -> str:
+    # 예: 'A' + 'a' => 'Aa' (대문자 우선 정렬)
+    return "".join(sorted([a, b], key=lambda c: (c.islower(), c)))
 
+def is_dom(geno2: str, gene: str) -> int:
+    # gene='A'면 "AA"/"Aa" => 1, "aa" => 0
+    return 1 if gene in geno2 else 0
 
-@dataclass(frozen=True)
-class Parent:
-    geno: Dict[str, str]        # locus -> genotype string (e.g., "Aa")
-    phase: Optional[Tuple[str, str]]  # haplotype pair for linked loci if needed (e.g., ("AB","ab")) else None
+def phenotype_label(A2: str, B2: str, D2: str) -> str:
+    a = "A+" if is_dom(A2, "A") else "A-"
+    b = "B+" if is_dom(B2, "B") else "B-"
+    d = "D+" if is_dom(D2, "D") else "D-"
+    return f"({a},{b},{d})"
 
+# -----------------------------
+# 유전자형 공간
+# -----------------------------
+G1 = ["AA", "Aa", "aa"]  # 단일 유전자형
+ALL_GTS_27 = [a + b + d for a in G1 for b in G1 for d in G1]  # 27개
 
-def locus_gamete_probs(geno: str, locus: str) -> Dict[str, Fraction]:
-    # returns allele -> prob
-    maj, mino = ALLELES[locus]
-    if geno == maj + maj:
-        return {maj: Fraction(1)}
-    if geno == mino + mino:
-        return {mino: Fraction(1)}
-    return {maj: Fraction(1, 2), mino: Fraction(1, 2)}  # hetero
+# -----------------------------
+# 완전연관(교차 없음)에서 위상(하플로타입쌍) 생성
+# -----------------------------
+def possible_phases_2(gX: str, gY: str) -> List[Tuple[str, str]]:
+    """
+    두 유전자(예: A,B)의 유전자형(gX, gY)에 대해 가능한 하플로타입쌍(길이2) 반환.
+    예: AaBb -> ("AB","ab") 또는 ("Ab","aB")
+    반환은 (h1,h2) 정렬된 튜플.
+    """
+    X = [gX[0], gX[1]]
+    Y = [gY[0], gY[1]]
 
+    phases = set()
 
-def possible_haplotype_pairs_for_linked(l1: str, l2: str, g1: str, g2: str) -> List[Tuple[str, str]]:
-    # Determine possible phased haplotype pairs consistent with diploid genotypes at l1,l2
-    # Example: A: Aa, B: Bb -> possible phases: AB/ab or Ab/aB
-    a1, a2 = g1[0], g1[1]
-    b1, b2 = g2[0], g2[1]
+    h1 = X[0] + Y[0]
+    h2 = X[1] + Y[1]
+    if sorted([h1[0], h2[0]]) == sorted(X) and sorted([h1[1], h2[1]]) == sorted(Y):
+        phases.add(tuple(sorted([h1, h2])))
 
-    # if either locus homozygous, phase is essentially fixed (only one type at that locus)
-    # But we still can represent as haplotype pair.
-    # Build all haplotype pairs by pairing one allele from locus1 with one from locus2 on each chromatid.
-    # There are two chromatids: hap1, hap2.
-    # A alleles are a1,a2; B alleles are b1,b2.
-    # Two ways to pair:
-    #   (a1 with b1) and (a2 with b2)
-    #   (a1 with b2) and (a2 with b1)
-    h1 = a1 + b1
-    h2 = a2 + b2
-    k1 = a1 + b2
-    k2 = a2 + b1
+    h1 = X[0] + Y[1]
+    h2 = X[1] + Y[0]
+    if sorted([h1[0], h2[0]]) == sorted(X) and sorted([h1[1], h2[1]]) == sorted(Y):
+        phases.add(tuple(sorted([h1, h2])))
 
-    # normalize ordering within pair to avoid duplicates
-    pairs = []
-    pairs.append(tuple(sorted([h1, h2])))
-    pairs.append(tuple(sorted([k1, k2])))
-    # remove duplicates
-    uniq = []
-    for p in pairs:
-        if p not in uniq:
-            uniq.append(p)
-    return uniq
+    return list(phases)
 
+def possible_phases_3(gA: str, gB: str, gD: str) -> List[Tuple[str, str]]:
+    """
+    세 유전자 A,B,D 완전연관에서 가능한 하플로타입쌍(길이3) 반환.
+    반환은 (h1,h2) 정렬된 튜플.
+    """
+    A = [gA[0], gA[1]]
+    B = [gB[0], gB[1]]
+    D = [gD[0], gD[1]]
 
-def linked_gamete_probs(hap_pair: Tuple[str, str], r: Fraction) -> Dict[str, Fraction]:
-    # hap_pair: two haplotypes like ("AB","ab") or ("Ab","aB") etc.
-    h1, h2 = hap_pair
+    phases = set()
+    for i in [0, 1]:
+        for j in [0, 1]:
+            for k in [0, 1]:
+                h1 = A[i] + B[j] + D[k]
+                h2 = A[1 - i] + B[1 - j] + D[1 - k]
+                if sorted([h1[0], h2[0]]) != sorted(A):
+                    continue
+                if sorted([h1[1], h2[1]]) != sorted(B):
+                    continue
+                if sorted([h1[2], h2[2]]) != sorted(D):
+                    continue
+                phases.add(tuple(sorted([h1, h2])))
+    return list(phases)
+
+def gametes_from_phase(h1: str, h2: str) -> Dict[str, Fraction]:
+    # 완전연관(교차 없음): h1/h2 => 생식세포는 각 1/2 (동형이면 1)
     if h1 == h2:
-        return {h1: Fraction(1)}
-    # If haplotypes differ at both loci: recombination matters.
-    # If differ at only one locus: crossover doesn't create new types; still 1/2 each.
-    diff = sum(1 for i in range(2) if h1[i] != h2[i])
-    if diff <= 1:
-        return {h1: Fraction(1, 2), h2: Fraction(1, 2)}
-    # diff == 2
-    # parental types: (1-r)/2 each
-    # recombinant types: r/2 each
-    recomb1 = h1[0] + h2[1]
-    recomb2 = h2[0] + h1[1]
-    return {
-        h1: (Fraction(1) - r) / 2,
-        h2: (Fraction(1) - r) / 2,
-        recomb1: r / 2,
-        recomb2: r / 2
-    }
+        return {h1: Fraction(1, 1)}
+    return {h1: Fraction(1, 2), h2: Fraction(1, 2)}
 
+def gametes_single(g: str) -> Dict[str, Fraction]:
+    # 단일 유전자 생식세포: AA -> A, Aa -> A/a, aa -> a
+    a1, a2 = g[0], g[1]
+    if a1 == a2:
+        return {a1: Fraction(1, 1)}
+    return {a1: Fraction(1, 2), a2: Fraction(1, 2)}
 
-def combine_alleles_to_geno(a: str, b: str, locus: str) -> str:
-    # make genotype like "Aa" not "aA"
-    maj, mino = ALLELES[locus]
-    if a == b:
-        return a + b
-    # hetero:
-    return maj + mino
+# -----------------------------
+# 부모 -> 자손 유전자형 분포 계산
+# -----------------------------
+def offspring_distribution(pattern: str, linked_genes: Tuple[str, ...], P1: Dict[str, Any], P2: Dict[str, Any]) -> Dict[str, Fraction]:
+    """
+    반환 key: "AABBdd" 같은 6글자 유전자형(각 gene 2글자)
+    """
+    def parent_gametes(P: Dict[str, Any]) -> Dict[Tuple[str, str, str], Fraction]:
+        gA, gB, gD = P["gA"], P["gB"], P["gD"]
 
+        if pattern == "L2I1":
+            # 2 linked + 1 independent
+            if set(linked_genes) == set(["A", "B"]):
+                h1, h2 = P["phase2"]  # "AB" 형태
+                g_link = gametes_from_phase(h1, h2)
+                g_ind = gametes_single(gD)
+                out: Dict[Tuple[str, str, str], Fraction] = {}
+                for h, ph in g_link.items():
+                    for d_allele, pd in g_ind.items():
+                        out[(h[0], h[1], d_allele)] = out.get((h[0], h[1], d_allele), Fraction(0, 1)) + ph * pd
+                return out
 
-def offspring_distribution(p1: Parent, p2: Parent, linked_pair: Tuple[str, str], r: Fraction) -> Dict[str, Fraction]:
-    l1, l2 = linked_pair
-    # independent locus:
-    indep = ({"A", "B", "D"} - set(linked_pair)).pop()
+            if set(linked_genes) == set(["A", "D"]):
+                h1, h2 = P["phase2"]  # "AD"
+                g_link = gametes_from_phase(h1, h2)
+                g_ind = gametes_single(gB)
+                out: Dict[Tuple[str, str, str], Fraction] = {}
+                for h, ph in g_link.items():
+                    for b_allele, pb in g_ind.items():
+                        out[(h[0], b_allele, h[1])] = out.get((h[0], b_allele, h[1]), Fraction(0, 1)) + ph * pb
+                return out
 
-    # P gamete distributions:
-    # linked haplotype probs:
-    assert p1.phase is not None and p2.phase is not None
-    g1_link = linked_gamete_probs(p1.phase, r)
-    g2_link = linked_gamete_probs(p2.phase, r)
+            if set(linked_genes) == set(["B", "D"]):
+                h1, h2 = P["phase2"]  # "BD"
+                g_link = gametes_from_phase(h1, h2)
+                g_ind = gametes_single(gA)
+                out: Dict[Tuple[str, str, str], Fraction] = {}
+                for h, ph in g_link.items():
+                    for a_allele, pa in g_ind.items():
+                        out[(a_allele, h[0], h[1])] = out.get((a_allele, h[0], h[1]), Fraction(0, 1)) + ph * pa
+                return out
 
-    g1_ind = locus_gamete_probs(p1.geno[indep], indep)
-    g2_ind = locus_gamete_probs(p2.geno[indep], indep)
+            raise RuntimeError("invalid linked_genes for L2I1")
 
-    # combine to full gametes (hap + allele)
-    # gamete representation: (hap, allele_indep)
-    gam1 = []
-    for hap, ph in g1_link.items():
-        for al, pa in g1_ind.items():
-            gam1.append(((hap, al), ph * pa))
-    gam2 = []
-    for hap, ph in g2_link.items():
-        for al, pa in g2_ind.items():
-            gam2.append(((hap, al), ph * pa))
+        elif pattern == "L3":
+            # 3 linked
+            h1, h2 = P["phase3"]  # "ABD"
+            g_link = gametes_from_phase(h1, h2)
+            out: Dict[Tuple[str, str, str], Fraction] = {}
+            for h, ph in g_link.items():
+                out[(h[0], h[1], h[2])] = out.get((h[0], h[1], h[2]), Fraction(0, 1)) + ph
+            return out
 
-    # offspring genotype distribution over 3 loci, canonical string key
+        else:
+            raise RuntimeError("pattern must be L2I1 or L3")
+
+    g1 = parent_gametes(P1)
+    g2 = parent_gametes(P2)
+
     dist: Dict[str, Fraction] = {}
-    for (hap1, al1), p_g1 in gam1:
-        for (hap2, al2), p_g2 in gam2:
-            # linked loci from hap
-            a_l1 = hap1[0]
-            b_l2 = hap1[1]
-            a2_l1 = hap2[0]
-            b2_l2 = hap2[1]
+    for (a1, b1, d1), p1 in g1.items():
+        for (a2, b2, d2), p2 in g2.items():
+            A2 = combine_alleles(a1, a2)
+            B2 = combine_alleles(b1, b2)
+            D2 = combine_alleles(d1, d2)
+            gt = A2 + B2 + D2
+            dist[gt] = dist.get(gt, Fraction(0, 1)) + p1 * p2
 
-            child = {"A": "", "B": "", "D": ""}
-            child[l1] = combine_alleles_to_geno(a_l1, a2_l1, l1)
-            child[l2] = combine_alleles_to_geno(b_l2, b2_l2, l2)
-            child[indep] = combine_alleles_to_geno(al1, al2, indep)
+    # 정규화(혹시 모를 안전장치)
+    s = sum(dist.values(), Fraction(0, 1))
+    if s != 1 and s != 0:
+        for k in list(dist.keys()):
+            dist[k] = dist[k] / s
+    return dist
 
-            key = f"{child['A']}{child['B']}{child['D']}"
-            dist[key] = dist.get(key, Fraction(0)) + (p_g1 * p_g2)
-    return simplify_prob_map(dist)
-
-
-def distinct_genotype_count(dist: Dict[str, Fraction]) -> int:
-    return sum(1 for _k, v in dist.items() if v != 0)
-
-
-# -----------------------------
-# World generation
-# -----------------------------
-def random_parent_genotype() -> Dict[str, str]:
-    return {L: random.choice(GENO_STATES[L]) for L in ["A", "B", "D"]}
-
-def build_parent_with_phase(geno: Dict[str, str], linked_pair: Tuple[str, str]) -> List[Parent]:
-    l1, l2 = linked_pair
-    phase_pairs = possible_haplotype_pairs_for_linked(l1, l2, geno[l1], geno[l2])
-    # return all possible phase variants (for solver enumeration)
-    out = []
-    for ph in phase_pairs:
-        out.append(Parent(geno=geno, phase=ph))
+def phenotype_distribution(dist: Dict[str, Fraction]) -> Dict[str, Fraction]:
+    out: Dict[str, Fraction] = {}
+    for gt, pr in dist.items():
+        if pr == 0:
+            continue
+        A2, B2, D2 = gt[0:2], gt[2:4], gt[4:6]
+        lab = phenotype_label(A2, B2, D2)
+        out[lab] = out.get(lab, Fraction(0, 1)) + pr
     return out
 
+# -----------------------------
+# 후보 부모/위상 열거(브루트 솔버)
+# -----------------------------
+def enumerate_parents(pattern: str, linked_genes: Tuple[str, ...]) -> List[Dict[str, Any]]:
+    parents: List[Dict[str, Any]] = []
+    for gA in G1:
+        for gB in G1:
+            for gD in G1:
+                if pattern == "L2I1":
+                    if set(linked_genes) == set(["A", "B"]):
+                        for ph in possible_phases_2(gA, gB):
+                            parents.append({"gA": gA, "gB": gB, "gD": gD, "phase2": ph})
+                    elif set(linked_genes) == set(["A", "D"]):
+                        for ph in possible_phases_2(gA, gD):
+                            parents.append({"gA": gA, "gB": gB, "gD": gD, "phase2": ph})
+                    elif set(linked_genes) == set(["B", "D"]):
+                        for ph in possible_phases_2(gB, gD):
+                            parents.append({"gA": gA, "gB": gB, "gD": gD, "phase2": ph})
+                    else:
+                        raise RuntimeError("invalid linked_genes")
+                else:
+                    for ph in possible_phases_3(gA, gB, gD):
+                        parents.append({"gA": gA, "gB": gB, "gD": gD, "phase3": ph})
+    return parents
 
-def sample_world() -> Tuple[Tuple[str, str], Fraction, Parent, Parent, Dict[str, Fraction]]:
-    # choose linked pair randomly
-    linked_pair = random.choice(PAIR_CHOICES)
-    r = random.choice(R_CANDIDATES)
-
-    # random genotypes
-    g1 = random_parent_genotype()
-    g2 = random_parent_genotype()
-
-    # ensure not identical too often (조금 다양하게)
-    if g1 == g2 and random.random() < 0.7:
-        g2 = random_parent_genotype()
-
-    # pick a random phase among possible
-    p1_candidates = build_parent_with_phase(g1, linked_pair)
-    p2_candidates = build_parent_with_phase(g2, linked_pair)
-    p1 = random.choice(p1_candidates)
-    p2 = random.choice(p2_candidates)
-
-    dist = offspring_distribution(p1, p2, linked_pair, r)
-
-    return linked_pair, r, p1, p2, dist
-
+def parent_str(P: Dict[str, Any], pattern: str) -> str:
+    g = P["gA"] + P["gB"] + P["gD"]
+    if pattern == "L2I1":
+        return f"{g}  (연관상:{'/'.join(P['phase2'])})"
+    return f"{g}  (연관상:{'/'.join(P['phase3'])})"
 
 # -----------------------------
-# Clue making + unique solver
+# 문제 생성(유일정답 보장)
 # -----------------------------
 @dataclass
-class Clue:
-    genotype_count: int
-    target_child: str
-    target_prob: Fraction
+class Problem:
+    pid: str
+    payload: Dict[str, Any]
 
+def build_one_unique(max_tries: int = 60000) -> Problem:
+    patterns = ["L2I1", "L3"]
+    linked_options_L2 = [("A", "B"), ("A", "D"), ("B", "D")]
 
-def pick_target_child(dist: Dict[str, Fraction]) -> Optional[Tuple[str, Fraction]]:
-    # pick a child genotype with mid probability (not too tiny)
-    items = [(k, v) for k, v in dist.items() if MIN_TARGET_PROB <= v <= MAX_TARGET_PROB]
-    if not items:
-        return None
-    # favor moderate probabilities
-    weights = []
-    for k, v in items:
-        # weight peaks near 1/8~1/4
-        w = v if v <= Fraction(1, 2) else (Fraction(1) - v)
-        weights.append((k, w))
-    return weighted_choice(weights), dict(weights)[weighted_choice(weights)]  # not stable
+    cache_candidates: Dict[Tuple[str, Tuple[str, ...]], List[Dict[str, Any]]] = {}
 
-def pick_target_child_stable(dist: Dict[str, Fraction]) -> Optional[Tuple[str, Fraction]]:
-    items = [(k, v) for k, v in dist.items() if MIN_TARGET_PROB <= v <= MAX_TARGET_PROB]
-    if not items:
-        return None
-    # build weight list once
-    witems = []
-    for k, v in items:
-        w = v if v <= Fraction(1, 2) else (Fraction(1) - v)
-        if w <= 0:
-            w = Fraction(1, 1000)
-        witems.append((k, w))
-    ksel = weighted_choice(witems)
-    return ksel, dist[ksel]
+    for _ in range(max_tries):
+        pattern = random.choice(patterns)
+        if pattern == "L2I1":
+            linked_genes = random.choice(linked_options_L2)
+        else:
+            linked_genes = ("A", "B", "D")
 
+        key = (pattern, linked_genes)
+        if key not in cache_candidates:
+            cache_candidates[key] = enumerate_parents(pattern, linked_genes)
+        candidates = cache_candidates[key]
 
-def make_clue(dist: Dict[str, Fraction]) -> Optional[Clue]:
-    cnt = distinct_genotype_count(dist)
-    pick = pick_target_child_stable(dist)
-    if pick is None:
-        return None
-    tg, tp = pick
-    return Clue(genotype_count=cnt, target_child=tg, target_prob=tp)
-
-
-def enumerate_all_candidates(clue: Clue, r: Fraction) -> List[Tuple[Tuple[str, str], Parent, Parent]]:
-    # problem hides which pair is linked
-    # solver tries all linked pairs + all genotypes + phases consistent and checks clues
-    sols = []
-
-    # enumerate parental genotypes (3^3 each = 27; total 729 pairs) × phase variants × 3 linked pairs
-    # manageable.
-    all_g = []
-    for a in GENO_STATES["A"]:
-        for b in GENO_STATES["B"]:
-            for d in GENO_STATES["D"]:
-                all_g.append({"A": a, "B": b, "D": d})
-
-    for linked_pair in PAIR_CHOICES:
-        for g1 in all_g:
-            for g2 in all_g:
-                p1s = build_parent_with_phase(g1, linked_pair)
-                p2s = build_parent_with_phase(g2, linked_pair)
-                for p1 in p1s:
-                    for p2 in p2s:
-                        dist = offspring_distribution(p1, p2, linked_pair, r)
-                        if distinct_genotype_count(dist) != clue.genotype_count:
-                            continue
-                        if dist.get(clue.target_child, Fraction(0)) != clue.target_prob:
-                            continue
-                        sols.append((linked_pair, p1, p2))
-    return sols
-
-
-def generate_unique_problem() -> Dict[str, Any]:
-    for t in range(1, MAX_WORLD_TRIES + 1):
-        linked_pair, r, p1, p2, dist = sample_world()
-        clue = make_clue(dist)
-        if clue is None:
+        P1 = random.choice(candidates)
+        P2 = random.choice(candidates)
+        if P1 == P2:
             continue
 
-        # unique solver
-        sols = enumerate_all_candidates(clue, r)
+        dist = offspring_distribution(pattern, linked_genes, P1, P2)
+        phdist = phenotype_distribution(dist)
+        ph_count = len(phdist)  # pr>0만 넣었으니 그대로
+
+        # 표현형 종류 수 범위(너무 좁으면 생성 실패 빨리 남)
+        if not (3 <= ph_count <= 6):
+            continue
+
+        # dist -> 확률별 genotype 묶기 (27공간 기준으로 0도 포함)
+        by_prob: Dict[Fraction, List[str]] = {}
+        for gt in ALL_GTS_27:
+            pr = dist.get(gt, Fraction(0, 1))
+            by_prob.setdefault(pr, []).append(gt)
+
+        avail_probs = [p for p in PROB_POOL if p in by_prob and any(dist.get(gt, Fraction(0, 1)) == p for gt in by_prob[p])]
+        # 실제로 dist에서 등장(>0)하는 확률만
+        avail_probs = [p for p in avail_probs if p > 0 and p < 1]
+
+        if len(avail_probs) < 2:
+            continue
+
+        tgt1_pr = random.choice(avail_probs)
+        tgt2_pr = random.choice([p for p in avail_probs if p != tgt1_pr])
+
+        tgt1_candidates = [gt for gt in by_prob[tgt1_pr] if dist.get(gt, Fraction(0, 1)) == tgt1_pr]
+        tgt2_candidates = [gt for gt in by_prob[tgt2_pr] if dist.get(gt, Fraction(0, 1)) == tgt2_pr]
+        if not tgt1_candidates or not tgt2_candidates:
+            continue
+
+        tgt1_gt = random.choice(tgt1_candidates)
+        tgt2_gt = random.choice(tgt2_candidates)
+
+        # 유일해 솔버: (pattern, linked_genes, ph_count, P(tgt1)=tgt1_pr, P(tgt2)=tgt2_pr) 만족 (P1,P2) 유일?
+        sols: List[Tuple[Dict[str, Any], Dict[str, Any]]] = []
+        for c1 in candidates:
+            for c2 in candidates:
+                d2 = offspring_distribution(pattern, linked_genes, c1, c2)
+                ph2 = phenotype_distribution(d2)
+                if len(ph2) != ph_count:
+                    continue
+                if d2.get(tgt1_gt, Fraction(0, 1)) != tgt1_pr:
+                    continue
+                if d2.get(tgt2_gt, Fraction(0, 1)) != tgt2_pr:
+                    continue
+
+                sols.append((c1, c2))
+                if len(sols) > 1:
+                    break
+            if len(sols) > 1:
+                break
+
         if len(sols) != 1:
             continue
 
-        # Passed
-        return {
-            "linked_pair": linked_pair,
-            "r": r,
-            "P1": p1,
-            "P2": p2,
-            "dist": dist,
-            "clue": clue,
-            "solver_solutions": sols,
-            "tries": t,
-        }
+        solP1, solP2 = sols[0]
 
-    raise RuntimeError("유일정답 문제 생성 실패: MAX_WORLD_TRIES 증가 또는 단서 설계 변경 필요")
+        # 문제 텍스트
+        if pattern == "L2I1":
+            lg = linked_genes
+            link_desc = (
+                f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 "
+                f"교차는 일어나지 않는다(완전 연관). 나머지 1쌍은 독립이다."
+            )
+        else:
+            link_desc = "(A/a), (B/b), (D/d)는 모두 연관이며 교차는 일어나지 않는다(완전 연관)."
 
-
-# -----------------------------
-# Markdown builders for PACK
-# -----------------------------
-def dist_to_md_table(dist: Dict[str, Fraction]) -> str:
-    # sorted by probability desc
-    rows = sorted(dist.items(), key=lambda kv: (-kv[1], kv[0]))
-    md = "| 자손 유전자형 | 확률 |\n|---|---|\n"
-    for g, p in rows:
-        md += f"| {g} | {frac_str(p)} |\n"
-    return md
-
-def build_problem_text_md(pnum: int, r: Fraction, clue: Clue) -> str:
-    # Note: linked info hidden intentionally
-    lines = []
-    lines.append(f"**[문제 {pnum}] Matrix3 (2연관 1독립)**")
-    lines.append("")
-    lines.append("A/a, B/b, D/d 3쌍의 유전자에 의해 결정되는 단일인자 일반유전을 가정한다(모두 상염색체).")
-    lines.append("세 유전자쌍 중 **두 유전자쌍은 연관**되어 있고, 나머지 한 유전자쌍은 **독립**이다.")
-    lines.append(f"연관된 두 유전자쌍의 **재조합률 r = {frac_str(r)}** 이다.")
-    lines.append("")
-    lines.append(f"부모 P1과 P2를 교배시킬 때 나오는 자손의 **가능한 유전자형 가짓수는 {clue.genotype_count}가지**이다.")
-    lines.append(f"또한 자손의 유전자형이 **{clue.target_child}** 일 확률은 **{frac_str(clue.target_prob)}** 이다.")
-    return "\n".join(lines)
-
-def build_ask_line_md() -> str:
-    return "P1, P2의 유전자형을 구하고, 자손의 유전자형 종류와 각 확률을 구하시오."
-
-def build_answer_md(world: Dict[str, Any]) -> str:
-    p1: Parent = world["P1"]
-    p2: Parent = world["P2"]
-    linked_pair = world["linked_pair"]
-    r = world["r"]
-    dist = world["dist"]
-
-    lines = []
-    lines.append(f"- 연관 유전자쌍: ({linked_pair[0]}/{linked_pair[1]})  (재조합률 r={frac_str(r)})")
-    lines.append(f"- P1 유전자형: **{geno_to_str3(p1.geno)}**  (phase={p1.phase[0]}/{p1.phase[1]})")
-    lines.append(f"- P2 유전자형: **{geno_to_str3(p2.geno)}**  (phase={p2.phase[0]}/{p2.phase[1]})")
-    lines.append("")
-    lines.append("**[자손 유전자형 분포]**")
-    lines.append(dist_to_md_table(dist))
-    return "\n".join(lines)
-
-# -----------------------------
-# PACK writer (standalone, no external problem_pack needed)
-# -----------------------------
-def new_problem_id() -> str:
-    return ID_PREFIX + uuid.uuid4().hex[:10]
-
-def save_pack_json(items: List[Dict[str, Any]], out_dir: str) -> str:
-    ensure_dir(out_dir)
-    path = os.path.join(out_dir, f"PACK_{MODULE_CODE}_{time.strftime('%Y%m%d-%H%M%S')}.json")
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(
-            {"module": MODULE_CODE, "created": time.time(), "items": items},
-            f,
-            ensure_ascii=False,
-            indent=2
+        ph_desc = (
+            "※ 표현형은 **대문자 개수**가 아니라, 각 유전자의 **우성 형질 발현 여부**로 구분한다.\n"
+            "- A형질: A-이면 발현, aa이면 비발현\n"
+            "- B형질: B-이면 발현, bb이면 비발현\n"
+            "- D형질: D-이면 발현, dd이면 비발현\n"
+            "따라서 자손 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타낸다."
         )
-    return path
 
-# -----------------------------
-# DOCX helpers (2-column per page, 2 problems/page)
-# -----------------------------
-def set_normal_style(doc: Document):
-    style = doc.styles["Normal"]
-    style.font.name = FONT_NAME
-    # for Korean font name compatibility
-    try:
-        style._element.rPr.rFonts.set(qn("w:eastAsia"), FONT_NAME)
-    except Exception:
-        pass
-    style.font.size = Pt(FONT_SIZE_PT)
+        problem_code = f"M3-{random.randint(1,999):03d}"
+        pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
 
-def add_problem_block(cell, problem_text: str, ask_line: str):
-    # problem_text and ask_line are plain text with newlines
-    for line in problem_text.split("\n"):
-        p = cell.add_paragraph(line)
-        if line.startswith("**[문제"):
-            # crude bold marker
-            p.runs[0].bold = True
-    cell.add_paragraph("")
-    cell.add_paragraph(ask_line)
+        problem_text_md = (
+            f"문제 제목 : Matrix3 일반유전 추론 ({problem_code})\n\n"
+            f"(A/a), (B/b), (D/d) 3쌍의 유전자가 각각 서로 다른 형질을 결정한다고 하자(단일인자 일반유전).\n"
+            f"{link_desc}\n\n"
+            f"- 부모 P1, P2의 유전자형은 미지수이다.\n"
+            f"- P1×P2에서 나오는 **자손의 표현형 종류 수는 {ph_count}가지**이다.\n"
+            f"- 자손의 유전자형이 **{tgt1_gt}** 일 확률은 **{frac_to_str(tgt1_pr)}** 이다.\n"
+            f"- 자손의 유전자형이 **{tgt2_gt}** 일 확률은 **{frac_to_str(tgt2_pr)}** 이다.\n\n"
+            f"{ph_desc}\n"
+        )
 
-def add_answer_block(doc: Document, idx: int, pid: str, answer_md: str):
-    title = doc.add_paragraph(f"[정답/해설 {idx}]  ID: {pid}")
-    title.runs[0].bold = True
-    for line in answer_md.split("\n"):
-        doc.add_paragraph(line)
+        ask_line_md = "P1, P2의 유전자형(필요 시 연관 위상 포함)을 구하고, 자손 표현형의 종류와 각 확률을 구하시오."
 
-def make_docx_and_pack():
-    ensure_dir(OUT_DIR)
-    doc = Document()
-    set_normal_style(doc)
+        sol_dist = offspring_distribution(pattern, linked_genes, solP1, solP2)
+        sol_ph = phenotype_distribution(sol_dist)
 
-    pack_items: List[Dict[str, Any]] = []
+        ph_lines = []
+        for k in sorted(sol_ph.keys()):
+            ph_lines.append(f"- {k} : {frac_to_str(sol_ph[k])}")
 
-    problems = []
-    for i in range(1, N_PROBLEMS + 1):
-        w = generate_unique_problem()
-        pid = new_problem_id()
-        clue: Clue = w["clue"]
-        problem_text_md = build_problem_text_md(i, w["r"], clue)
-        ask_line_md = build_ask_line_md()
-        answer_md = build_answer_md(w)
+        answer_text_md = (
+            f"- P1 = {parent_str(solP1, pattern)}\n"
+            f"- P2 = {parent_str(solP2, pattern)}\n\n"
+            "자손 표현형 분포:\n" + "\n".join(ph_lines)
+        )
 
-        # store
-        problems.append((pid, w, problem_text_md, ask_line_md, answer_md))
+        solution_md = (
+            "### 해설(자동)\n"
+            f"1) 연관/독립 조건은 문제에서 주어짐.\n"
+            f"2) 제시된 '표현형 종류 수 = {ph_count}' 조건과 두 개의 유전자형 확률 조건을 만족하는 (P1,P2) 조합을 **전수검사**하여 유일해를 보장했다.\n"
+            f"3) 본 문제의 표현형은 대문자 개수(k)가 아니라 (A형질, B형질, D형질)의 발현 여부 조합이다.\n"
+            f"4) 최종적으로 P1×P2에서 나온 자손 유전자형 분포를 표현형 규칙(A-,B-,D-)에 따라 합산해 위의 표현형 확률을 얻는다.\n"
+        )
 
         payload = {
-            "r": float(w["r"]),  # streamlit 편의용
-            "genotype_count": clue.genotype_count,
-            "target_child": clue.target_child,
-            "target_prob": frac_str(clue.target_prob),
-            "solution": {
-                "linked_pair": list(w["linked_pair"]),
-                "P1": geno_to_str3(w["P1"].geno),
-                "P2": geno_to_str3(w["P2"].geno),
-                "phase_P1": list(w["P1"].phase),
-                "phase_P2": list(w["P2"].phase),
-            },
-            "dist": {k: frac_str(v) for k, v in w["dist"].items()},
-            "tries": w["tries"],
-        }
-
-        pack_items.append({
-            "id": pid,
-            "module": MODULE_CODE,
+            "module": MODULE,
             "id_prefix": ID_PREFIX,
+            "problem_code": problem_code,
+            "pattern": pattern,
+            "linked_genes": list(linked_genes),
+            "no_crossover": True,
+            "constraints": {
+                "phenotype_count": ph_count,
+                "target1": {"genotype": tgt1_gt, "prob": frac_to_str(tgt1_pr)},
+                "target2": {"genotype": tgt2_gt, "prob": frac_to_str(tgt2_pr)},
+            },
+            "P1": {
+                "genotype": solP1["gA"] + solP1["gB"] + solP1["gD"],
+                "phase": "/".join(solP1["phase2"]) if pattern == "L2I1" else "/".join(solP1["phase3"]),
+            },
+            "P2": {
+                "genotype": solP2["gA"] + solP2["gB"] + solP2["gD"],
+                "phase": "/".join(solP2["phase2"]) if pattern == "L2I1" else "/".join(solP2["phase3"]),
+            },
             "problem_text_md": problem_text_md,
             "ask_line_md": ask_line_md,
-            "answer_md": answer_md,
-            "payload": payload,
+            "answer_text_md": answer_text_md,
+            "solution_md": solution_md,
+            "difficulty": 2,
+        }
+
+        return Problem(pid=pid, payload=payload)
+
+    raise RuntimeError("유일정답 Matrix3 문제 생성 실패: max_tries 증가 또는 조건 범위 완화 필요")
+
+# -----------------------------
+# PACK 저장
+# -----------------------------
+def make_pack(n: int = 30) -> str:
+    items = []
+    for i in range(1, n + 1):
+        pr = build_one_unique(max_tries=60000)
+        items.append({
+            "id": pr.pid,
+            "pid": pr.pid,
+            "module": MODULE,
+            "id_prefix": ID_PREFIX,
+            "difficulty": pr.payload.get("difficulty", 2),
+            "problem_text_md": pr.payload.get("problem_text_md", ""),
+            "ask_line_md": pr.payload.get("ask_line_md", ""),
+            "answer_text_md": pr.payload.get("answer_text_md", ""),
+            "solution_md": pr.payload.get("solution_md", ""),
+            "payload": pr.payload,
+            "_qnum": i
         })
 
-    # ---- DOCX: 2-column, 2 problems per page (table with 1 row, 2 cols)
-    idx = 0
-    pnum = 1
-    while idx < len(problems):
-        t = doc.add_table(rows=1, cols=2)
-        t.style = "Table Grid"
-        left = t.rows[0].cells[0]
-        right = t.rows[0].cells[1]
+    pack = {
+        "module": MODULE,
+        "id_prefix": ID_PREFIX,
+        "created_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "items": items,
+    }
 
-        pid, _w, ptxt, ask, _ans = problems[idx]
-        add_problem_block(left, ptxt.replace("**", ""), ask)
-        idx += 1
-        pnum += 1
-
-        if idx < len(problems):
-            pid, _w, ptxt, ask, _ans = problems[idx]
-            add_problem_block(right, ptxt.replace("**", ""), ask)
-            idx += 1
-            pnum += 1
-
-        if idx < len(problems):
-            doc.add_page_break()
-
-    # ---- Answers at end
-    doc.add_page_break()
-    h = doc.add_paragraph("[정답/해설]")
-    h.runs[0].bold = True
-    for i, (pid, _w, _ptxt, _ask, ans) in enumerate(problems, start=1):
-        add_answer_block(doc, i, pid, ans)
-        doc.add_paragraph("")
-
-    # save files
-    docx_path = os.path.join(OUT_DIR, f"Matrix3_{time.strftime('%Y%m%d-%H%M%S')}.docx")
-    doc.save(docx_path)
-
-    pack_path = save_pack_json(pack_items, OUT_DIR)
-
-    print("✅ 생성 완료")
-    print("DOCX:", docx_path)
-    print("PACK:", pack_path)
-
+    out_path = os.path.join(OUT_DIR, f"pack_{MODULE}_{int(time.time())}.json")
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(pack, f, ensure_ascii=False, indent=2)
+    return out_path
 
 if __name__ == "__main__":
-    make_docx_and_pack()
+    path = make_pack(n=30)
+    print("[OK] PACK saved:", path)
