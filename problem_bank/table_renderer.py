@@ -189,6 +189,11 @@ def _deep_find_table(obj: Any, max_depth: int = 6, _depth: int = 0) -> Optional[
 # 외부에서 쓰는 "표 찾기" API
 # ----------------------------
 def try_find_table(payload: Dict[str, Any], keys: List[str]) -> Optional[Any]:
+    found = _deep_find_table(payload, max_depth=6)
+    if _is_2d_list(found):
+        if len(found) < 3 or max(len(r) for r in found) < 3:
+            return None  # 너무 작으면 표로 안 봄(계산 매트릭스일 확률)
+    return found
     """
     payload에서 표 오브젝트를 찾아 반환.
     1) keys 후보를 순서대로 확인
