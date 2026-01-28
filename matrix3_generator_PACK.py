@@ -7,7 +7,7 @@
 import os, json, time, random, hashlib
 from dataclasses import dataclass
 from fractions import Fraction
-from typing import Dict, List, Tuple, Any, Optinal
+from typing import Dict, List, Tuple, Optional, Any
 
 MODULE = "MATRIX3"
 ID_PREFIX = "MAT3_"
