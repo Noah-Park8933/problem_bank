@@ -156,14 +156,14 @@ def _deep_find_table(obj: Any, max_depth: int = 6, _depth: int = 0) -> Optional[
             "solution", "solutions", "explanation", "commentary", "analysis",
             "answer", "answers", "full_table", "_full_table", "answer_table",
             "meta", "metadata", "history", "log", "choices", "choice", "options", "option",
-            "보기", "선지", "선택지", "문항", "question_choices", "statements", "statement", "gnd", "ㄱ", "ㄴ", "ㄷ",
+            "보기", "선지", "선택지", "문항", "question_choices", "statements", "statement", "gnd", "stmts", "stmt", "ㄱ", "ㄴ", "ㄷ",
         }
 
         # 표 후보 우선 키 (given/문항표를 먼저 찾고, 그다음 일반 table)
         priority_keys = [
             "_given_table", "given_table", "masked_table", "presented_table",
             "problem_table", "table_data", "table_obj",
-            "table", "grid", "matrix", "cells",
+            "table_md", "full_table_md", "table", "grid", "matrix", "cells",
         ]
 
         for k in priority_keys:
@@ -199,22 +199,26 @@ def _deep_find_table(obj: Any, max_depth: int = 6, _depth: int = 0) -> Optional[
 # 외부에서 쓰는 "표 찾기" API
 # ----------------------------
 def try_find_table(payload: Dict[str, Any], keys: List[str]) -> Optional[Any]:
-    # try_find_table() 안 keys 우선 탐색에서 쓰일 후보에 md 키도 포함
-    md_keys = ["_given_table_md", "_full_table_md", "table_md", "full_table_md", "given_table_md"]
-    for k in md_keys + keys:
-        ...
-    found = _deep_find_table(payload, max_depth=6)
-    if _is_2d_list(found):
-        if len(found) < 3 or max(len(r) for r in found) < 3:
-            return None  # 너무 작으면 표로 안 봄(계산 매트릭스일 확률)
-    return found
     """
     payload에서 표 오브젝트를 찾아 반환.
-    1) keys 후보를 순서대로 확인
-    2) 없으면 payload 전체를 deep scan
+    우선순위:
+      1) (table_md/full_table_md 등) markdown 표 문자열
+      2) keys 후보(주어진 순서대로)
+      3) payload 전체 deep scan (오탐 방어 포함)
     """
     if not isinstance(payload, dict):
         return None
+
+    # 0) markdown table 키는 항상 최우선 (DNA integration 같은 케이스)
+    md_keys = [
+        "_given_table_md", "given_table_md", "table_md",
+        "_full_table_md", "full_table_md",
+    ]
+    for k in md_keys:
+        v = payload.get(k)
+        if isinstance(v, str) and v.strip():
+            # normalize_table_to_grid()가 md 파싱을 지원하므로 문자열 그대로 반환
+            return v
 
     # 1) keys 우선
     for k in keys:
@@ -225,8 +229,15 @@ def try_find_table(payload: Dict[str, Any], keys: List[str]) -> Optional[Any]:
                 return _extract_from_table_dict(v)
             return v
 
-    # 2) deep scan
-    return _deep_find_table(payload, max_depth=6)
+    # 2) deep scan (gene detecting에서 stmts 같은 2D 오탐 방어는 _deep_find_table()의 skip_keys가 담당)
+    found = _deep_find_table(payload, max_depth=6)
+
+    # 2D가 너무 작은 경우(계산 매트릭스/선지 배열 등)는 표로 채택하지 않음
+    if _is_2d_list(found):
+        if len(found) < 3 or max(len(r) for r in found) < 3:
+            return None
+
+    return found
 
 
 # ----------------------------
@@ -322,6 +333,22 @@ def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]
     md_parsed = _grid_from_md_or_text(table_obj)
     if md_parsed is not None:
         return md_parsed
+
+    # 0-B) {'headers': [...], 'rows': [[...], ...]} 또는 {'cols': [...], 'rows': ...} 지원
+    # ( _extract_from_table_dict() 가 이런 형태를 반환할 수 있음 )
+    if isinstance(table_obj, dict) and "rows" in table_obj and _is_2d_list(table_obj.get("rows")):
+        headers_raw = table_obj.get("headers") or table_obj.get("cols") or table_obj.get("columns") or []
+        if isinstance(headers_raw, list) and headers_raw:
+            headers = [("" if x is None else str(x)) for x in headers_raw]
+        else:
+            w = max((len(r) for r in table_obj["rows"]), default=1)
+            headers = [f"c{i+1}" for i in range(w)]
+
+        rows = []
+        for r in table_obj["rows"]:
+            r2 = [("" if x is None else str(x)) for x in (r or [])]
+            rows.append(r2)
+        return _pad_grid(headers, rows)
     # 1) nested dict: {row: {col: value}}
     if isinstance(table_obj, dict):
         if table_obj and all(isinstance(v, dict) for v in table_obj.values()):
