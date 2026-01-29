@@ -47,12 +47,12 @@ def main():
     st.write("고유 uid:", len(set(uids)))
     st.write("중복 uid 개수:", len(dups))
 
-if dups:
-    st.write("중복 uid 예시(앞 20개):", dups[:20])
+    if dups:
+        st.write("중복 uid 예시(앞 20개):", dups[:20])
 # ===========================
 
-    st.caption(f"전체 로드: {len(items)}개")
-    st.caption(f"전체 로드: {len(items)}개")
+st.caption(f"전체 로드: {len(items)}개")
+st.caption(f"전체 로드: {len(items)}개")
 
     filtered, meta = filter_items(cfg, items)
 
