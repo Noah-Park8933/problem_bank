@@ -1,0 +1,1616 @@
+{
+  "module": "MATRIX3",
+  "id_prefix": "MAT3_",
+  "created_at": "2026-01-29 15:02:44",
+  "items": [
+    {
+      "id": "MAT3_187b3498e1",
+      "pid": "MAT3_187b3498e1",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-540)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **aaBBdd** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = aaBBdd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:Ab/aB)\n- P2 = aaBBDd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-540",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "aaBBdd",
+              "prob": "1/4"
+            },
+            {
+              "type": "GT",
+              "key": "AaBbDd",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDd (AB연관상:Ab/aB)",
+            "P2": "aaBBdd (AB연관상:aB/aB)"
+          },
+          {
+            "P1": "AaBbdd (AB연관상:Ab/aB)",
+            "P2": "aaBBDd (AB연관상:aB/aB)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-540)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **aaBBdd** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = aaBBdd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:Ab/aB)\n- P2 = aaBBDd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 1
+    },
+    {
+      "id": "MAT3_7af3285a87",
+      "pid": "MAT3_7af3285a87",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-697)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 표현형 **(A-,B-,D-)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbdd (AB연관상:AB/ab)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D-) : 1/2\n  - (A+,B-,D-) : 1/4\n  - (A-,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:AB/ab)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D-) : 1/2\n  - (A-,B+,D-) : 1/4\n  - (A-,B-,D-) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-697",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 3,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B-,D-)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbdd (AB연관상:AB/ab)",
+            "P2": "Aabbdd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBbdd (AB연관상:AB/ab)",
+            "P2": "aaBbdd (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-697)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 표현형 **(A-,B-,D-)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbdd (AB연관상:AB/ab)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D-) : 1/2\n  - (A+,B-,D-) : 1/4\n  - (A-,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:AB/ab)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D-) : 1/2\n  - (A-,B+,D-) : 1/4\n  - (A-,B-,D-) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 2
+    },
+    {
+      "id": "MAT3_36f39ad6b3",
+      "pid": "MAT3_36f39ad6b3",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-963)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AabbDD** 의 확률 = **1/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 9/16\n  - (A+,B+,D-) : 3/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n\n[후보 2]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 9/16\n  - (A+,B+,D-) : 3/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-963",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AabbDD",
+              "prob": "1/16"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "AaBbDd (AB연관상:AB/ab)"
+          },
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "aaBbDd (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-963)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AabbDD** 의 확률 = **1/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 9/16\n  - (A+,B+,D-) : 3/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n\n[후보 2]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 9/16\n  - (A+,B+,D-) : 3/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 3
+    },
+    {
+      "id": "MAT3_1d1ae6945c",
+      "pid": "MAT3_1d1ae6945c",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-474)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AaBbdd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-474",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 3,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AABbDd",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A-,B+,D+)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDD (AB연관상:AB/ab)",
+            "P2": "AaBbdd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBbDD (AB연관상:Ab/aB)",
+            "P2": "AaBbdd (AB연관상:AB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-474)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AaBbdd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 4
+    },
+    {
+      "id": "MAT3_47053377ad",
+      "pid": "MAT3_47053377ad",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-492)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AABbDD** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AABbDd (AB연관상:AB/Ab)\n  - (A+,B+,D+) : 9/16\n  - (A+,B+,D-) : 3/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n\n[후보 2]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AAbbDd (AB연관상:Ab/Ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AAbbDd (AB연관상:Ab/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-492",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AABbDD",
+              "prob": "1/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "AABbDd (AB연관상:AB/Ab)"
+          },
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "AAbbDd (AB연관상:Ab/Ab)"
+          },
+          {
+            "P1": "AAbbDd (AB연관상:Ab/Ab)",
+            "P2": "AaBbDd (AB연관상:AB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-492)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AABbDD** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AABbDd (AB연관상:AB/Ab)\n  - (A+,B+,D+) : 9/16\n  - (A+,B+,D-) : 3/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n\n[후보 2]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AAbbDd (AB연관상:Ab/Ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AAbbDd (AB연관상:Ab/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 5
+    },
+    {
+      "id": "MAT3_f28a2924fa",
+      "pid": "MAT3_f28a2924fa",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-603)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **9/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 1개\n\n[후보 1]\n- P1 = AabbDd (AB연관상:Ab/ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B-,D+) : 9/16\n  - (A+,B-,D-) : 3/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-603",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A+,B-,D+)",
+              "prob": "9/16"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AabbDd (AB연관상:Ab/ab)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-603)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **9/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 1개\n\n[후보 1]\n- P1 = AabbDd (AB연관상:Ab/ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B-,D+) : 9/16\n  - (A+,B-,D-) : 3/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 6
+    },
+    {
+      "id": "MAT3_3db3954ddf",
+      "pid": "MAT3_3db3954ddf",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-278)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **aaBBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-278",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B+,D+)",
+              "prob": "1/8"
+            },
+            {
+              "type": "GT",
+              "key": "aaBBDd",
+              "prob": "1/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "AaBBdd (AB연관상:AB/aB)"
+          },
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "AaBbdd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBBdd (AB연관상:AB/aB)",
+            "P2": "AaBbDd (AB연관상:Ab/aB)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-278)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **aaBBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 7
+    },
+    {
+      "id": "MAT3_e6c3432531",
+      "pid": "MAT3_e6c3432531",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-241)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **aaBBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-241",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B+,D+)",
+              "prob": "1/8"
+            },
+            {
+              "type": "GT",
+              "key": "aaBBDd",
+              "prob": "1/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "AaBBdd (AB연관상:AB/aB)"
+          },
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "AaBbdd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBBdd (AB연관상:AB/aB)",
+            "P2": "AaBbDd (AB연관상:Ab/aB)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-241)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **aaBBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 8
+    },
+    {
+      "id": "MAT3_430cd43479",
+      "pid": "MAT3_430cd43479",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-250)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AaBbdd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-250",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 3,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AABbDd",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A-,B+,D+)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDD (AB연관상:AB/ab)",
+            "P2": "AaBbdd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBbDD (AB연관상:Ab/aB)",
+            "P2": "AaBbdd (AB연관상:AB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-250)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AaBbdd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 9
+    },
+    {
+      "id": "MAT3_d7ba02b4b4",
+      "pid": "MAT3_d7ba02b4b4",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-238)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 유전자형 **AAbbDD** 의 확률 = **1/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/16\n  - (A+,B+,D-) : 1/16\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-238",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 6,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AAbbDD",
+              "prob": "1/16"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDd (AB연관상:Ab/aB)",
+            "P2": "AaBbDd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBbDd (AB연관상:Ab/aB)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-238)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 유전자형 **AAbbDD** 의 확률 = **1/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/16\n  - (A+,B+,D-) : 1/16\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 10
+    },
+    {
+      "id": "MAT3_3665a62a32",
+      "pid": "MAT3_3665a62a32",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-723)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AabbDD (AB연관상:Ab/ab)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n\n[후보 2]\n- P1 = Aabbdd (AB연관상:Ab/ab)\n- P2 = aaBbDD (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-723",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B-,D+)",
+              "prob": "1/4"
+            },
+            {
+              "type": "GT",
+              "key": "AaBbDd",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B-,D+)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AabbDD (AB연관상:Ab/ab)",
+            "P2": "aaBbdd (AB연관상:aB/ab)"
+          },
+          {
+            "P1": "Aabbdd (AB연관상:Ab/ab)",
+            "P2": "aaBbDD (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-723)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AabbDD (AB연관상:Ab/ab)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n\n[후보 2]\n- P1 = Aabbdd (AB연관상:Ab/ab)\n- P2 = aaBbDD (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 11
+    },
+    {
+      "id": "MAT3_e2204a3fe7",
+      "pid": "MAT3_e2204a3fe7",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-693)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-693",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B+,D+)",
+              "prob": "1/8"
+            },
+            {
+              "type": "GT",
+              "key": "AaBbDd",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "Aabbdd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBBdd (AB연관상:AB/aB)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-693)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 12
+    },
+    {
+      "id": "MAT3_ddc72bed64",
+      "pid": "MAT3_ddc72bed64",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-702)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **Aabbdd** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B+,D-)** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D-)** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbdd** 의 확률 = **1/4**\n- 자손 유전자형 **AabbDd** 의 확률 = **1/4**\n- 부모 P1의 B좌위 유전자형은 **Bb** 이다.\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = aabbdd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = aabbDd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-702",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "Aabbdd",
+              "prob": "1/4"
+            },
+            {
+              "type": "GT",
+              "key": "AaBbDd",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B+,D+)",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B+,D-)",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B-,D+)",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B-,D-)",
+              "prob": "1/4"
+            },
+            {
+              "type": "GT",
+              "key": "AaBbdd",
+              "prob": "1/4"
+            },
+            {
+              "type": "GT",
+              "key": "AabbDd",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": [
+            {
+              "kind": "GB",
+              "who": 1,
+              "value": "Bb"
+            }
+          ]
+        },
+        "solutions": [
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "aabbdd (AB연관상:ab/ab)"
+          },
+          {
+            "P1": "AABbdd (AB연관상:AB/Ab)",
+            "P2": "aabbDd (AB연관상:ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-702)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **Aabbdd** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B+,D-)** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D-)** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbdd** 의 확률 = **1/4**\n- 자손 유전자형 **AabbDd** 의 확률 = **1/4**\n- 부모 P1의 B좌위 유전자형은 **Bb** 이다.\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = aabbdd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = aabbDd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 13
+    },
+    {
+      "id": "MAT3_525fb0738c",
+      "pid": "MAT3_525fb0738c",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-579)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **aaBBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-579",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B+,D+)",
+              "prob": "1/8"
+            },
+            {
+              "type": "GT",
+              "key": "aaBBDd",
+              "prob": "1/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "AaBBdd (AB연관상:AB/aB)"
+          },
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "AaBbdd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBBdd (AB연관상:AB/aB)",
+            "P2": "AaBbDd (AB연관상:Ab/aB)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-579)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **aaBBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBbdd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 14
+    },
+    {
+      "id": "MAT3_48d42cb61a",
+      "pid": "MAT3_48d42cb61a",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-686)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AaBBdd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 1개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-686",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AaBBdd",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B+,D+)",
+              "prob": "3/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "AaBBdd (AB연관상:AB/aB)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-686)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AaBBdd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 1개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = AaBBdd (AB연관상:AB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 15
+    },
+    {
+      "id": "MAT3_287c526bb0",
+      "pid": "MAT3_287c526bb0",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-750)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **aaBBdd** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n\n[후보 2]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-750",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "aaBBdd",
+              "prob": "1/8"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B+,D+)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "aaBbdd (AB연관상:aB/ab)"
+          },
+          {
+            "P1": "AaBBdd (AB연관상:AB/aB)",
+            "P2": "aaBbDd (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-750)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **aaBBdd** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n\n[후보 2]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B+,D-) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 16
+    },
+    {
+      "id": "MAT3_11f0e52f40",
+      "pid": "MAT3_11f0e52f40",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-436)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **aaBbDD** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = aabbDd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = aaBBDd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AabbDd (AB연관상:Ab/ab)\n- P2 = aaBBDd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-436",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "aaBbDD",
+              "prob": "1/8"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B+,D+)",
+              "prob": "3/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "aabbDd (AB연관상:ab/ab)"
+          },
+          {
+            "P1": "AaBbDd (AB연관상:AB/ab)",
+            "P2": "aaBBDd (AB연관상:aB/aB)"
+          },
+          {
+            "P1": "AabbDd (AB연관상:Ab/ab)",
+            "P2": "aaBBDd (AB연관상:aB/aB)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-436)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **aaBbDD** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = aabbDd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = aaBBDd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n\n[후보 3]\n- P1 = AabbDd (AB연관상:Ab/ab)\n- P2 = aaBBDd (AB연관상:aB/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 17
+    },
+    {
+      "id": "MAT3_0f2fa3af88",
+      "pid": "MAT3_0f2fa3af88",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-827)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AAbbdd** 의 확률 = **1/4**\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AAbbdd (AB연관상:Ab/Ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = AAbbDd (AB연관상:Ab/Ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-827",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AAbbdd",
+              "prob": "1/4"
+            },
+            {
+              "type": "GT",
+              "key": "AABbDd",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "AAbbdd (AB연관상:Ab/Ab)"
+          },
+          {
+            "P1": "AABbdd (AB연관상:AB/Ab)",
+            "P2": "AAbbDd (AB연관상:Ab/Ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-827)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AAbbdd** 의 확률 = **1/4**\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AAbbdd (AB연관상:Ab/Ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = AAbbDd (AB연관상:Ab/Ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 18
+    },
+    {
+      "id": "MAT3_13e493697b",
+      "pid": "MAT3_13e493697b",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-916)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/16\n  - (A+,B+,D-) : 1/16\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 3/16\n  - (A+,B+,D-) : 1/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-916",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 6,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A+,B+,D+)",
+              "prob": "3/16"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDd (AB연관상:Ab/aB)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBbDd (AB연관상:Ab/aB)",
+            "P2": "aaBbDd (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-916)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/16\n  - (A+,B+,D-) : 1/16\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 3/16\n  - (A+,B+,D-) : 1/16\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B+,D+) : 3/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 19
+    },
+    {
+      "id": "MAT3_45640e65f7",
+      "pid": "MAT3_45640e65f7",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-772)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **AABBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AABbdd (AB연관상:AB/Ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A+,B-,D+) : 1/8\n  - (A+,B-,D-) : 1/8\n\n[후보 2]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AaBbdd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A+,B-,D+) : 1/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A+,B-,D+) : 1/8\n  - (A+,B-,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-772",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A+,B-,D+)",
+              "prob": "1/8"
+            },
+            {
+              "type": "GT",
+              "key": "AABBDd",
+              "prob": "1/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "AABbdd (AB연관상:AB/Ab)"
+          },
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "AaBbdd (AB연관상:AB/ab)"
+          },
+          {
+            "P1": "AABbdd (AB연관상:AB/Ab)",
+            "P2": "AaBbDd (AB연관상:AB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-772)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **AABBDd** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AABbdd (AB연관상:AB/Ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A+,B-,D+) : 1/8\n  - (A+,B-,D-) : 1/8\n\n[후보 2]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = AaBbdd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A+,B-,D+) : 1/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A+,B-,D+) : 1/8\n  - (A+,B-,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 20
+    },
+    {
+      "id": "MAT3_53fa211ad1",
+      "pid": "MAT3_53fa211ad1",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-303)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 표현형 **(A+,B+,D-)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbdd (AB연관상:Ab/aB)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D-) : 1/2\n  - (A-,B+,D-) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:Ab/aB)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D-) : 1/4\n  - (A-,B+,D-) : 1/2\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-303",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 3,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A+,B+,D-)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbdd (AB연관상:Ab/aB)",
+            "P2": "Aabbdd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBbdd (AB연관상:Ab/aB)",
+            "P2": "aaBbdd (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-303)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 표현형 **(A+,B+,D-)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbdd (AB연관상:Ab/aB)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D-) : 1/2\n  - (A-,B+,D-) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:Ab/aB)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D-) : 1/4\n  - (A-,B+,D-) : 1/2\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 21
+    },
+    {
+      "id": "MAT3_8f9e844ca4",
+      "pid": "MAT3_8f9e844ca4",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-843)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AabbDD (AB연관상:Ab/ab)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n\n[후보 2]\n- P1 = Aabbdd (AB연관상:Ab/ab)\n- P2 = aaBbDD (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-843",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B-,D+)",
+              "prob": "1/4"
+            },
+            {
+              "type": "GT",
+              "key": "AaBbDd",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B-,D+)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AabbDD (AB연관상:Ab/ab)",
+            "P2": "aaBbdd (AB연관상:aB/ab)"
+          },
+          {
+            "P1": "Aabbdd (AB연관상:Ab/ab)",
+            "P2": "aaBbDD (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-843)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **1/4**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A+,B-,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AabbDD (AB연관상:Ab/ab)\n- P2 = aaBbdd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n\n[후보 2]\n- P1 = Aabbdd (AB연관상:Ab/ab)\n- P2 = aaBbDD (AB연관상:aB/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 22
+    },
+    {
+      "id": "MAT3_8dbb557395",
+      "pid": "MAT3_8dbb557395",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-106)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AAbbdd** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-106",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AAbbdd",
+              "prob": "1/8"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B+,D+)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "Aabbdd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AABbdd (AB연관상:AB/Ab)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-106)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AAbbdd** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n\n[후보 2]\n- P1 = AABbdd (AB연관상:AB/Ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B+,D-) : 1/4\n  - (A+,B-,D+) : 1/4\n  - (A+,B-,D-) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 23
+    },
+    {
+      "id": "MAT3_0fa7f7f99f",
+      "pid": "MAT3_0fa7f7f99f",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-224)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-224",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B+,D+)",
+              "prob": "1/8"
+            },
+            {
+              "type": "GT",
+              "key": "AaBbDd",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBBDd (AB연관상:AB/aB)",
+            "P2": "Aabbdd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBBdd (AB연관상:AB/aB)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-224)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 표현형 **(A-,B+,D+)** 의 확률 = **1/8**\n- 자손 유전자형 **AaBbDd** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBBDd (AB연관상:AB/aB)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n\n[후보 2]\n- P1 = AaBBdd (AB연관상:AB/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 3/8\n  - (A-,B+,D+) : 1/8\n  - (A-,B+,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 24
+    },
+    {
+      "id": "MAT3_9ca45b0903",
+      "pid": "MAT3_9ca45b0903",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-711)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 유전자형 **AABbDD** 의 확률 = **1/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-711",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 6,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AABbDD",
+              "prob": "1/16"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDd (AB연관상:AB/ab)",
+            "P2": "AaBbDd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBbDd (AB연관상:AB/ab)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-711)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 유전자형 **AABbDD** 의 확률 = **1/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 25
+    },
+    {
+      "id": "MAT3_26cc804630",
+      "pid": "MAT3_26cc804630",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-099)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDD** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AaBbDD (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AabbDD (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-099",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 3,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AABbDD",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDD (AB연관상:AB/ab)",
+            "P2": "AaBbDD (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBbDD (AB연관상:AB/ab)",
+            "P2": "AabbDD (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-099)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDD** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AaBbDD (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = AabbDD (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 26
+    },
+    {
+      "id": "MAT3_ee1757a3b3",
+      "pid": "MAT3_ee1757a3b3",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-085)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AabbDD** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = aabbDd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 2]\n- P1 = AAbbDd (AB연관상:Ab/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AAbbDd (AB연관상:Ab/Ab)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-085",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 4,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AabbDD",
+              "prob": "1/8"
+            },
+            {
+              "type": "PH",
+              "key": "(A+,B+,D+)",
+              "prob": "3/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AABbDd (AB연관상:AB/Ab)",
+            "P2": "aabbDd (AB연관상:ab/ab)"
+          },
+          {
+            "P1": "AAbbDd (AB연관상:Ab/Ab)",
+            "P2": "AaBbDd (AB연관상:AB/ab)"
+          },
+          {
+            "P1": "AAbbDd (AB연관상:Ab/Ab)",
+            "P2": "aaBbDd (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-085)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 4가지**이다.\n- 자손 유전자형 **AabbDD** 의 확률 = **1/8**\n- 자손 표현형 **(A+,B+,D+)** 의 확률 = **3/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AABbDd (AB연관상:AB/Ab)\n- P2 = aabbDd (AB연관상:ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 2]\n- P1 = AAbbDd (AB연관상:Ab/Ab)\n- P2 = AaBbDd (AB연관상:AB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n\n[후보 3]\n- P1 = AAbbDd (AB연관상:Ab/Ab)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/8\n  - (A+,B-,D-) : 1/8\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 27
+    },
+    {
+      "id": "MAT3_c6053feeb8",
+      "pid": "MAT3_c6053feeb8",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-459)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **3/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-459",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 6,
+          "child_conditions": [
+            {
+              "type": "PH",
+              "key": "(A-,B-,D+)",
+              "prob": "3/16"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDd (AB연관상:AB/ab)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBbDd (AB연관상:AB/ab)",
+            "P2": "aaBbDd (AB연관상:aB/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-459)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 6가지**이다.\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **3/16**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A+,B-,D+) : 3/16\n  - (A+,B-,D-) : 1/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n\n[후보 2]\n- P1 = AaBbDd (AB연관상:AB/ab)\n- P2 = aaBbDd (AB연관상:aB/ab)\n  - (A+,B+,D+) : 3/8\n  - (A+,B+,D-) : 1/8\n  - (A-,B+,D+) : 3/16\n  - (A-,B+,D-) : 1/16\n  - (A-,B-,D+) : 3/16\n  - (A-,B-,D-) : 1/16\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 28
+    },
+    {
+      "id": "MAT3_2201d526ff",
+      "pid": "MAT3_2201d526ff",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-309)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AAbbDD** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/2\n  - (A-,B+,D+) : 1/4\n\n[후보 3]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AabbDD (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/2\n  - (A-,B+,D+) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-309",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 3,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AAbbDD",
+              "prob": "1/8"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDD (AB연관상:Ab/aB)",
+            "P2": "AaBbDd (AB연관상:Ab/aB)"
+          },
+          {
+            "P1": "AaBbDD (AB연관상:Ab/aB)",
+            "P2": "AabbDd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBbDd (AB연관상:Ab/aB)",
+            "P2": "AabbDD (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-309)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AAbbDD** 의 확률 = **1/8**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 3개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AaBbDd (AB연관상:Ab/aB)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B+,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbDD (AB연관상:Ab/aB)\n- P2 = AabbDd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/2\n  - (A-,B+,D+) : 1/4\n\n[후보 3]\n- P1 = AaBbDd (AB연관상:Ab/aB)\n- P2 = AabbDD (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/4\n  - (A+,B-,D+) : 1/2\n  - (A-,B+,D+) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 29
+    },
+    {
+      "id": "MAT3_7e5dac1561",
+      "pid": "MAT3_7e5dac1561",
+      "module": "MATRIX3",
+      "id_prefix": "MAT3_",
+      "difficulty": 2,
+      "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-894)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+      "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+      "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:AB/ab)\n- P2 = AabbDD (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+      "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n",
+      "payload": {
+        "module": "MATRIX3",
+        "id_prefix": "MAT3_",
+        "problem_code": "M3-AB-894",
+        "pattern": "L2I1",
+        "linked_genes": [
+          "A",
+          "B"
+        ],
+        "independent_gene": "D",
+        "constraints": {
+          "phenotype_count": 3,
+          "child_conditions": [
+            {
+              "type": "GT",
+              "key": "AABbDd",
+              "prob": "1/4"
+            },
+            {
+              "type": "PH",
+              "key": "(A-,B-,D+)",
+              "prob": "1/4"
+            }
+          ],
+          "parent_conditions": []
+        },
+        "solutions": [
+          {
+            "P1": "AaBbDD (AB연관상:AB/ab)",
+            "P2": "Aabbdd (AB연관상:Ab/ab)"
+          },
+          {
+            "P1": "AaBbdd (AB연관상:AB/ab)",
+            "P2": "AabbDD (AB연관상:Ab/ab)"
+          }
+        ],
+        "problem_text_md": "문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) (M3-AB-894)\n\n(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다.\n\n- 부모 P1, P2는 미지수이다.\n- 자손의 **표현형 종류는 3가지**이다.\n- 자손 유전자형 **AABbDd** 의 확률 = **1/4**\n- 자손 표현형 **(A-,B-,D+)** 의 확률 = **1/4**\n\n※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n- A 유전자에 'A'가 1개 이상 있으면(Aa, AA) 발현(A+), 없으면(aa) 비발현(A-)\n- B 유전자에 'B'가 1개 이상 있으면(Bb, BB) 발현(B+), 없으면(bb) 비발현(B-)\n- D 유전자에 'D'가 1개 이상 있으면(Dd, DD) 발현(D+), 없으면(dd) 비발현(D-)\n따라서 표현형은 (A+/A-, B+/B-, D+/D-) 형태로 나타난다.\n조건을 만족하는 모든 (P1,P2) 조합을 구하시오.",
+        "ask_line_md": "가능한 모든 P1, P2 조합을 구하고, 자손 표현형의 종류와 각 확률을 구하시오.",
+        "answer_text_md": "총 정답 후보: 2개\n\n[후보 1]\n- P1 = AaBbDD (AB연관상:AB/ab)\n- P2 = Aabbdd (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n\n[후보 2]\n- P1 = AaBbdd (AB연관상:AB/ab)\n- P2 = AabbDD (AB연관상:Ab/ab)\n  - (A+,B+,D+) : 1/2\n  - (A+,B-,D+) : 1/4\n  - (A-,B-,D+) : 1/4\n",
+        "solution_md": "### 해설(자동)\n- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
+      },
+      "_qnum": 30
+    }
+  ]
+}

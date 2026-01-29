@@ -1,0 +1,1597 @@
+{
+  "module": "PDED1",
+  "id_prefix": "PDED1_",
+  "created_at": "2026-01-29 15:02:47",
+  "items": [
+    {
+      "id": "PDED1_5d019acbff",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-01",
+        "genes": {
+          "X": "Y",
+          "Y": "F",
+          "Z": "X"
+        },
+        "linked_pair": [
+          "Y",
+          "F"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "YyFfXX",
+          "phase": "YF/yf"
+        },
+        "P2": {
+          "genotype": "YyFfXx",
+          "phase": "Yf/yF"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "yyFfXx",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "YyFfXx",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-01)\n(Y/y), (F/f), (X/x) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (Y/y), (F/f)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 YFX 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **yyFfXx** 일 확률은 **1/8** 이고, **YyFfXx** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = YyFfXX  (연관상: YF/yf)\n- P2 = YyFfXx  (연관상: Yf/yF)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 YFX 생식세포가 가능하려면, 연관부에 YF 하플로타입이 존재해야 하므로 P1은 결합상(YF/yf)이어야 한다.\n2) 자손에서 YyFfXx(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Yf/yF)이어야 한다.\n3) yyFfXx(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 XX, P2는 Xx로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 1
+      }
+    },
+    {
+      "id": "PDED1_3f19f624f8",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-02",
+        "genes": {
+          "X": "P",
+          "Y": "G",
+          "Z": "Z"
+        },
+        "linked_pair": [
+          "P",
+          "G"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "PpGgZZ",
+          "phase": "PG/pg"
+        },
+        "P2": {
+          "genotype": "PpGgZz",
+          "phase": "Pg/pG"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ppGgZz",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "PpGgZz",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-02)\n(P/p), (G/g), (Z/z) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (P/p), (G/g)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 PGZ 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ppGgZz** 일 확률은 **1/8** 이고, **PpGgZz** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = PpGgZZ  (연관상: PG/pg)\n- P2 = PpGgZz  (연관상: Pg/pG)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 PGZ 생식세포가 가능하려면, 연관부에 PG 하플로타입이 존재해야 하므로 P1은 결합상(PG/pg)이어야 한다.\n2) 자손에서 PpGgZz(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Pg/pG)이어야 한다.\n3) ppGgZz(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 ZZ, P2는 Zz로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 2
+      }
+    },
+    {
+      "id": "PDED1_7b558b9a76",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-03",
+        "genes": {
+          "X": "Z",
+          "Y": "Y",
+          "Z": "W"
+        },
+        "linked_pair": [
+          "Z",
+          "Y"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "ZzYyWW",
+          "phase": "ZY/zy"
+        },
+        "P2": {
+          "genotype": "ZzYyWw",
+          "phase": "Zy/zY"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "zzYyWw",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "ZzYyWw",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-03)\n(Z/z), (Y/y), (W/w) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (Z/z), (Y/y)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 ZYW 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **zzYyWw** 일 확률은 **1/8** 이고, **ZzYyWw** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = ZzYyWW  (연관상: ZY/zy)\n- P2 = ZzYyWw  (연관상: Zy/zY)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 ZYW 생식세포가 가능하려면, 연관부에 ZY 하플로타입이 존재해야 하므로 P1은 결합상(ZY/zy)이어야 한다.\n2) 자손에서 ZzYyWw(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Zy/zY)이어야 한다.\n3) zzYyWw(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 WW, P2는 Ww로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 3
+      }
+    },
+    {
+      "id": "PDED1_cde3c03d52",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-04",
+        "genes": {
+          "X": "G",
+          "Y": "S",
+          "Z": "Z"
+        },
+        "linked_pair": [
+          "G",
+          "S"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "GgSsZZ",
+          "phase": "GS/gs"
+        },
+        "P2": {
+          "genotype": "GgSsZz",
+          "phase": "Gs/gS"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ggSsZz",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "GgSsZz",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-04)\n(G/g), (S/s), (Z/z) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (G/g), (S/s)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 GSZ 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ggSsZz** 일 확률은 **1/8** 이고, **GgSsZz** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = GgSsZZ  (연관상: GS/gs)\n- P2 = GgSsZz  (연관상: Gs/gS)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 GSZ 생식세포가 가능하려면, 연관부에 GS 하플로타입이 존재해야 하므로 P1은 결합상(GS/gs)이어야 한다.\n2) 자손에서 GgSsZz(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Gs/gS)이어야 한다.\n3) ggSsZz(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 ZZ, P2는 Zz로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 4
+      }
+    },
+    {
+      "id": "PDED1_3236863f61",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-05",
+        "genes": {
+          "X": "K",
+          "Y": "T",
+          "Z": "V"
+        },
+        "linked_pair": [
+          "K",
+          "T"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "KkTtVV",
+          "phase": "KT/kt"
+        },
+        "P2": {
+          "genotype": "KkTtVv",
+          "phase": "Kt/kT"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "kkTtVv",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "KkTtVv",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-05)\n(K/k), (T/t), (V/v) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (K/k), (T/t)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 KTV 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **kkTtVv** 일 확률은 **1/8** 이고, **KkTtVv** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = KkTtVV  (연관상: KT/kt)\n- P2 = KkTtVv  (연관상: Kt/kT)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 KTV 생식세포가 가능하려면, 연관부에 KT 하플로타입이 존재해야 하므로 P1은 결합상(KT/kt)이어야 한다.\n2) 자손에서 KkTtVv(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Kt/kT)이어야 한다.\n3) kkTtVv(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 VV, P2는 Vv로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 5
+      }
+    },
+    {
+      "id": "PDED1_1845925a0b",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-06",
+        "genes": {
+          "X": "N",
+          "Y": "R",
+          "Z": "U"
+        },
+        "linked_pair": [
+          "N",
+          "R"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "NnRrUU",
+          "phase": "NR/nr"
+        },
+        "P2": {
+          "genotype": "NnRrUu",
+          "phase": "Nr/nR"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "nnRrUu",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "NnRrUu",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-06)\n(N/n), (R/r), (U/u) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (N/n), (R/r)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 NRU 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **nnRrUu** 일 확률은 **1/8** 이고, **NnRrUu** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = NnRrUU  (연관상: NR/nr)\n- P2 = NnRrUu  (연관상: Nr/nR)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 NRU 생식세포가 가능하려면, 연관부에 NR 하플로타입이 존재해야 하므로 P1은 결합상(NR/nr)이어야 한다.\n2) 자손에서 NnRrUu(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Nr/nR)이어야 한다.\n3) nnRrUu(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 UU, P2는 Uu로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 6
+      }
+    },
+    {
+      "id": "PDED1_39498d347a",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-07",
+        "genes": {
+          "X": "V",
+          "Y": "K",
+          "Z": "P"
+        },
+        "linked_pair": [
+          "V",
+          "K"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "VvKkPP",
+          "phase": "VK/vk"
+        },
+        "P2": {
+          "genotype": "VvKkPp",
+          "phase": "Vk/vK"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "vvKkPp",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "VvKkPp",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-07)\n(V/v), (K/k), (P/p) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (V/v), (K/k)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 VKP 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **vvKkPp** 일 확률은 **1/8** 이고, **VvKkPp** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = VvKkPP  (연관상: VK/vk)\n- P2 = VvKkPp  (연관상: Vk/vK)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 VKP 생식세포가 가능하려면, 연관부에 VK 하플로타입이 존재해야 하므로 P1은 결합상(VK/vk)이어야 한다.\n2) 자손에서 VvKkPp(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Vk/vK)이어야 한다.\n3) vvKkPp(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 PP, P2는 Pp로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 7
+      }
+    },
+    {
+      "id": "PDED1_ca106eb822",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-08",
+        "genes": {
+          "X": "M",
+          "Y": "L",
+          "Z": "J"
+        },
+        "linked_pair": [
+          "M",
+          "L"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "MmLlJJ",
+          "phase": "ML/ml"
+        },
+        "P2": {
+          "genotype": "MmLlJj",
+          "phase": "Ml/mL"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "mmLlJj",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "MmLlJj",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-08)\n(M/m), (L/l), (J/j) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (M/m), (L/l)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 MLJ 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **mmLlJj** 일 확률은 **1/8** 이고, **MmLlJj** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = MmLlJJ  (연관상: ML/ml)\n- P2 = MmLlJj  (연관상: Ml/mL)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 MLJ 생식세포가 가능하려면, 연관부에 ML 하플로타입이 존재해야 하므로 P1은 결합상(ML/ml)이어야 한다.\n2) 자손에서 MmLlJj(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Ml/mL)이어야 한다.\n3) mmLlJj(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 JJ, P2는 Jj로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 8
+      }
+    },
+    {
+      "id": "PDED1_97e7f81bef",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-09",
+        "genes": {
+          "X": "K",
+          "Y": "V",
+          "Z": "P"
+        },
+        "linked_pair": [
+          "K",
+          "V"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "KkVvPP",
+          "phase": "KV/kv"
+        },
+        "P2": {
+          "genotype": "KkVvPp",
+          "phase": "Kv/kV"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "kkVvPp",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "KkVvPp",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-09)\n(K/k), (V/v), (P/p) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (K/k), (V/v)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 KVP 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **kkVvPp** 일 확률은 **1/8** 이고, **KkVvPp** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = KkVvPP  (연관상: KV/kv)\n- P2 = KkVvPp  (연관상: Kv/kV)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 KVP 생식세포가 가능하려면, 연관부에 KV 하플로타입이 존재해야 하므로 P1은 결합상(KV/kv)이어야 한다.\n2) 자손에서 KkVvPp(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Kv/kV)이어야 한다.\n3) kkVvPp(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 PP, P2는 Pp로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 9
+      }
+    },
+    {
+      "id": "PDED1_6e80a94104",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-10",
+        "genes": {
+          "X": "K",
+          "Y": "E",
+          "Z": "Z"
+        },
+        "linked_pair": [
+          "K",
+          "E"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "KkEeZZ",
+          "phase": "KE/ke"
+        },
+        "P2": {
+          "genotype": "KkEeZz",
+          "phase": "Ke/kE"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "kkEeZz",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "KkEeZz",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-10)\n(K/k), (E/e), (Z/z) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (K/k), (E/e)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 KEZ 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **kkEeZz** 일 확률은 **1/8** 이고, **KkEeZz** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = KkEeZZ  (연관상: KE/ke)\n- P2 = KkEeZz  (연관상: Ke/kE)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 KEZ 생식세포가 가능하려면, 연관부에 KE 하플로타입이 존재해야 하므로 P1은 결합상(KE/ke)이어야 한다.\n2) 자손에서 KkEeZz(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Ke/kE)이어야 한다.\n3) kkEeZz(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 ZZ, P2는 Zz로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 10
+      }
+    },
+    {
+      "id": "PDED1_8a315c7ff1",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-11",
+        "genes": {
+          "X": "S",
+          "Y": "Q",
+          "Z": "G"
+        },
+        "linked_pair": [
+          "S",
+          "Q"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "SsQqGG",
+          "phase": "SQ/sq"
+        },
+        "P2": {
+          "genotype": "SsQqGg",
+          "phase": "Sq/sQ"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ssQqGg",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "SsQqGg",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-11)\n(S/s), (Q/q), (G/g) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (S/s), (Q/q)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 SQG 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ssQqGg** 일 확률은 **1/8** 이고, **SsQqGg** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = SsQqGG  (연관상: SQ/sq)\n- P2 = SsQqGg  (연관상: Sq/sQ)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 SQG 생식세포가 가능하려면, 연관부에 SQ 하플로타입이 존재해야 하므로 P1은 결합상(SQ/sq)이어야 한다.\n2) 자손에서 SsQqGg(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Sq/sQ)이어야 한다.\n3) ssQqGg(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 GG, P2는 Gg로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 11
+      }
+    },
+    {
+      "id": "PDED1_3e2a88f9da",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-12",
+        "genes": {
+          "X": "Y",
+          "Y": "U",
+          "Z": "Q"
+        },
+        "linked_pair": [
+          "Y",
+          "U"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "YyUuQQ",
+          "phase": "YU/yu"
+        },
+        "P2": {
+          "genotype": "YyUuQq",
+          "phase": "Yu/yU"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "yyUuQq",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "YyUuQq",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-12)\n(Y/y), (U/u), (Q/q) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (Y/y), (U/u)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 YUQ 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **yyUuQq** 일 확률은 **1/8** 이고, **YyUuQq** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = YyUuQQ  (연관상: YU/yu)\n- P2 = YyUuQq  (연관상: Yu/yU)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 YUQ 생식세포가 가능하려면, 연관부에 YU 하플로타입이 존재해야 하므로 P1은 결합상(YU/yu)이어야 한다.\n2) 자손에서 YyUuQq(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Yu/yU)이어야 한다.\n3) yyUuQq(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 QQ, P2는 Qq로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 12
+      }
+    },
+    {
+      "id": "PDED1_fbbb3cefa7",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-13",
+        "genes": {
+          "X": "P",
+          "Y": "J",
+          "Z": "W"
+        },
+        "linked_pair": [
+          "P",
+          "J"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "PpJjWW",
+          "phase": "PJ/pj"
+        },
+        "P2": {
+          "genotype": "PpJjWw",
+          "phase": "Pj/pJ"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ppJjWw",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "PpJjWw",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-13)\n(P/p), (J/j), (W/w) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (P/p), (J/j)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 PJW 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ppJjWw** 일 확률은 **1/8** 이고, **PpJjWw** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = PpJjWW  (연관상: PJ/pj)\n- P2 = PpJjWw  (연관상: Pj/pJ)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 PJW 생식세포가 가능하려면, 연관부에 PJ 하플로타입이 존재해야 하므로 P1은 결합상(PJ/pj)이어야 한다.\n2) 자손에서 PpJjWw(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Pj/pJ)이어야 한다.\n3) ppJjWw(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 WW, P2는 Ww로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 13
+      }
+    },
+    {
+      "id": "PDED1_ccd3715115",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-14",
+        "genes": {
+          "X": "R",
+          "Y": "S",
+          "Z": "V"
+        },
+        "linked_pair": [
+          "R",
+          "S"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "RrSsVV",
+          "phase": "RS/rs"
+        },
+        "P2": {
+          "genotype": "RrSsVv",
+          "phase": "Rs/rS"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "rrSsVv",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "RrSsVv",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-14)\n(R/r), (S/s), (V/v) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (R/r), (S/s)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 RSV 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **rrSsVv** 일 확률은 **1/8** 이고, **RrSsVv** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = RrSsVV  (연관상: RS/rs)\n- P2 = RrSsVv  (연관상: Rs/rS)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 RSV 생식세포가 가능하려면, 연관부에 RS 하플로타입이 존재해야 하므로 P1은 결합상(RS/rs)이어야 한다.\n2) 자손에서 RrSsVv(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Rs/rS)이어야 한다.\n3) rrSsVv(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 VV, P2는 Vv로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 14
+      }
+    },
+    {
+      "id": "PDED1_b330f897e3",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-15",
+        "genes": {
+          "X": "P",
+          "Y": "R",
+          "Z": "N"
+        },
+        "linked_pair": [
+          "P",
+          "R"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "PpRrNN",
+          "phase": "PR/pr"
+        },
+        "P2": {
+          "genotype": "PpRrNn",
+          "phase": "Pr/pR"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ppRrNn",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "PpRrNn",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-15)\n(P/p), (R/r), (N/n) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (P/p), (R/r)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 PRN 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ppRrNn** 일 확률은 **1/8** 이고, **PpRrNn** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = PpRrNN  (연관상: PR/pr)\n- P2 = PpRrNn  (연관상: Pr/pR)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 PRN 생식세포가 가능하려면, 연관부에 PR 하플로타입이 존재해야 하므로 P1은 결합상(PR/pr)이어야 한다.\n2) 자손에서 PpRrNn(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Pr/pR)이어야 한다.\n3) ppRrNn(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 NN, P2는 Nn로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 15
+      }
+    },
+    {
+      "id": "PDED1_2c0715ed21",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-16",
+        "genes": {
+          "X": "S",
+          "Y": "J",
+          "Z": "N"
+        },
+        "linked_pair": [
+          "S",
+          "J"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "SsJjNN",
+          "phase": "SJ/sj"
+        },
+        "P2": {
+          "genotype": "SsJjNn",
+          "phase": "Sj/sJ"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ssJjNn",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "SsJjNn",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-16)\n(S/s), (J/j), (N/n) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (S/s), (J/j)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 SJN 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ssJjNn** 일 확률은 **1/8** 이고, **SsJjNn** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = SsJjNN  (연관상: SJ/sj)\n- P2 = SsJjNn  (연관상: Sj/sJ)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 SJN 생식세포가 가능하려면, 연관부에 SJ 하플로타입이 존재해야 하므로 P1은 결합상(SJ/sj)이어야 한다.\n2) 자손에서 SsJjNn(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Sj/sJ)이어야 한다.\n3) ssJjNn(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 NN, P2는 Nn로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 16
+      }
+    },
+    {
+      "id": "PDED1_3fbcbb6925",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-17",
+        "genes": {
+          "X": "J",
+          "Y": "Y",
+          "Z": "R"
+        },
+        "linked_pair": [
+          "J",
+          "Y"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "JjYyRR",
+          "phase": "JY/jy"
+        },
+        "P2": {
+          "genotype": "JjYyRr",
+          "phase": "Jy/jY"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "jjYyRr",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "JjYyRr",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-17)\n(J/j), (Y/y), (R/r) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (J/j), (Y/y)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 JYR 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **jjYyRr** 일 확률은 **1/8** 이고, **JjYyRr** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = JjYyRR  (연관상: JY/jy)\n- P2 = JjYyRr  (연관상: Jy/jY)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 JYR 생식세포가 가능하려면, 연관부에 JY 하플로타입이 존재해야 하므로 P1은 결합상(JY/jy)이어야 한다.\n2) 자손에서 JjYyRr(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Jy/jY)이어야 한다.\n3) jjYyRr(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 RR, P2는 Rr로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 17
+      }
+    },
+    {
+      "id": "PDED1_5aa8656fea",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-18",
+        "genes": {
+          "X": "J",
+          "Y": "K",
+          "Z": "L"
+        },
+        "linked_pair": [
+          "J",
+          "K"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "JjKkLL",
+          "phase": "JK/jk"
+        },
+        "P2": {
+          "genotype": "JjKkLl",
+          "phase": "Jk/jK"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "jjKkLl",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "JjKkLl",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-18)\n(J/j), (K/k), (L/l) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (J/j), (K/k)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 JKL 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **jjKkLl** 일 확률은 **1/8** 이고, **JjKkLl** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = JjKkLL  (연관상: JK/jk)\n- P2 = JjKkLl  (연관상: Jk/jK)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 JKL 생식세포가 가능하려면, 연관부에 JK 하플로타입이 존재해야 하므로 P1은 결합상(JK/jk)이어야 한다.\n2) 자손에서 JjKkLl(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Jk/jK)이어야 한다.\n3) jjKkLl(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 LL, P2는 Ll로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 18
+      }
+    },
+    {
+      "id": "PDED1_eadd27f075",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-19",
+        "genes": {
+          "X": "S",
+          "Y": "T",
+          "Z": "E"
+        },
+        "linked_pair": [
+          "S",
+          "T"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "SsTtEE",
+          "phase": "ST/st"
+        },
+        "P2": {
+          "genotype": "SsTtEe",
+          "phase": "St/sT"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ssTtEe",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "SsTtEe",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-19)\n(S/s), (T/t), (E/e) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (S/s), (T/t)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 STE 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ssTtEe** 일 확률은 **1/8** 이고, **SsTtEe** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = SsTtEE  (연관상: ST/st)\n- P2 = SsTtEe  (연관상: St/sT)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 STE 생식세포가 가능하려면, 연관부에 ST 하플로타입이 존재해야 하므로 P1은 결합상(ST/st)이어야 한다.\n2) 자손에서 SsTtEe(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 St/sT)이어야 한다.\n3) ssTtEe(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 EE, P2는 Ee로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 19
+      }
+    },
+    {
+      "id": "PDED1_a3acfd7529",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-20",
+        "genes": {
+          "X": "H",
+          "Y": "P",
+          "Z": "T"
+        },
+        "linked_pair": [
+          "H",
+          "P"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "HhPpTT",
+          "phase": "HP/hp"
+        },
+        "P2": {
+          "genotype": "HhPpTt",
+          "phase": "Hp/hP"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "hhPpTt",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "HhPpTt",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-20)\n(H/h), (P/p), (T/t) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (H/h), (P/p)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 HPT 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **hhPpTt** 일 확률은 **1/8** 이고, **HhPpTt** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = HhPpTT  (연관상: HP/hp)\n- P2 = HhPpTt  (연관상: Hp/hP)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 HPT 생식세포가 가능하려면, 연관부에 HP 하플로타입이 존재해야 하므로 P1은 결합상(HP/hp)이어야 한다.\n2) 자손에서 HhPpTt(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Hp/hP)이어야 한다.\n3) hhPpTt(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 TT, P2는 Tt로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 20
+      }
+    },
+    {
+      "id": "PDED1_fc3be4885f",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-21",
+        "genes": {
+          "X": "M",
+          "Y": "N",
+          "Z": "Y"
+        },
+        "linked_pair": [
+          "M",
+          "N"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "MmNnYY",
+          "phase": "MN/mn"
+        },
+        "P2": {
+          "genotype": "MmNnYy",
+          "phase": "Mn/mN"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "mmNnYy",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "MmNnYy",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-21)\n(M/m), (N/n), (Y/y) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (M/m), (N/n)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 MNY 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **mmNnYy** 일 확률은 **1/8** 이고, **MmNnYy** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = MmNnYY  (연관상: MN/mn)\n- P2 = MmNnYy  (연관상: Mn/mN)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 MNY 생식세포가 가능하려면, 연관부에 MN 하플로타입이 존재해야 하므로 P1은 결합상(MN/mn)이어야 한다.\n2) 자손에서 MmNnYy(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Mn/mN)이어야 한다.\n3) mmNnYy(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 YY, P2는 Yy로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 21
+      }
+    },
+    {
+      "id": "PDED1_554b31e956",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-22",
+        "genes": {
+          "X": "T",
+          "Y": "Z",
+          "Z": "H"
+        },
+        "linked_pair": [
+          "T",
+          "Z"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "TtZzHH",
+          "phase": "TZ/tz"
+        },
+        "P2": {
+          "genotype": "TtZzHh",
+          "phase": "Tz/tZ"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ttZzHh",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "TtZzHh",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-22)\n(T/t), (Z/z), (H/h) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (T/t), (Z/z)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 TZH 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ttZzHh** 일 확률은 **1/8** 이고, **TtZzHh** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = TtZzHH  (연관상: TZ/tz)\n- P2 = TtZzHh  (연관상: Tz/tZ)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 TZH 생식세포가 가능하려면, 연관부에 TZ 하플로타입이 존재해야 하므로 P1은 결합상(TZ/tz)이어야 한다.\n2) 자손에서 TtZzHh(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Tz/tZ)이어야 한다.\n3) ttZzHh(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 HH, P2는 Hh로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 22
+      }
+    },
+    {
+      "id": "PDED1_a5ee0fc7e9",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-23",
+        "genes": {
+          "X": "Y",
+          "Y": "K",
+          "Z": "N"
+        },
+        "linked_pair": [
+          "Y",
+          "K"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "YyKkNN",
+          "phase": "YK/yk"
+        },
+        "P2": {
+          "genotype": "YyKkNn",
+          "phase": "Yk/yK"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "yyKkNn",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "YyKkNn",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-23)\n(Y/y), (K/k), (N/n) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (Y/y), (K/k)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 YKN 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **yyKkNn** 일 확률은 **1/8** 이고, **YyKkNn** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = YyKkNN  (연관상: YK/yk)\n- P2 = YyKkNn  (연관상: Yk/yK)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 YKN 생식세포가 가능하려면, 연관부에 YK 하플로타입이 존재해야 하므로 P1은 결합상(YK/yk)이어야 한다.\n2) 자손에서 YyKkNn(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Yk/yK)이어야 한다.\n3) yyKkNn(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 NN, P2는 Nn로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 23
+      }
+    },
+    {
+      "id": "PDED1_44b970eccd",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-24",
+        "genes": {
+          "X": "V",
+          "Y": "P",
+          "Z": "X"
+        },
+        "linked_pair": [
+          "V",
+          "P"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "VvPpXX",
+          "phase": "VP/vp"
+        },
+        "P2": {
+          "genotype": "VvPpXx",
+          "phase": "Vp/vP"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "vvPpXx",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "VvPpXx",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-24)\n(V/v), (P/p), (X/x) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (V/v), (P/p)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 VPX 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **vvPpXx** 일 확률은 **1/8** 이고, **VvPpXx** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = VvPpXX  (연관상: VP/vp)\n- P2 = VvPpXx  (연관상: Vp/vP)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 VPX 생식세포가 가능하려면, 연관부에 VP 하플로타입이 존재해야 하므로 P1은 결합상(VP/vp)이어야 한다.\n2) 자손에서 VvPpXx(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Vp/vP)이어야 한다.\n3) vvPpXx(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 XX, P2는 Xx로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 24
+      }
+    },
+    {
+      "id": "PDED1_d955b040c8",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-25",
+        "genes": {
+          "X": "H",
+          "Y": "N",
+          "Z": "P"
+        },
+        "linked_pair": [
+          "H",
+          "N"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "HhNnPP",
+          "phase": "HN/hn"
+        },
+        "P2": {
+          "genotype": "HhNnPp",
+          "phase": "Hn/hN"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "hhNnPp",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "HhNnPp",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-25)\n(H/h), (N/n), (P/p) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (H/h), (N/n)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 HNP 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **hhNnPp** 일 확률은 **1/8** 이고, **HhNnPp** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = HhNnPP  (연관상: HN/hn)\n- P2 = HhNnPp  (연관상: Hn/hN)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 HNP 생식세포가 가능하려면, 연관부에 HN 하플로타입이 존재해야 하므로 P1은 결합상(HN/hn)이어야 한다.\n2) 자손에서 HhNnPp(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Hn/hN)이어야 한다.\n3) hhNnPp(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 PP, P2는 Pp로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 25
+      }
+    },
+    {
+      "id": "PDED1_aa6ac2bea8",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-26",
+        "genes": {
+          "X": "J",
+          "Y": "G",
+          "Z": "T"
+        },
+        "linked_pair": [
+          "J",
+          "G"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "JjGgTT",
+          "phase": "JG/jg"
+        },
+        "P2": {
+          "genotype": "JjGgTt",
+          "phase": "Jg/jG"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "jjGgTt",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "JjGgTt",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-26)\n(J/j), (G/g), (T/t) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (J/j), (G/g)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 JGT 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **jjGgTt** 일 확률은 **1/8** 이고, **JjGgTt** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = JjGgTT  (연관상: JG/jg)\n- P2 = JjGgTt  (연관상: Jg/jG)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 JGT 생식세포가 가능하려면, 연관부에 JG 하플로타입이 존재해야 하므로 P1은 결합상(JG/jg)이어야 한다.\n2) 자손에서 JjGgTt(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Jg/jG)이어야 한다.\n3) jjGgTt(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 TT, P2는 Tt로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 26
+      }
+    },
+    {
+      "id": "PDED1_0fd1a2864a",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-27",
+        "genes": {
+          "X": "L",
+          "Y": "E",
+          "Z": "Q"
+        },
+        "linked_pair": [
+          "L",
+          "E"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "LlEeQQ",
+          "phase": "LE/le"
+        },
+        "P2": {
+          "genotype": "LlEeQq",
+          "phase": "Le/lE"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "llEeQq",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "LlEeQq",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-27)\n(L/l), (E/e), (Q/q) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (L/l), (E/e)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 LEQ 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **llEeQq** 일 확률은 **1/8** 이고, **LlEeQq** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = LlEeQQ  (연관상: LE/le)\n- P2 = LlEeQq  (연관상: Le/lE)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 LEQ 생식세포가 가능하려면, 연관부에 LE 하플로타입이 존재해야 하므로 P1은 결합상(LE/le)이어야 한다.\n2) 자손에서 LlEeQq(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Le/lE)이어야 한다.\n3) llEeQq(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 QQ, P2는 Qq로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 27
+      }
+    },
+    {
+      "id": "PDED1_25961dba70",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-28",
+        "genes": {
+          "X": "S",
+          "Y": "F",
+          "Z": "V"
+        },
+        "linked_pair": [
+          "S",
+          "F"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "SsFfVV",
+          "phase": "SF/sf"
+        },
+        "P2": {
+          "genotype": "SsFfVv",
+          "phase": "Sf/sF"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "ssFfVv",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "SsFfVv",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-28)\n(S/s), (F/f), (V/v) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (S/s), (F/f)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 SFV 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **ssFfVv** 일 확률은 **1/8** 이고, **SsFfVv** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = SsFfVV  (연관상: SF/sf)\n- P2 = SsFfVv  (연관상: Sf/sF)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 SFV 생식세포가 가능하려면, 연관부에 SF 하플로타입이 존재해야 하므로 P1은 결합상(SF/sf)이어야 한다.\n2) 자손에서 SsFfVv(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Sf/sF)이어야 한다.\n3) ssFfVv(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 VV, P2는 Vv로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 28
+      }
+    },
+    {
+      "id": "PDED1_85ff4368fe",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-29",
+        "genes": {
+          "X": "X",
+          "Y": "L",
+          "Z": "J"
+        },
+        "linked_pair": [
+          "X",
+          "L"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "XxLlJJ",
+          "phase": "XL/xl"
+        },
+        "P2": {
+          "genotype": "XxLlJj",
+          "phase": "Xl/xL"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "xxLlJj",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "XxLlJj",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-29)\n(X/x), (L/l), (J/j) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (X/x), (L/l)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 XLJ 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **xxLlJj** 일 확률은 **1/8** 이고, **XxLlJj** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = XxLlJJ  (연관상: XL/xl)\n- P2 = XxLlJj  (연관상: Xl/xL)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 XLJ 생식세포가 가능하려면, 연관부에 XL 하플로타입이 존재해야 하므로 P1은 결합상(XL/xl)이어야 한다.\n2) 자손에서 XxLlJj(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Xl/xL)이어야 한다.\n3) xxLlJj(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 JJ, P2는 Jj로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 29
+      }
+    },
+    {
+      "id": "PDED1_d22563ea7c",
+      "module": "PDED1",
+      "id_prefix": "PDED1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_code": "PDED1-30",
+        "genes": {
+          "X": "N",
+          "Y": "Z",
+          "Z": "F"
+        },
+        "linked_pair": [
+          "N",
+          "Z"
+        ],
+        "no_crossover": true,
+        "P1": {
+          "genotype": "NnZzFF",
+          "phase": "NZ/nz"
+        },
+        "P2": {
+          "genotype": "NnZzFf",
+          "phase": "Nz/nZ"
+        },
+        "targets": {
+          "p_is_1_8": {
+            "genotype": "nnZzFf",
+            "prob": "1/8"
+          },
+          "p_is_0": {
+            "genotype": "NnZzFf",
+            "prob": "0"
+          }
+        },
+        "offspring_phenotypes": {
+          "2": "1/4",
+          "3": "1/4",
+          "4": "1/4",
+          "5": "1/4"
+        },
+        "problem_text_md": "문제 제목 : Polygenic Deduction 1 (PDED1-30)\n(N/n), (Z/z), (F/f) 3set 유전자에 의해 결정되는 다인자유전을 가정하자.\n단, (N/n), (Z/z)는 연관이며 **교차는 일어나지 않는다(완전 연관)**.\n\n- P2가 P1보다 이형접합성 수가 많다.\n- P1에서 유전자형이 NZF 인 생식세포가 형성될 수 있다.\n- 부모 P1과 P2를 교배시킬 때 나오는 자손의 표현형은 4가지이다.\n- 자손의 유전자형이 **nnZzFf** 일 확률은 **1/8** 이고, **NnZzFf** 일 확률은 **0** 이다.\n\n부모 P1, P2의 유전자형을 찾고 자손의 표현형의 종류와 각 표현형의 확률을 구하시오.\n\n※ 표현형 (k)는 대문자 대립유전자 개수의 합이 k인 것을 의미한다.",
+        "ask_line_md": "P1, P2의 유전자형 + 자손 표현형 분포(종류/확률)을 구하시오.",
+        "answer_text_md": "- P1 = NnZzFF  (연관상: NZ/nz)\n- P2 = NnZzFf  (연관상: Nz/nZ)\n\n자손 표현형 분포:\n- (2) : 1/4\n- (3) : 1/4\n- (4) : 1/4\n- (5) : 1/4",
+        "solution_md": "### 풀이 핵심\n1) P1에서 NZF 생식세포가 가능하려면, 연관부에 NZ 하플로타입이 존재해야 하므로 P1은 결합상(NZ/nz)이어야 한다.\n2) 자손에서 NnZzFf(=XxYyZz)가 **0**이 되려면, 연관부에서 AaBb가 나오지 않아야 하므로 P2는 P1과 반대 위상(반발상 Nz/nZ)이어야 한다.\n3) nnZzFf(=xxYyZz)이 되려면 연관부에서 xxYy가 나올 확률이 1/4이고, Z부에서 Zz가 1/2여야 하므로 P1은 FF, P2는 Ff로 결정된다(1/4×1/2=1/8).\n\n### 자손 표현형\n- 연관부(완전연관)에서 자손은 AABB형(대문자 3개) 또는 Aabb형(대문자 1개)만 나온다(각 1/2).\n- Z부(ZZ×Zz)에서 자손은 ZZ(대문자 2개) 또는 Zz(대문자 1개)만 나온다(각 1/2).\n- 따라서 총합은 2,3,4,5의 4가지이며 각각 1/4.",
+        "difficulty_tag": "mid",
+        "_qnum": 30
+      }
+    }
+  ]
+}
