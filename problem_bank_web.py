@@ -19,7 +19,7 @@ def main():
 
     tabA, tabB, tabC = st.tabs(["문제은행", "문제 생성기", "Mount파일"])
     with tabA:
-        st.write("update : Matrix 3 정상 작동, Matrix 4 개발중")
+        st.write("update : 화학1 유형 추가, 물리1 유형 추가 예정(soon)")
     with tabB:
         render_generator_panel()
     with tabC:
@@ -32,7 +32,7 @@ def main():
     # ✅ 히스토리(앱 재시작해도 유지)
     history = HistoryStore("data/history_export.json")
 
-    st.title("수능 과학탐구 문제은행(박태양수학과학연구소)")
+    st.title("수능 과학탐구 문제은행")
 
     with st.spinner("PACK 로딩 중..."):
         items = load_all(cfg)
