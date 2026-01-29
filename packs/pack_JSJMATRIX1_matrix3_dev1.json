@@ -1,0 +1,1360 @@
+{
+  "module": "MATRIX3_DEVELOPED1",
+  "id_prefix": "JSJMATRIX1",
+  "created_at": "2026-01-29 23:26:43",
+  "items": [
+    {
+      "id": "JSJMATRIX1_a8435e90f2",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 6가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAAABAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 6을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 6,
+        "target_count_used": 6,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "AA",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Bd",
+            "bD"
+          ]
+        },
+        "child1": "AAABAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 1
+    },
+    {
+      "id": "JSJMATRIX1_100b614b75",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 6가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaABAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 6을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 6,
+        "target_count_used": 6,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "AA",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "aaABAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 2
+    },
+    {
+      "id": "JSJMATRIX1_fae8a71280",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 8가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaabad\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 8을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 8,
+        "target_count_used": 8,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AB",
+            "ab"
+          ]
+        },
+        "child1": "aaabad",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 3
+    },
+    {
+      "id": "JSJMATRIX1_85db0b1d7f",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 8가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 D를, 9번 염색체에 b를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaAbAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 8을 만족하는 P를 선택.\n- ㄷ은 A–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "D"
+        ],
+        "target_count_requested": 8,
+        "target_count_used": 8,
+        "d_pair_used": [
+          "A",
+          "D"
+        ],
+        "P": {
+          "gA": "aa",
+          "gB": "AA",
+          "gD": "Aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Ad",
+            "aD"
+          ]
+        },
+        "child1": "AaAbAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 4
+    },
+    {
+      "id": "JSJMATRIX1_3032357a47",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 D를, 9번 염색체에 b를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAABaAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "D"
+        ],
+        "target_count_requested": 4,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AD",
+            "ad"
+          ]
+        },
+        "child1": "AABaAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 5
+    },
+    {
+      "id": "JSJMATRIX1_38d3f8cb50",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 12가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAAAbAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 12을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 12,
+        "target_count_used": 12,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "AA",
+          "gD": "Aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Bd",
+            "bD"
+          ]
+        },
+        "child1": "AAAbAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 6
+    },
+    {
+      "id": "JSJMATRIX1_1533759c0a",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaABDa\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 2,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "AA",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "AaABDa",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 7
+    },
+    {
+      "id": "JSJMATRIX1_c6d15768ba",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 12가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAAABAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 12을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 12,
+        "target_count_used": 12,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "Aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "AAABAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 8
+    },
+    {
+      "id": "JSJMATRIX1_84daa79faa",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 12가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaabDa\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 12을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 12,
+        "target_count_used": 12,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "Aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Bd",
+            "bD"
+          ]
+        },
+        "child1": "aaabDa",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 9
+    },
+    {
+      "id": "JSJMATRIX1_cd264780d9",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 6가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaBaad\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 6을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 6,
+        "target_count_used": 6,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Bd",
+            "bD"
+          ]
+        },
+        "child1": "aaBaad",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 10
+    },
+    {
+      "id": "JSJMATRIX1_bc6fc50111",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 D를, 9번 염색체에 b를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaabAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "D"
+        ],
+        "target_count_requested": 4,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "D"
+        ],
+        "P": {
+          "gA": "aa",
+          "gB": "aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Ad",
+            "aD"
+          ]
+        },
+        "child1": "aaabAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 11
+    },
+    {
+      "id": "JSJMATRIX1_01470a1b9e",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAABaAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 4,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "D"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AB",
+            "ab"
+          ]
+        },
+        "child1": "AABaAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 12
+    },
+    {
+      "id": "JSJMATRIX1_d606719779",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 6가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaBaDa\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 6을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 6,
+        "target_count_used": 6,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "aaBaDa",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 13
+    },
+    {
+      "id": "JSJMATRIX1_9e081ea2c9",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaAbAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 2,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "aa",
+          "gB": "AA",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "aaAbAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 14
+    },
+    {
+      "id": "JSJMATRIX1_7373db3f8f",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaBaDa\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 4,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "aa",
+          "gB": "aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Ab",
+            "aB"
+          ]
+        },
+        "child1": "aaBaDa",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 15
+    },
+    {
+      "id": "JSJMATRIX1_81e4678594",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 8가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 D를, 9번 염색체에 b를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaABAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 8을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "D"
+        ],
+        "target_count_requested": 8,
+        "target_count_used": 8,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "AA",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AD",
+            "ad"
+          ]
+        },
+        "child1": "aaABAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 16
+    },
+    {
+      "id": "JSJMATRIX1_d99b548a34",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 8가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAAABAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 8을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 8,
+        "target_count_used": 8,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "Aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Bd",
+            "bD"
+          ]
+        },
+        "child1": "AAABAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 17
+    },
+    {
+      "id": "JSJMATRIX1_57b4f30e51",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaabAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 4,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "AaabAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 18
+    },
+    {
+      "id": "JSJMATRIX1_a4cd3fc7b2",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAABaad\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 4,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AB",
+            "ab"
+          ]
+        },
+        "child1": "AABaad",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 19
+    },
+    {
+      "id": "JSJMATRIX1_103bed74ce",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAAABDa\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 2,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "AA",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AB",
+            "ab"
+          ]
+        },
+        "child1": "AAABDa",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 20
+    },
+    {
+      "id": "JSJMATRIX1_4ec374dd4a",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 D를, 9번 염색체에 b를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaABAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "D"
+        ],
+        "target_count_requested": 2,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "aa",
+          "gB": "AA",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AD",
+            "ad"
+          ]
+        },
+        "child1": "AaABAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 21
+    },
+    {
+      "id": "JSJMATRIX1_7c68ae3f4f",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 6가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaAbAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 6을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 6,
+        "target_count_used": 6,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "AA",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "AaAbAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 22
+    },
+    {
+      "id": "JSJMATRIX1_f7a411291f",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 8가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaAbAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 8을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 8,
+        "target_count_used": 8,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "Aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AB",
+            "ab"
+          ]
+        },
+        "child1": "AaAbAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 23
+    },
+    {
+      "id": "JSJMATRIX1_a099134537",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 6가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaAbad\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 6을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 6,
+        "target_count_used": 6,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "AA",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "aaAbad",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 24
+    },
+    {
+      "id": "JSJMATRIX1_d6ab05127e",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 12가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaABAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 12을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 12,
+        "target_count_used": 12,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "AA",
+          "gD": "Aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Bd",
+            "bD"
+          ]
+        },
+        "child1": "AaABAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 25
+    },
+    {
+      "id": "JSJMATRIX1_ba2e194f7f",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 12가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaabAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 12을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 12,
+        "target_count_used": 12,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "Aa",
+          "gD": "Aa",
+          "phase2": [
+            "Aa",
+            "aA"
+          ]
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "Bd",
+            "bD"
+          ]
+        },
+        "child1": "AaabAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 26
+    },
+    {
+      "id": "JSJMATRIX1_ff5576fb1e",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAAAbAd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 2,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "AA",
+          "gB": "AA",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "AAAbAd",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 27
+    },
+    {
+      "id": "JSJMATRIX1_3b2dfd780b",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 12가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 B와 D를, 9번 염색체에 a를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaBaAD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (B)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: B–D (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 12을 만족하는 P를 선택.\n- ㄷ은 B–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "B",
+          "D"
+        ],
+        "target_count_requested": 12,
+        "target_count_used": 12,
+        "d_pair_used": [
+          "B",
+          "D"
+        ],
+        "P": {
+          "gA": "Aa",
+          "gB": "Aa",
+          "gD": "AA",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "BD",
+            "bd"
+          ]
+        },
+        "child1": "AaBaAD",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 28
+    },
+    {
+      "id": "JSJMATRIX1_04bdf517b1",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 8가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\tAaBaad\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (D)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 8을 만족하는 P를 선택.\n- ㄷ은 A–D 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 8,
+        "target_count_used": 8,
+        "d_pair_used": [
+          "A",
+          "D"
+        ],
+        "P": {
+          "gA": "aa",
+          "gB": "Aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AB",
+            "ab"
+          ]
+        },
+        "child1": "AaBaad",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 29
+    },
+    {
+      "id": "JSJMATRIX1_8dbbfd5820",
+      "module": "MATRIX3_DEVELOPED1",
+      "id_prefix": "JSJMATRIX1",
+      "difficulty": 3,
+      "problem_text_md": "Matrix 3 : Developed1\n형질 (가)~(다)는 각각 상염색체에 존재하는 대립유전자 A와 a, B와 b, D와 d에 의해 조절된다.\nP와 Q의 자녀가 가질 수 있는 (가), (나), (다)에 대한 유전자형은 최대 4가지이다.\nQ가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 9번 염색체에 d를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원\t유전자형\nQ\t\tAaBbDd\n자녀 1\taaabDa\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n<보기>\nㄱ. P는 대립유전자 D와 d를 모두 가진다.\nㄴ. P와 Q의 자녀 중 (가)~(다)에 대한 유전자형이 AaBbDd인 사람이 태어날 수 있다.\nㄷ. P와 Q의 자녀가 가질 수 있는 (A)와 (B)에 대한 유전자형 조합 수는 최대 4가지이다.\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
+      "ask_line_md": "옳은 것만을 고르시오.",
+      "answer_text_md": "정답 3",
+      "solution_md": "### 해설(자동)\n- 연관 유전자쌍: A–B (교차 없음), 나머지 1쌍은 독립.\n- 자손 전체 유전자형 가짓수 = 4을 만족하는 P를 선택.\n- ㄷ은 A–B 조합 수가 4 이하인지로 판정.\n",
+      "payload": {
+        "linked": [
+          "A",
+          "B"
+        ],
+        "target_count_requested": 2,
+        "target_count_used": 4,
+        "d_pair_used": [
+          "A",
+          "B"
+        ],
+        "P": {
+          "gA": "aa",
+          "gB": "aa",
+          "gD": "aa",
+          "phase2": null
+        },
+        "Q": {
+          "gA": "Aa",
+          "gB": "Bb",
+          "gD": "Dd",
+          "phase2": [
+            "AB",
+            "ab"
+          ]
+        },
+        "child1": "aaabDa",
+        "truth": {
+          "g1": false,
+          "g2": false,
+          "g3": true
+        },
+        "answer_num": 3
+      },
+      "_qnum": 30
+    }
+  ]
+}
