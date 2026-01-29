@@ -1,6 +1,7 @@
 # matrix3_generator_PACK.py
 # Matrix3 (일반유전) – L2I1(2연관+1독립) 전용 / 완전연관(교차 없음)
-# ✅ 생성 실패 방지 최종판:
+# ✅ AB 연관 + D 독립 "고정" 버전
+# ✅ 생성 실패 방지:
 #   - 자손 조건(유전자형/표현형 확률)으로 먼저 좁히고
 #   - 그래도 해(정답 후보)가 3개 초과면 "부모 조건(부모 표현형/부모 좌위 유전자형)"을 자동 추가해서 ≤3으로 강제
 # ✅ pack 30개 안정 생성 목표
@@ -14,6 +15,9 @@ MODULE = "MATRIX3"
 ID_PREFIX = "MAT3_"
 OUT_DIR = os.path.join(os.path.dirname(__file__), "output_pack")
 os.makedirs(OUT_DIR, exist_ok=True)
+
+# ✅ 고정: AB 연관, D 독립
+LINKED_FIXED: Tuple[str, str] = ("A", "B")
 
 # ----------------------------
 # 기본 유틸
@@ -80,40 +84,23 @@ def gam_single(g: str) -> Dict[str, Fraction]:
     return {a1: Fraction(1, 2), a2: Fraction(1, 2)}
 
 # ----------------------------
-# L2I1 자손 분포
+# L2I1 자손 분포 (AB 연관 + D 독립 고정)
 # ----------------------------
 
-def offspring_L2I1(linked: Tuple[str, str], P1: Dict[str, Any], P2: Dict[str, Any]) -> Dict[str, Fraction]:
+def offspring_L2I1_AB(P1: Dict[str, Any], P2: Dict[str, Any]) -> Dict[str, Fraction]:
+    linked = LINKED_FIXED  # ("A","B")
+
     def gams(P: Dict[str, Any]) -> Dict[Tuple[str, str, str], Fraction]:
         gA, gB, gD = P["gA"], P["gB"], P["gD"]
-        h1, h2 = P["phase2"]
+        h1, h2 = P["phase2"]  # AB haplotype pair
         gp = gam_phase(h1, h2)
 
-        if set(linked) == {"A", "B"}:
-            gd = gam_single(gD)
-            out: Dict[Tuple[str, str, str], Fraction] = {}
-            for h, ph in gp.items():
-                for d, pd in gd.items():
-                    out[(h[0], h[1], d)] = out.get((h[0], h[1], d), Fraction(0)) + ph * pd
-            return out
-
-        if set(linked) == {"A", "D"}:
-            gb = gam_single(gB)
-            out: Dict[Tuple[str, str, str], Fraction] = {}
-            for h, ph in gp.items():
-                for b, pb in gb.items():
-                    out[(h[0], b, h[1])] = out.get((h[0], b, h[1]), Fraction(0)) + ph * pb
-            return out
-
-        if set(linked) == {"B", "D"}:
-            ga = gam_single(gA)
-            out: Dict[Tuple[str, str, str], Fraction] = {}
-            for h, ph in gp.items():
-                for a, pa in ga.items():
-                    out[(a, h[0], h[1])] = out.get((a, h[0], h[1]), Fraction(0)) + ph * pa
-            return out
-
-        raise RuntimeError("invalid linked")
+        gd = gam_single(gD)
+        out: Dict[Tuple[str, str, str], Fraction] = {}
+        for h, ph in gp.items():
+            for d, pd in gd.items():
+                out[(h[0], h[1], d)] = out.get((h[0], h[1], d), Fraction(0)) + ph * pd
+        return out
 
     g1 = gams(P1)
     g2 = gams(P2)
@@ -145,33 +132,26 @@ def ph_count_of_dist(dist: Dict[str, Fraction]) -> int:
     return sum(1 for v in pd.values() if v > 0)
 
 # ----------------------------
-# 부모 후보 생성 (L2I1)
+# 부모 후보 생성 (AB 연관 고정)
 # ----------------------------
 
-def enum_parents_L2I1(linked: Tuple[str, str]) -> List[Dict[str, Any]]:
+def enum_parents_AB() -> List[Dict[str, Any]]:
     out: List[Dict[str, Any]] = []
     for gA in G1:
-        for gB in G1:
-            for gD in G1:
-                if set(linked) == {"A", "B"}:
-                    phs = phases2(gA, gB)
-                    for ph in phs:
-                        out.append({"gA": gA, "gB": gB, "gD": gD, "phase2": ph})
-                elif set(linked) == {"A", "D"}:
-                    phs = phases2(gA, gD)
-                    for ph in phs:
-                        out.append({"gA": gA, "gB": gB, "gD": gD, "phase2": ph})
-                elif set(linked) == {"B", "D"}:
-                    phs = phases2(gB, gD)
-                    for ph in phs:
-                        out.append({"gA": gA, "gB": gB, "gD": gD, "phase2": ph})
-                else:
-                    raise RuntimeError("invalid linked")
+        for gB in ["BB", "Bb", "bb"]:
+            # gB는 BB/Bb/bb 형태로 쓰고 싶지만,
+            # 기존 로직이 "BB,Bb,bb"를 기대하므로 그대로 맞춰줌
+            # 다만 phases2는 "Bb"같이 2글자를 받으므로 OK
+            for gD in ["DD", "Dd", "dd"]:
+                # AB만 phases2
+                phs = phases2(gA, gB)
+                for ph in phs:
+                    out.append({"gA": gA, "gB": gB, "gD": gD, "phase2": ph})
     return out
 
-def pstr_L2I1(P: Dict[str, Any]) -> str:
+def pstr_AB(P: Dict[str, Any]) -> str:
     g = P["gA"] + P["gB"] + P["gD"]
-    return f"{g} (연관상:{P['phase2'][0]}/{P['phase2'][1]})"
+    return f"{g} (AB연관상:{P['phase2'][0]}/{P['phase2'][1]})"
 
 def parent_ph(P: Dict[str, Any]) -> str:
     A = "A+" if ("A" in P["gA"]) else "A-"
@@ -192,22 +172,21 @@ class PairInfo:
 
 @dataclass
 class CaseCache:
-    linked: Tuple[str, str]
     cands: List[Dict[str, Any]]
     pairs: List[PairInfo]
 
-def build_case_cache(linked: Tuple[str, str]) -> CaseCache:
-    cands = enum_parents_L2I1(linked)
+def build_case_cache_AB() -> CaseCache:
+    cands = enum_parents_AB()
     pairs: List[PairInfo] = []
 
     # unordered(i<=j)로 저장
     for i in range(len(cands)):
         for j in range(i, len(cands)):
-            d = offspring_L2I1(linked, cands[i], cands[j])
+            d = offspring_L2I1_AB(cands[i], cands[j])
             pc = ph_count_of_dist(d)
             pairs.append(PairInfo(i, j, pc, d))
 
-    return CaseCache(linked=linked, cands=cands, pairs=pairs)
+    return CaseCache(cands=cands, pairs=pairs)
 
 # ----------------------------
 # 후보 필터링 도구
@@ -274,49 +253,37 @@ class Problem:
     pid: str
     payload: Dict[str, Any]
 
-def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
-              max_seed_tries: int = 5000) -> Problem:
-    lopts = [("A", "B"), ("A", "D"), ("B", "D")]
-
+def build_one(case: CaseCache, max_seed_tries: int = 3000) -> Problem:
     for _ in range(max_seed_tries):
-        linked = random.choice(lopts)
-        case = case_caches[linked]
-
-        # seed = 임의의 pair 하나 잡기 (사전계산이 있으니 빠름)
+        # seed = 임의의 pair 하나
         seed = random.choice(case.pairs)
         dist = seed.dist
         ph_count = seed.ph_count
         if not (3 <= ph_count <= 6):
             continue
 
-        # --- 자손 조건 풀 (seed의 "진짜 값" 기반) ---
+        # --- 자손 조건 풀 (seed 값 기반) ---
         gt_pool = [("GT", gt, dist.get(gt, Fraction(0))) for gt in ALL_GT]
-
         ph = ph_dist(dist)
         ph_pool = [("PH", lab, pr) for lab, pr in ph.items() if pr > 0]
 
-        # 정보량 높은 것(0/1 아닌 것) 우선
         def info_score(pr: Fraction) -> int:
             return 0 if (pr != 0 and pr != 1) else 1
 
         gt_pool.sort(key=lambda x: info_score(x[2]))
         ph_pool.sort(key=lambda x: info_score(x[2]))
+        child_pool = ph_pool + gt_pool
 
-        child_pool = ph_pool + gt_pool  # PH 먼저(대칭해 절단에 유리)
-
-        # --- 그리디로 자손 조건부터 붙여서 후보 줄이기 ---
-        child_conds: List[Tuple[str, str, Fraction]] = []
-        cand_idxs = list(range(len(case.pairs)))
-        # 같은 ph_count만으로 1차 필터
+        # 같은 ph_count 후보로 시작
         cand_idxs = [i for i, p in enumerate(case.pairs) if p.ph_count == ph_count]
         if not cand_idxs:
             continue
 
-        # 조건을 최대 10개까지 자손에서만 붙여봄
-        for _k in range(10):
+        # --- 자손 조건 그리디(최대 8개) ---
+        child_conds: List[Tuple[str, str, Fraction]] = []
+        for _k in range(8):
             if len(cand_idxs) <= 3:
                 break
-
             best = None
             best_size = None
             for cond in child_pool:
@@ -325,24 +292,19 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
                 filtered = filter_pairs_by_child_conds(case, ph_count, child_conds + [cond])
                 if not filtered:
                     continue
-                # seed 포함 보장(정답이 seed dist여야 하니까)
-                # (seed와 같은 dist를 만드는 동치해가 있을 수 있으므로 seed 자체 인덱스는 몰라도,
-                #  "seed dist값" 조건을 쓰고 있으니 filtered는 반드시 seed 동치해를 포함함)
                 s = len(filtered)
                 if best is None or s < best_size:
                     best = cond
                     best_size = s
                     if s <= 3:
                         break
-
             if best is None:
                 break
             child_conds.append(best)
             cand_idxs = filter_pairs_by_child_conds(case, ph_count, child_conds)
 
-        # --- 여기서도 3개 초과면: 부모조건을 자동 추가해서 강제로 ≤3 만들기 ---
+        # --- 그래도 많으면 부모조건 자동 추가 ---
         parent_constraints: List[Tuple[str, int, str]] = []
-
         if len(cand_idxs) > 3:
             pool: List[Tuple[str, int, str]] = []
             ph_vals = [
@@ -361,7 +323,7 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
             random.shuffle(pool)
 
-            # 최대 6개 부모조건까지 붙여서 줄이기
+            # 최대 6개까지
             for c in pool:
                 reduced = filter_sols_by_parent_constraint(case, cand_idxs, c)
                 if not reduced:
@@ -373,17 +335,15 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
                     break
 
         if not (1 <= len(cand_idxs) <= 3):
-            continue  # 이 seed는 포기하고 다음
+            continue
 
-        # 최종 솔루션 리스트(≤3)
         final_sols = [(case.pairs[i].idx1, case.pairs[i].idx2) for i in cand_idxs]
 
         # ---------- 문제 텍스트 ----------
-        problem_code = f"M3-{random.randint(1,999):03d}"
+        problem_code = f"M3-AB-{random.randint(1,999):03d}"
         pid = ID_PREFIX + sha10(f"{time.time()}_{problem_code}_{random.random()}")
 
-        lg = list(linked)
-        link_desc = f"({lg[0]}/{lg[0].lower()}), ({lg[1]}/{lg[1].lower()})는 연관이며 교차 없음(완전연관). 나머지 1쌍은 독립이다."
+        link_desc = "(A/a)와 (B/b)는 연관이며 교차 없음(완전연관). (D/d)는 독립이다."
 
         ph_desc = (
             "※ 표현형은 **각 유전자의 우성 발현 여부(A+/B+/D+)**로 구분한다.\n"
@@ -394,14 +354,12 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
         )
 
         cond_lines = []
-        # 자손 조건
         for typ, key, pr in child_conds:
             if typ == "GT":
                 cond_lines.append(f"- 자손 유전자형 **{key}** 의 확률 = **{frac_to_str(pr)}**")
             else:
                 cond_lines.append(f"- 자손 표현형 **{key}** 의 확률 = **{frac_to_str(pr)}**")
 
-        # 부모 조건(필요할 때만 붙음)
         for kind, who, val in parent_constraints:
             if kind == "PH":
                 cond_lines.append(f"- 부모 P{who}의 표현형은 **{val}** 이다.")
@@ -413,7 +371,7 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
                 cond_lines.append(f"- 부모 P{who}의 D좌위 유전자형은 **{val}** 이다.")
 
         problem_text_md = (
-            f"문제 제목 : Matrix3 일반유전 추론 ({problem_code})\n\n"
+            f"문제 제목 : Matrix3 일반유전 추론 (AB연관 고정) ({problem_code})\n\n"
             f"(A/a), (B/b), (D/d) 세 유전자는 각각 다른 형질을 결정한다(일반유전).\n"
             f"{link_desc}\n\n"
             f"- 부모 P1, P2는 미지수이다.\n"
@@ -433,10 +391,10 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
             c1 = case.cands[i1]
             c2 = case.cands[i2]
             answer_lines.append(f"[후보 {idx_s}]")
-            answer_lines.append(f"- P1 = {pstr_L2I1(c1)}")
-            answer_lines.append(f"- P2 = {pstr_L2I1(c2)}")
+            answer_lines.append(f"- P1 = {pstr_AB(c1)}")
+            answer_lines.append(f"- P2 = {pstr_AB(c2)}")
 
-            sol_dist = offspring_L2I1(linked, c1, c2)
+            sol_dist = offspring_L2I1_AB(c1, c2)
             sol_ph = ph_dist(sol_dist)
             for k in sorted(sol_ph.keys()):
                 if sol_ph[k] > 0:
@@ -447,9 +405,8 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         solution_md = (
             "### 해설(자동)\n"
-            "- L2I1 완전연관에서는 서로 다른 부모쌍이 동일한 자손 분포를 만들 수 있어(동치해) 자손 조건만으로는 해가 잘 안 줄 수 있다.\n"
-            "- 따라서 먼저 자손(유전자형/표현형 확률) 조건으로 후보를 줄이고,\n"
-            "  그래도 정답 후보가 3개를 초과하면 부모 표현형/부모 좌위 유전자형 조건을 자동으로 추가하여 1~3개로 만든다.\n"
+            "- AB 완전연관, D 독립에서 자손(유전자형/표현형 확률) 조건으로 후보를 줄인다.\n"
+            "- 완전연관에서는 동치해가 남을 수 있어, 필요 시 부모 표현형/부모 좌위 유전자형 조건을 자동 추가하여 정답 후보를 1~3개로 만든다.\n"
         )
 
         payload = {
@@ -457,14 +414,15 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
             "id_prefix": ID_PREFIX,
             "problem_code": problem_code,
             "pattern": "L2I1",
-            "linked_genes": list(linked),
+            "linked_genes": ["A", "B"],
+            "independent_gene": "D",
             "constraints": {
                 "phenotype_count": ph_count,
                 "child_conditions": [{"type": typ, "key": key, "prob": frac_to_str(pr)} for (typ, key, pr) in child_conds],
                 "parent_conditions": [{"kind": k, "who": w, "value": v} for (k, w, v) in parent_constraints],
             },
             "solutions": [
-                {"P1": pstr_L2I1(case.cands[i1]), "P2": pstr_L2I1(case.cands[i2])}
+                {"P1": pstr_AB(case.cands[i1]), "P2": pstr_AB(case.cands[i2])}
                 for (i1, i2) in final_sols
             ],
             "problem_text_md": problem_text_md,
@@ -475,20 +433,19 @@ def build_one(case_caches: Dict[Tuple[str, str], CaseCache],
 
         return Problem(pid, payload)
 
-    raise RuntimeError("문제 생성 실패: 조건 완화 필요 (tries 증가 필요)")
+    raise RuntimeError("문제 생성 실패: tries 증가 필요")
 
 # ----------------------------
 # PACK 저장
 # ----------------------------
 
 def make_pack(n: int = 30) -> str:
-    case_caches: Dict[Tuple[str, str], CaseCache] = {}
-    for linked in [("A", "B"), ("A", "D"), ("B", "D")]:
-        case_caches[linked] = build_case_cache(linked)
+    # ✅ AB 고정이므로 캐시도 1개만
+    case = build_case_cache_AB()
 
     items: List[Dict[str, Any]] = []
     for i in range(1, n + 1):
-        pr = build_one(case_caches, max_seed_tries=5000)
+        pr = build_one(case, max_seed_tries=3000)
         items.append({
             "id": pr.pid,
             "pid": pr.pid,
@@ -510,7 +467,7 @@ def make_pack(n: int = 30) -> str:
         "items": items
     }
 
-    out_path = os.path.join(OUT_DIR, f"pack_{MODULE}_{int(time.time())}.json")
+    out_path = os.path.join(OUT_DIR, f"pack_{MODULE}_ABONLY_{int(time.time())}.json")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(pack, f, ensure_ascii=False, indent=2)
 
