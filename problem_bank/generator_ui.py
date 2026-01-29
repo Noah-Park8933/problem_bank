@@ -15,6 +15,7 @@ from matrix3_generator_PACK import make_pack as make_pack_matrix3
 # from DNA_integration_generator import make_pack as make_pack_dna
 # from PDED1_generator import make_pack as make_pack_pded1
 # from PCCC1_generator import make_pack as make_pack_pccc1
+from matrix4_generator_PACK import make_pack as make_pack_matrix4
 # ...
 
 # ============================================================
@@ -28,6 +29,14 @@ GENERATORS = [
         "min_n": 1,
         "max_n": 200,
         "run": lambda n: make_pack_matrix3(n=n),
+    },
+    {
+        "key": "MATRIX4",
+        "title": "🧬 Matrix4 문제 자동 생성",
+        "default_n": 30,
+        "min_n": 1,
+        "max_n": 200,
+        "run": lambda n: make_pack_matrix4(n=n),
     },
 
     # 예시 — 필요하면 주석 해제 후 파일 연결
