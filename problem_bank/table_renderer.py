@@ -317,6 +317,15 @@ def _grid_from_md_or_text(x: Any) -> Optional[Tuple[List[str], List[List[str]]]]
     headers = ["" if v is None else str(v) for v in grid[0]]
     rows = [[("" if v is None else str(v)) for v in r] for r in grid[1:]]
     return _pad_grid(headers, rows)
+def _smart_col_sort_key(x: Any):
+    s = str(x).strip()
+
+    # 1) 알파벳 1글자면: 같은 글자끼리 묶고(소문자 기준), 대문자 먼저
+    if len(s) == 1 and s.isalpha():
+        return (s.lower(), 0 if s.isupper() else 1)
+
+    # 2) 그 외는 그냥 문자열 정렬
+    return (s,)
     
 def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]:
     """
@@ -359,7 +368,7 @@ def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]
                 col_set.update(inner.keys())
 
             # 보기 좋게 정렬(문자열 기준)
-            col_labels = sorted(col_set, key=lambda x: str(x))
+            col_labels = sorted(col_set, key=_smart_col_sort_key)
 
             headers = ["세포"] + [str(c) for c in col_labels]
             rows: List[List[str]] = []
@@ -395,7 +404,7 @@ def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]
         if row_key and row_key in col_set:
             col_set.remove(row_key)
 
-        col_labels = sorted(col_set, key=lambda x: str(x))
+        col_labels = sorted(col_set, key=_smart_col_sort_key)
         headers = (["세포"] if row_key else ["idx"]) + [str(c) for c in col_labels]
 
         rows: List[List[str]] = []
