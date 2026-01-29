@@ -36,6 +36,26 @@ def main():
 
     with st.spinner("PACK 로딩 중..."):
         items = load_all(cfg)
+
+    import hashlib
+
+    def fingerprint(it):
+    # ProblemItem에 있는 필드명은 네 코드에 맞게 조정 필요
+        key = f"{it.module}|{it.pid}|{getattr(it,'stem','')}|{getattr(it,'answer','')}|{getattr(it,'choices','')}"
+        key = " ".join(str(key).split())  # 공백 정규화
+        return hashlib.sha1(key.encode("utf-8")).hexdigest()
+
+    seen = set()
+    deduped = []
+    for it in items:
+        fp = fingerprint(it)
+        if fp in seen:
+            continue
+        seen.add(fp)
+        deduped.append(it)
+
+st.write("중복 제거 후:", len(deduped))
+items = deduped
     # ===== 중복 진단(여기!) =====
     from collections import Counter
 
