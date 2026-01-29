@@ -54,8 +54,8 @@ def main():
         seen.add(fp)
         deduped.append(it)
 
-st.write("중복 제거 후:", len(deduped))
-items = deduped
+    st.write("중복 제거 후:", len(deduped))
+    items = deduped
     # ===== 중복 진단(여기!) =====
     from collections import Counter
 
