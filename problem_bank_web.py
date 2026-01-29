@@ -17,7 +17,6 @@ def main():
 
     st.caption(f"전체 로드: {len(items)}개")
 
-    filtered, meta = filter_items(cfg, items)
 
     # 페이지네이션
     total_pages = max(1, (len(filtered) + cfg.page_size - 1) // cfg.page_size)
