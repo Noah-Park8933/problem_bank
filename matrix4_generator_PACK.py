@@ -318,7 +318,7 @@ def build_one(cache: Cache, max_seed_tries: int = 3000) -> Problem:
 
         # 자손 조건 그리디(최대 10개)
         child_conds: List[Tuple[str, str, int]] = []
-        for _k in range(10):
+        for _k in range(4):
             if len(cand_idxs) <= 3:
                 break
             best = None
@@ -366,13 +366,10 @@ def build_one(cache: Cache, max_seed_tries: int = 3000) -> Problem:
 
             for c in pool:
                 reduced = filter_by_parent_constraint(cache, cand_idxs, c)
-                if not reduced:
-                    continue
-                if len(reduced) < len(cand_idxs):
+                if 1 <= len(reduced) <= 3:
                     parent_constraints.append(c)
                     cand_idxs = reduced
-                if len(cand_idxs) <= 3:
-                    break
+                    break  # ✅ 부모조건은 최대 1개
 
         if not (1 <= len(cand_idxs) <= 3):
             continue
