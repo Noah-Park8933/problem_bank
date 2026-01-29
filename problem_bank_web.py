@@ -36,7 +36,22 @@ def main():
 
     with st.spinner("PACK 로딩 중..."):
         items = load_all(cfg)
+    # ===== 중복 진단(여기!) =====
+    from collections import Counter
 
+    uids = [it.uid for it in items]
+    c = Counter(uids)
+    dups = [(uid, n) for uid, n in c.items() if n > 1]
+
+    st.write("총 items:", len(items))
+    st.write("고유 uid:", len(set(uids)))
+    st.write("중복 uid 개수:", len(dups))
+
+if dups:
+    st.write("중복 uid 예시(앞 20개):", dups[:20])
+# ===========================
+
+st.caption(f"전체 로드: {len(items)}개")
     st.caption(f"전체 로드: {len(items)}개")
 
     filtered, meta = filter_items(cfg, items)
