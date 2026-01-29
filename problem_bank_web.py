@@ -12,9 +12,9 @@ def main():
 
     st.set_page_config(page_title="Problem Bank", layout="wide")
 
-    tabA, tabB = st.tabs(["문제은행", "생성기"])
+    tabA, tabB = st.tabs(["문제은행", "문제 생성기"])
     with tabA:
-        st.write("뭐라도 쓰라고 이 칸이 있는것 같으ㅏ서")
+        st.write("update : Matrix 3 정상 작동, Matrix 4 개발중")
         # 기존 UI 함수 호출
     with tabB:
         render_generator_panel()
