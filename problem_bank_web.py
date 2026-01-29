@@ -8,6 +8,8 @@ from problem_bank.ui_main import render_list
 from problem_bank.docx_exporter import export_docx_bytes
 from problem_bank.generator_ui import render_generator_panel
 #from .file_manager import list_files
+from file_manager import render_file_manager
+
 
 def main():
 
@@ -19,9 +21,9 @@ def main():
         # 기존 UI 함수 호출
     with tabB:
         render_generator_panel()
-   # with tabC:
-   #     list_files()
-   #     st.write("cloud에 mount된 파일 확인용")
+    with tabC:
+        render_file_manager()
+        st.write("cloud에 mount된 파일 확인용")
     cfg = AppConfig()
     state = ensure_state(st)
 
