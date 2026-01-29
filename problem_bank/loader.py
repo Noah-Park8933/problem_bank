@@ -8,18 +8,37 @@ from .config import AppConfig
 # ---------------------------------------------------
 # ProblemItem
 # ---------------------------------------------------
+import hashlib
+import json
+
 @dataclass
 class ProblemItem:
-    pid: str           # PACK 내부 problem id
-    module: str        # module_code
-    prefix: str        # id_prefix
-    path: str          # json file path
+    pid: str
+    module: str
+    prefix: str
+    path: str
     payload: Dict[str, Any]
 
     @property
     def uid(self) -> str:
-        # streamlit 위젯 key 충돌 방지
-        return f"{self.path}::{self.pid}"
+        """
+        내용 기반 uid (같은 문제는 파일 경로가 달라도 uid가 동일)
+        - payload에서 uid에 반영할 핵심만 추려서 안정적으로 해시
+        """
+        # 1) payload에서 '변해도 상관없는 값'은 제거(있다면)
+        #    예: 생성시간, path, internal id, random seed 등
+        p = dict(self.payload)
+
+        for k in ["generated_at", "timestamp", "path", "file_path", "uid"]:
+            if k in p:
+                p.pop(k, None)
+
+        # 2) 안정적 직렬화 후 해시
+        s = json.dumps(p, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        h = hashlib.sha1(s.encode("utf-8")).hexdigest()[:12]
+
+        # 3) module/prefix까지 섞으면 다른 모듈 간 충돌도 방지
+        return f"{self.module}:{self.prefix}:{h}"
 
 
 # ---------------------------------------------------
