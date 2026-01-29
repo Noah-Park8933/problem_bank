@@ -7,7 +7,7 @@ from problem_bank.ui_sidebar import sidebar_actions
 from problem_bank.ui_main import render_list
 from problem_bank.docx_exporter import export_docx_bytes
 from problem_bank.generator_ui import render_generator_panel
-from file_manager.py import list_files
+from file_manager import list_files
 
 def main():
 
