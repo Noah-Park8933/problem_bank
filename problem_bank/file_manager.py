@@ -4,7 +4,7 @@ from pathlib import Path
 
 # ▼ 너네 앱에서 실제로 파일이 저장되는 경로로 바꿔
 # 보통 Streamlit Community Cloud에서는 /mnt/data가 기본
-MOUNT_DIR = Path("/mount/data")  # ← 필요하면 /mnt/data 로 수정 필요
+MOUNT_DIR = Path("/mount/src")  # ← 필요하면 /mnt/data 로 수정 필요
 
 def list_files():
     if not MOUNT_DIR.exists():
