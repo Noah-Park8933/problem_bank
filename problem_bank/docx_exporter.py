@@ -242,7 +242,7 @@ def export_docx_bytes(
                 _add_par(container, "제시표", bold=True)
 
                 try:
-                    _add_grid_table(container, given, total_width_in=2.2)
+                    _add_grid_table(container, given, total_width_in=2.5)
                 except Exception:
                     _add_par(container, "(표 변환 실패)")
 
