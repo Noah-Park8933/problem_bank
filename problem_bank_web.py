@@ -13,7 +13,7 @@ def main():
 
     st.set_page_config(page_title="Problem Bank", layout="wide")
 
-    tabA, tabB = st.tabs(["문제은행", "문제 생성기"])
+    tabA, tabB, tabC = st.tabs(["문제은행", "문제 생성기", "Mount파일"])
     with tabA:
         st.write("update : Matrix 3 정상 작동, Matrix 4 개발중")
         # 기존 UI 함수 호출
