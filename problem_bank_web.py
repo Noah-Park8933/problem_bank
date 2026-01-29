@@ -32,7 +32,7 @@ def main():
     # ✅ 히스토리(앱 재시작해도 유지)
     history = HistoryStore("data/history_export.json")
 
-    st.title("Life Science 1 문제 생성 DB")
+    st.title("수능 과학탐구 문제은행(박태양수학과학연구소)")
 
     with st.spinner("PACK 로딩 중..."):
         items = load_all(cfg)
