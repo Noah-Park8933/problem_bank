@@ -6,8 +6,20 @@ from problem_bank.ui_filters import filter_items
 from problem_bank.ui_sidebar import sidebar_actions
 from problem_bank.ui_main import render_list
 from problem_bank.docx_exporter import export_docx_bytes
+from problem_bank.generator_ui import render_generator_panel
 
 def main():
+
+    st.set_page_config(page_title="Problem Bank", layout="wide")
+
+    tabA, tabB = st.tabs(["문제은행", "생성기"])
+    with tabA:
+        st.write("뭐라도 쓰라고 이 칸이 있는것 같으ㅏ서")
+        # 기존 UI 함수 호출
+    with tabB:
+        render_generator_panel()
+    cfg = AppConfig()
+    state = ensure_state(st)
 
 
     st.title("Life Science 1 문제 생성 DB")
@@ -17,6 +29,7 @@ def main():
 
     st.caption(f"전체 로드: {len(items)}개")
 
+    filtered, meta = filter_items(cfg, items)
 
     # 페이지네이션
     total_pages = max(1, (len(filtered) + cfg.page_size - 1) // cfg.page_size)
