@@ -52,7 +52,7 @@ if dups:
 # ===========================
 
 st.caption(f"전체 로드: {len(items)}개")
-    st.caption(f"전체 로드: {len(items)}개")
+st.caption(f"전체 로드: {len(items)}개")
 
     filtered, meta = filter_items(cfg, items)
 
