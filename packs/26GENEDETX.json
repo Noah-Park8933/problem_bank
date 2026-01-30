@@ -1,0 +1,2693 @@
+{
+  "pack_id": "ce9f669d54fb41a1ab48969e825381a5",
+  "pack_name": "26GENEDETX",
+  "created_at": 1769750533,
+  "config": {
+    "module": "2506GENEDETX",
+    "difficulty": 2,
+    "n": 30,
+    "base_seed": 20260130
+  },
+  "count": 30,
+  "items": [
+    {
+      "id": "2506GENEDETX_420e0c35d8",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝99이다.\nㄴ. III의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 0 | 1 | 0 | ? | ⓐ | ? |\n| 아들의 세포 Ⅲ | 0 | 4 | 0 | 4 | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | ⓑ | 2 | 0 | 2 | 0 | 2 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 0 | 1 | 0 | ? | ⓐ | ? |\n| 아들의 세포 Ⅲ | 0 | 4 | 0 | 4 | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | ⓑ | 2 | 0 | 2 | 0 | 2 |",
+      "answer_md": "**정답:** ② ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **32**\n- stage_maps(가능한 단계배정) = **[('GAM', 'MI', 'MII')]**\n- ab_sums = [0, 1]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **② ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260131,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 32,
+          "a_values": [
+            0,
+            1
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0,
+            1
+          ],
+          "stage_maps": [
+            [
+              "GAM",
+              "MI",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "aaBbDd",
+            "aabbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 99
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "III",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 1,
+          "forced_truths": [
+            false,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abD",
+            "aBD"
+          ],
+          "hm": [
+            "abd",
+            "abd"
+          ],
+          "son": [
+            "abD",
+            "abd"
+          ],
+          "dau": [
+            "abD",
+            "abd"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "aabbDd"
+        },
+        "stage_of_hidden": {
+          "II": "GAM",
+          "III": "MI",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_44ef65f21b",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝2이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | ⓐ | 1 | 0 | 1 | 1 | 0 |\n| ㉠아들의 세포 Ⅲ | 0 | ⓑ | 0 | 2 | 2 | 0 |\n| 딸의 세포 Ⅳ | ? | 2 | 2 | 2 | 4 | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | ⓐ | 1 | 0 | 1 | 1 | 0 |\n| ㉠아들의 세포 Ⅲ | 0 | ⓑ | 0 | 2 | 2 | 0 |\n| 딸의 세포 Ⅳ | ? | 2 | 2 | 2 | 4 | 0 |",
+      "answer_md": "**정답:** ① ㄱ",
+      "explanation_md": "- solver 가능한 해 수: **32**\n- stage_maps(가능한 단계배정) = **[('GAM', 'MII', 'MI')]**\n- ab_sums = [2]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **① ㄱ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260132,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 32,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            2
+          ],
+          "ab_sums": [
+            2
+          ],
+          "stage_maps": [
+            [
+              "GAM",
+              "MII",
+              "MI"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDD",
+            "AabbDD"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 2
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 0,
+          "forced_truths": [
+            true,
+            false,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "AbD",
+            "ABD"
+          ],
+          "hm": [
+            "abD",
+            "abD"
+          ],
+          "son": [
+            "ABD",
+            "abD"
+          ],
+          "dau": [
+            "ABD",
+            "abD"
+          ],
+          "a_real": 0,
+          "b_real": 2,
+          "target_true": "AaBbDD"
+        },
+        "stage_of_hidden": {
+          "II": "GAM",
+          "III": "MII",
+          "IV": "MI"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_94a8fe3fff",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝4이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBdd이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | 0 | ⓑ | 0 | 4 | 0 |\n| 아들의 세포 Ⅲ | 1 | 0 | 1 | 0 | 1 | 0 |\n| ㉠딸의 세포 Ⅳ | 2 | 0 | 2 | 0 | 2 | ⓐ |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | 0 | ⓑ | 0 | 4 | 0 |\n| 아들의 세포 Ⅲ | 1 | 0 | 1 | 0 | 1 | 0 |\n| ㉠딸의 세포 Ⅳ | 2 | 0 | 2 | 0 | 2 | ⓐ |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **52**\n- stage_maps(가능한 단계배정) = **[('MI', 'GAM', 'MII')]**\n- ab_sums = [4]\n- target_genos(개수) = 4\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260134,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 52,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            4
+          ],
+          "ab_sums": [
+            4
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "GAM",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "AABBDD",
+            "AABBDd",
+            "AaBBDD",
+            "AaBBDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 4
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBdd"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBd",
+            "ABD"
+          ],
+          "hm": [
+            "ABD",
+            "ABD"
+          ],
+          "son": [
+            "ABD",
+            "ABD"
+          ],
+          "dau": [
+            "ABD",
+            "ABD"
+          ],
+          "a_real": 0,
+          "b_real": 4,
+          "target_true": "AABBDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "GAM",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_798b66f90d",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝0이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | ? | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 2 | ⓑ | 2 | ? | 2 | 0 |\n| 아들의 세포 Ⅲ | 2 | 2 | 2 | 2 | 4 | ? |\n| ㉠딸의 세포 Ⅳ | ⓐ | 1 | 1 | 0 | 1 | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | ? | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 2 | ⓑ | 2 | ? | 2 | 0 |\n| 아들의 세포 Ⅲ | 2 | 2 | 2 | 2 | 4 | ? |\n| ㉠딸의 세포 Ⅳ | ⓐ | 1 | 1 | 0 | 1 | 0 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **26**\n- stage_maps(가능한 단계배정) = **[('MII', 'MI', 'GAM')]**\n- ab_sums = [0]\n- target_genos(개수) = 8\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260136,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 26,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "MI",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDD",
+            "AaBBDd",
+            "AaBbDD",
+            "AaBbDd",
+            "aaBBDD",
+            "aaBBDd",
+            "aaBbDD",
+            "aaBbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 0
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBD",
+            "abD"
+          ],
+          "hm": [
+            "aBd",
+            "ABD"
+          ],
+          "son": [
+            "abD",
+            "ABD"
+          ],
+          "dau": [
+            "aBD",
+            "ABD"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "AaBBDD"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "MI",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_4bef5173f0",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝2이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 0 | 4 | 0 | 4 | 2 | 2 |\n| ㉠아들의 세포 Ⅲ | 2 | 0 | 2 | 0 | ⓐ | 0 |\n| 딸의 세포 Ⅳ | 1 | ⓑ | 1 | 0 | 1 | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 0 | 4 | 0 | 4 | 2 | 2 |\n| ㉠아들의 세포 Ⅲ | 2 | 0 | 2 | 0 | ⓐ | 0 |\n| 딸의 세포 Ⅳ | 1 | ⓑ | 1 | 0 | 1 | 0 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **4**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [2]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260138,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 4,
+          "a_values": [
+            2
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            2
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDD",
+            "AaBbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 2
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "AbD",
+            "ABD"
+          ],
+          "hm": [
+            "abd",
+            "abD"
+          ],
+          "son": [
+            "ABD",
+            "abD"
+          ],
+          "dau": [
+            "ABD",
+            "abd"
+          ],
+          "a_real": 2,
+          "b_real": 0,
+          "target_true": "AaBbDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_b15192566f",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝0이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 0 | ? | 2 | 2 | 2 | ? |\n| 아들의 세포 Ⅲ | 0 | 2 | 2 | ⓐ | 2 | 0 |\n| ㉠딸의 세포 Ⅳ | 1 | ⓑ | 0 | 1 | 0 | 1 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 0 | ? | 2 | 2 | 2 | ? |\n| 아들의 세포 Ⅲ | 0 | 2 | 2 | ⓐ | 2 | 0 |\n| ㉠딸의 세포 Ⅳ | 1 | ⓑ | 0 | 1 | 0 | 1 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **4**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [0]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260141,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 4,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDd",
+            "Aabbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 0
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "Abd",
+            "aBd"
+          ],
+          "hm": [
+            "abd",
+            "aBD"
+          ],
+          "son": [
+            "aBd",
+            "aBD"
+          ],
+          "dau": [
+            "Abd",
+            "aBD"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "AaBbDd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_28276b56c0",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝99이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | 2 | ? | ⓑ | 2 | 0 |\n| 아들의 세포 Ⅲ | 2 | 2 | 2 | 2 | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | 0 | 1 | 0 | 1 | 1 | ⓐ |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | 2 | ? | ⓑ | 2 | 0 |\n| 아들의 세포 Ⅲ | 2 | 2 | 2 | 2 | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | 0 | 1 | 0 | 1 | 1 | ⓐ |",
+      "answer_md": "**정답:** ② ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **38**\n- stage_maps(가능한 단계배정) = **[('MII', 'MI', 'GAM')]**\n- ab_sums = [0, 2]\n- target_genos(개수) = 4\n- 후처리로 <보기>를 설계하여 정답을 **② ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260142,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 38,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0,
+            2
+          ],
+          "ab_sums": [
+            0,
+            2
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "MI",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDD",
+            "AaBbDd",
+            "aaBbDD",
+            "aaBbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 99
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 1,
+          "forced_truths": [
+            false,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "ABd",
+            "aBD"
+          ],
+          "hm": [
+            "abD",
+            "abd"
+          ],
+          "son": [
+            "ABd",
+            "abD"
+          ],
+          "dau": [
+            "ABd",
+            "abD"
+          ],
+          "a_real": 0,
+          "b_real": 2,
+          "target_true": "AaBbDd"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "MI",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_9d701d23dc",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝1이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 0 | 2 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 4 | 0 | 4 | 0 |\n| 아들의 세포 Ⅲ | 0 | 1 | 0 | 1 | ⓑ | ? |\n| ㉠딸의 세포 Ⅳ | 0 | 2 | 0 | 2 | ? | ⓐ |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 0 | 2 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 4 | 0 | 4 | 0 |\n| 아들의 세포 Ⅲ | 0 | 1 | 0 | 1 | ⓑ | ? |\n| ㉠딸의 세포 Ⅳ | 0 | 2 | 0 | 2 | ? | ⓐ |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **16**\n- stage_maps(가능한 단계배정) = **[('MI', 'GAM', 'MII')]**\n- ab_sums = [1]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260143,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 16,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            1
+          ],
+          "ab_sums": [
+            1
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "GAM",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDD",
+            "aaBbDD"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 1
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abD",
+            "abD"
+          ],
+          "hm": [
+            "aBD",
+            "ABD"
+          ],
+          "son": [
+            "abD",
+            "ABD"
+          ],
+          "dau": [
+            "abD",
+            "ABD"
+          ],
+          "a_real": 0,
+          "b_real": 1,
+          "target_true": "AaBbDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "GAM",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_d49c263bfb",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝5이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 2 | 2 | ⓑ | 0 |\n| ㉠아들의 세포 Ⅲ | 2 | 0 | ? | 2 | ? | 0 |\n| 딸의 세포 Ⅳ | 1 | 0 | ? | 0 | 0 | ⓐ |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 2 | 2 | ⓑ | 0 |\n| ㉠아들의 세포 Ⅲ | 2 | 0 | ? | 2 | ? | 0 |\n| 딸의 세포 Ⅳ | 1 | 0 | ? | 0 | 0 | ⓐ |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **12**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [5]\n- target_genos(개수) = 5\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260146,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 12,
+          "a_values": [
+            1
+          ],
+          "b_values": [
+            4
+          ],
+          "ab_sums": [
+            5
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AABbDD",
+            "AABbDd",
+            "AAbbDD",
+            "AaBbDD",
+            "AabbDD"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 5
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "AbD",
+            "ABd"
+          ],
+          "hm": [
+            "aBD",
+            "AbD"
+          ],
+          "son": [
+            "AbD",
+            "aBD"
+          ],
+          "dau": [
+            "ABd",
+            "aBD"
+          ],
+          "a_real": 1,
+          "b_real": 4,
+          "target_true": "AaBbDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_5d624e2c42",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝2이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | ⓐ | 2 | 4 | 0 | 2 | ? |\n| 아들의 세포 Ⅲ | 0 | ? | 2 | ? | 2 | ⓑ |\n| ㉠딸의 세포 Ⅳ | ? | 1 | 1 | 0 | 1 | ? |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 2 | 0 |\n| 어머니의 세포 Ⅱ | ⓐ | 2 | 4 | 0 | 2 | ? |\n| 아들의 세포 Ⅲ | 0 | ? | 2 | ? | 2 | ⓑ |\n| ㉠딸의 세포 Ⅳ | ? | 1 | 1 | 0 | 1 | ? |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **20**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [2]\n- target_genos(개수) = 5\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260148,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 20,
+          "a_values": [
+            2
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            2
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDD",
+            "AaBBDd",
+            "aaBBDD",
+            "aaBBDd",
+            "aaBbDD"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 2
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abD",
+            "aBD"
+          ],
+          "hm": [
+            "aBD",
+            "ABd"
+          ],
+          "son": [
+            "aBD",
+            "ABd"
+          ],
+          "dau": [
+            "aBD",
+            "ABd"
+          ],
+          "a_real": 2,
+          "b_real": 0,
+          "target_true": "AaBBDd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_0230261d0e",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝2이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | ⓐ | 2 | 0 | 2 | 0 | 2 |\n| 아들의 세포 Ⅲ | 2 | 2 | ⓑ | 2 | 2 | ? |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | 0 | 1 | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | ⓐ | 2 | 0 | 2 | 0 | 2 |\n| 아들의 세포 Ⅲ | 2 | 2 | ⓑ | 2 | 2 | ? |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | 0 | 1 | 0 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **2**\n- stage_maps(가능한 단계배정) = **[('MII', 'MI', 'GAM')]**\n- ab_sums = [2]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260149,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 2,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            2
+          ],
+          "ab_sums": [
+            2
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "MI",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AABBDd",
+            "AaBbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 2
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "ABd",
+            "abd"
+          ],
+          "hm": [
+            "ABD",
+            "abd"
+          ],
+          "son": [
+            "abd",
+            "ABD"
+          ],
+          "dau": [
+            "abd",
+            "ABD"
+          ],
+          "a_real": 0,
+          "b_real": 2,
+          "target_true": "AaBbDd"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "MI",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_a658131a00",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝99이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 aabbDd이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | ? | 0 | 2 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 0 | 2 | ? | ? | 2 | 0 |\n| 아들의 세포 Ⅲ | 0 | 4 | ? | ⓑ | 4 | 0 |\n| ㉠딸의 세포 Ⅳ | 0 | 1 | ⓐ | 1 | ? | 1 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | ? | 0 | 2 | 2 | 0 |\n| 어머니의 세포 Ⅱ | 0 | 2 | ? | ? | 2 | 0 |\n| 아들의 세포 Ⅲ | 0 | 4 | ? | ⓑ | 4 | 0 |\n| ㉠딸의 세포 Ⅳ | 0 | 1 | ⓐ | 1 | ? | 1 |",
+      "answer_md": "**정답:** ⑤ ㄴ, ㄷ",
+      "explanation_md": "- solver 가능한 해 수: **8**\n- stage_maps(가능한 단계배정) = **[('MII', 'MI', 'GAM')]**\n- ab_sums = [2, 4]\n- target_genos(개수) = 1\n- 후처리로 <보기>를 설계하여 정답을 **⑤ ㄴ, ㄷ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260151,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 8,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            2,
+            4
+          ],
+          "ab_sums": [
+            2,
+            4
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "MI",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "aabbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 99
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "aabbDd"
+          },
+          "forced_option": 4,
+          "forced_truths": [
+            false,
+            true,
+            true
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abD",
+            "abD"
+          ],
+          "hm": [
+            "abd",
+            "abD"
+          ],
+          "son": [
+            "abD",
+            "abD"
+          ],
+          "dau": [
+            "abD",
+            "abd"
+          ],
+          "a_real": 0,
+          "b_real": 4,
+          "target_true": "aabbDd"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "MI",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_5fa30c5ebe",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝4이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 2 | 0 | 2 | ? |\n| 어머니의 세포 Ⅱ | 0 | ⓐ | 4 | 0 | 2 | ? |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | 1 | 0 | 1 | 0 |\n| 딸의 세포 Ⅳ | 0 | 2 | 2 | 0 | 2 | ⓑ |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 2 | 0 | 2 | ? |\n| 어머니의 세포 Ⅱ | 0 | ⓐ | 4 | 0 | 2 | ? |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | 1 | 0 | 1 | 0 |\n| 딸의 세포 Ⅳ | 0 | 2 | 2 | 0 | 2 | ⓑ |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **36**\n- stage_maps(가능한 단계배정) = **[('MI', 'GAM', 'MII')]**\n- ab_sums = [4]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260154,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 36,
+          "a_values": [
+            4
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            4
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "GAM",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "aaBBDD",
+            "aaBBDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 4
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBD",
+            "aBD"
+          ],
+          "hm": [
+            "aBd",
+            "aBD"
+          ],
+          "son": [
+            "aBD",
+            "aBD"
+          ],
+          "dau": [
+            "aBD",
+            "aBd"
+          ],
+          "a_real": 4,
+          "b_real": 0,
+          "target_true": "aaBBDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "GAM",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_1463893aa2",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝0이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 0 | ? | ⓐ | 4 |\n| 아들의 세포 Ⅲ | 0 | 1 | 0 | 1 | 0 | 1 |\n| ㉠딸의 세포 Ⅳ | 2 | ? | 0 | 2 | ⓑ | 2 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 0 | ? | ⓐ | 4 |\n| 아들의 세포 Ⅲ | 0 | 1 | 0 | 1 | 0 | 1 |\n| ㉠딸의 세포 Ⅳ | 2 | ? | 0 | 2 | ⓑ | 2 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **8**\n- stage_maps(가능한 단계배정) = **[('MI', 'GAM', 'MII')]**\n- ab_sums = [0]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260155,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 8,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "GAM",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "AabbDd",
+            "Aabbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 0
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abd",
+            "abD"
+          ],
+          "hm": [
+            "Abd",
+            "Abd"
+          ],
+          "son": [
+            "abd",
+            "Abd"
+          ],
+          "dau": [
+            "abd",
+            "Abd"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "Aabbdd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "GAM",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_e5ea5cc0f9",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝1이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | ⓑ | ? | 1 | 0 | ? | 1 |\n| ㉠아들의 세포 Ⅲ | 0 | 2 | 2 | 0 | 2 | ? |\n| 딸의 세포 Ⅳ | 4 | ⓐ | 2 | 2 | ? | 2 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | ⓑ | ? | 1 | 0 | ? | 1 |\n| ㉠아들의 세포 Ⅲ | 0 | 2 | 2 | 0 | 2 | ? |\n| 딸의 세포 Ⅳ | 4 | ⓐ | 2 | 2 | ? | 2 |",
+      "answer_md": "**정답:** ① ㄱ",
+      "explanation_md": "- solver 가능한 해 수: **2**\n- stage_maps(가능한 단계배정) = **[('GAM', 'MII', 'MI')]**\n- ab_sums = [1]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **① ㄱ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260157,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 2,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            1
+          ],
+          "ab_sums": [
+            1
+          ],
+          "stage_maps": [
+            [
+              "GAM",
+              "MII",
+              "MI"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDd",
+            "AaBbDD"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 1
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 0,
+          "forced_truths": [
+            true,
+            false,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "ABd",
+            "AbD"
+          ],
+          "hm": [
+            "aBD",
+            "ABd"
+          ],
+          "son": [
+            "ABd",
+            "aBD"
+          ],
+          "dau": [
+            "AbD",
+            "ABd"
+          ],
+          "a_real": 0,
+          "b_real": 1,
+          "target_true": "AaBBDd"
+        },
+        "stage_of_hidden": {
+          "II": "GAM",
+          "III": "MII",
+          "IV": "MI"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_d7a47b9086",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝99이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | ? | ⓐ | ? | 0 | 4 |\n| ㉠아들의 세포 Ⅲ | 2 | ? | ⓑ | 2 | 0 | 2 |\n| 딸의 세포 Ⅳ | 1 | 0 | 0 | 1 | 0 | 1 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | ? | ⓐ | ? | 0 | 4 |\n| ㉠아들의 세포 Ⅲ | 2 | ? | ⓑ | 2 | 0 | 2 |\n| 딸의 세포 Ⅳ | 1 | 0 | 0 | 1 | 0 | 1 |",
+      "answer_md": "**정답:** ② ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **40**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [0, 2]\n- target_genos(개수) = 4\n- 후처리로 <보기>를 설계하여 정답을 **② ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260158,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 40,
+          "a_values": [
+            0,
+            2
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0,
+            2
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AABbDd",
+            "AABbdd",
+            "AaBbDd",
+            "AaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 99
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 1,
+          "forced_truths": [
+            false,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBd",
+            "ABD"
+          ],
+          "hm": [
+            "Abd",
+            "Abd"
+          ],
+          "son": [
+            "ABD",
+            "Abd"
+          ],
+          "dau": [
+            "aBd",
+            "Abd"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "AABbDd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_bf6d7b5092",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝0이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 2 | 2 | 2 | 2 |\n| 아들의 세포 Ⅲ | 0 | 2 | ? | 0 | ⓑ | 2 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | ⓐ | 1 | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 2 | 2 | 2 | 2 |\n| 아들의 세포 Ⅲ | 0 | 2 | ? | 0 | ⓑ | 2 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | ⓐ | 1 | 0 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **8**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [0]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260159,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 8,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AABbDD",
+            "AaBBDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 0
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abd",
+            "ABD"
+          ],
+          "hm": [
+            "AbD",
+            "aBd"
+          ],
+          "son": [
+            "ABD",
+            "aBd"
+          ],
+          "dau": [
+            "ABD",
+            "AbD"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "AABbDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_a7466120ad",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝4이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | ? | 1 | 0 | 1 | ⓐ |\n| ㉠아들의 세포 Ⅲ | 0 | ? | 2 | 0 | 2 | ? |\n| 딸의 세포 Ⅳ | 0 | ⓑ | ? | 2 | ? | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | ? | 1 | 0 | 1 | ⓐ |\n| ㉠아들의 세포 Ⅲ | 0 | ? | 2 | 0 | 2 | ? |\n| 딸의 세포 Ⅳ | 0 | ⓑ | ? | 2 | ? | 0 |",
+      "answer_md": "**정답:** ① ㄱ",
+      "explanation_md": "- solver 가능한 해 수: **30**\n- stage_maps(가능한 단계배정) = **[('GAM', 'MII', 'MI')]**\n- ab_sums = [4]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **① ㄱ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260161,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 30,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            4
+          ],
+          "ab_sums": [
+            4
+          ],
+          "stage_maps": [
+            [
+              "GAM",
+              "MII",
+              "MI"
+            ]
+          ],
+          "target_genos": [
+            "aaBbDD",
+            "aaBbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 4
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 0,
+          "forced_truths": [
+            true,
+            false,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abD",
+            "abd"
+          ],
+          "hm": [
+            "Abd",
+            "aBD"
+          ],
+          "son": [
+            "abD",
+            "aBD"
+          ],
+          "dau": [
+            "abD",
+            "aBD"
+          ],
+          "a_real": 0,
+          "b_real": 4,
+          "target_true": "aaBbDD"
+        },
+        "stage_of_hidden": {
+          "II": "GAM",
+          "III": "MII",
+          "IV": "MI"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_c4322d156b",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝99이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | ? | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | ? | 0 | 2 | ⓑ | 4 | 0 |\n| 아들의 세포 Ⅲ | 0 | 1 | ? | 0 | ⓐ | ? |\n| ㉠딸의 세포 Ⅳ | 0 | 2 | 2 | 0 | ? | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | ? | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | ? | 0 | 2 | ⓑ | 4 | 0 |\n| 아들의 세포 Ⅲ | 0 | 1 | ? | 0 | ⓐ | ? |\n| ㉠딸의 세포 Ⅳ | 0 | 2 | 2 | 0 | ? | 0 |",
+      "answer_md": "**정답:** ② ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **8**\n- stage_maps(가능한 단계배정) = **[('MI', 'GAM', 'MII')]**\n- ab_sums = [2, 3]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **② ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260162,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 8,
+          "a_values": [
+            0,
+            1
+          ],
+          "b_values": [
+            2
+          ],
+          "ab_sums": [
+            2,
+            3
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "GAM",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDD",
+            "AaBbDD"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 99
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 1,
+          "forced_truths": [
+            false,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBd",
+            "aBD"
+          ],
+          "hm": [
+            "AbD",
+            "ABD"
+          ],
+          "son": [
+            "aBD",
+            "AbD"
+          ],
+          "dau": [
+            "aBD",
+            "ABD"
+          ],
+          "a_real": 1,
+          "b_real": 2,
+          "target_true": "AaBBDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "GAM",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_42c7dd5206",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝0이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 2 | 0 | 2 | ? | 2 | ⓑ |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | ? | 0 | ⓐ | 1 |\n| 딸의 세포 Ⅳ | 2 | 2 | 4 | 0 | 2 | 2 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 2 | 0 | 2 | ? | 2 | ⓑ |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | ? | 0 | ⓐ | 1 |\n| 딸의 세포 Ⅳ | 2 | 2 | 4 | 0 | 2 | 2 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **24**\n- stage_maps(가능한 단계배정) = **[('MII', 'GAM', 'MI')]**\n- ab_sums = [0]\n- target_genos(개수) = 8\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260165,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 24,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "GAM",
+              "MI"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDd",
+            "AaBBdd",
+            "AaBbDd",
+            "AaBbdd",
+            "aaBBDd",
+            "aaBBdd",
+            "aaBbDd",
+            "aaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 0
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "Abd",
+            "aBd"
+          ],
+          "hm": [
+            "ABD",
+            "Abd"
+          ],
+          "son": [
+            "aBd",
+            "Abd"
+          ],
+          "dau": [
+            "aBd",
+            "ABD"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "AaBbdd"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "GAM",
+          "IV": "MI"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_30228bbd27",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝4이다.\nㄴ. III의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 1 | 0 | 1 | 0 | 0 | ? |\n| 아들의 세포 Ⅲ | 2 | ⓑ | 4 | 0 | 0 | 4 |\n| ㉠딸의 세포 Ⅳ | 0 | ⓐ | 2 | 0 | ? | ? |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 1 | 0 | 1 | 0 | 0 | ? |\n| 아들의 세포 Ⅲ | 2 | ⓑ | 4 | 0 | 0 | 4 |\n| ㉠딸의 세포 Ⅳ | 0 | ⓐ | 2 | 0 | ? | ? |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **48**\n- stage_maps(가능한 단계배정) = **[('GAM', 'MI', 'MII')]**\n- ab_sums = [4]\n- target_genos(개수) = 12\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260166,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 48,
+          "a_values": [
+            2
+          ],
+          "b_values": [
+            2
+          ],
+          "ab_sums": [
+            4
+          ],
+          "stage_maps": [
+            [
+              "GAM",
+              "MI",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDD",
+            "AaBBDd",
+            "AaBBdd",
+            "AaBbDD",
+            "AaBbDd",
+            "AaBbdd",
+            "aaBBDD",
+            "aaBBDd",
+            "aaBBdd",
+            "aaBbDD",
+            "aaBbDd",
+            "aaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 4
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "III",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBd",
+            "aBD"
+          ],
+          "hm": [
+            "Abd",
+            "ABd"
+          ],
+          "son": [
+            "aBd",
+            "ABd"
+          ],
+          "dau": [
+            "aBd",
+            "ABd"
+          ],
+          "a_real": 2,
+          "b_real": 2,
+          "target_true": "AaBBdd"
+        },
+        "stage_of_hidden": {
+          "II": "GAM",
+          "III": "MI",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_ca2a71a07b",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝3이다.\nㄴ. III의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 2 | 0 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 0 | 1 | ⓐ | 0 | 1 | 0 |\n| 아들의 세포 Ⅲ | 2 | ⓑ | 2 | 2 | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | 2 | ? | 2 | 0 | 0 | 2 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 2 | 0 | 2 | 0 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 0 | 1 | ⓐ | 0 | 1 | 0 |\n| 아들의 세포 Ⅲ | 2 | ⓑ | 2 | 2 | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | 2 | ? | 2 | 0 | 0 | 2 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **8**\n- stage_maps(가능한 단계배정) = **[('GAM', 'MI', 'MII')]**\n- ab_sums = [3]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260170,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 8,
+          "a_values": [
+            1
+          ],
+          "b_values": [
+            2
+          ],
+          "ab_sums": [
+            3
+          ],
+          "stage_maps": [
+            [
+              "GAM",
+              "MI",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDd",
+            "AaBbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 3
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "III",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "ABd",
+            "ABd"
+          ],
+          "hm": [
+            "aBD",
+            "abD"
+          ],
+          "son": [
+            "ABd",
+            "abD"
+          ],
+          "dau": [
+            "ABd",
+            "abD"
+          ],
+          "a_real": 1,
+          "b_real": 2,
+          "target_true": "AaBbDd"
+        },
+        "stage_of_hidden": {
+          "II": "GAM",
+          "III": "MI",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_b79b96593b",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝1이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | 2 | 2 | 0 | 2 | 0 |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | 0 | ⓐ | 1 | ? |\n| 딸의 세포 Ⅳ | ⓑ | 4 | ? | 2 | ? | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | 2 | 2 | 0 | 2 | 0 |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | 0 | ⓐ | 1 | ? |\n| 딸의 세포 Ⅳ | ⓑ | 4 | ? | 2 | ? | 0 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **24**\n- stage_maps(가능한 단계배정) = **[('MII', 'GAM', 'MI')]**\n- ab_sums = [1]\n- target_genos(개수) = 8\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260172,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 24,
+          "a_values": [
+            1
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            1
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "GAM",
+              "MI"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDD",
+            "AaBbDd",
+            "AabbDD",
+            "AabbDd",
+            "aaBbDD",
+            "aaBbDd",
+            "aabbDD",
+            "aabbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 1
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abD",
+            "Abd"
+          ],
+          "hm": [
+            "aBd",
+            "aBD"
+          ],
+          "son": [
+            "abD",
+            "aBd"
+          ],
+          "dau": [
+            "abD",
+            "aBD"
+          ],
+          "a_real": 1,
+          "b_real": 0,
+          "target_true": "aaBbDd"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "GAM",
+          "IV": "MI"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_ba4c222472",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝2이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | ⓑ | 0 | 2 | 0 | 2 |\n| 아들의 세포 Ⅲ | 4 | 0 | 2 | 2 | 0 | 4 |\n| ㉠딸의 세포 Ⅳ | ⓐ | 1 | 0 | ? | 0 | 1 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 0 | ⓑ | 0 | 2 | 0 | 2 |\n| 아들의 세포 Ⅲ | 4 | 0 | 2 | 2 | 0 | 4 |\n| ㉠딸의 세포 Ⅳ | ⓐ | 1 | 0 | ? | 0 | 1 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **4**\n- stage_maps(가능한 단계배정) = **[('MII', 'MI', 'GAM')]**\n- ab_sums = [2]\n- target_genos(개수) = 4\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260174,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 4,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            2
+          ],
+          "ab_sums": [
+            2
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "MI",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBbdd",
+            "Aabbdd",
+            "aaBbDd",
+            "aabbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 2
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "Abd",
+            "aBD"
+          ],
+          "hm": [
+            "abd",
+            "ABd"
+          ],
+          "son": [
+            "Abd",
+            "ABd"
+          ],
+          "dau": [
+            "Abd",
+            "abd"
+          ],
+          "a_real": 0,
+          "b_real": 2,
+          "target_true": "Aabbdd"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "MI",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_7f6bcca938",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝5이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | ? | 1 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 4 | 0 | 0 | ⓐ |\n| 아들의 세포 Ⅲ | 2 | 0 | 0 | 2 | ? | 0 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | ⓑ | 0 | 0 | ? |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | ? | 1 | 0 | 2 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 4 | 0 | 0 | ⓐ |\n| 아들의 세포 Ⅲ | 2 | 0 | 0 | 2 | ? | 0 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | ⓑ | 0 | 0 | ? |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **8**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [5]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260175,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 8,
+          "a_values": [
+            4
+          ],
+          "b_values": [
+            1
+          ],
+          "ab_sums": [
+            5
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AABbDd",
+            "AaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 5
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "AbD",
+            "abd"
+          ],
+          "hm": [
+            "ABd",
+            "ABd"
+          ],
+          "son": [
+            "AbD",
+            "ABd"
+          ],
+          "dau": [
+            "abd",
+            "ABd"
+          ],
+          "a_real": 4,
+          "b_real": 1,
+          "target_true": "AaBbdd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_96469117b3",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝1이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 0 | 2 | 0 | 0 | 2 |\n| 아들의 세포 Ⅲ | 2 | 2 | 4 | ⓐ | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | 0 | 0 | ⓑ |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 1 | 1 | 2 | 0 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 0 | 2 | 0 | 0 | 2 |\n| 아들의 세포 Ⅲ | 2 | 2 | 4 | ⓐ | 2 | 2 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | 0 | 0 | ⓑ |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **60**\n- stage_maps(가능한 단계배정) = **[('MII', 'MI', 'GAM')]**\n- ab_sums = [1]\n- target_genos(개수) = 8\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260176,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 60,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            1
+          ],
+          "ab_sums": [
+            1
+          ],
+          "stage_maps": [
+            [
+              "MII",
+              "MI",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AABBDd",
+            "AABBdd",
+            "AABbDd",
+            "AABbdd",
+            "AaBBDd",
+            "AaBBdd",
+            "AaBbDd",
+            "AaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 1
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBD",
+            "ABd"
+          ],
+          "hm": [
+            "aBd",
+            "ABd"
+          ],
+          "son": [
+            "aBD",
+            "ABd"
+          ],
+          "dau": [
+            "ABd",
+            "ABd"
+          ],
+          "a_real": 0,
+          "b_real": 1,
+          "target_true": "AABBdd"
+        },
+        "stage_of_hidden": {
+          "II": "MII",
+          "III": "MI",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_ba004f3691",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝0이다.\nㄴ. II의 염색 분체 수 / IV의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 2 | 2 | 2 | 2 |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | 1 | ⓑ | ? | ? |\n| 딸의 세포 Ⅳ | ⓐ | 2 | 2 | 0 | 2 | 0 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | 2 | 2 | 2 | 2 | 2 |\n| ㉠아들의 세포 Ⅲ | 0 | 1 | 1 | ⓑ | ? | ? |\n| 딸의 세포 Ⅳ | ⓐ | 2 | 2 | 0 | 2 | 0 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **40**\n- stage_maps(가능한 단계배정) = **[('MI', 'GAM', 'MII')]**\n- ab_sums = [0]\n- target_genos(개수) = 10\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260177,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 40,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "GAM",
+              "MII"
+            ]
+          ],
+          "target_genos": [
+            "AaBBDD",
+            "AaBBDd",
+            "AaBbDD",
+            "AaBbDd",
+            "AaBbdd",
+            "aaBBDD",
+            "aaBBDd",
+            "aaBbDD",
+            "aaBbDd",
+            "aaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 0
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "IV",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abd",
+            "aBD"
+          ],
+          "hm": [
+            "aBd",
+            "AbD"
+          ],
+          "son": [
+            "aBD",
+            "AbD"
+          ],
+          "dau": [
+            "aBD",
+            "AbD"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "AaBbDD"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "GAM",
+          "IV": "MII"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_18e2a170b4",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝99이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | ? | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 0 | 4 | ? | ⓑ |\n| ㉠아들의 세포 Ⅲ | 0 | 2 | 2 | 0 | 0 | 2 |\n| 딸의 세포 Ⅳ | 0 | ? | 1 | 0 | 0 | ⓐ |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | ? | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 0 | 4 | ? | ⓑ |\n| ㉠아들의 세포 Ⅲ | 0 | 2 | 2 | 0 | 0 | 2 |\n| 딸의 세포 Ⅳ | 0 | ? | 1 | 0 | 0 | ⓐ |",
+      "answer_md": "**정답:** ② ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **12**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [1, 3, 5]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **② ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260178,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 12,
+          "a_values": [
+            1
+          ],
+          "b_values": [
+            0,
+            2,
+            4
+          ],
+          "ab_sums": [
+            1,
+            3,
+            5
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDd",
+            "AaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 99
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 1,
+          "forced_truths": [
+            false,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "aBd",
+            "abd"
+          ],
+          "hm": [
+            "AbD",
+            "Abd"
+          ],
+          "son": [
+            "aBd",
+            "Abd"
+          ],
+          "dau": [
+            "aBd",
+            "Abd"
+          ],
+          "a_real": 1,
+          "b_real": 2,
+          "target_true": "AaBbdd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_89d806ce3e",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝0이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | ? | 2 | 2 | ⓐ | 4 |\n| ㉠아들의 세포 Ⅲ | ? | 2 | 0 | 2 | 2 | 0 |\n| 딸의 세포 Ⅳ | 1 | 0 | 1 | 0 | ⓑ | 1 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | 0 | 2 | 1 | 1 | 1 | 1 |\n| 어머니의 세포 Ⅱ | 2 | ? | 2 | 2 | ⓐ | 4 |\n| ㉠아들의 세포 Ⅲ | ? | 2 | 0 | 2 | 2 | 0 |\n| 딸의 세포 Ⅳ | 1 | 0 | 1 | 0 | ⓑ | 1 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **4**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [0]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260181,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 4,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            0
+          ],
+          "ab_sums": [
+            0
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBbDd",
+            "aabbDd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 0
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "III",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abD",
+            "aBd"
+          ],
+          "hm": [
+            "abd",
+            "ABd"
+          ],
+          "son": [
+            "abD",
+            "abd"
+          ],
+          "dau": [
+            "abD",
+            "ABd"
+          ],
+          "a_real": 0,
+          "b_real": 0,
+          "target_true": "aabbDd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    },
+    {
+      "id": "2506GENEDETX_f452e7b746",
+      "module": "2506GENEDETX",
+      "id_prefix": "2506GENEDETX_",
+      "problem_text_md": "사람의 유전 형질 (가)는 같은 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 어떤 가족 구성원의 세포 Ⅰ～Ⅳ가 갖는 A, a, B, b, D, d의 DNA 상대량을 나타낸 것이다.\nⅠ은 G1기 세포이고, Ⅱ～Ⅳ는 감수 1분열 중기 세포, 감수 2분열 중기 세포, 생식세포를 순서 없이 나타낸 것이다.\n(단, 돌연변이와 교차는 고려하지 않으며 A, a, B, b, D, d 각각의 1개당 DNA 상대량은 1이다.) [3점]",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. ⓐ＋ⓑ＝4이다.\nㄴ. II의 염색 분체 수 / III의 염색 분체 수 ＝2이다.\nㄷ. ㉠의 (가)의 유전자형은 AABBDD이다.\n\n① ㄱ ② ㄴ ③ ㄷ ④ ㄱ, ㄴ ⑤ ㄴ, ㄷ",
+      "table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | ? | 2 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 4 | 0 | 0 | ⓑ |\n| 아들의 세포 Ⅲ | 0 | 2 | 2 | 0 | 0 | 2 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | ⓐ | 0 | 1 |",
+      "full_table_md": "| 세포 DNA 상대량 | A | a | B | b | D | d |\n|---|---|---|---|---|---|---|\n| 아버지의 세포 Ⅰ | ? | 2 | 1 | 1 | 0 | 2 |\n| 어머니의 세포 Ⅱ | 4 | 0 | 4 | 0 | 0 | ⓑ |\n| 아들의 세포 Ⅲ | 0 | 2 | 2 | 0 | 0 | 2 |\n| ㉠딸의 세포 Ⅳ | 1 | 0 | 1 | ⓐ | 0 | 1 |",
+      "answer_md": "**정답:** ④ ㄱ, ㄴ",
+      "explanation_md": "- solver 가능한 해 수: **8**\n- stage_maps(가능한 단계배정) = **[('MI', 'MII', 'GAM')]**\n- ab_sums = [4]\n- target_genos(개수) = 2\n- 후처리로 <보기>를 설계하여 정답을 **④ ㄱ, ㄴ**로 고정(유일정답)\n- (가족 안전) 자손은 항상 부모 하플로타입 조합으로만 인정(교차X) → 불가능 유전자형 배제",
+      "meta": {
+        "seed": 20260182,
+        "difficulty": 2,
+        "solver_summary": {
+          "num_solutions": 8,
+          "a_values": [
+            0
+          ],
+          "b_values": [
+            4
+          ],
+          "ab_sums": [
+            4
+          ],
+          "stage_maps": [
+            [
+              "MI",
+              "MII",
+              "GAM"
+            ]
+          ],
+          "target_genos": [
+            "AaBBdd",
+            "AaBbdd"
+          ]
+        },
+        "crafted": {
+          "stmt1": {
+            "type": "sum_ab",
+            "rhs": 4
+          },
+          "stmt2": {
+            "type": "chrom_ratio_eq2",
+            "num": "II",
+            "den": "III",
+            "rhs": 2
+          },
+          "stmt3": {
+            "type": "target_geno",
+            "target": "IV",
+            "claim": "AABBDD"
+          },
+          "forced_option": 3,
+          "forced_truths": [
+            true,
+            true,
+            false
+          ]
+        },
+        "hidden_truth": {
+          "hf": [
+            "abd",
+            "aBd"
+          ],
+          "hm": [
+            "ABd",
+            "ABd"
+          ],
+          "son": [
+            "aBd",
+            "ABd"
+          ],
+          "dau": [
+            "abd",
+            "ABd"
+          ],
+          "a_real": 0,
+          "b_real": 4,
+          "target_true": "AaBbdd"
+        },
+        "stage_of_hidden": {
+          "II": "MI",
+          "III": "MII",
+          "IV": "GAM"
+        }
+      }
+    }
+  ]
+}
