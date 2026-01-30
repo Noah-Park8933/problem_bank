@@ -93,7 +93,7 @@ def normalize_tables(payload: Dict[str, Any]) -> Dict[str, Any]:
         "_given_table",
         "given_table", "masked_table", "presented_table",
         "table", "problem_table", "masked",
-        "table_obj", "table_data"
+        "table_obj", "table_data", "table_2"
     ])
 
     full = _pick_first(payload, [
