@@ -1,0 +1,997 @@
+{
+  "module": "HJHMPHYSICS1",
+  "id_prefix": "HJHMPHYSICS1_",
+  "created_at": "2026-01-30 23:08:08",
+  "items": [
+    {
+      "id": "HJHMPHYSICS1_0018_001",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 3f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 6E₀ 이상이다.\nㄷ. ①은 9E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 3E₀ |\n| P | 3f₀ | 7E₀ |\n| Q | 2f₀ | 2E₀ |\n| Q | 3f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 3E₀ |\n| P | 3f₀ | 7E₀ |\n| Q | 2f₀ | 2E₀ |\n| Q | 3f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 2f₀→3f₀로 증가할 때 K 변화량은 4E₀이고, Q에서도 동일하므로 ①=2E₀+4E₀=6E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 3,
+          "B": 7,
+          "C": 2,
+          "D": 6,
+          "n": 2,
+          "m": 3,
+          "k": 4
+        },
+        "_qnum": 1
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_002",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 4f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 2E₀ 이상이다.\nㄷ. ①은 6E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 2E₀ |\n| P | 4f₀ | 8E₀ |\n| Q | 2f₀ | 2E₀ |\n| Q | 4f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 2E₀ |\n| P | 4f₀ | 8E₀ |\n| Q | 2f₀ | 2E₀ |\n| Q | 4f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 2f₀→4f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=2E₀+6E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 2,
+          "B": 8,
+          "C": 2,
+          "D": 8,
+          "n": 2,
+          "m": 4,
+          "k": 3
+        },
+        "_qnum": 2
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_003",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 8f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 6E₀ 이상이다.\nㄷ. ①은 7E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 1E₀ |\n| P | 8f₀ | 7E₀ |\n| Q | 5f₀ | 1E₀ |\n| Q | 8f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 1E₀ |\n| P | 8f₀ | 7E₀ |\n| Q | 5f₀ | 1E₀ |\n| Q | 8f₀ | ① |\n",
+        "answer_md": "**정답:** 4",
+        "explanation_md": "P에서 5f₀→8f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=1E₀+6E₀=7E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, True) 이고 정답은 4이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            true
+          ],
+          "A": 1,
+          "B": 7,
+          "C": 1,
+          "D": 7,
+          "n": 5,
+          "m": 8,
+          "k": 2
+        },
+        "_qnum": 3
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_004",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 6f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 5E₀ 이상이다.\nㄷ. ①은 1E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 3E₀ |\n| P | 6f₀ | 9E₀ |\n| Q | 3f₀ | 2E₀ |\n| Q | 6f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 3E₀ |\n| P | 6f₀ | 9E₀ |\n| Q | 3f₀ | 2E₀ |\n| Q | 6f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 3f₀→6f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=2E₀+6E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 3,
+          "B": 9,
+          "C": 2,
+          "D": 8,
+          "n": 3,
+          "m": 6,
+          "k": 2
+        },
+        "_qnum": 4
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_005",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 5f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 9E₀ 이상이다.\nㄷ. ①은 5E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 4E₀ |\n| P | 5f₀ | 8E₀ |\n| Q | 3f₀ | 5E₀ |\n| Q | 5f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 4E₀ |\n| P | 5f₀ | 8E₀ |\n| Q | 3f₀ | 5E₀ |\n| Q | 5f₀ | ① |\n",
+        "answer_md": "**정답:** 1",
+        "explanation_md": "P에서 3f₀→5f₀로 증가할 때 K 변화량은 4E₀이고, Q에서도 동일하므로 ①=5E₀+4E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, False) 이고 정답은 1이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            false
+          ],
+          "A": 4,
+          "B": 8,
+          "C": 5,
+          "D": 9,
+          "n": 3,
+          "m": 5,
+          "k": 2
+        },
+        "_qnum": 5
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_006",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 3f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 9E₀ 이상이다.\nㄷ. ①은 8E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 2E₀ |\n| P | 3f₀ | 6E₀ |\n| Q | 2f₀ | 4E₀ |\n| Q | 3f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 2E₀ |\n| P | 3f₀ | 6E₀ |\n| Q | 2f₀ | 4E₀ |\n| Q | 3f₀ | ① |\n",
+        "answer_md": "**정답:** 3",
+        "explanation_md": "P에서 2f₀→3f₀로 증가할 때 K 변화량은 4E₀이고, Q에서도 동일하므로 ①=4E₀+4E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, True) 이고 정답은 3이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            true
+          ],
+          "A": 2,
+          "B": 6,
+          "C": 4,
+          "D": 8,
+          "n": 2,
+          "m": 3,
+          "k": 4
+        },
+        "_qnum": 6
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_007",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 5f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 6E₀ 이상이다.\nㄷ. ①은 8E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 2E₀ |\n| P | 5f₀ | 6E₀ |\n| Q | 4f₀ | 4E₀ |\n| Q | 5f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 2E₀ |\n| P | 5f₀ | 6E₀ |\n| Q | 4f₀ | 4E₀ |\n| Q | 5f₀ | ① |\n",
+        "answer_md": "**정답:** 5",
+        "explanation_md": "P에서 4f₀→5f₀로 증가할 때 K 변화량은 4E₀이고, Q에서도 동일하므로 ①=4E₀+4E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, True, True) 이고 정답은 5이다.",
+        "meta": {
+          "truths": [
+            true,
+            true,
+            true
+          ],
+          "A": 2,
+          "B": 6,
+          "C": 4,
+          "D": 8,
+          "n": 4,
+          "m": 5,
+          "k": 4
+        },
+        "_qnum": 7
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_008",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 4f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 2E₀ 이상이다.\nㄷ. ①은 7E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 1f₀ | 6E₀ |\n| P | 4f₀ | 9E₀ |\n| Q | 1f₀ | 4E₀ |\n| Q | 4f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 1f₀ | 6E₀ |\n| P | 4f₀ | 9E₀ |\n| Q | 1f₀ | 4E₀ |\n| Q | 4f₀ | ① |\n",
+        "answer_md": "**정답:** 4",
+        "explanation_md": "P에서 1f₀→4f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=4E₀+3E₀=7E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, True) 이고 정답은 4이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            true
+          ],
+          "A": 6,
+          "B": 9,
+          "C": 4,
+          "D": 7,
+          "n": 1,
+          "m": 4,
+          "k": 1
+        },
+        "_qnum": 8
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_009",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 6f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 8E₀ 이상이다.\nㄷ. ①은 7E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 1E₀ |\n| P | 6f₀ | 7E₀ |\n| Q | 3f₀ | 2E₀ |\n| Q | 6f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 1E₀ |\n| P | 6f₀ | 7E₀ |\n| Q | 3f₀ | 2E₀ |\n| Q | 6f₀ | ① |\n",
+        "answer_md": "**정답:** 1",
+        "explanation_md": "P에서 3f₀→6f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=2E₀+6E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, False) 이고 정답은 1이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            false
+          ],
+          "A": 1,
+          "B": 7,
+          "C": 2,
+          "D": 8,
+          "n": 3,
+          "m": 6,
+          "k": 2
+        },
+        "_qnum": 9
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_010",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 9f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 7E₀ 이상이다.\nㄷ. ①은 7E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 5E₀ |\n| P | 9f₀ | 8E₀ |\n| Q | 6f₀ | 4E₀ |\n| Q | 9f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 5E₀ |\n| P | 9f₀ | 8E₀ |\n| Q | 6f₀ | 4E₀ |\n| Q | 9f₀ | ① |\n",
+        "answer_md": "**정답:** 4",
+        "explanation_md": "P에서 6f₀→9f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=4E₀+3E₀=7E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, True) 이고 정답은 4이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            true
+          ],
+          "A": 5,
+          "B": 8,
+          "C": 4,
+          "D": 7,
+          "n": 6,
+          "m": 9,
+          "k": 1
+        },
+        "_qnum": 10
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_011",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 4f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 8E₀ 이상이다.\nㄷ. ①은 9E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 1f₀ | 1E₀ |\n| P | 4f₀ | 4E₀ |\n| Q | 1f₀ | 5E₀ |\n| Q | 4f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 1f₀ | 1E₀ |\n| P | 4f₀ | 4E₀ |\n| Q | 1f₀ | 5E₀ |\n| Q | 4f₀ | ① |\n",
+        "answer_md": "**정답:** 1",
+        "explanation_md": "P에서 1f₀→4f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=5E₀+3E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, False) 이고 정답은 1이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            false
+          ],
+          "A": 1,
+          "B": 4,
+          "C": 5,
+          "D": 8,
+          "n": 1,
+          "m": 4,
+          "k": 1
+        },
+        "_qnum": 11
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_012",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 8f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 3E₀ 이상이다.\nㄷ. ①은 7E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 1E₀ |\n| P | 8f₀ | 7E₀ |\n| Q | 5f₀ | 1E₀ |\n| Q | 8f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 1E₀ |\n| P | 8f₀ | 7E₀ |\n| Q | 5f₀ | 1E₀ |\n| Q | 8f₀ | ① |\n",
+        "answer_md": "**정답:** 4",
+        "explanation_md": "P에서 5f₀→8f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=1E₀+6E₀=7E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, True) 이고 정답은 4이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            true
+          ],
+          "A": 1,
+          "B": 7,
+          "C": 1,
+          "D": 7,
+          "n": 5,
+          "m": 8,
+          "k": 2
+        },
+        "_qnum": 12
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_013",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 4f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 3E₀ 이상이다.\nㄷ. ①은 9E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 2E₀ |\n| P | 4f₀ | 4E₀ |\n| Q | 2f₀ | 7E₀ |\n| Q | 4f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 2E₀ |\n| P | 4f₀ | 4E₀ |\n| Q | 2f₀ | 7E₀ |\n| Q | 4f₀ | ① |\n",
+        "answer_md": "**정답:** 5",
+        "explanation_md": "P에서 2f₀→4f₀로 증가할 때 K 변화량은 2E₀이고, Q에서도 동일하므로 ①=7E₀+2E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, True, True) 이고 정답은 5이다.",
+        "meta": {
+          "truths": [
+            true,
+            true,
+            true
+          ],
+          "A": 2,
+          "B": 4,
+          "C": 7,
+          "D": 9,
+          "n": 2,
+          "m": 4,
+          "k": 1
+        },
+        "_qnum": 13
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_014",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 4f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 3E₀ 이상이다.\nㄷ. ①은 3E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 1f₀ | 3E₀ |\n| P | 4f₀ | 6E₀ |\n| Q | 1f₀ | 3E₀ |\n| Q | 4f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 1f₀ | 3E₀ |\n| P | 4f₀ | 6E₀ |\n| Q | 1f₀ | 3E₀ |\n| Q | 4f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 1f₀→4f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=3E₀+3E₀=6E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 3,
+          "B": 6,
+          "C": 3,
+          "D": 6,
+          "n": 1,
+          "m": 4,
+          "k": 1
+        },
+        "_qnum": 14
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_015",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 7f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 7E₀ 이상이다.\nㄷ. ①은 1E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 3E₀ |\n| P | 7f₀ | 9E₀ |\n| Q | 4f₀ | 3E₀ |\n| Q | 7f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 3E₀ |\n| P | 7f₀ | 9E₀ |\n| Q | 4f₀ | 3E₀ |\n| Q | 7f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 4f₀→7f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=3E₀+6E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 3,
+          "B": 9,
+          "C": 3,
+          "D": 9,
+          "n": 4,
+          "m": 7,
+          "k": 2
+        },
+        "_qnum": 15
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_016",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 7f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 3E₀ 이상이다.\nㄷ. ①은 6E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 1E₀ |\n| P | 7f₀ | 9E₀ |\n| Q | 5f₀ | 1E₀ |\n| Q | 7f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 1E₀ |\n| P | 7f₀ | 9E₀ |\n| Q | 5f₀ | 1E₀ |\n| Q | 7f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 5f₀→7f₀로 증가할 때 K 변화량은 8E₀이고, Q에서도 동일하므로 ①=1E₀+8E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 1,
+          "B": 9,
+          "C": 1,
+          "D": 9,
+          "n": 5,
+          "m": 7,
+          "k": 4
+        },
+        "_qnum": 16
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_017",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 5f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 9E₀ 이상이다.\nㄷ. ①은 2E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 1E₀ |\n| P | 5f₀ | 4E₀ |\n| Q | 2f₀ | 3E₀ |\n| Q | 5f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 1E₀ |\n| P | 5f₀ | 4E₀ |\n| Q | 2f₀ | 3E₀ |\n| Q | 5f₀ | ① |\n",
+        "answer_md": "**정답:** 1",
+        "explanation_md": "P에서 2f₀→5f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=3E₀+3E₀=6E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, False) 이고 정답은 1이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            false
+          ],
+          "A": 1,
+          "B": 4,
+          "C": 3,
+          "D": 6,
+          "n": 2,
+          "m": 5,
+          "k": 1
+        },
+        "_qnum": 17
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_018",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 5f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 2E₀ 이상이다.\nㄷ. ①은 6E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 4E₀ |\n| P | 5f₀ | 7E₀ |\n| Q | 2f₀ | 3E₀ |\n| Q | 5f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 4E₀ |\n| P | 5f₀ | 7E₀ |\n| Q | 2f₀ | 3E₀ |\n| Q | 5f₀ | ① |\n",
+        "answer_md": "**정답:** 4",
+        "explanation_md": "P에서 2f₀→5f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=3E₀+3E₀=6E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, True) 이고 정답은 4이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            true
+          ],
+          "A": 4,
+          "B": 7,
+          "C": 3,
+          "D": 6,
+          "n": 2,
+          "m": 5,
+          "k": 1
+        },
+        "_qnum": 18
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_019",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 6f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 9E₀ 이상이다.\nㄷ. ①은 4E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 2E₀ |\n| P | 6f₀ | 8E₀ |\n| Q | 3f₀ | 3E₀ |\n| Q | 6f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 2E₀ |\n| P | 6f₀ | 8E₀ |\n| Q | 3f₀ | 3E₀ |\n| Q | 6f₀ | ① |\n",
+        "answer_md": "**정답:** 1",
+        "explanation_md": "P에서 3f₀→6f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=3E₀+6E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, False) 이고 정답은 1이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            false
+          ],
+          "A": 2,
+          "B": 8,
+          "C": 3,
+          "D": 9,
+          "n": 3,
+          "m": 6,
+          "k": 2
+        },
+        "_qnum": 19
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_020",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 7f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 8E₀ 이상이다.\nㄷ. ①은 8E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 2E₀ |\n| P | 7f₀ | 3E₀ |\n| Q | 6f₀ | 7E₀ |\n| Q | 7f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 2E₀ |\n| P | 7f₀ | 3E₀ |\n| Q | 6f₀ | 7E₀ |\n| Q | 7f₀ | ① |\n",
+        "answer_md": "**정답:** 3",
+        "explanation_md": "P에서 6f₀→7f₀로 증가할 때 K 변화량은 1E₀이고, Q에서도 동일하므로 ①=7E₀+1E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, True) 이고 정답은 3이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            true
+          ],
+          "A": 2,
+          "B": 3,
+          "C": 7,
+          "D": 8,
+          "n": 6,
+          "m": 7,
+          "k": 1
+        },
+        "_qnum": 20
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_021",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 5f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 9E₀ 이상이다.\nㄷ. ①은 9E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 1E₀ |\n| P | 5f₀ | 7E₀ |\n| Q | 2f₀ | 3E₀ |\n| Q | 5f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 2f₀ | 1E₀ |\n| P | 5f₀ | 7E₀ |\n| Q | 2f₀ | 3E₀ |\n| Q | 5f₀ | ① |\n",
+        "answer_md": "**정답:** 3",
+        "explanation_md": "P에서 2f₀→5f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=3E₀+6E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, True) 이고 정답은 3이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            true
+          ],
+          "A": 1,
+          "B": 7,
+          "C": 3,
+          "D": 9,
+          "n": 2,
+          "m": 5,
+          "k": 2
+        },
+        "_qnum": 21
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_022",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 4f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 8E₀ 이상이다.\nㄷ. ①은 4E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 4E₀ |\n| P | 4f₀ | 6E₀ |\n| Q | 3f₀ | 7E₀ |\n| Q | 4f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 4E₀ |\n| P | 4f₀ | 6E₀ |\n| Q | 3f₀ | 7E₀ |\n| Q | 4f₀ | ① |\n",
+        "answer_md": "**정답:** 1",
+        "explanation_md": "P에서 3f₀→4f₀로 증가할 때 K 변화량은 2E₀이고, Q에서도 동일하므로 ①=7E₀+2E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, False) 이고 정답은 1이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            false
+          ],
+          "A": 4,
+          "B": 6,
+          "C": 7,
+          "D": 9,
+          "n": 3,
+          "m": 4,
+          "k": 2
+        },
+        "_qnum": 22
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_023",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 6f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 7E₀ 이상이다.\nㄷ. ①은 8E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 1E₀ |\n| P | 6f₀ | 7E₀ |\n| Q | 4f₀ | 2E₀ |\n| Q | 6f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 1E₀ |\n| P | 6f₀ | 7E₀ |\n| Q | 4f₀ | 2E₀ |\n| Q | 6f₀ | ① |\n",
+        "answer_md": "**정답:** 5",
+        "explanation_md": "P에서 4f₀→6f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=2E₀+6E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, True, True) 이고 정답은 5이다.",
+        "meta": {
+          "truths": [
+            true,
+            true,
+            true
+          ],
+          "A": 1,
+          "B": 7,
+          "C": 2,
+          "D": 8,
+          "n": 4,
+          "m": 6,
+          "k": 3
+        },
+        "_qnum": 23
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_024",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 6f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 8E₀ 이상이다.\nㄷ. ①은 9E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 5E₀ |\n| P | 6f₀ | 7E₀ |\n| Q | 5f₀ | 7E₀ |\n| Q | 6f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 5f₀ | 5E₀ |\n| P | 6f₀ | 7E₀ |\n| Q | 5f₀ | 7E₀ |\n| Q | 6f₀ | ① |\n",
+        "answer_md": "**정답:** 3",
+        "explanation_md": "P에서 5f₀→6f₀로 증가할 때 K 변화량은 2E₀이고, Q에서도 동일하므로 ①=7E₀+2E₀=9E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, True) 이고 정답은 3이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            true
+          ],
+          "A": 5,
+          "B": 7,
+          "C": 7,
+          "D": 9,
+          "n": 5,
+          "m": 6,
+          "k": 2
+        },
+        "_qnum": 24
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_025",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 5f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 8E₀ 이상이다.\nㄷ. ①은 8E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 2E₀ |\n| P | 5f₀ | 6E₀ |\n| Q | 3f₀ | 4E₀ |\n| Q | 5f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 2E₀ |\n| P | 5f₀ | 6E₀ |\n| Q | 3f₀ | 4E₀ |\n| Q | 5f₀ | ① |\n",
+        "answer_md": "**정답:** 3",
+        "explanation_md": "P에서 3f₀→5f₀로 증가할 때 K 변화량은 4E₀이고, Q에서도 동일하므로 ①=4E₀+4E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, True) 이고 정답은 3이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            true
+          ],
+          "A": 2,
+          "B": 6,
+          "C": 4,
+          "D": 8,
+          "n": 3,
+          "m": 5,
+          "k": 2
+        },
+        "_qnum": 25
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_026",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 4f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 9E₀ 이상이다.\nㄷ. ①은 6E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 2E₀ |\n| P | 4f₀ | 6E₀ |\n| Q | 3f₀ | 3E₀ |\n| Q | 4f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 3f₀ | 2E₀ |\n| P | 4f₀ | 6E₀ |\n| Q | 3f₀ | 3E₀ |\n| Q | 4f₀ | ① |\n",
+        "answer_md": "**정답:** 1",
+        "explanation_md": "P에서 3f₀→4f₀로 증가할 때 K 변화량은 4E₀이고, Q에서도 동일하므로 ①=3E₀+4E₀=7E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(True, False, False) 이고 정답은 1이다.",
+        "meta": {
+          "truths": [
+            true,
+            false,
+            false
+          ],
+          "A": 2,
+          "B": 6,
+          "C": 3,
+          "D": 7,
+          "n": 3,
+          "m": 4,
+          "k": 4
+        },
+        "_qnum": 26
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_027",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 9f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 1E₀ 이상이다.\nㄷ. ①은 7E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 5E₀ |\n| P | 9f₀ | 8E₀ |\n| Q | 6f₀ | 5E₀ |\n| Q | 9f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 5E₀ |\n| P | 9f₀ | 8E₀ |\n| Q | 6f₀ | 5E₀ |\n| Q | 9f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 6f₀→9f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=5E₀+3E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 5,
+          "B": 8,
+          "C": 5,
+          "D": 8,
+          "n": 6,
+          "m": 9,
+          "k": 1
+        },
+        "_qnum": 27
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_028",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 8f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 4E₀ 이상이다.\nㄷ. ①은 8E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 3E₀ |\n| P | 8f₀ | 9E₀ |\n| Q | 6f₀ | 2E₀ |\n| Q | 8f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 3E₀ |\n| P | 8f₀ | 9E₀ |\n| Q | 6f₀ | 2E₀ |\n| Q | 8f₀ | ① |\n",
+        "answer_md": "**정답:** 4",
+        "explanation_md": "P에서 6f₀→8f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=2E₀+6E₀=8E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, True) 이고 정답은 4이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            true
+          ],
+          "A": 3,
+          "B": 9,
+          "C": 2,
+          "D": 8,
+          "n": 6,
+          "m": 8,
+          "k": 3
+        },
+        "_qnum": 28
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_029",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 9f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 1E₀ 이상이다.\nㄷ. ①은 4E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 2E₀ |\n| P | 9f₀ | 8E₀ |\n| Q | 6f₀ | 1E₀ |\n| Q | 9f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 6f₀ | 2E₀ |\n| P | 9f₀ | 8E₀ |\n| Q | 6f₀ | 1E₀ |\n| Q | 9f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 6f₀→9f₀로 증가할 때 K 변화량은 6E₀이고, Q에서도 동일하므로 ①=1E₀+6E₀=7E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 2,
+          "B": 8,
+          "C": 1,
+          "D": 7,
+          "n": 6,
+          "m": 9,
+          "k": 2
+        },
+        "_qnum": 29
+      }
+    },
+    {
+      "id": "HJHMPHYSICS1_0018_030",
+      "module": "HJHMPHYSICS1",
+      "id_prefix": "HJHMPHYSICS1_",
+      "difficulty": 1,
+      "problem_text_md": "",
+      "ask_line_md": "",
+      "answer_text_md": "",
+      "solution_md": "",
+      "payload": {
+        "problem_text_md": "표는 금속판 P, Q에 단색광을 비추었을 때 방출되는 광전자의 최대 운동 에너지를 단색광의 진동수에 따라 나타낸 것이다.",
+        "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n\n<보 기>\nㄱ. 문턱 진동수는 P가 Q보다 크다.\nㄴ. P에 진동수가 5f₀인 빛을 비추면 방출되는 광전자의 최대 운동 에너지는 5E₀ 이상이다.\nㄷ. ①은 6E₀이다.\n\n① ㄱ ② ㄴ ③ ㄱ, ㄷ ④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
+        "table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 5E₀ |\n| P | 5f₀ | 8E₀ |\n| Q | 4f₀ | 4E₀ |\n| Q | 5f₀ | ① |\n",
+        "full_table_md": "| 금속판 | 단색광 | 최대 운동 에너지 |\n|---|---:|---:|\n| P | 4f₀ | 5E₀ |\n| P | 5f₀ | 8E₀ |\n| Q | 4f₀ | 4E₀ |\n| Q | 5f₀ | ① |\n",
+        "answer_md": "**정답:** 2",
+        "explanation_md": "P에서 4f₀→5f₀로 증가할 때 K 변화량은 3E₀이고, Q에서도 동일하므로 ①=4E₀+3E₀=7E₀이다.\n따라서 (ㄱ, ㄴ, ㄷ)=(False, True, False) 이고 정답은 2이다.",
+        "meta": {
+          "truths": [
+            false,
+            true,
+            false
+          ],
+          "A": 5,
+          "B": 8,
+          "C": 4,
+          "D": 7,
+          "n": 4,
+          "m": 5,
+          "k": 3
+        },
+        "_qnum": 30
+      }
+    }
+  ]
+}
