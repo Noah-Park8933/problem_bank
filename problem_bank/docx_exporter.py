@@ -28,13 +28,13 @@ def _set_eastasia_font(style, font_name: str):
 
 def _setup_document(doc: Document):
     sec = doc.sections[0]
-    sec.top_margin = Cm(1.2)
-    sec.bottom_margin = Cm(1.2)
-    sec.left_margin = Cm(1.5)
-    sec.right_margin = Cm(1.5)
+    sec.top_margin = Cm(1.5)
+    sec.bottom_margin = Cm(1.5)
+    sec.left_margin = Cm(2.0)
+    sec.right_margin = Cm(2.0)
 
     style = doc.styles["Normal"]
-    _set_eastasia_font(style, "바탕")
+    _set_eastasia_font(style, "한컴바탕")
     style.font.size = Pt(9)
 
 def _remove_table_borders(table):
