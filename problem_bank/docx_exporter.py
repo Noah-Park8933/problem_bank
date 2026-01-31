@@ -137,7 +137,8 @@ def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
 
     total_width = Inches(total_width_in)
-    col_w = total_width / n_cols
+    col_w = int(total_width / n_cols)   # ✅ float → int(EMU)
+
 
     # ✅ 열 너비 고정 (중요)
     for j in range(n_cols):
