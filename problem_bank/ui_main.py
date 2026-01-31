@@ -105,7 +105,7 @@ def try_find_image(payload):
         return None
 
     # loader.normalize_images가 "_image_path"로도 넣어주므로 이것도 포함
-    keys = ["_image_path", "image", "img", "figure", "image_path", "img_path", "tree_img", "fig_path", "figure_path"]
+    keys = ["_image_path", "image", "img", "figure", "image_path", "img_path", "tree_img", "fig_path", "figure_path", "diagram_file"]
     for k in keys:
         v = payload.get(k)
         if isinstance(v, str) and v.strip() and os.path.exists(v.strip()):
