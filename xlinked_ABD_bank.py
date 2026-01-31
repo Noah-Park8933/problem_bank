@@ -607,7 +607,7 @@ if __name__ == "__main__":
     BASE_SEED = 20260130
 
     OUT_DIR = "./out/26XLINK_G16"
-    PACK_NAME = "2609GENEDT_G16"
+    PACK_NAME = "2606GENEDT_G16"
 
     bank = generate_bank(
         n=N,
@@ -627,3 +627,4 @@ if __name__ == "__main__":
     print("WROTE:")
     print(" -", json_path)
     print(" -", md_path)
+
