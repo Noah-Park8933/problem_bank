@@ -52,7 +52,7 @@ def _remove_table_borders(table):
             borders.append(el)
         el.set(qn("w:val"), "nil")
 
-def _style_cell_text(cell, size_pt=7, bold=False):
+def _style_cell_text(cell, size_pt=9, bold=False):
     # ✅ 셀의 문단/런 스타일을 안정적으로 통일
     for p in cell.paragraphs:
         p.paragraph_format.space_before = Pt(0)
@@ -287,7 +287,7 @@ def export_docx_bytes(
             if given is not None:
                 _add_par(container, "제시표", bold=True)
                 try:
-                    _add_grid_table(container, given, total_width_in=2.5)
+                    _add_grid_table(container, given, total_width_in=2.2)
                 except Exception as e:
                     _add_par(container, f"(표 변환 실패: {type(e).__name__}: {e})")
                     print("TABLE FAIL:", type(e).__name__, e)
