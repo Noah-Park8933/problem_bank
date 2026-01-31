@@ -266,6 +266,12 @@ def _parse_md_table(md: str) -> Optional[List[List[str]]]:
     | h1 | h2 |
     | --- | --- |
     | a | b |
+
+    ✅ 개선:
+    - md가 '### (가)
+ ... 
+| h1 | h2 | ...' 처럼
+      표 앞뒤에 텍스트가 섞여 있어도 첫 번째 표 블록을 찾아 파싱한다.
     """
     if not isinstance(md, str):
         return None
@@ -273,39 +279,116 @@ def _parse_md_table(md: str) -> Optional[List[List[str]]]:
     if "|" not in s:
         return None
 
-    lines = [ln.strip() for ln in s.splitlines() if ln.strip()]
-    if len(lines) < 2:
+    # 공백 라인은 제외하고 전체 라인을 유지
+    lines_all = [ln.rstrip() for ln in s.splitlines() if ln.strip()]
+    if len(lines_all) < 2:
         return None
 
     def split_row(ln: str) -> List[str]:
         ln = ln.strip()
-        # 양끝 | 제거
         if ln.startswith("|"):
             ln = ln[1:]
         if ln.endswith("|"):
             ln = ln[:-1]
         return [c.strip() for c in ln.split("|")]
 
-    header = split_row(lines[0])
+    def is_sep_line(ln: str) -> bool:
+        # | --- | :---: | ---: | 같은 구분선 판별
+        cells = split_row(ln)
+        if not cells:
+            return False
+        for c in cells:
+            t = c.replace(":", "").replace("-", "").strip()
+            if t != "":
+                return False
+        return True
 
-    # 두 번째 줄이 --- 구분선인지 확인
-    sep = split_row(lines[1])
-    is_sep = True
-    for c in sep:
-        t = c.replace(":", "").replace("-", "").strip()
-        if t != "":
-            is_sep = False
+    # ✅ 표 블록 시작점 찾기: header 다음 줄이 구분선이면 표 시작
+    start = None
+    for i in range(len(lines_all) - 1):
+        if "|" not in lines_all[i]:
+            continue
+        if "|" not in lines_all[i + 1]:
+            continue
+        if is_sep_line(lines_all[i + 1]):
+            start = i
             break
 
-    if not is_sep:
+    if start is None:
         return None
 
+    header = split_row(lines_all[start])
+
+    # start+1 은 구분선, start+2부터 body
     rows = []
-    for ln in lines[2:]:
+    for j in range(start + 2, len(lines_all)):
+        ln = lines_all[j]
+        # 표 블록 종료: '|'가 사라지면 다음 섹션 텍스트로 간주
+        if "|" not in ln:
+            break
         rows.append(split_row(ln))
 
-    grid = [header] + rows
-    return grid
+    if not rows:
+        return None
+
+    return [header] + rows
+
+
+def _parse_md_tables(md: str) -> List[List[List[str]]]:
+    """
+    md 문자열 안에서 markdown table 블록들을 '모두' 찾아서 grid 리스트로 반환.
+
+    반환 형식:
+      - tables: List[grid]
+      - grid: [header_row] + body_rows
+    """
+    if not isinstance(md, str):
+        return []
+    s = md.strip()
+    if "|" not in s:
+        return []
+
+    lines_all = [ln.rstrip() for ln in s.splitlines() if ln.strip()]
+    if len(lines_all) < 2:
+        return []
+
+    def split_row(ln: str) -> List[str]:
+        ln = ln.strip()
+        if ln.startswith("|"):
+            ln = ln[1:]
+        if ln.endswith("|"):
+            ln = ln[:-1]
+        return [c.strip() for c in ln.split("|")]
+
+    def is_sep_line(ln: str) -> bool:
+        cells = split_row(ln)
+        if not cells:
+            return False
+        for c in cells:
+            t = c.replace(":", "").replace("-", "").strip()
+            if t != "":
+                return False
+        return True
+
+    tables: List[List[List[str]]] = []
+    i = 0
+    n = len(lines_all)
+
+    while i < n - 1:
+        if ("|" in lines_all[i]) and ("|" in lines_all[i + 1]) and is_sep_line(lines_all[i + 1]):
+            header = split_row(lines_all[i])
+            rows: List[List[str]] = []
+            j = i + 2
+            while j < n and ("|" in lines_all[j]):
+                rows.append(split_row(lines_all[j]))
+                j += 1
+            if rows:
+                tables.append([header] + rows)
+            i = j
+        else:
+            i += 1
+
+    return tables
 
 
 def _grid_from_md_or_text(x: Any) -> Optional[Tuple[List[str], List[List[str]]]]:
@@ -457,3 +540,26 @@ def normalize_table_to_grid(table_obj: Any) -> Tuple[List[str], List[List[str]]]
     headers = ["value"]
     rows = [[("" if table_obj is None else str(table_obj))]]
     return _pad_grid(headers, rows)
+
+
+def normalize_tables_to_grids(table_obj: Any) -> List[Tuple[List[str], List[List[str]]]]:
+    """
+    ✅ 복수 표 지원:
+    - table_obj가 문자열이면, md 내부의 표를 여러 개 파싱해 (headers, rows) 리스트로 반환.
+    - 그 외 타입이면 기존 normalize_table_to_grid 결과를 1개짜리 리스트로 반환.
+    """
+    if isinstance(table_obj, str):
+        grids = _parse_md_tables(table_obj)
+        out: List[Tuple[List[str], List[List[str]]]] = []
+        for g in grids:
+            headers = [("" if v is None else str(v)) for v in g[0]]
+            rows = [[("" if v is None else str(v)) for v in r] for r in g[1:]]
+            out.append(_pad_grid(headers, rows))
+        # 문자열인데 표를 못 찾았으면 기존 단일 파서로라도 시도
+        if out:
+            return out
+        h, r = normalize_table_to_grid(table_obj)
+        return [(h, r)]
+
+    h, r = normalize_table_to_grid(table_obj)
+    return [(h, r)]
