@@ -1,6 +1,8 @@
 # docx_exporter.py
 print("DOCX_EXPORTER VERSION = NEW_PATCH_20260128_STABLE_TABLE")
 import os
+import traceback
+
 from io import BytesIO
 from typing import Any, Dict, List, Optional, Tuple
 
