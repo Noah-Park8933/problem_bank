@@ -148,7 +148,7 @@ def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
     for j, h in enumerate(headers):
         cell = t.rows[0].cells[j]
         cell.text = str(h)
-        _style_cell_text(cell, size_pt=7, bold=True)
+        _style_cell_text(cell, size_pt=9, bold=True)
 
     # ---- body ----
     for i, row in enumerate(fixed_rows):
@@ -156,7 +156,7 @@ def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
             cell = t.rows[i + 1].cells[j]
             v = row[j] if row[j] is not None else ""
             cell.text = str(v)
-            _style_cell_text(cell, size_pt=7, bold=False)
+            _style_cell_text(cell, size_pt=9, bold=False)
 
 
 # ------------------------------------------------------------
