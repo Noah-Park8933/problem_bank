@@ -113,7 +113,7 @@ def normalize_images(payload):
     if not isinstance(payload, dict):
         return payload
 
-    for k in ["image", "img", "image_path", "tree_img", "figure", "fig"]:
+    for k in ["image", "img", "image_path", "tree_img", "figure", "fig", "diagram_file"]:
         if k in payload and isinstance(payload[k], str) and payload[k].strip():
             payload["_image_path"] = payload[k].strip()
             break
