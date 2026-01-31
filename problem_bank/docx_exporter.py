@@ -99,7 +99,7 @@ def _add_par(doc_or_cell, text: str, bold: bool = False):
 # ------------------------------------------------------------
 # 안정적인 표 생성 (⭐ 씹안정 패치 적용)
 # ------------------------------------------------------------
-def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
+def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.0):
     """
     ✅ 안정 포인트
     - 열 너비는 cell.width가 아니라 t.columns[j].width로만 고정 (Word가 가장 안정적으로 처리)
@@ -287,7 +287,7 @@ def export_docx_bytes(
             if given is not None:
                 _add_par(container, "제시표", bold=True)
                 try:
-                    _add_grid_table(container, given, total_width_in=2.2)
+                    _add_grid_table(container, given, total_width_in=1.8)
                 except Exception as e:
                     _add_par(container, f"(표 변환 실패: {type(e).__name__}: {e})")
                     print("TABLE FAIL:", type(e).__name__, e)
