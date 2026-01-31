@@ -1,6 +1,6 @@
 {
   "pack_id": "556880a7e66a493c90630a8c8ef373b3",
-  "pack_name": "2609GENEDT_G16",
+  "pack_name": "2606GENEDT_G16",
   "created_at": 1769780113,
   "config": {
     "module": "26XLINK_G16",
@@ -3010,4 +3010,5 @@
       }
     }
   ]
+
 }
