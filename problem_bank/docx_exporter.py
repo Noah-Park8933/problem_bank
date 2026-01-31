@@ -181,7 +181,7 @@ def _try_add_image(container, payload: Dict[str, Any]):
         or payload.get("figure_path")
         or payload.get("fig_path")
         or payload.get("img")
-        or payload.get("diagram_file")
+        or payload.get("diagram_image")
     )
 
     if not isinstance(img_path, str) or not img_path.strip():
