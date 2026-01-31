@@ -3,6 +3,9 @@ print("DOCX_EXPORTER VERSION = NEW_PATCH_20260128")
 import os
 from io import BytesIO
 from typing import Any, Dict, List, Optional, Tuple
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.enum.table import WD_TABLE_ALIGNMENT
 
 from docx import Document
 from docx.shared import Pt, Inches, Cm
@@ -16,6 +19,88 @@ from .config import AppConfig
 # ------------------------------------------------------------
 # 기본 paragraph 생성
 # ------------------------------------------------------------
+def _set_eastasia_font(style, font_name: str):
+    # 한글 폰트 적용(중요)
+    style.font.name = font_name
+    style._element.rPr.rFonts.set(qn("w:eastAsia"), font_name)
+
+def _setup_document(doc: Document):
+    # 여백(시험지 느낌)
+    sec = doc.sections[0]
+    sec.top_margin = Cm(1.2)
+    sec.bottom_margin = Cm(1.2)
+    sec.left_margin = Cm(1.5)
+    sec.right_margin = Cm(1.5)
+
+    # 기본 스타일
+    style = doc.styles["Normal"]
+    _set_eastasia_font(style, "바탕")
+    style.font.size = Pt(9)
+
+def _remove_table_borders(table):
+    tbl = table._tbl
+    tblPr = tbl.tblPr
+    borders = tblPr.find(qn("w:tblBorders"))
+    if borders is None:
+        borders = OxmlElement("w:tblBorders")
+        tblPr.append(borders)
+
+    for edge in ("top","left","bottom","right","insideH","insideV"):
+        el = borders.find(qn(f"w:{edge}"))
+        if el is None:
+            el = OxmlElement(f"w:{edge}")
+            borders.append(el)
+        el.set(qn("w:val"), "nil")
+
+def _set_table_cell_margins(table, top=0, bottom=0, left=40, right=40):
+    # 단위 dxa(1/20 pt). left/right 40이면 대략 2pt 정도.
+    tblPr = table._tbl.tblPr
+    mar = tblPr.find(qn("w:tblCellMar"))
+    if mar is None:
+        mar = OxmlElement("w:tblCellMar")
+        tblPr.append(mar)
+
+    def _set(tag, val):
+        el = mar.find(qn(f"w:{tag}"))
+        if el is None:
+            el = OxmlElement(f"w:{tag}")
+            mar.append(el)
+        el.set(qn("w:w"), str(val))
+        el.set(qn("w:type"), "dxa")
+
+    _set("top", top); _set("bottom", bottom); _set("left", left); _set("right", right)
+
+def _style_cell_text(cell, size_pt=7, bold=False):
+    for p in cell.paragraphs:
+        p.paragraph_format.space_before = Pt(0)
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.line_spacing = 1.0
+        for r in p.runs:
+            r.bold = bold
+            r.font.size = Pt(size_pt)
+
+def _add_label(container, text: str):
+    # 섹션 라벨(문제/요구사항/제시표/정답/해설) 통일
+    p = container.add_paragraph()
+    run = p.add_run(text)
+    run.bold = True
+    run.font.size = Pt(8)
+    p.paragraph_format.space_before = Pt(2)
+    p.paragraph_format.space_after = Pt(1)
+    return p
+
+def _add_problem_header(container, num: int, it: ProblemItem):
+    p = container.add_paragraph()
+    r1 = p.add_run(f"{num}. ")
+    r1.bold = True
+    r1.font.size = Pt(10)
+    r2 = p.add_run(f"ID: {it.pid}  ({it.prefix})")
+    r2.font.size = Pt(8)
+    p.paragraph_format.space_before = Pt(1)
+    p.paragraph_format.space_after = Pt(2)
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    return p
+
 def _add_par(doc_or_cell, text: str, bold: bool = False):
     p = doc_or_cell.add_paragraph()
     run = p.add_run(text)
@@ -81,6 +166,8 @@ def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
     t = doc_or_cell.add_table(rows=n_rows, cols=n_cols)
     t.style = "Table Grid"
     t.autofit = False
+    t.alignment = WD_TABLE_ALIGNMENT.CENTER
+    _set_table_cell_margins(t, top=0, bottom=0, left=30, right=30)  # ✅ 표가 작고 단정해짐
 
     total_width = Inches(total_width_in)
     col_w = total_width / n_cols
@@ -90,6 +177,7 @@ def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
         cell = t.rows[0].cells[j]
         cell.width = col_w
         cell.text = str(h)
+        _style_cell_text(cell, size_pt=7, bold=True)
 
         for p in cell.paragraphs:
             if p.runs:
@@ -105,7 +193,7 @@ def _add_grid_table(doc_or_cell, table_obj: Any, total_width_in: float = 2.2):
             cell.width = col_w
             v = row[j] if row[j] is not None else ""
             cell.text = str(v)
-
+            _style_cell_text(cell, size_pt=7, bold=False)
             for p in cell.paragraphs:
                 p.paragraph_format.space_before = Pt(0)
                 p.paragraph_format.space_after = Pt(0)
@@ -188,8 +276,8 @@ def export_docx_bytes(
 
     doc = Document()
     style = doc.styles["Normal"]
-    style.font.name = "바탕"
-    style.font.size = Pt(9)
+    _setup_document(doc)
+
 
     idx = 0
     pnum = 1
@@ -202,6 +290,8 @@ def export_docx_bytes(
         if two_columns:
             outer = doc.add_table(rows=1, cols=2)
             outer.autofit = False
+            _remove_table_borders(outer)           # ✅ 2단이 진짜 2단처럼 보임(테두리 숨김)
+            _set_table_cell_margins(outer, left=0, right=0, top=0, bottom=0)  # ✅ 바깥 여백 최소화
 
             outer.columns[0].width = Inches(3.4)
             outer.columns[1].width = Inches(3.4)
