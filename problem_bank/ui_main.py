@@ -188,12 +188,13 @@ def render_list(
             )
             state.difficulty[uid] = new
 
-# 제시표 렌더 (복수 표 지원)
-given = try_find_table(it.payload, list(cfg.given_table_keys))
-if given is not None:
-    with st.expander("표 보기", expanded=False):
-        render_tables_pretty(given)
-st.divider()
+        # 제시표 렌더 (복수 표 지원)
+        given = try_find_table(it.payload, list(cfg.given_table_keys))
+        if given is not None:
+            with st.expander("표 보기", expanded=False):
+                render_tables_pretty(given)
+
+        st.divider()
 
 
 # -----------------------------
