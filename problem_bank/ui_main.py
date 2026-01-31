@@ -9,7 +9,7 @@ from .loader import load_all, ProblemItem
 from .config import AppConfig
 from .state_manager import AppState
 
-from .table_renderer import try_find_table, normalize_table_to_grid
+from .table_renderer import try_find_table, normalize_table_to_grid, normalize_tables_to_grids
 from .docx_exporter import export_docx_bytes
 from .history import HistoryStore
 
@@ -58,6 +58,47 @@ def render_table_pretty(table_obj):
     df = pd.DataFrame(fixed_rows, columns=headers)
     st.dataframe(df, use_container_width=True)
 
+
+
+def render_tables_pretty(table_obj):
+    """
+    ✅ 복수 표 지원:
+    - table_obj가 md 문자열에 표를 2개 이상 포함하면 모두 출력
+    - 일반 단일 표/2D list/dict table은 1개만 출력
+    """
+    grids = normalize_tables_to_grids(table_obj)
+    if not grids:
+        st.write("(표 없음)")
+        return
+
+    for idx, (headers, rows) in enumerate(grids, start=1):
+        if len(grids) > 1:
+            st.markdown(f"**표 {idx}**")
+
+        if not headers or rows is None:
+            st.write("(표 없음)")
+            continue
+
+        import pandas as pd
+
+        # 열/행 길이 불일치 방어
+        max_len = max(len(headers), *(len(r) for r in rows)) if rows else len(headers)
+        hdr = list(headers) + [""] * (max_len - len(headers))
+
+        fixed_rows = []
+        for r in rows:
+            r = list(r) if r is not None else []
+            fixed_rows.append(r + [""] * (max_len - len(r)))
+
+        if not fixed_rows:
+            st.write("(표 없음)")
+            continue
+
+        df = pd.DataFrame(fixed_rows, columns=hdr)
+        st.dataframe(df, use_container_width=True)
+
+        if idx != len(grids):
+            st.divider()
 
 def try_find_image(payload):
     if not isinstance(payload, dict):
@@ -147,13 +188,12 @@ def render_list(
             )
             state.difficulty[uid] = new
 
-        # 제시표 렌더
-        given = try_find_table(it.payload, list(cfg.given_table_keys))
-        if given is not None:
-            with st.expander("표 보기", expanded=False):
-                render_table_pretty(given)
-
-        st.divider()
+# 제시표 렌더 (복수 표 지원)
+given = try_find_table(it.payload, list(cfg.given_table_keys))
+if given is not None:
+    with st.expander("표 보기", expanded=False):
+        render_tables_pretty(given)
+st.divider()
 
 
 # -----------------------------
