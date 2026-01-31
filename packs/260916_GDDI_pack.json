@@ -1,0 +1,3530 @@
+{
+  "module": "260916_GDDI",
+  "id_prefix": "260916_GDDI_",
+  "count": 30,
+  "stats": {
+    "try": 30,
+    "ok": 30,
+    "dup": 0,
+    "fail": 0,
+    "by_answer": {
+      "①": 6,
+      "②": 6,
+      "③": 6,
+      "④": 6,
+      "⑤": 6
+    }
+  },
+  "items": [
+    {
+      "id": "260916_GDDI_fb897c1829",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ○ | a | 2 | 2 | c |\n| (나) | × | ○ | ? | ? | b | ? |\n| (다) | ? | ? | 0 | ? | 1 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 2\nㄴ. ㉢은 b이다.\nㄷ. III에 X 염색체만 존재하지 않는다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "①",
+      "solution_md": "정답: ①",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "○",
+            "a",
+            "2",
+            "2",
+            "c"
+          ],
+          [
+            "(나)",
+            "×",
+            "○",
+            "?",
+            "?",
+            "b",
+            "?"
+          ],
+          [
+            "(다)",
+            "?",
+            "?",
+            "0",
+            "?",
+            "1",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": "a",
+              "sum_er": 2,
+              "sum_nd": 2,
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": null,
+              "B_present": null,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": 1,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "a": 0,
+            "c": 4,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "aa",
+          "x_geno": "B",
+          "left_auto": "a",
+          "right_auto": "a",
+          "left_x": null,
+          "right_x": "B"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 2",
+          "n": "㉢은 b이다.",
+          "d": "III에 X 염색체만 존재하지 않는다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_63f1ad8386",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ? | × | 3 | 1 | 2 | ? |\n| (나) | × | × | c | b | ? | a |\n| (다) | × | × | 1 | 0 | ? | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 4\nㄴ. ㉣은 A이다.\nㄷ. III에 Y 염색체가 없다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "?",
+            "×",
+            "3",
+            "1",
+            "2",
+            "?"
+          ],
+          [
+            "(나)",
+            "×",
+            "×",
+            "c",
+            "b",
+            "?",
+            "a"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "1",
+            "0",
+            "?",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": null,
+              "B_present": 0,
+              "sum_en": 3,
+              "sum_er": 1,
+              "sum_nd": 2,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": "c",
+              "sum_er": "b",
+              "sum_nd": null,
+              "sum_dr": "a"
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": 1,
+              "sum_er": 0,
+              "sum_nd": null,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "II",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "b",
+            "digeut": "B"
+          },
+          "abc_map": {
+            "c": 4,
+            "b": 2,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "a",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "a"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 4",
+          "n": "㉣은 A이다.",
+          "d": "III에 Y 염색체가 없다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_c9c38369ec",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | 0 | ? | b | 3 |\n| (나) | ○ | ? | ? | ? | ? | c |\n| (다) | × | × | ? | a | 1 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 거짓\nㄴ. ㉣은 b이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "③",
+      "solution_md": "정답: ③",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "0",
+            "?",
+            "b",
+            "3"
+          ],
+          [
+            "(나)",
+            "○",
+            "?",
+            "?",
+            "?",
+            "?",
+            "c"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "?",
+            "a",
+            "1",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": 3
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": "c"
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": "a",
+              "sum_nd": 1,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "II",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "A",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 거짓",
+          "n": "㉣은 b이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_32d22867ac",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ○ | ? | 1 | ? | ? |\n| (나) | ○ | ○ | a | 2 | 2 | c |\n| (다) | ○ | ○ | 0 | b | 1 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 참\nㄴ. ㉣은 B이다.\nㄷ. III에 X 염색체만 존재하지 않는다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "○",
+            "?",
+            "1",
+            "?",
+            "?"
+          ],
+          [
+            "(나)",
+            "○",
+            "○",
+            "a",
+            "2",
+            "2",
+            "c"
+          ],
+          [
+            "(다)",
+            "○",
+            "○",
+            "0",
+            "b",
+            "1",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": null,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": "a",
+              "sum_er": 2,
+              "sum_nd": 2,
+              "sum_dr": "c"
+            },
+            "da": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": 0,
+              "sum_er": "b",
+              "sum_nd": 1,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "II",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "a",
+            "digeut": "A"
+          },
+          "abc_map": {
+            "a": 0,
+            "c": 4,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "BB",
+          "x_geno": "A",
+          "left_auto": "B",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 참",
+          "n": "㉣은 B이다.",
+          "d": "III에 X 염색체만 존재하지 않는다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_5eb121453d",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | ? | ? | ? | 0 |\n| (나) | ○ | ○ | c | 2 | b | ? |\n| (다) | ? | ○ | 3 | 1 | 2 | a |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 6\nㄴ. ㉣은 b이다.\nㄷ. III는 성염색체가 단일이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "?",
+            "?",
+            "?",
+            "0"
+          ],
+          [
+            "(나)",
+            "○",
+            "○",
+            "c",
+            "2",
+            "b",
+            "?"
+          ],
+          [
+            "(다)",
+            "?",
+            "○",
+            "3",
+            "1",
+            "2",
+            "a"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": 0
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": "c",
+              "sum_er": 2,
+              "sum_nd": "b",
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 1,
+              "sum_en": 3,
+              "sum_er": 1,
+              "sum_nd": 2,
+              "sum_dr": "a"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "II",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "B",
+            "rieul": "b",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "c": 4,
+            "b": 2,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "AA",
+          "x_geno": "B",
+          "left_auto": "A",
+          "right_auto": "A",
+          "left_x": null,
+          "right_x": "B"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 6",
+          "n": "㉣은 b이다.",
+          "d": "III는 성염색체가 단일이다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_cd8ba3d838",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | ○ | 2 | b | ? | ? |\n| (나) | ○ | ○ | c | 2 | 2 | 0 |\n| (다) | × | × | a | 1 | 0 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 2\nㄴ. ㉠은 a이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "①",
+      "solution_md": "정답: ①",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "○",
+            "2",
+            "b",
+            "?",
+            "?"
+          ],
+          [
+            "(나)",
+            "○",
+            "○",
+            "c",
+            "2",
+            "2",
+            "0"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "a",
+            "1",
+            "0",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": 2,
+              "sum_er": "b",
+              "sum_nd": null,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": "c",
+              "sum_er": 2,
+              "sum_nd": 2,
+              "sum_dr": 0
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": "a",
+              "sum_er": 1,
+              "sum_nd": 0,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "II",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "A",
+            "rieul": "a",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "Aa",
+          "x_geno": "B",
+          "left_auto": "a",
+          "right_auto": "A",
+          "left_x": null,
+          "right_x": "B"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 2",
+          "n": "㉠은 a이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_abc2e85109",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | ○ | c | ? | 2 | a |\n| (나) | ? | ? | b | 1 | 2 | 1 |\n| (다) | ? | ? | ? | 0 | 1 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + b = 6\nㄴ. ㉣은 a이다.\nㄷ. III에 Y 염색체가 없다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "○",
+            "c",
+            "?",
+            "2",
+            "a"
+          ],
+          [
+            "(나)",
+            "?",
+            "?",
+            "b",
+            "1",
+            "2",
+            "1"
+          ],
+          [
+            "(다)",
+            "?",
+            "?",
+            "?",
+            "0",
+            "1",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": "c",
+              "sum_er": null,
+              "sum_nd": 2,
+              "sum_dr": "a"
+            },
+            "na": {
+              "A_present": null,
+              "B_present": null,
+              "sum_en": "b",
+              "sum_er": 1,
+              "sum_nd": 2,
+              "sum_dr": 1
+            },
+            "da": {
+              "A_present": null,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": 0,
+              "sum_nd": 1,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "A",
+            "rieul": "a",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "c": 4,
+            "a": 0,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "Bb",
+          "x_geno": "A",
+          "left_auto": "b",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + b = 6",
+          "n": "㉣은 a이다.",
+          "d": "III에 Y 염색체가 없다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_30ab7e83f0",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | × | 1 | 1 | 0 | ? |\n| (나) | ○ | × | c | b | 2 | a |\n| (다) | ? | × | 3 | ? | 1 | 0 |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 6\nㄴ. ㉣은 b이다.\nㄷ. III에 Y 염색체가 있다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "③",
+      "solution_md": "정답: ③",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "×",
+            "1",
+            "1",
+            "0",
+            "?"
+          ],
+          [
+            "(나)",
+            "○",
+            "×",
+            "c",
+            "b",
+            "2",
+            "a"
+          ],
+          [
+            "(다)",
+            "?",
+            "×",
+            "3",
+            "?",
+            "1",
+            "0"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": 1,
+              "sum_er": 1,
+              "sum_nd": 0,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": "c",
+              "sum_er": "b",
+              "sum_nd": 2,
+              "sum_dr": "a"
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 0,
+              "sum_en": 3,
+              "sum_er": null,
+              "sum_nd": 1,
+              "sum_dr": 0
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "II",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "c": 4,
+            "b": 2,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "A",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 6",
+          "n": "㉣은 b이다.",
+          "d": "III에 Y 염색체가 있다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_656a5da1e8",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | c | 2 | 2 | a |\n| (나) | × | ? | ? | 0 | 1 | ? |\n| (다) | ○ | ? | 3 | ? | b | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 2\nㄴ. ㉠은 A이다.\nㄷ. III는 성염색체가 단일이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "c",
+            "2",
+            "2",
+            "a"
+          ],
+          [
+            "(나)",
+            "×",
+            "?",
+            "?",
+            "0",
+            "1",
+            "?"
+          ],
+          [
+            "(다)",
+            "○",
+            "?",
+            "3",
+            "?",
+            "b",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": "c",
+              "sum_er": 2,
+              "sum_nd": 2,
+              "sum_dr": "a"
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": 0,
+              "sum_nd": 1,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": 3,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "III",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "A",
+            "rieul": "a",
+            "nieun": "b",
+            "digeut": "B"
+          },
+          "abc_map": {
+            "c": 4,
+            "a": 0,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "A",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 2",
+          "n": "㉠은 A이다.",
+          "d": "III는 성염색체가 단일이다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_4bb6bbc17c",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | ? | 1 | 0 | 1 |\n| (나) | ○ | × | 2 | b | 1 | ? |\n| (다) | × | × | c | ? | ? | a |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 4\nㄴ. ㉢은 B이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "?",
+            "1",
+            "0",
+            "1"
+          ],
+          [
+            "(나)",
+            "○",
+            "×",
+            "2",
+            "b",
+            "1",
+            "?"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "c",
+            "?",
+            "?",
+            "a"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": 0,
+              "sum_dr": 1
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": 2,
+              "sum_er": "b",
+              "sum_nd": 1,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": "c",
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": "a"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "I",
+            "da": "II"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "b",
+            "digeut": "B"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "Aa",
+          "x_geno": "b",
+          "left_auto": "A",
+          "right_auto": "a",
+          "left_x": null,
+          "right_x": "b"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 4",
+          "n": "㉢은 B이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_dac22c1c55",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | ○ | c | ? | 2 | ? |\n| (나) | ○ | ○ | 3 | 1 | b | ? |\n| (다) | ? | ? | ? | ? | ? | a |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 참\nㄴ. ㉢은 A이다.\nㄷ. III에 X 염색체만 존재하지 않는다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "①",
+      "solution_md": "정답: ①",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "○",
+            "c",
+            "?",
+            "2",
+            "?"
+          ],
+          [
+            "(나)",
+            "○",
+            "○",
+            "3",
+            "1",
+            "b",
+            "?"
+          ],
+          [
+            "(다)",
+            "?",
+            "?",
+            "?",
+            "?",
+            "?",
+            "a"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": "c",
+              "sum_er": null,
+              "sum_nd": 2,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": 3,
+              "sum_er": 1,
+              "sum_nd": "b",
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": null,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": "a"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "B",
+            "rieul": "b",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "c": 4,
+            "b": 2,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "AA",
+          "x_geno": "B",
+          "left_auto": "A",
+          "right_auto": "A",
+          "left_x": null,
+          "right_x": "B"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 참",
+          "n": "㉢은 A이다.",
+          "d": "III에 X 염색체만 존재하지 않는다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_6b983bbefb",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | × | ? | 1 | a | ? |\n| (나) | × | × | ? | ? | b | c |\n| (다) | ? | × | 0 | ? | ? | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 거짓\nㄴ. ㉣은 b이다.\nㄷ. III에 X 염색체만 존재하지 않는다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "×",
+            "?",
+            "1",
+            "a",
+            "?"
+          ],
+          [
+            "(나)",
+            "×",
+            "×",
+            "?",
+            "?",
+            "b",
+            "c"
+          ],
+          [
+            "(다)",
+            "?",
+            "×",
+            "0",
+            "?",
+            "?",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": "a",
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": "c"
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 0,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "II",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "B",
+            "rieul": "b",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "a": 0,
+            "b": 2,
+            "c": 4
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "a",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "a"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 거짓",
+          "n": "㉣은 b이다.",
+          "d": "III에 X 염색체만 존재하지 않는다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_6ccf81bcfb",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | ? | 1 | 2 | ? |\n| (나) | ○ | × | ? | ? | b | c |\n| (다) | × | × | 0 | a | ? | 1 |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 6\nㄴ. ㉣은 b이다.\nㄷ. III에 X 염색체만 존재한다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "③",
+      "solution_md": "정답: ③",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "?",
+            "1",
+            "2",
+            "?"
+          ],
+          [
+            "(나)",
+            "○",
+            "×",
+            "?",
+            "?",
+            "b",
+            "c"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "0",
+            "a",
+            "?",
+            "1"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": 2,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": "c"
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": 0,
+              "sum_er": "a",
+              "sum_nd": null,
+              "sum_dr": 1
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "II",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "A",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 6",
+          "n": "㉣은 b이다.",
+          "d": "III에 X 염색체만 존재한다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_68d012208f",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | 0 | ? | 1 | ? |\n| (나) | ○ | × | a | 1 | 2 | 3 |\n| (다) | ○ | ? | ? | ? | b | c |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 2\nㄴ. ㉣은 b이다.\nㄷ. III에 Y 염색체가 없다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "0",
+            "?",
+            "1",
+            "?"
+          ],
+          [
+            "(나)",
+            "○",
+            "×",
+            "a",
+            "1",
+            "2",
+            "3"
+          ],
+          [
+            "(다)",
+            "○",
+            "?",
+            "?",
+            "?",
+            "b",
+            "c"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": 1,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": "a",
+              "sum_er": 1,
+              "sum_nd": 2,
+              "sum_dr": 3
+            },
+            "da": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": "c"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "I",
+            "da": "II"
+          },
+          "sym_map": {
+            "eung": "B",
+            "rieul": "b",
+            "nieun": "a",
+            "digeut": "A"
+          },
+          "abc_map": {
+            "a": 0,
+            "b": 2,
+            "c": 4
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "AA",
+          "x_geno": "b",
+          "left_auto": "A",
+          "right_auto": "A",
+          "left_x": null,
+          "right_x": "b"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 2",
+          "n": "㉣은 b이다.",
+          "d": "III에 Y 염색체가 없다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_fcb3fbd028",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ? | × | a | 2 | 2 | c |\n| (나) | ○ | ○ | ? | b | ? | 2 |\n| (다) | × | ○ | ? | ? | 0 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 4\nㄴ. ㉢은 A이다.\nㄷ. III는 성염색체가 단일이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "?",
+            "×",
+            "a",
+            "2",
+            "2",
+            "c"
+          ],
+          [
+            "(나)",
+            "○",
+            "○",
+            "?",
+            "b",
+            "?",
+            "2"
+          ],
+          [
+            "(다)",
+            "×",
+            "○",
+            "?",
+            "?",
+            "0",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": null,
+              "B_present": 0,
+              "sum_en": "a",
+              "sum_er": 2,
+              "sum_nd": 2,
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": "b",
+              "sum_nd": null,
+              "sum_dr": 2
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": 0,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "B",
+            "rieul": "b",
+            "nieun": "a",
+            "digeut": "A"
+          },
+          "abc_map": {
+            "a": 0,
+            "c": 4,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "Bb",
+          "x_geno": "A",
+          "left_auto": "B",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 4",
+          "n": "㉢은 A이다.",
+          "d": "III는 성염색체가 단일이다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_26131ee831",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | × | 0 | ? | b | c |\n| (나) | × | × | ? | 2 | 1 | ? |\n| (다) | × | × | 0 | ? | a | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 2\nㄴ. ㉠은 B이다.\nㄷ. III에 X 염색체만 존재하지 않는다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "①",
+      "solution_md": "정답: ①",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "×",
+            "0",
+            "?",
+            "b",
+            "c"
+          ],
+          [
+            "(나)",
+            "×",
+            "×",
+            "?",
+            "2",
+            "1",
+            "?"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "0",
+            "?",
+            "a",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": 2,
+              "sum_nd": 1,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": "a",
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "A",
+            "rieul": "a",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "aa",
+          "x_geno": "b",
+          "left_auto": "a",
+          "right_auto": "a",
+          "left_x": null,
+          "right_x": "b"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 2",
+          "n": "㉠은 B이다.",
+          "d": "III에 X 염색체만 존재하지 않는다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_713730f7c0",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ? | 0 | ? | ? | c |\n| (나) | ○ | × | 1 | a | ? | 0 |\n| (다) | ? | ○ | 1 | 1 | b | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 6\nㄴ. ㉢은 a이다.\nㄷ. III에 X 염색체만 존재하지 않는다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "?",
+            "0",
+            "?",
+            "?",
+            "c"
+          ],
+          [
+            "(나)",
+            "○",
+            "×",
+            "1",
+            "a",
+            "?",
+            "0"
+          ],
+          [
+            "(다)",
+            "?",
+            "○",
+            "1",
+            "1",
+            "b",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": null,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": 1,
+              "sum_er": "a",
+              "sum_nd": null,
+              "sum_dr": 0
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 1,
+              "sum_en": 1,
+              "sum_er": 1,
+              "sum_nd": "b",
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "III",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "c": 4,
+            "a": 0,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "Aa",
+          "x_geno": "B",
+          "left_auto": "A",
+          "right_auto": "a",
+          "left_x": null,
+          "right_x": "B"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 6",
+          "n": "㉢은 a이다.",
+          "d": "III에 X 염색체만 존재하지 않는다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_d4447e145b",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ○ | 3 | 1 | 2 | a |\n| (나) | × | ○ | c | b | ? | 0 |\n| (다) | × | ○ | 1 | 0 | 1 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + b = 6\nㄴ. ㉣은 a이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "③",
+      "solution_md": "정답: ③",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "○",
+            "3",
+            "1",
+            "2",
+            "a"
+          ],
+          [
+            "(나)",
+            "×",
+            "○",
+            "c",
+            "b",
+            "?",
+            "0"
+          ],
+          [
+            "(다)",
+            "×",
+            "○",
+            "1",
+            "0",
+            "1",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": 3,
+              "sum_er": 1,
+              "sum_nd": 2,
+              "sum_dr": "a"
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": "c",
+              "sum_er": "b",
+              "sum_nd": null,
+              "sum_dr": 0
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": 1,
+              "sum_er": 0,
+              "sum_nd": 1,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "II",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "a": 0,
+            "c": 4,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "BB",
+          "x_geno": "a",
+          "left_auto": "B",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "a"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + b = 6",
+          "n": "㉣은 a이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_7889979d1d",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ? | ? | c | 2 | 2 | 0 |\n| (나) | ○ | ? | ? | b | 1 | a |\n| (다) | ? | × | 1 | ? | ? | 0 |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 2\nㄴ. ㉣은 B이다.\nㄷ. III에 Y 염색체가 없다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "?",
+            "?",
+            "c",
+            "2",
+            "2",
+            "0"
+          ],
+          [
+            "(나)",
+            "○",
+            "?",
+            "?",
+            "b",
+            "1",
+            "a"
+          ],
+          [
+            "(다)",
+            "?",
+            "×",
+            "1",
+            "?",
+            "?",
+            "0"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": null,
+              "B_present": null,
+              "sum_en": "c",
+              "sum_er": 2,
+              "sum_nd": 2,
+              "sum_dr": 0
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": "b",
+              "sum_nd": 1,
+              "sum_dr": "a"
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 0,
+              "sum_en": 1,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": 0
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "c": 4,
+            "b": 2,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "A",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 2",
+          "n": "㉣은 B이다.",
+          "d": "III에 Y 염색체가 없다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_bac847460d",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | ? | 0 | 2 | ? | c |\n| (나) | × | ? | a | 0 | 1 | 1 |\n| (다) | ? | ○ | ? | 1 | b | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + b = 6\nㄴ. ㉣은 A이다.\nㄷ. III에 X 염색체만 존재한다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "?",
+            "0",
+            "2",
+            "?",
+            "c"
+          ],
+          [
+            "(나)",
+            "×",
+            "?",
+            "a",
+            "0",
+            "1",
+            "1"
+          ],
+          [
+            "(다)",
+            "?",
+            "○",
+            "?",
+            "1",
+            "b",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": 0,
+              "sum_er": 2,
+              "sum_nd": null,
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": null,
+              "sum_en": "a",
+              "sum_er": 0,
+              "sum_nd": 1,
+              "sum_dr": 1
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": "b",
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "III",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "b",
+            "digeut": "B"
+          },
+          "abc_map": {
+            "c": 4,
+            "a": 0,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "BB",
+          "x_geno": "A",
+          "left_auto": "B",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + b = 6",
+          "n": "㉣은 A이다.",
+          "d": "III에 X 염색체만 존재한다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_c42ac21217",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | b | ? | 2 | ? |\n| (나) | ○ | × | c | ? | ? | 0 |\n| (다) | × | ? | 0 | a | ? | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 참\nㄴ. ㉠은 B이다.\nㄷ. III에 X 염색체만 존재하지 않는다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "①",
+      "solution_md": "정답: ①",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "b",
+            "?",
+            "2",
+            "?"
+          ],
+          [
+            "(나)",
+            "○",
+            "×",
+            "c",
+            "?",
+            "?",
+            "0"
+          ],
+          [
+            "(다)",
+            "×",
+            "?",
+            "0",
+            "a",
+            "?",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": "b",
+              "sum_er": null,
+              "sum_nd": 2,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": "c",
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": 0
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": null,
+              "sum_en": 0,
+              "sum_er": "a",
+              "sum_nd": null,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "II",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "Aa",
+          "x_geno": "b",
+          "left_auto": "a",
+          "right_auto": "A",
+          "left_x": null,
+          "right_x": "b"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 참",
+          "n": "㉠은 B이다.",
+          "d": "III에 X 염색체만 존재하지 않는다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_81a0ebd84b",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ○ | c | 2 | ? | a |\n| (나) | × | ○ | ? | 1 | b | ? |\n| (다) | × | ○ | 1 | ? | ? | 0 |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 6\nㄴ. ㉣은 A이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "○",
+            "c",
+            "2",
+            "?",
+            "a"
+          ],
+          [
+            "(나)",
+            "×",
+            "○",
+            "?",
+            "1",
+            "b",
+            "?"
+          ],
+          [
+            "(다)",
+            "×",
+            "○",
+            "1",
+            "?",
+            "?",
+            "0"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": "c",
+              "sum_er": 2,
+              "sum_nd": null,
+              "sum_dr": "a"
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": "b",
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": 1,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": 0
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "c": 4,
+            "a": 0,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "BB",
+          "x_geno": "a",
+          "left_auto": "B",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "a"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 6",
+          "n": "㉣은 A이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_bc7c39726d",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ○ | ? | 1 | 0 | ? |\n| (나) | ? | ○ | ? | 2 | 1 | 3 |\n| (다) | ○ | ○ | a | 2 | b | c |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 6\nㄴ. ㉢은 a이다.\nㄷ. III는 성염색체가 단일이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "③",
+      "solution_md": "정답: ③",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "○",
+            "?",
+            "1",
+            "0",
+            "?"
+          ],
+          [
+            "(나)",
+            "?",
+            "○",
+            "?",
+            "2",
+            "1",
+            "3"
+          ],
+          [
+            "(다)",
+            "○",
+            "○",
+            "a",
+            "2",
+            "b",
+            "c"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": 0,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": null,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": 2,
+              "sum_nd": 1,
+              "sum_dr": 3
+            },
+            "da": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": "a",
+              "sum_er": 2,
+              "sum_nd": "b",
+              "sum_dr": "c"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "I",
+            "da": "II"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "a",
+            "digeut": "A"
+          },
+          "abc_map": {
+            "a": 0,
+            "b": 2,
+            "c": 4
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "BB",
+          "x_geno": "A",
+          "left_auto": "B",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 6",
+          "n": "㉢은 a이다.",
+          "d": "III는 성염색체가 단일이다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_e716999143",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ? | ? | a | 2 | 2 | c |\n| (나) | ○ | ? | 1 | ? | 2 | b |\n| (다) | × | ? | ? | ? | 1 | 0 |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + b = 2\nㄴ. ㉣은 B이다.\nㄷ. III에 Y 염색체가 없다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "?",
+            "?",
+            "a",
+            "2",
+            "2",
+            "c"
+          ],
+          [
+            "(나)",
+            "○",
+            "?",
+            "1",
+            "?",
+            "2",
+            "b"
+          ],
+          [
+            "(다)",
+            "×",
+            "?",
+            "?",
+            "?",
+            "1",
+            "0"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": null,
+              "B_present": null,
+              "sum_en": "a",
+              "sum_er": 2,
+              "sum_nd": 2,
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": 1,
+              "sum_er": null,
+              "sum_nd": 2,
+              "sum_dr": "b"
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": 1,
+              "sum_dr": 0
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "a",
+            "digeut": "A"
+          },
+          "abc_map": {
+            "a": 0,
+            "c": 4,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "Aa",
+          "x_geno": "B",
+          "left_auto": "a",
+          "right_auto": "A",
+          "left_x": null,
+          "right_x": "B"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + b = 2",
+          "n": "㉣은 B이다.",
+          "d": "III에 Y 염색체가 없다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_ac299539c3",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ○ | 1 | ? | 1 | 2 |\n| (나) | ? | ○ | 1 | 1 | ? | ? |\n| (다) | × | × | a | 2 | b | c |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 거짓\nㄴ. ㉣은 b이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "○",
+            "1",
+            "?",
+            "1",
+            "2"
+          ],
+          [
+            "(나)",
+            "?",
+            "○",
+            "1",
+            "1",
+            "?",
+            "?"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "a",
+            "2",
+            "b",
+            "c"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": 1,
+              "sum_er": null,
+              "sum_nd": 1,
+              "sum_dr": 2
+            },
+            "na": {
+              "A_present": null,
+              "B_present": 1,
+              "sum_en": 1,
+              "sum_er": 1,
+              "sum_nd": null,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": "a",
+              "sum_er": 2,
+              "sum_nd": "b",
+              "sum_dr": "c"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "III",
+            "da": "II"
+          },
+          "sym_map": {
+            "eung": "B",
+            "rieul": "b",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "a": 0,
+            "b": 2,
+            "c": 4
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "Bb",
+          "x_geno": "a",
+          "left_auto": "B",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "a"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 거짓",
+          "n": "㉣은 b이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_ee92b20e67",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ? | 3 | ? | b | 0 |\n| (나) | × | × | c | ? | 2 | ? |\n| (다) | ? | × | ? | 0 | 1 | a |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 2\nㄴ. ㉠은 a이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "①",
+      "solution_md": "정답: ①",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "?",
+            "3",
+            "?",
+            "b",
+            "0"
+          ],
+          [
+            "(나)",
+            "×",
+            "×",
+            "c",
+            "?",
+            "2",
+            "?"
+          ],
+          [
+            "(다)",
+            "?",
+            "×",
+            "?",
+            "0",
+            "1",
+            "a"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": null,
+              "sum_en": 3,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": 0
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": "c",
+              "sum_er": null,
+              "sum_nd": 2,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": 0,
+              "sum_nd": 1,
+              "sum_dr": "a"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "II",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "b",
+            "rieul": "B",
+            "nieun": "a",
+            "digeut": "A"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "B",
+          "sex": "M",
+          "auto_geno": "aa",
+          "x_geno": "b",
+          "left_auto": "a",
+          "right_auto": "a",
+          "left_x": null,
+          "right_x": "b"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 2",
+          "n": "㉠은 a이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_2b2f2152ef",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | ? | 0 | ? | b | c |\n| (나) | × | ○ | a | 0 | ? | ? |\n| (다) | ○ | ○ | ? | 1 | 2 | 3 |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 거짓\nㄴ. ㉡은 b이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "?",
+            "0",
+            "?",
+            "b",
+            "c"
+          ],
+          [
+            "(나)",
+            "×",
+            "○",
+            "a",
+            "0",
+            "?",
+            "?"
+          ],
+          [
+            "(다)",
+            "○",
+            "○",
+            "?",
+            "1",
+            "2",
+            "3"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": "b",
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 1,
+              "sum_en": "a",
+              "sum_er": 0,
+              "sum_nd": null,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": null,
+              "sum_er": 1,
+              "sum_nd": 2,
+              "sum_dr": 3
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "III",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "b",
+            "digeut": "B"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "BB",
+          "x_geno": "A",
+          "left_auto": "B",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 거짓",
+          "n": "㉡은 b이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_5c8429e958",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ? | ? | 0 | ? | ? | ? |\n| (나) | × | × | 0 | ? | 0 | ? |\n| (다) | × | × | a | b | ? | c |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a + c = 4\nㄴ. ㉢은 A이다.\nㄷ. III는 성염색체가 단일이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "③",
+      "solution_md": "정답: ③",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "?",
+            "?",
+            "0",
+            "?",
+            "?",
+            "?"
+          ],
+          [
+            "(나)",
+            "×",
+            "×",
+            "0",
+            "?",
+            "0",
+            "?"
+          ],
+          [
+            "(다)",
+            "×",
+            "×",
+            "a",
+            "b",
+            "?",
+            "c"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": null,
+              "B_present": null,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": null
+            },
+            "na": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": 0,
+              "sum_er": null,
+              "sum_nd": 0,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": 0,
+              "B_present": 0,
+              "sum_en": "a",
+              "sum_er": "b",
+              "sum_nd": null,
+              "sum_dr": "c"
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "I",
+            "na": "III",
+            "da": "II"
+          },
+          "sym_map": {
+            "eung": "B",
+            "rieul": "b",
+            "nieun": "A",
+            "digeut": "a"
+          },
+          "abc_map": {
+            "a": 0,
+            "b": 2,
+            "c": 4
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "a",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "a"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a + c = 4",
+          "n": "㉢은 A이다.",
+          "d": "III는 성염색체가 단일이다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_5ae75365ad",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | ○ | × | ? | b | ? | c |\n| (나) | ○ | × | ? | ? | ? | ? |\n| (다) | ? | × | a | 0 | 1 | ? |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. b + c = 2\nㄴ. ㉡은 B이다.\nㄷ. III는 X-linked 유전자를 가진다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "○",
+            "×",
+            "?",
+            "b",
+            "?",
+            "c"
+          ],
+          [
+            "(나)",
+            "○",
+            "×",
+            "?",
+            "?",
+            "?",
+            "?"
+          ],
+          [
+            "(다)",
+            "?",
+            "×",
+            "a",
+            "0",
+            "1",
+            "?"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": "b",
+              "sum_nd": null,
+              "sum_dr": "c"
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": 0,
+              "sum_en": null,
+              "sum_er": null,
+              "sum_nd": null,
+              "sum_dr": null
+            },
+            "da": {
+              "A_present": null,
+              "B_present": 0,
+              "sum_en": "a",
+              "sum_er": 0,
+              "sum_nd": 1,
+              "sum_dr": null
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "II",
+            "na": "I",
+            "da": "III"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "B",
+            "digeut": "b"
+          },
+          "abc_map": {
+            "b": 2,
+            "c": 4,
+            "a": 0
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "bb",
+          "x_geno": "A",
+          "left_auto": "b",
+          "right_auto": "b",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "b + c = 2",
+          "n": "㉡은 B이다.",
+          "d": "III는 X-linked 유전자를 가진다."
+        }
+      }
+    },
+    {
+      "id": "260916_GDDI_7086593f4d",
+      "module": "260916_GDDI",
+      "id_prefix": "260916_GDDI_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 (가)는 대립유전자 A/a, (나)는 대립유전자 B/b에 의해 결정된다.\n(가)와 (나)의 유전자 중 하나는 X 염색체에 있다.\n표는 사람 P의 세포 (가)~(다)에서 A와 B의 유무 및 ㉠~㉣ 중 2개의 DNA 상대량을 더한 값이다.\n그림은 P의 G1기 세포로부터 정자가 형성되는 과정을 나타낸 것이다. (가)~(다)는 I~III를 순서 없이 나타내며, II는 중기 세포이다.\n㉠~㉣는 A,a,B,b를 순서 없이 나타내고, ㉠은 ㉣과 대립유전자이다.\na~c는 0,2,4를 순서 없이 나타낸다. 돌연변이와 교차는 고려하지 않는다.\n\n| 세포 | A | B | ㉠+㉡ | ㉠+㉣ | ㉡+㉢ | ㉢+㉣ |\n|-----|---|---|-----:|-----:|-----:|-----:|\n| (가) | × | ? | 0 | a | 1 | 1 |\n| (나) | ○ | ? | ? | 2 | ? | c |\n| (다) | ○ | ○ | 0 | 1 | b | 3 |\n\n![diagram](diagram_2609.png)\n\n<보기>\nㄱ. a ⟂ b 여부는 거짓\nㄴ. ㉣은 A이다.\nㄷ. III에 X 염색체만 존재한다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤",
+      "payload": {
+        "_given_table": [
+          [
+            "세포",
+            "대립유전자A",
+            "대립유전자B",
+            "㉠+㉡",
+            "㉠+㉣",
+            "㉡+㉢",
+            "㉢+㉣"
+          ],
+          [
+            "(가)",
+            "×",
+            "?",
+            "0",
+            "a",
+            "1",
+            "1"
+          ],
+          [
+            "(나)",
+            "○",
+            "?",
+            "?",
+            "2",
+            "?",
+            "c"
+          ],
+          [
+            "(다)",
+            "○",
+            "○",
+            "0",
+            "1",
+            "b",
+            "3"
+          ]
+        ],
+        "diagram_file": "diagram_2609.png",
+        "observed": {
+          "cells": {
+            "ga": {
+              "A_present": 0,
+              "B_present": null,
+              "sum_en": 0,
+              "sum_er": "a",
+              "sum_nd": 1,
+              "sum_dr": 1
+            },
+            "na": {
+              "A_present": 1,
+              "B_present": null,
+              "sum_en": null,
+              "sum_er": 2,
+              "sum_nd": null,
+              "sum_dr": "c"
+            },
+            "da": {
+              "A_present": 1,
+              "B_present": 1,
+              "sum_en": 0,
+              "sum_er": 1,
+              "sum_nd": "b",
+              "sum_dr": 3
+            }
+          },
+          "pairing_constraint": [
+            "eung",
+            "rieul"
+          ]
+        },
+        "solution": {
+          "label_to_stage": {
+            "ga": "III",
+            "na": "II",
+            "da": "I"
+          },
+          "sym_map": {
+            "eung": "a",
+            "rieul": "A",
+            "nieun": "b",
+            "digeut": "B"
+          },
+          "abc_map": {
+            "a": 0,
+            "c": 4,
+            "b": 2
+          }
+        },
+        "world": {
+          "x_gene": "A",
+          "sex": "M",
+          "auto_geno": "BB",
+          "x_geno": "A",
+          "left_auto": "B",
+          "right_auto": "B",
+          "left_x": null,
+          "right_x": "A"
+        },
+        "difficulty": 3,
+        "gnd": {
+          "g": "a ⟂ b 여부는 거짓",
+          "n": "㉣은 A이다.",
+          "d": "III에 X 염색체만 존재한다."
+        }
+      }
+    }
+  ]
+}
