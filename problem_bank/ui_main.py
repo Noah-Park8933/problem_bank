@@ -33,23 +33,8 @@ def _make_unique_headers(headers):
         seen[name] = cnt + 1
     return out
 
-def _ensure_state() -> AppState:
-    if "app_state" not in st.session_state:
-        st.session_state.app_state = AppState()
-    return st.session_state.app_state
 
-
-def _first_str(payload, keys):
-    if not isinstance(payload, dict):
-        return None
-    for k in keys:
-        v = payload.get(k)
-        if isinstance(v, str) and v.strip():
-            return v.strip()
-    return None
-
-
-def render_table_pretty(table_obj):
+def render_tables_pretty(table_obj):
     headers, rows = normalize_table_to_grid(table_obj)
 
     if not headers or rows is None:
@@ -58,8 +43,13 @@ def render_table_pretty(table_obj):
 
     import pandas as pd
 
+    # rows가 비어있으면 표 없음 처리
+    if not isinstance(rows, list) or len(rows) == 0:
+        st.write("(표 없음)")
+        return
+
     # 열/행 길이 불일치 방어
-    max_len = max(len(headers), *(len(r) for r in rows)) if rows else len(headers)
+    max_len = max(len(headers), *(len(r) for r in rows))
     headers = list(headers) + [""] * (max_len - len(headers))
 
     fixed_rows = []
@@ -67,54 +57,17 @@ def render_table_pretty(table_obj):
         r = list(r) if r is not None else []
         fixed_rows.append(r + [""] * (max_len - len(r)))
 
-    if not fixed_rows:
-        st.write("(표 없음)")
-        return
+    # ✅ 1차: 헤더 유일화
+    headers = _make_unique_headers(headers)
 
     df = pd.DataFrame(fixed_rows, columns=headers)
+
+    # ✅ 2차: 혹시라도 남아있으면 강제 유일화(최후 방어)
+    if df.columns.duplicated().any():
+        df.columns = _make_unique_headers(list(df.columns))
+
     st.dataframe(df, use_container_width=True)
 
-
-
-def render_tables_pretty(table_obj):
-    """
-    ✅ 복수 표 지원:
-    - table_obj가 md 문자열에 표를 2개 이상 포함하면 모두 출력
-    - 일반 단일 표/2D list/dict table은 1개만 출력
-    """
-    grids = normalize_tables_to_grids(table_obj)
-    if not grids:
-        st.write("(표 없음)")
-        return
-
-    for idx, (headers, rows) in enumerate(grids, start=1):
-        if len(grids) > 1:
-            st.markdown(f"**표 {idx}**")
-
-        if not headers or rows is None:
-            st.write("(표 없음)")
-            continue
-
-        import pandas as pd
-
-        # 열/행 길이 불일치 방어
-        max_len = max(len(headers), *(len(r) for r in rows)) if rows else len(headers)
-        hdr = list(headers) + [""] * (max_len - len(headers))
-
-        fixed_rows = []
-        for r in rows:
-            r = list(r) if r is not None else []
-            fixed_rows.append(r + [""] * (max_len - len(r)))
-
-        if not fixed_rows:
-            st.write("(표 없음)")
-            continue
-
-        df = pd.DataFrame(fixed_rows, columns=hdr)
-        st.dataframe(df, use_container_width=True)
-
-        if idx != len(grids):
-            st.divider()
 
 def try_find_image(payload):
     if not isinstance(payload, dict):
