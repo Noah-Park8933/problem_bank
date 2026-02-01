@@ -17,6 +17,22 @@ from .history import HistoryStore
 # -----------------------------
 # UI helpers
 # -----------------------------
+def _make_unique_headers(headers):
+    seen = {}
+    out = []
+    for h in headers:
+        name = "" if h is None else str(h)
+        name = name.strip()
+        if name == "":
+            name = "(blank)"
+        cnt = seen.get(name, 0)
+        if cnt == 0:
+            out.append(name)
+        else:
+            out.append(f"{name}_{cnt+1}")
+        seen[name] = cnt + 1
+    return out
+
 def _ensure_state() -> AppState:
     if "app_state" not in st.session_state:
         st.session_state.app_state = AppState()
