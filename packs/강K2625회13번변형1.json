@@ -1,0 +1,5026 @@
+{
+  "pack_id": "5501a2073d4d5560ca21edfdb2938c73",
+  "pack_name": "GEN_TABLE_pack_20260201",
+  "created_at": 1769924200,
+  "config": {
+    "module": "GEN_TABLE",
+    "id_prefix": "GEN_TABLE_",
+    "difficulty": 3,
+    "n": 30,
+    "base_seed": 20260201,
+    "max_tries_per_item": 12000
+  },
+  "count": 30,
+  "items": [
+    {
+      "id": "GEN_TABLE_4c91dd2fd1",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | ○ | ○ | 1 |\n|  | II | ○ | × | × | ○ | 1 |\n| Q | III | × | ○ | ○ | ○ | 4 |\n|  | IV | × | ○ | × | ○ | 3 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 나는 ×이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → d\n- 다 → B\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "○",
+              "○",
+              1
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "×",
+              "×",
+              "○",
+              1
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "×",
+              "○",
+              3
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "d",
+            "다": "B",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 나는 ×이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          false
+        ],
+        "answer_choice": "②",
+        "id": "GEN_TABLE_4c91dd2fd1"
+      }
+    },
+    {
+      "id": "GEN_TABLE_294f836b19",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | × | ○ | ○ | 1 |\n|  | II | × | ○ | ○ | ○ | 3 |\n| Q | III | × | × | ○ | × | 4 |\n|  | IV | × | × | ○ | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 나는 ○이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → B\n- 나 → d\n- 다 → b\n- 라 → a\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "×",
+              "○",
+              "○",
+              1
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "○",
+              "○",
+              3
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "×",
+              "○",
+              "×",
+              4
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "×",
+              "○",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "B",
+            "나": "d",
+            "다": "b",
+            "라": "a"
+          },
+          "P_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 나는 ○이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_294f836b19"
+      }
+    },
+    {
+      "id": "GEN_TABLE_4261d53d0a",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | × | × | 1 |\n|  | II | ○ | × | × | ○ | 3 |\n| Q | III | × | ○ | × | ○ | 5 |\n|  | IV | × | ○ | × | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 나는 ×이다.\nㄴ. 나는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → B\n- 나 → b\n- 다 → a\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 나 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "×",
+              "×",
+              "○",
+              3
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "×",
+              "○",
+              5
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "×",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "B",
+            "나": "b",
+            "다": "a",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 나는 ×이다.",
+          "ㄴ. 나는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_4261d53d0a"
+      }
+    },
+    {
+      "id": "GEN_TABLE_2d9a383205",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | ○ | ○ | 1 |\n|  | II | ○ | × | × | ○ | 1 |\n| Q | III | × | ○ | ○ | ○ | 3 |\n|  | IV | × | ○ | ○ | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 다는 ×이다.\nㄴ. 가는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②\n\n가~라 매칭(유일):\n- 가 → b\n- 나 → d\n- 다 → B\n- 라 → a\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 가 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "○",
+              "○",
+              1
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "×",
+              "×",
+              "○",
+              1
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "○",
+              "○",
+              3
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "○",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "b",
+            "나": "d",
+            "다": "B",
+            "라": "a"
+          },
+          "P_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 다는 ×이다.",
+          "ㄴ. 가는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          false
+        ],
+        "answer_choice": "②",
+        "id": "GEN_TABLE_2d9a383205"
+      }
+    },
+    {
+      "id": "GEN_TABLE_21a93eb423",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | × | × | 2 |\n|  | II | ○ | ○ | × | ○ | 5 |\n| Q | III | × | ○ | ○ | ○ | 2 |\n|  | IV | × | ○ | ○ | ○ | 5 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 다는 ○이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → B\n- 나 → d\n- 다 → a\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "×",
+              "×",
+              2
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "×",
+              "○",
+              5
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "○",
+              "○",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "○",
+              "○",
+              5
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "B",
+            "나": "d",
+            "다": "a",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 다는 ○이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_21a93eb423"
+      }
+    },
+    {
+      "id": "GEN_TABLE_624c2bc1cf",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | × | × | 1 |\n|  | II | × | ○ | × | × | 1 |\n| Q | III | × | × | ○ | × | 2 |\n|  | IV | × | ○ | ○ | × | 3 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 라는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → B\n- 다 → b\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: True\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "×",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "○",
+              "×",
+              3
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "B",
+            "다": "b",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 라는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          true,
+          true,
+          false
+        ],
+        "answer_choice": "④",
+        "id": "GEN_TABLE_624c2bc1cf"
+      }
+    },
+    {
+      "id": "GEN_TABLE_a233ccfda2",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | × | × | 6 |\n|  | II | ○ | ○ | × | × | 3 |\n| Q | III | ○ | ○ | ○ | ○ | 4 |\n|  | IV | × | ○ | × | ○ | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 라는 ×이다.\nㄴ. 가는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④\n\n가~라 매칭(유일):\n- 가 → b\n- 나 → d\n- 다 → a\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: True\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 가 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "×",
+              "×",
+              6
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "×",
+              "×",
+              3
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "×",
+              "○",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 6
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "b",
+            "나": "d",
+            "다": "a",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 라는 ×이다.",
+          "ㄴ. 가는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          true,
+          true,
+          false
+        ],
+        "answer_choice": "④",
+        "id": "GEN_TABLE_a233ccfda2"
+      }
+    },
+    {
+      "id": "GEN_TABLE_7f72c9e9e3",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | × | ○ | ○ | 4 |\n|  | II | × | × | ○ | ○ | 4 |\n| Q | III | × | ○ | ○ | × | 5 |\n|  | IV | × | ○ | ○ | × | 3 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 다는 ○이다.\nㄴ. 나는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → b\n- 다 → d\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: True\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 나 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "×",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "×",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "○",
+              "×",
+              5
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "○",
+              "×",
+              3
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "b",
+            "다": "d",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 다는 ○이다.",
+          "ㄴ. 나는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          true,
+          true,
+          false
+        ],
+        "answer_choice": "④",
+        "id": "GEN_TABLE_7f72c9e9e3"
+      }
+    },
+    {
+      "id": "GEN_TABLE_ceaeb0e1e8",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | × | × | 3 |\n|  | II | ○ | ○ | × | ○ | 4 |\n| Q | III | × | ○ | × | ○ | 2 |\n|  | IV | × | ○ | × | ○ | 1 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 라는 ×이다.\nㄴ. 나는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → b\n- 다 → B\n- 라 → a\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 나 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "×",
+              "×",
+              3
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "×",
+              "○",
+              4
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "×",
+              "○",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "×",
+              "○",
+              1
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "b",
+            "다": "B",
+            "라": "a"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 라는 ×이다.",
+          "ㄴ. 나는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_ceaeb0e1e8"
+      }
+    },
+    {
+      "id": "GEN_TABLE_47091068bc",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | × | ○ | × | 2 |\n|  | II | × | ○ | ○ | ○ | 4 |\n| Q | III | ○ | × | × | ○ | 4 |\n|  | IV | ○ | × | × | ○ | 4 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 라는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → B\n- 나 → a\n- 다 → b\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=2n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "×",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "×",
+              "○",
+              4
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "×",
+              "○",
+              4
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "B",
+            "나": "a",
+            "다": "b",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 라는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_47091068bc"
+      }
+    },
+    {
+      "id": "GEN_TABLE_3d1e126228",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | ○ | ○ | × | 3 |\n|  | II | × | ○ | ○ | × | 2 |\n| Q | III | ○ | × | ○ | ○ | 1 |\n|  | IV | ○ | × | ○ | × | 0 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 라는 ×이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → d\n- 다 → B\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: True\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "○",
+              "○",
+              "×",
+              3
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "○",
+              "○",
+              1
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "○",
+              "×",
+              0
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 0
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "d",
+            "다": "B",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 라는 ×이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          true,
+          true,
+          false
+        ],
+        "answer_choice": "④",
+        "id": "GEN_TABLE_3d1e126228"
+      }
+    },
+    {
+      "id": "GEN_TABLE_278dc9c43a",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | ○ | × | 1 |\n|  | II | ○ | × | ○ | × | 2 |\n| Q | III | ○ | ○ | × | × | 1 |\n|  | IV | × | ○ | × | × | 1 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 나는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → B\n- 다 → b\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "○",
+              "×",
+              1
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "×",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "×",
+              "×",
+              1
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "B",
+            "다": "b",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 나는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_278dc9c43a"
+      }
+    },
+    {
+      "id": "GEN_TABLE_ff895f9c39",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | × | ○ | 1 |\n|  | II | × | × | × | ○ | 1 |\n| Q | III | × | ○ | × | ○ | 2 |\n|  | IV | ○ | ○ | × | ○ | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 라는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → d\n- 다 → b\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "×",
+              "○",
+              1
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "×",
+              "×",
+              "○",
+              1
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "×",
+              "○",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "○",
+              "×",
+              "○",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "d",
+            "다": "b",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 라는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          false
+        ],
+        "answer_choice": "②",
+        "id": "GEN_TABLE_ff895f9c39"
+      }
+    },
+    {
+      "id": "GEN_TABLE_559382a275",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | × | × | 1 |\n|  | II | ○ | × | × | ○ | 3 |\n| Q | III | × | ○ | ○ | ○ | 3 |\n|  | IV | × | ○ | × | ○ | 1 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 다는 ×이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → B\n- 나 → a\n- 다 → d\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "×",
+              "×",
+              "○",
+              3
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "○",
+              "○",
+              3
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "×",
+              "○",
+              1
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "B",
+            "나": "a",
+            "다": "d",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 다는 ×이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_559382a275"
+      }
+    },
+    {
+      "id": "GEN_TABLE_6a8714737a",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | ○ | × | × | 1 |\n|  | II | × | ○ | × | × | 2 |\n| Q | III | ○ | ○ | ○ | × | 2 |\n|  | IV | ○ | × | × | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 나는 ×이다.\nㄴ. 가는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → b\n- 나 → B\n- 다 → a\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 가 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "○",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "×",
+              "×",
+              2
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "×",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "b",
+            "나": "B",
+            "다": "a",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 나는 ×이다.",
+          "ㄴ. 가는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_6a8714737a"
+      }
+    },
+    {
+      "id": "GEN_TABLE_082fad718d",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | ○ | × | 2 |\n|  | II | × | × | ○ | × | 1 |\n| Q | III | ○ | × | ○ | ○ | 4 |\n|  | IV | × | × | × | ○ | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 가는 ○이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → a\n- 다 → B\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "×",
+              "○",
+              "×",
+              1
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "×",
+              "×",
+              "○",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "a",
+            "다": "B",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 가는 ○이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          false
+        ],
+        "answer_choice": "②",
+        "id": "GEN_TABLE_082fad718d"
+      }
+    },
+    {
+      "id": "GEN_TABLE_7829ab8002",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | ○ | × | × | 2 |\n|  | II | ○ | ○ | × | × | 5 |\n| Q | III | ○ | ○ | ○ | × | 3 |\n|  | IV | ○ | ○ | ○ | × | 3 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 나는 ×이다.\nㄴ. 나는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → b\n- 다 → a\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=2n\n\n참고: b에 해당하는 기호는 나 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "○",
+              "×",
+              "×",
+              2
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "×",
+              "×",
+              5
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "○",
+              "×",
+              3
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "○",
+              "○",
+              "×",
+              3
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "b",
+            "다": "a",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 나는 ×이다.",
+          "ㄴ. 나는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_7829ab8002"
+      }
+    },
+    {
+      "id": "GEN_TABLE_872ca6d416",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | × | ○ | ○ | 2 |\n|  | II | × | ○ | ○ | ○ | 3 |\n| Q | III | ○ | ○ | ○ | × | 1 |\n|  | IV | ○ | ○ | ○ | × | 1 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 라는 ○이다.\nㄴ. 가는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → b\n- 나 → a\n- 다 → B\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=2n\n\n참고: b에 해당하는 기호는 가 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "×",
+              "○",
+              "○",
+              2
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "○",
+              "○",
+              3
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "○",
+              "×",
+              1
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "○",
+              "○",
+              "×",
+              1
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "b",
+            "나": "a",
+            "다": "B",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 라는 ○이다.",
+          "ㄴ. 가는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_872ca6d416"
+      }
+    },
+    {
+      "id": "GEN_TABLE_08ad363ef3",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | × | ○ | ○ | 6 |\n|  | II | × | × | ○ | ○ | 6 |\n| Q | III | ○ | × | × | ○ | 1 |\n|  | IV | ○ | × | × | ○ | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 나는 ×이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → B\n- 다 → d\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: True\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=2n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "×",
+              "○",
+              "○",
+              6
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "×",
+              "○",
+              "○",
+              6
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "×",
+              "○",
+              1
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "×",
+              "○",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 6
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 6
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "B",
+            "다": "d",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 2,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 나는 ×이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          true,
+          true,
+          false
+        ],
+        "answer_choice": "④",
+        "id": "GEN_TABLE_08ad363ef3"
+      }
+    },
+    {
+      "id": "GEN_TABLE_6af4b5d3a1",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | ○ | ○ | 4 |\n|  | II | × | ○ | × | ○ | 2 |\n| Q | III | ○ | ○ | × | × | 3 |\n|  | IV | ○ | ○ | × | × | 6 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 나는 ×이다.\nㄴ. 가는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②\n\n가~라 매칭(유일):\n- 가 → b\n- 나 → d\n- 다 → a\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 가 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "×",
+              "○",
+              2
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "×",
+              "×",
+              3
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "○",
+              "×",
+              "×",
+              6
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 6
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "b",
+            "나": "d",
+            "다": "a",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 나는 ×이다.",
+          "ㄴ. 가는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          false
+        ],
+        "answer_choice": "②",
+        "id": "GEN_TABLE_6af4b5d3a1"
+      }
+    },
+    {
+      "id": "GEN_TABLE_c1b151ec80",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | ○ | ○ | × | 1 |\n|  | II | × | ○ | ○ | ○ | 1 |\n| Q | III | ○ | × | ○ | ○ | 4 |\n|  | IV | ○ | × | ○ | × | 3 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 다는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → a\n- 다 → b\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "○",
+              "○",
+              "×",
+              1
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "○",
+              "○",
+              1
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "○",
+              "○",
+              4
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "○",
+              "×",
+              3
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "a",
+            "다": "b",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 다는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_c1b151ec80"
+      }
+    },
+    {
+      "id": "GEN_TABLE_79dd9c38e0",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | × | ○ | 3 |\n|  | II | ○ | ○ | × | ○ | 5 |\n| Q | III | ○ | ○ | ○ | × | 3 |\n|  | IV | ○ | ○ | × | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 라는 ○이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → B\n- 다 → a\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "×",
+              "○",
+              3
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "×",
+              "○",
+              5
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "○",
+              "×",
+              3
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "○",
+              "×",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "B",
+            "다": "a",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 라는 ○이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_79dd9c38e0"
+      }
+    },
+    {
+      "id": "GEN_TABLE_0ee09fff73",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | ○ | × | × | 1 |\n|  | II | ○ | ○ | × | × | 3 |\n| Q | III | × | × | ○ | × | 4 |\n|  | IV | × | × | ○ | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 가는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → B\n- 다 → b\n- 라 → a\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "○",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "×",
+              "×",
+              3
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "×",
+              "○",
+              "×",
+              4
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "×",
+              "○",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "B",
+            "다": "b",
+            "라": "a"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 가는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_0ee09fff73"
+      }
+    },
+    {
+      "id": "GEN_TABLE_f3a8508142",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | × | ○ | ○ | 1 |\n|  | II | × | × | ○ | ○ | 2 |\n| Q | III | ○ | ○ | ○ | ○ | 2 |\n|  | IV | × | ○ | × | ○ | 0 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. IV에서 가는 ○이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → B\n- 다 → b\n- 라 → a\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "×",
+              "○",
+              "○",
+              1
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "×",
+              "○",
+              "○",
+              2
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "○",
+              "○",
+              "○",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "×",
+              "○",
+              0
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 0
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "B",
+            "다": "b",
+            "라": "a"
+          },
+          "P_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 1
+          }
+        },
+        "statements": [
+          "ㄱ. IV에서 가는 ○이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_f3a8508142"
+      }
+    },
+    {
+      "id": "GEN_TABLE_d1b34516d8",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | ○ | ○ | × | 2 |\n|  | II | × | ○ | ○ | × | 4 |\n| Q | III | ○ | × | ○ | × | 0 |\n|  | IV | ○ | × | ○ | ○ | 1 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 다는 ×이다.\nㄴ. 라는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → a\n- 나 → d\n- 다 → B\n- 라 → b\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 라 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "○",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "○",
+              "×",
+              4
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "○",
+              "×",
+              0
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "○",
+              "○",
+              1
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 0
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "a",
+            "나": "d",
+            "다": "B",
+            "라": "b"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 다는 ×이다.",
+          "ㄴ. 라는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_d1b34516d8"
+      }
+    },
+    {
+      "id": "GEN_TABLE_33e2c5424d",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | ○ | × | 4 |\n|  | II | × | ○ | ○ | × | 1 |\n| Q | III | × | × | ○ | × | 2 |\n|  | IV | ○ | ○ | ○ | × | 4 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 라는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "④",
+      "solution_md": "정답: ④\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → a\n- 다 → b\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: True\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "○",
+              "×",
+              4
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "○",
+              "○",
+              "×",
+              1
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "×",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "○",
+              "○",
+              "×",
+              4
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "a",
+            "다": "b",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 라는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          true,
+          true,
+          false
+        ],
+        "answer_choice": "④",
+        "id": "GEN_TABLE_33e2c5424d"
+      }
+    },
+    {
+      "id": "GEN_TABLE_10badbe302",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | ○ | × | 3 |\n|  | II | ○ | ○ | ○ | ○ | 3 |\n| Q | III | × | ○ | ○ | × | 1 |\n|  | IV | × | ○ | ○ | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 가는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → d\n- 나 → a\n- 다 → b\n- 라 → B\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "○",
+              "×",
+              3
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "○",
+              "○",
+              3
+            ],
+            [
+              "Q",
+              "III",
+              "×",
+              "○",
+              "○",
+              "×",
+              1
+            ],
+            [
+              "",
+              "IV",
+              "×",
+              "○",
+              "○",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "×",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "d",
+            "나": "a",
+            "다": "b",
+            "라": "B"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 가는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_10badbe302"
+      }
+    },
+    {
+      "id": "GEN_TABLE_889d64bc4d",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | × | × | ○ | × | 2 |\n|  | II | × | × | ○ | × | 4 |\n| Q | III | ○ | × | × | × | 1 |\n|  | IV | ○ | ○ | ○ | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. III에서 가는 ×이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → B\n- 나 → a\n- 다 → b\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=n, IV=2n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "×",
+              "×",
+              "○",
+              "×",
+              2
+            ],
+            [
+              "",
+              "II",
+              "×",
+              "×",
+              "○",
+              "×",
+              4
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "×",
+              "×",
+              1
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "○",
+              "○",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "×",
+              "×",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 4
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 1
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "B",
+            "나": "a",
+            "다": "b",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "a"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 1,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. III에서 가는 ×이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_889d64bc4d"
+      }
+    },
+    {
+      "id": "GEN_TABLE_c121657a8d",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | × | × | × | 2 |\n|  | II | ○ | × | × | ○ | 5 |\n| Q | III | ○ | × | ○ | ○ | 3 |\n|  | IV | ○ | × | ○ | ○ | 3 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 라는 ×이다.\nㄴ. 가는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "⑤",
+      "solution_md": "정답: ⑤\n\n가~라 매칭(유일):\n- 가 → b\n- 나 → B\n- 다 → a\n- 라 → d\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: True\n\n세포 핵상(모델상 n/2n):\n- I=n, II=2n, III=2n, IV=2n\n\n참고: b에 해당하는 기호는 가 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "×",
+              "×",
+              "×",
+              2
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "×",
+              "×",
+              "○",
+              5
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "○",
+              "○",
+              3
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "○",
+              "○",
+              3
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "○",
+              "○"
+            ],
+            "sum_A_plus_b_plus_d": 3
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "b",
+            "나": "B",
+            "다": "a",
+            "라": "d"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "a",
+              "a"
+            ],
+            "B": [
+              "b",
+              "b"
+            ],
+            "D": [
+              "D",
+              "d"
+            ]
+          },
+          "ploidies": {
+            "I": 1,
+            "II": 2,
+            "III": 2,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 라는 ×이다.",
+          "ㄴ. 가는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          true
+        ],
+        "answer_choice": "⑤",
+        "id": "GEN_TABLE_c121657a8d"
+      }
+    },
+    {
+      "id": "GEN_TABLE_754e77add0",
+      "module": "GEN_TABLE",
+      "id_prefix": "GEN_TABLE_",
+      "difficulty": 3,
+      "problem_text_md": "사람의 유전 형질 ㉮는 서로 다른 3개의 염색체에 있는 3쌍의 대립유전자 A/a, B/b, D/d에 의해 결정된다.\n표는 남자 P의 세포 I과 II, 여자 Q의 세포 III과 IV에서 (가)~(라)의 대립유전자 유무를 ○/×로 나타내고, A+b+d의 DNA 상대량(각 1개당 1)을 나타낸 것이다.\n(가)~(라)는 a, B, b, d를 순서 없이 나타낸 것이다.\n\n| 사람 | 세포 | 가 | 나 | 다 | 라 | A+b+d |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| P | I | ○ | ○ | ○ | × | 5 |\n|  | II | ○ | ○ | × | × | 2 |\n| Q | III | ○ | × | × | × | 2 |\n|  | IV | ○ | × | × | × | 2 |\n\n(○: 있음, ×: 없음)\n",
+      "ask_line_md": "이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?\n(단, 돌연변이나 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. II에서 라는 ○이다.\nㄴ. 다는 b이다.\nㄷ. I의 핵상은 n이다.\n\n① ㄱ  ② ㄴ  ③ ㄷ  ④ ㄱ, ㄴ  ⑤ ㄴ, ㄷ",
+      "answer_text_md": "②",
+      "solution_md": "정답: ②\n\n가~라 매칭(유일):\n- 가 → B\n- 나 → d\n- 다 → b\n- 라 → a\n\nㄱ·ㄴ·ㄷ 진위:\n- ㄱ: False\n- ㄴ: True\n- ㄷ: False\n\n세포 핵상(모델상 n/2n):\n- I=2n, II=n, III=2n, IV=2n\n\n참고: b에 해당하는 기호는 다 이다.",
+      "payload": {
+        "module": "GEN_TABLE",
+        "id_prefix": "GEN_TABLE_",
+        "difficulty": 3,
+        "given_table_keys": [
+          "table_grid"
+        ],
+        "table_grid": {
+          "headers": [
+            "사람",
+            "세포",
+            "가",
+            "나",
+            "다",
+            "라",
+            "A+b+d"
+          ],
+          "rows": [
+            [
+              "P",
+              "I",
+              "○",
+              "○",
+              "○",
+              "×",
+              5
+            ],
+            [
+              "",
+              "II",
+              "○",
+              "○",
+              "×",
+              "×",
+              2
+            ],
+            [
+              "Q",
+              "III",
+              "○",
+              "×",
+              "×",
+              "×",
+              2
+            ],
+            [
+              "",
+              "IV",
+              "○",
+              "×",
+              "×",
+              "×",
+              2
+            ]
+          ]
+        },
+        "table": [
+          {
+            "person": "P",
+            "cell": "I",
+            "ox_labels": [
+              "○",
+              "○",
+              "○",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 5
+          },
+          {
+            "person": "P",
+            "cell": "II",
+            "ox_labels": [
+              "○",
+              "○",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "III",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          },
+          {
+            "person": "Q",
+            "cell": "IV",
+            "ox_labels": [
+              "○",
+              "×",
+              "×",
+              "×"
+            ],
+            "sum_A_plus_b_plus_d": 2
+          }
+        ],
+        "solution": {
+          "mapping_label_to_allele": {
+            "가": "B",
+            "나": "d",
+            "다": "b",
+            "라": "a"
+          },
+          "P_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "b"
+            ],
+            "D": [
+              "d",
+              "d"
+            ]
+          },
+          "Q_genotype": {
+            "A": [
+              "A",
+              "A"
+            ],
+            "B": [
+              "B",
+              "B"
+            ],
+            "D": [
+              "D",
+              "D"
+            ]
+          },
+          "ploidies": {
+            "I": 2,
+            "II": 1,
+            "III": 2,
+            "IV": 2
+          }
+        },
+        "statements": [
+          "ㄱ. II에서 라는 ○이다.",
+          "ㄴ. 다는 b이다.",
+          "ㄷ. I의 핵상은 n이다."
+        ],
+        "truth": [
+          false,
+          true,
+          false
+        ],
+        "answer_choice": "②",
+        "id": "GEN_TABLE_754e77add0"
+      }
+    }
+  ]
+}
