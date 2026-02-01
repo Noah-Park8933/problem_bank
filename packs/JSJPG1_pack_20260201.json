@@ -1,0 +1,884 @@
+{
+  "pack_id": "2afd08959d",
+  "pack_name": "GENEHS_pack_20260201",
+  "created_at": 20260201,
+  "config": {
+    "module": "GENE_HIDE_SOLVE",
+    "difficulty": 3,
+    "n": 30,
+    "base_seed": 20260201
+  },
+  "count": 30,
+  "items": [
+    {
+      "id": "JSJPG1_c41af2763c",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/4이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBdd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDd\n- 자녀 유전자형 수=3, 자녀 표현형 수=3\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/4\n- 따라서 정답: ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBdd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 4
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_c41af2763c",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/4이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBdd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDd\n- 자녀 유전자형 수=3, 자녀 표현형 수=3\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/4\n- 따라서 정답: ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBdd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 4
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_3a84f4a0f1",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDD",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_3a84f4a0f1",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDD",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_3a84f4a0f1",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDD",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_3a84f4a0f1",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDD\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDD",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_f397cd9096",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADd\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDd, Q=AABBDD\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "Dd",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDd",
+          "Q_full": "AABBDD"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    },
+    {
+      "id": "JSJPG1_55a7f70a7d",
+      "module": "GENE_HIDE_SOLVE",
+      "id_prefix": "JSJPG1_",
+      "difficulty": 3,
+      "problem_text_md": "다음은 사람의 유전 형질 (가)에 대한 자료이다. 형질은 상염색체에 존재하는 대립유전자에 의해 조절된다.\n(가)는 대립유전자 A와 a, B와 b, D와 d에 의해 결정된다.\n이 형질은 유전자형에서 대문자로 표시되는 대립유전자의 수에 의해서만 결정되며, 이 대립유전자의 수가 다르면 표현형도 다르다.\nP와 Q의 자녀가 가질 수 있는 (가)에 대한 유전자형은 최대 4가지이다.\nP와 Q의 자녀의 (가)에 대한 표현형이 유전자형이 AABBDD인 사람과 같을 확률은 1/2이다.\nP가 생성할 수 있는 생식세포 중 8번 염색체에 A와 B를, 11번 염색체에 D를 가진 세포가 있다.\n다음은 가족 구성원의 유전자형 일부를 나타낸 표이다.\n구성원 유전자형\nP AADD\n자녀1 AABBDd\n이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? (단, 돌연변이와 교차는 고려하지 않는다.)\n\n<보기>\nㄱ. P와 Q의 (가)에 대한 표현형은 서로 다르다.\nㄴ. P와 Q의 자녀가 가질 수 있는 (가)에 대한 표현형은 최대 4가지이다.\nㄷ. Q는 대립유전자 dd를 가진다.",
+      "ask_line_md": "",
+      "answer_text_md": "ㄱ, ㄴ",
+      "solution_md": "- (내부 정답) P=AABBDD, Q=AABBDd\n- 자녀 유전자형 수=2, 자녀 표현형 수=2\n- 기준 유전자형 AABBDD의 표현형(대문자 수)=6, 해당 확률=1/2\n- 따라서 정답: ㄱ, ㄴ",
+      "payload": {
+        "public": {
+          "P_A": "AA",
+          "P_D": "DD",
+          "child1": "AABBDd",
+          "ref_gt": "AABBDD",
+          "ref_prob": {
+            "num": 1,
+            "den": 2
+          },
+          "max_child_gt": 4,
+          "hint_AB_exists": true,
+          "hint_P_gamete_has_D": true
+        },
+        "solution_full": {
+          "P_full": "AABBDD",
+          "Q_full": "AABBDd"
+        }
+      }
+    }
+  ]
+}
