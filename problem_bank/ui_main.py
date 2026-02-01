@@ -17,6 +17,15 @@ from .history import HistoryStore
 # -----------------------------
 # UI helpers
 # -----------------------------
+def _first_str(payload, keys):
+    if not isinstance(payload, dict):
+        return None
+    for k in keys:
+        v = payload.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return None
+
 def _make_unique_headers(headers):
     seen = {}
     out = []
