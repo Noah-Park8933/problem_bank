@@ -178,6 +178,53 @@ def enforce_linkage_n_cell(amounts: Dict[str, AlleleAmount], linked_pair: Tuple[
 # -------------------------
 # TEMPLATE BUILDERS
 # -------------------------
+
+# -------------------------
+# Template A helpers (logic-tight)
+# -------------------------
+
+def derive_n2_from_I_2n2(i_amt: tuple[int,int], is_x: bool) -> tuple[int,int]:
+    """Derive II (n(2)) from I (2n(2)) without crossing.
+    - autosome: (2,0)->(2,0), (0,2)->(0,2), (1,1)-> choose (2,0) or (0,2)
+    - X-locus: I in {(1,0),(0,1)}; map to (2,0)/(0,2) keeping direction (or (0,0) if I is (0,0)).
+    """
+    u,l = i_amt
+    if (u,l)==(0,0):
+        return (0,0)
+    if is_x:
+        if u>0 and l==0:
+            return (2,0)
+        if l>0 and u==0:
+            return (0,2)
+        return (0,0)
+    # autosome
+    if u>0 and l>0:
+        return random.choice([(2,0),(0,2)])
+    return (2,0) if u>0 else (0,2)
+
+
+def allowed_n1_from_I_2n2(i_amt: tuple[int,int], is_x: bool) -> list[tuple[int,int]]:
+    """Allowed n(1) allele-amount outcomes from I(2n(2)) at a locus."""
+    u,l=i_amt
+    if is_x:
+        # X-locus: I domain can be (1,0),(0,1) (sometimes (0,0)). allow drop-to-0 if configured as X.
+        if (u,l)==(1,0):
+            return [(1,0),(0,0)]
+        if (u,l)==(0,1):
+            return [(0,1),(0,0)]
+        return [(0,0)]
+    # autosome
+    if (u,l)==(2,0):
+        return [(1,0)]
+    if (u,l)==(0,2):
+        return [(0,1)]
+    if (u,l)==(1,1):
+        return [(1,0),(0,1)]
+    return [(0,0)]
+
+
+def opposite_n1(x: tuple[int,int]) -> tuple[int,int]:
+    return (0,1) if x==(1,0) else (1,0) if x==(0,1) else (0,0)
 def build_template_A(spec: WorldSpec) -> Dict[str, Cell]:
     """
     A:
@@ -192,9 +239,9 @@ def build_template_A(spec: WorldSpec) -> Dict[str, Cell]:
     # I
     for L in LOCI:
         I.amounts[L] = domain_for("2n(2)", L, spec)[0]
-    # II
+    # II (derived from I for logical consistency)
     for L in LOCI:
-        II.amounts[L] = domain_for("n(2)", L, spec)[0]
+        II.amounts[L] = derive_n2_from_I_2n2(I.amounts[L], is_x=(L in spec.x_loci))
     # linkage enforce on II if applicable
     if spec.linked_pair:
         enforce_linkage_n_cell(II.amounts, spec.linked_pair)
@@ -216,18 +263,81 @@ def build_template_A(spec: WorldSpec) -> Dict[str, Cell]:
 
     if spec.linked_pair:
         enforce_linkage_n_cell(III.amounts, spec.linked_pair)
-
-    # IV: n(1) independent, but must be "not from II" meaning amounts not identical to III
+    # IV: n(1) NOT from II, BUT from I (locus-wise).
+    # Stronger than 'IV != III':
+    #  - IV[L] must be an allowed n(1) outcome from I[L]
+    #  - Differences from III must come from loci where I allows branching (autosome I=(1,1))
+    #    or from X-locus by dropping to (0,0).
+    #  - If linked_pair exists, apply flip coherently (no crossing).
+    Iref = dict(I.amounts)
     banned = dict(III.amounts)
-    for _ in range(5000):
-        cand = {}
+
+    # precompute eligible loci for creating 'not from II' evidence
+    hetero_autosome = [L for L in LOCI if (L not in spec.x_loci) and Iref[L]==(1,1)]
+    x_can_drop0 = [L for L in LOCI if (L in spec.x_loci) and (0,0) in allowed_n1_from_I_2n2(Iref[L], True) and banned[L]!=(0,0)]
+
+    def build_iv_candidate() -> Optional[Dict[str,AlleleAmount]]:
+        cand: Dict[str,AlleleAmount] = {}
+        # start with III, but ensure each locus is I-consistent
         for L in LOCI:
-            cand[L] = domain_for("n(1)", L, spec)[0]
+            is_x = (L in spec.x_loci)
+            opts = allowed_n1_from_I_2n2(Iref[L], is_x)
+            cand[L] = banned[L] if banned[L] in opts else opts[0]
+
+        flipped = False
+
+        # If linkage exists, prefer flipping the pair together when possible
         if spec.linked_pair:
+            a,b = spec.linked_pair
+            # attempt pair flip only if both loci can legally flip (i.e., autosome hetero)
+            if (a in hetero_autosome) and (b in hetero_autosome):
+                cand[a] = opposite_n1(banned[a])
+                cand[b] = opposite_n1(banned[b])
+                flipped = (cand[a]!=banned[a]) or (cand[b]!=banned[b])
+            else:
+                # otherwise flip a single eligible hetero autosome locus (not in linked pair if that would break linkage)
+                candidates = [L for L in hetero_autosome if L not in spec.linked_pair]
+                if candidates:
+                    L = random.choice(candidates)
+                    cand[L] = opposite_n1(banned[L])
+                    flipped = (cand[L]!=banned[L])
+
+            # enforce linkage direction after edits
             enforce_linkage_n_cell(cand, spec.linked_pair)
-        if cand != banned:
-            IV = Cell(stage="n(1)", amounts=cand, parent=None, note="IV(not from II)")
-            return {"I": I, "II": II, "III": III, "IV": IV}
+        else:
+            # no linkage: flip one hetero autosome locus if exists
+            if hetero_autosome:
+                L = random.choice(hetero_autosome)
+                cand[L] = opposite_n1(banned[L])
+                flipped = (cand[L]!=banned[L])
+
+        # if still not flipped, use X drop-to-0 as the evidence (still I-derived)
+        if not flipped and x_can_drop0:
+            L = random.choice(x_can_drop0)
+            cand[L] = (0,0)
+            flipped = True
+
+        if not flipped:
+            return None
+
+        # final I-consistency check (paranoid)
+        for L in LOCI:
+            is_x = (L in spec.x_loci)
+            if cand[L] not in allowed_n1_from_I_2n2(Iref[L], is_x):
+                return None
+
+        # must not be identical to III (not from II)
+        if cand == banned:
+            return None
+        return cand
+
+    for _ in range(5000):
+        cand = build_iv_candidate()
+        if cand is None:
+            continue
+        IV = Cell(stage="n(1)", amounts=cand, parent=None, note="IV(from I, not from II)")
+        return {"I": I, "II": II, "III": III, "IV": IV}
+
     raise RuntimeError("Template A: IV 생성 실패")
 
 def build_template_B(spec: WorldSpec) -> Dict[str, Cell]:
@@ -420,6 +530,22 @@ def template_constraints_ok(template: str, spec: WorldSpec, amts: Dict[str,Dict[
                 if iv not in ([(0,1)] + ([(0,0)] if (L in spec.x_loci) else [])): return False
             elif ref==(0,0):
                 if iv!=(0,0): return False
+                # NEW: IV must differ from III only where I permits branching (autosome I=(1,1))
+        III = amts['III']
+        for L in LOCI:
+            if amts['IV'][L] == III[L]:
+                continue
+            ref = I[L]
+            iv  = amts['IV'][L]
+            # autosome: only heterozygous I=(1,1) can yield alternative n(1) outcomes
+            if L not in spec.x_loci:
+                if ref != (1,1):
+                    return False
+                # if ref is (1,1), both (1,0)/(0,1) are ok and differ is allowed
+            else:
+                # X-locus: allow 'drop to 0' as non-II-derived evidence
+                if iv != (0,0):
+                    return False
         return True
 
     # template B
