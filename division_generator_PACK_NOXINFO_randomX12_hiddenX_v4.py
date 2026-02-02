@@ -497,55 +497,52 @@ def template_constraints_ok(template: str, spec: WorldSpec, amts: Dict[str,Dict[
     amts: stage-> amounts dict for E/F/G
     """
     if template=="A":
-        # II is n(2), III is n(1) derived from II
-        II = amts["II"]; III=amts["III"]
+        I   = amts["I"]     # 2n(2)
+        II  = amts["II"]    # n(2) (left)
+        III = amts["III"]   # n(1) from II
+        IV  = amts["IV"]    # n(1) from the other n(2) branch (not shown)
+
+        # 1) III must be derived from II (n2 -> n1, halving, direction preserved; 0 stays 0)
         for L in LOCI:
-            u2,l2 = II[L]
-            u1,l1 = III[L]
+            u2, l2 = II[L]
+            u1, l1 = III[L]
             if (u2,l2)==(0,0):
                 if (u1,l1)!=(0,0): return False
             else:
-                # must halve 2->1 direction preserved
                 if u2>0 and l2==0 and (u1,l1)!=(1,0): return False
                 if l2>0 and u2==0 and (u1,l1)!=(0,1): return False
-                # if somehow (2,2) not expected in n(2) domain
-        # IV not from II => IV amounts != III amounts
-        if amts["IV"]==amts["III"]: return False
-        # (중요) IV는 II에서 분열된 세포가 아니더라도 같은 개체이므로 유전자형과 모순되면 안 된다.
-        I = amts["I"]  # 2n(2) 기준
+
+        # 2) IV must be a valid n(1) gamete consistent with I's genotype (tree-wise: derived via hidden 2n4 -> n2 -> n1)
+        #    This constraint is same as "I allows these n1 outcomes", including X-locus allowing (0,0) Y-gamete.
         for L in LOCI:
             ref = I[L]
-            iv = amts["IV"][L]
+            iv  = IV[L]
+
+            # X-locus: allow Y gamete (0,0)
             if (L in spec.x_loci) and iv==(0,0):
                 continue
+
+            # autosome: genotype bounds from I(2n2)
             if ref==(2,0):
                 if iv!=(1,0): return False
             elif ref==(0,2):
                 if iv!=(0,1): return False
             elif ref==(1,1):
                 if iv not in [(1,0),(0,1)]: return False
+            # X-locus I domain (male X is (1,0) or (0,1))
             elif ref==(1,0):
                 if iv not in ([(1,0)] + ([(0,0)] if (L in spec.x_loci) else [])): return False
             elif ref==(0,1):
                 if iv not in ([(0,1)] + ([(0,0)] if (L in spec.x_loci) else [])): return False
             elif ref==(0,0):
                 if iv!=(0,0): return False
-                # NEW: IV must differ from III only where I permits branching (autosome I=(1,1))
-        III = amts['III']
-        for L in LOCI:
-            if amts['IV'][L] == III[L]:
-                continue
-            ref = I[L]
-            iv  = amts['IV'][L]
-            # autosome: only heterozygous I=(1,1) can yield alternative n(1) outcomes
-            if L not in spec.x_loci:
-                if ref != (1,1):
-                    return False
-                # if ref is (1,1), both (1,0)/(0,1) are ok and differ is allowed
-            else:
-                # X-locus: allow 'drop to 0' as non-II-derived evidence
-                if iv != (0,0):
-                    return False
+
+        # 3) "IV is not from II" in your intended meaning: IV is from the other branch, so at least one locus differs from III
+        #    (If biology makes them identical, allow it; but usually we want difference for mapping evidence.)
+        #    Here we keep the strict version to preserve your original puzzle design.
+        if IV == III:
+            return False
+
         return True
 
     # template B
