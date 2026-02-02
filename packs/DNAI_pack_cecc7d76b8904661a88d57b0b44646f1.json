@@ -1,0 +1,2003 @@
+{
+  "pack_id": "cecc7d76b8904661a88d57b0b44646f1",
+  "module": "DNAI",
+  "id_prefix": "DNAI_",
+  "created_at": 1770049367,
+  "count": 30,
+  "items": [
+    {
+      "id": "DNAI_eedfefb7cb",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 1,
+      "created_at": 1770049367,
+      "seed": 3299531184,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "A"
+        ],
+        "sum_col": [
+          "D+a+d",
+          [
+            "D",
+            "a",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "나": "II",
+          "다": "III",
+          "가": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            3
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_168df7bb57",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 2,
+      "created_at": 1770049367,
+      "seed": 1510762742,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "A",
+          "B"
+        ],
+        "sum_col": [
+          "D+a+d",
+          [
+            "D",
+            "a",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "가": "I",
+          "라": "II",
+          "나": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            5
+          ]
+        },
+        "full_table": {
+          "가": [
+            3
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            5
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_409d3f7a32",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 3,
+      "created_at": 1770049367,
+      "seed": 2777486584,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B"
+        ],
+        "sum_col": [
+          "A+b+d",
+          [
+            "A",
+            "b",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "나": "II",
+          "가": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            7
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            3
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            7
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_39a3ce5f00",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 4,
+      "created_at": 1770049367,
+      "seed": 4221069091,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D"
+        ],
+        "sum_col": [
+          "B+a+d",
+          [
+            "B",
+            "a",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "가": "II",
+          "나": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            0
+          ],
+          "라": [
+            1
+          ]
+        },
+        "full_table": {
+          "가": [
+            8
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            0
+          ],
+          "라": [
+            1
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_10f381b56c",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 5,
+      "created_at": 1770049367,
+      "seed": 1350465618,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "A"
+        ],
+        "sum_col": [
+          "B+a+b",
+          [
+            "B",
+            "a",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "다",
+          "right": "가"
+        },
+        "map_row_to_fig": {
+          "다": "I",
+          "나": "II",
+          "가": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            3
+          ],
+          "라": [
+            1
+          ]
+        },
+        "full_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            3
+          ],
+          "라": [
+            1
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_00209ce86a",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 6,
+      "created_at": 1770049367,
+      "seed": 835313684,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D",
+          "A"
+        ],
+        "sum_col": [
+          "B+b+d",
+          [
+            "B",
+            "b",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "다",
+          "right": "가"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "라": "II",
+          "다": "III",
+          "가": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            6
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_4e059845c2",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 7,
+      "created_at": 1770049367,
+      "seed": 824135750,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B"
+        ],
+        "sum_col": [
+          "A+D+d",
+          [
+            "A",
+            "D",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "다": "I",
+          "가": "II",
+          "라": "III",
+          "나": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            3
+          ]
+        },
+        "full_table": {
+          "가": [
+            6
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_e38acf551e",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 8,
+      "created_at": 1770049367,
+      "seed": 29373660,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B"
+        ],
+        "sum_col": [
+          "A+B+D",
+          [
+            "A",
+            "B",
+            "D"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "다": "II",
+          "가": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            1
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_2e5f8d095e",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 9,
+      "created_at": 1770049367,
+      "seed": 314174851,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B"
+        ],
+        "sum_col": [
+          "B+D+a",
+          [
+            "B",
+            "D",
+            "a"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "다": "II",
+          "가": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            1
+          ]
+        },
+        "full_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            6
+          ],
+          "라": [
+            1
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_b45116e3bc",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 10,
+      "created_at": 1770049367,
+      "seed": 517275613,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D"
+        ],
+        "sum_col": [
+          "B+a+d",
+          [
+            "B",
+            "a",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "가": "II",
+          "나": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            2
+          ]
+        },
+        "full_table": {
+          "가": [
+            5
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_7b03380a15",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 11,
+      "created_at": 1770049367,
+      "seed": 2735596618,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D"
+        ],
+        "sum_col": [
+          "B+b+d",
+          [
+            "B",
+            "b",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "가": "II",
+          "라": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            2
+          ]
+        },
+        "full_table": {
+          "가": [
+            4
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_16de9613e3",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 12,
+      "created_at": 1770049367,
+      "seed": 1073174106,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "D"
+        ],
+        "sum_col": [
+          "D+a+b",
+          [
+            "D",
+            "a",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "가": "II",
+          "나": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            3
+          ]
+        },
+        "full_table": {
+          "가": [
+            6
+          ],
+          "나": [
+            2
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_8abd0b27ae",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 13,
+      "created_at": 1770049367,
+      "seed": 160372857,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "A"
+        ],
+        "sum_col": [
+          "B+D+d",
+          [
+            "B",
+            "D",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "다": "II",
+          "나": "III",
+          "가": "IV"
+        },
+        "masked_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_d2904d67a0",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 14,
+      "created_at": 1770049367,
+      "seed": 3384175379,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "D"
+        ],
+        "sum_col": [
+          "A+a+b",
+          [
+            "A",
+            "a",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "가": "II",
+          "나": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            5
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_fe68185fd8",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 15,
+      "created_at": 1770049367,
+      "seed": 3686514339,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D",
+          "B"
+        ],
+        "sum_col": [
+          "A+a+b",
+          [
+            "A",
+            "a",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "다",
+          "right": "가"
+        },
+        "map_row_to_fig": {
+          "다": "I",
+          "라": "II",
+          "가": "III",
+          "나": "IV"
+        },
+        "masked_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            6
+          ]
+        },
+        "full_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            1
+          ],
+          "다": [
+            3
+          ],
+          "라": [
+            6
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_63c36c5c6d",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 16,
+      "created_at": 1770049367,
+      "seed": 806984434,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "A"
+        ],
+        "sum_col": [
+          "A+B+a",
+          [
+            "A",
+            "B",
+            "a"
+          ]
+        ],
+        "ineq": {
+          "left": "다",
+          "right": "가"
+        },
+        "map_row_to_fig": {
+          "가": "I",
+          "나": "II",
+          "다": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            0
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            0
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_0d4e91e3dc",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 17,
+      "created_at": 1770049367,
+      "seed": 3551791260,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "A"
+        ],
+        "sum_col": [
+          "a+b+d",
+          [
+            "a",
+            "b",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "다",
+          "right": "가"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "다": "II",
+          "가": "III",
+          "나": "IV"
+        },
+        "masked_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            1
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            4
+          ]
+        },
+        "full_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            1
+          ],
+          "다": [
+            6
+          ],
+          "라": [
+            4
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_7fac35d0a8",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 18,
+      "created_at": 1770049367,
+      "seed": 736091101,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "A",
+          "D"
+        ],
+        "sum_col": [
+          "A+B+b",
+          [
+            "A",
+            "B",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "가": "II",
+          "라": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            4
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            2
+          ]
+        },
+        "full_table": {
+          "가": [
+            4
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_eca6f10720",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 19,
+      "created_at": 1770049367,
+      "seed": 3959845476,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "A",
+          "B"
+        ],
+        "sum_col": [
+          "a+b+d",
+          [
+            "a",
+            "b",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "나": "II",
+          "가": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            0
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            2
+          ]
+        },
+        "full_table": {
+          "가": [
+            0
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_713587c6a8",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 20,
+      "created_at": 1770049367,
+      "seed": 542185719,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "A"
+        ],
+        "sum_col": [
+          "A+B+d",
+          [
+            "A",
+            "B",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "다": "I",
+          "나": "II",
+          "가": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            null
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            1
+          ]
+        },
+        "full_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            1
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_7fe01dbe11",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 21,
+      "created_at": 1770049367,
+      "seed": 3392773008,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "A",
+          "B"
+        ],
+        "sum_col": [
+          "A+D+a",
+          [
+            "A",
+            "D",
+            "a"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "나": "II",
+          "가": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            4
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            2
+          ]
+        },
+        "full_table": {
+          "가": [
+            4
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_6a2b06ee66",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 22,
+      "created_at": 1770049367,
+      "seed": 3448753422,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D"
+        ],
+        "sum_col": [
+          "B+D+a",
+          [
+            "B",
+            "D",
+            "a"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "라": "II",
+          "가": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            2
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_0203489f90",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 23,
+      "created_at": 1770049367,
+      "seed": 3604587811,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D"
+        ],
+        "sum_col": [
+          "A+B+a",
+          [
+            "A",
+            "B",
+            "a"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "다": "I",
+          "가": "II",
+          "나": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            7
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            7
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_72f4f68ae7",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 24,
+      "created_at": 1770049367,
+      "seed": 658288555,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B"
+        ],
+        "sum_col": [
+          "D+a+d",
+          [
+            "D",
+            "a",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "가": "II",
+          "라": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            7
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            3
+          ]
+        },
+        "full_table": {
+          "가": [
+            7
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            1
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_99c8fd5a0a",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 25,
+      "created_at": 1770049367,
+      "seed": 3852936031,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "D"
+        ],
+        "sum_col": [
+          "B+D+b",
+          [
+            "B",
+            "D",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "다",
+          "right": "가"
+        },
+        "map_row_to_fig": {
+          "가": "I",
+          "다": "II",
+          "나": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            0
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            0
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_9f13c98776",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 26,
+      "created_at": 1770049367,
+      "seed": 2741799558,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "D"
+        ],
+        "sum_col": [
+          "A+D+b",
+          [
+            "A",
+            "D",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "다",
+          "right": "가"
+        },
+        "map_row_to_fig": {
+          "가": "I",
+          "다": "II",
+          "나": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            4
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            9
+          ],
+          "라": [
+            2
+          ]
+        },
+        "full_table": {
+          "가": [
+            4
+          ],
+          "나": [
+            1
+          ],
+          "다": [
+            9
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_d08f6a685f",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 27,
+      "created_at": 1770049367,
+      "seed": 908432745,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B"
+        ],
+        "sum_col": [
+          "B+D+d",
+          [
+            "B",
+            "D",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "나": "I",
+          "다": "II",
+          "라": "III",
+          "가": "IV"
+        },
+        "masked_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            5
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            3
+          ],
+          "다": [
+            5
+          ],
+          "라": [
+            2
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_d153e3a7f2",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 28,
+      "created_at": 1770049367,
+      "seed": 2552114328,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B"
+        ],
+        "sum_col": [
+          "B+D+d",
+          [
+            "B",
+            "D",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "다": "I",
+          "가": "II",
+          "나": "III",
+          "라": "IV"
+        },
+        "masked_table": {
+          "가": [
+            6
+          ],
+          "나": [
+            null
+          ],
+          "다": [
+            3
+          ],
+          "라": [
+            1
+          ]
+        },
+        "full_table": {
+          "가": [
+            6
+          ],
+          "나": [
+            4
+          ],
+          "다": [
+            3
+          ],
+          "라": [
+            1
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_1364dfda86",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 29,
+      "created_at": 1770049367,
+      "seed": 3118108067,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "A"
+        ],
+        "sum_col": [
+          "B+D+b",
+          [
+            "B",
+            "D",
+            "b"
+          ]
+        ],
+        "ineq": {
+          "left": "가",
+          "right": "나"
+        },
+        "map_row_to_fig": {
+          "라": "I",
+          "가": "II",
+          "다": "III",
+          "나": "IV"
+        },
+        "masked_table": {
+          "가": [
+            5
+          ],
+          "나": [
+            1
+          ],
+          "다": [
+            null
+          ],
+          "라": [
+            3
+          ]
+        },
+        "full_table": {
+          "가": [
+            5
+          ],
+          "나": [
+            1
+          ],
+          "다": [
+            4
+          ],
+          "라": [
+            3
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    },
+    {
+      "id": "DNAI_4d2bab874d",
+      "module": "DNAI",
+      "id_prefix": "DNAI_",
+      "qnum": 30,
+      "created_at": 1770049367,
+      "seed": 431945130,
+      "payload": {
+        "template": "B",
+        "x_loci": [
+          "B",
+          "A"
+        ],
+        "sum_col": [
+          "A+b+d",
+          [
+            "A",
+            "b",
+            "d"
+          ]
+        ],
+        "ineq": {
+          "left": "나",
+          "right": "라"
+        },
+        "map_row_to_fig": {
+          "가": "I",
+          "나": "II",
+          "라": "III",
+          "다": "IV"
+        },
+        "masked_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            null
+          ]
+        },
+        "full_table": {
+          "가": [
+            1
+          ],
+          "나": [
+            5
+          ],
+          "다": [
+            2
+          ],
+          "라": [
+            0
+          ]
+        },
+        "state_of_fig": {
+          "I": "2n(2)",
+          "II": "2n(4)",
+          "III": "n(2)",
+          "IV": "n(1)"
+        }
+      }
+    }
+  ]
+}
